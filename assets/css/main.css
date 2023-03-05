@@ -8,3 +8,8 @@
 
     --sans-serif: "Source Sans Pro", sans-serif;
 }
+
+header {
+    height:5px;
+    background-color: linear-gradient(var(--s-body),var(--s-top));
+}
