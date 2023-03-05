@@ -60,7 +60,7 @@ body {
     #content {
         position:absolute;
         left:0px;
-        width:150%;
+        width:100%;
         top:150px;
         height: calc( 100% - 150px );
     }
