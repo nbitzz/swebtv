@@ -1,0 +1,19 @@
+.projectBadge {
+
+    height: 20px;
+    
+    border: none;
+    border-radius: 100%;
+    
+    background-color: var(--sf2)
+
+}
+
+.projectBadge > img {
+    
+    height:20px;
+    width:20px;
+    
+    border-radius: 100%;
+
+}

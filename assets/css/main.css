@@ -1,0 +1,12 @@
+/* css */
+
+/* components */
+
+@import url("/assets/css/components/projectBadge.css");
+
+/* main page */
+
+:root {
+    --s-body: #7A2259;
+    --s-top: #FB405A;
+}
