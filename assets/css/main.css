@@ -1,10 +1,10 @@
 /* themes */
 
-@import url("/assets/css/themes/light.css");
+@import "/assets/css/themes/light.css";
 
 /* components */
 
-@import url("/assets/css/components/projectBadge.css");
+@import "/assets/css/components/projectBadge.css";
 
 /* main page */
 
