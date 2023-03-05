@@ -35,6 +35,7 @@ body {
     filter:blur(8px);
 
     background-image: var(--patak);
+    background-size: contain;
 }
 
 /* content */
