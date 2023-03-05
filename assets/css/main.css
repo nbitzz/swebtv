@@ -21,3 +21,45 @@
 body {
     background-color: var(--cst)
 }
+
+/* vid background thingy */
+
+#vidBkg {
+    position:absolute;
+    height:100%;
+    width:100%;
+    left:0px;
+    top:0px;
+    overflow:hidden;
+}
+
+#vidBkg > video {
+    position: absolute;
+    left:0px;
+    top:0px;
+    height:100%;   
+}
+
+/* content */
+
+#content { 
+
+    position:absolute;
+    left:50%;
+    top:3px;
+    
+    width:50%;
+    height:calc( 100% - 3px );
+
+    overflow:auto;
+
+    background-color: var(--bse);
+
+    @media screen and (max-width:600px) {
+        position:absolute;
+        left:0px;
+        width:100%;
+        top:50px;
+    }
+
+}
