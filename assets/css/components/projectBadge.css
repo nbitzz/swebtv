@@ -28,6 +28,7 @@
     color: var(--st1);
     opacity: 0;
     font-size:0px;
+    font-family: var(--sans-serif);
 
 }
 

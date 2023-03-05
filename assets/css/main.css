@@ -5,4 +5,6 @@
 :root {
     --s-body: #7A2259;
     --s-top: #FB405A;
+
+    --sans-serif: "Source Sans Pro", sans-serif;
 }
