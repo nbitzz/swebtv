@@ -45,19 +45,19 @@
 
 @media screen and (max-width: 600px) {
     .projectBadge {
-        height:50px;
+        height:40px;
     }
 
     .projectBadge > img {
-        height:50px;
-        width:50px;
+        height:40px;
+        width:40px;
     }
 
     .projectBadge > span {
         opacity:1;
         padding-left:12px;
-        padding-right:14px;
-        font-size:20px;
+        padding-right:16px;
+        font-size:18px;
     }
 }
 
