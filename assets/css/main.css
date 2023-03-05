@@ -9,7 +9,11 @@
     --sans-serif: "Source Sans Pro", sans-serif;
 }
 
-header {
+.topCl {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
     height:5px;
     background-color: linear-gradient(var(--s-body),var(--s-top));
 }
