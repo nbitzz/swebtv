@@ -61,7 +61,7 @@ body {
         position:absolute;
         left:0px;
         width:150%;
-        top:100px;
+        top:150px;
         height: calc( 100% - 150px );
     }
 
