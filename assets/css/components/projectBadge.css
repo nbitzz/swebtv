@@ -9,7 +9,7 @@
 
 }
 
-.projectBadge > img {
+.projectBadge > a > img {
     
     height:20px;
     width:20px;
