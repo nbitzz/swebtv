@@ -32,13 +32,9 @@ body {
     left:0px;
     top:0px;
     overflow:hidden;
-}
+    filter:blur(8px);
 
-#vidBkg > video {
-    position: absolute;
-    left:0px;
-    top:0px;
-    height:100%;   
+    background-image: var(--patak);
 }
 
 /* content */

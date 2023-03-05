@@ -33,4 +33,8 @@
     --bse: #24273a; /* base */
     --mtl: #1e2030; /* mantle */
     --cst: #181926; /* crust */
+
+    /* images */
+
+    --patak: url("/assets/images/patak_dark.png");
 }
