@@ -17,3 +17,7 @@
     height:3px;
     background: linear-gradient(to right,#7A2259,#FB405A);
 }
+
+body {
+    background-color: var(--cst)
+}
