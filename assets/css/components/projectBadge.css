@@ -9,6 +9,8 @@
     
     background-color: var(--sf2);
 
+    width: auto;
+
 }
 
 .projectBadge > img {
@@ -22,8 +24,17 @@
 
 .projectBadge > span {
 
+    transition-duration:150ms;
     color: var(--st1);
     opacity: 0;
+    font-size:0px;
+
+}
+
+.projectBadge:hover > span {
+
+    transition-duration:150ms;
+    opacity:1;
     font-size:16px;
 
 }
