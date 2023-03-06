@@ -74,12 +74,12 @@ body {
 
 }
 
-#card > #me {
+#me {
     display:flex;
     margin: 0 0 5px 0;
 }
 
-#card > #me > img {
+#me > img {
     
     height:30px;
     width:30px;
@@ -89,7 +89,7 @@ body {
 
 }
 
-#card > #me > span {
+#me > span {
     
     font-size:16px;
 
