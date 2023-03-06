@@ -48,6 +48,7 @@
 @media screen and (max-width: 600px) {
     .projectBadge {
         height:40px;
+        width: 100%;
     }
 
     .projectBadge > img {
