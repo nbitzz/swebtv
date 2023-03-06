@@ -34,7 +34,7 @@
 }
 
 @media screen and (min-width: 600px) {
-    .projectBadge:hover > span {
+    .projectBadge:hover > span, .a:focus > .projectBadge > span {
 
         transition-duration:150ms;
         opacity:1;
@@ -65,4 +65,9 @@
 
 a {
     text-decoration:none;
+    outline:none;
+}
+
+a:focus > .projectBadge {
+    outline: 1px solid var(--overlay2);
 }
