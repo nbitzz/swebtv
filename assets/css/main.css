@@ -41,7 +41,7 @@ body {
 
 /* content */
 
-#content { 
+#grad { 
 
     position:absolute;
     left:50%;
@@ -52,18 +52,30 @@ body {
 
     overflow:auto;
 
-    background-color: var(--bse);
+    background-image: linear-gradient(to right, #00000000,var(--mtl));
 
 }
 
 @media screen and (max-width: 600px) {
     
-    #content {
+    #grad {
         position:absolute;
         left:0px;
         width:100%;
-        top:150px;
-        height: calc( 100% - 150px );
+        top:3px;
+        height: calc( 100% - 3px );
+        background-image: linear-gradient(to top, var(--mtl)22, var(--mtl))
     }
+
+}
+
+#card {
+    
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background-color: var(--bse);
+    padding:10px;
 
 }
