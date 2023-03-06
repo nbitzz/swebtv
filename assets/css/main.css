@@ -33,7 +33,6 @@ body {
     left:0px;
     top:0px;
     overflow:hidden;
-    filter:blur(8px);
 
     background-image: var(--patak);
     background-size: cover;
@@ -81,15 +80,19 @@ body {
     width:30px;
     
     border-radius: 100%;
+    display:inline;
 
 }
 
 #card > #me > p {
     
     font-size:16px;
+
     color: var(--text);
     font-weight:600;
     padding-left:10px;
+    font-family: var(--sans-serif);
+    display:inline;
 
 }
 
