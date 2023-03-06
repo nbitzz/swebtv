@@ -74,3 +74,34 @@ body {
     padding:10px;
 
 }
+
+#card > #me > img {
+    
+    height:30px;
+    width:30px;
+    
+    border-radius: 100%;
+
+}
+
+#card > #me > p {
+    
+    font-size:16px;
+    color: var(--text);
+    font-weight:600;
+    padding-left:10px;
+
+}
+
+@media screen and (max-width: 600px) {
+    
+    #card > #me > img {
+        height:40px;
+        width:40px
+    }
+
+    #card > #me > p {
+        font-size:18px;
+    }
+
+}
