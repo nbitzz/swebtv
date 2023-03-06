@@ -70,12 +70,13 @@ body {
     top:50%;
     transform:translate(-50%,-50%);
     background-color: var(--bse);
-    padding:10px;
+    padding:10px 10px 7px 10px;
 
 }
 
 #card > #me {
     display:flex;
+    margin: 0 0 5px 0;
 }
 
 #card > #me > img {
