@@ -104,6 +104,10 @@ body {
 
 @media screen and (max-width: 600px) {
     
+    #card {
+        border-radius:16px;
+    }
+    
     #card > #me > img {
         height:40px;
         width:40px
