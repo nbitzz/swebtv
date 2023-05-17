@@ -52,7 +52,7 @@
     overflow:hidden;
 }
 
-.sidebar > .listItem:hover {
+.sidebar > .listItem:hover, .sidebar > .listItem[data-active] {
     border-left: 3px solid var(--sky);
     transition-duration:50ms;
 }
