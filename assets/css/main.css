@@ -47,6 +47,7 @@
     height:50px;
     transition-duration:150ms;
     border-left: none;
+    overflow:clip;
 }
 
 .sidebar > .listItem:hover {
@@ -84,8 +85,14 @@
 
 .sidebar > .listItem > .content > p {
     position:absolute;
-    margin: auto 0 auto 0;
+    margin: 0 0 0 0;
+    top:50%; /* probably just me being stupid but
+                couldnt get margin auto 0 auto  0 towork
+             */
+    transform:translateY(-50%);
     color: var(--txt);
+    font-family: var(--sans-serif);
+    font-size:16px;
 }
 
 /* Content */
@@ -123,6 +130,7 @@
     margin: 0 0 0 0;
     font-family: var(--sans-serif);
     transform:translate(-50%,-50%);
+    color:var(--sf0)
 }
 
 body {
