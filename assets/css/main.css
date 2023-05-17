@@ -1,4 +1,3 @@
-@import "/assets/css/components/projectBadge.css";
 @import "/assets/css/fonts/source_sans.css";
 
 /* main page */
@@ -10,111 +9,46 @@
     --sans-serif: "Source Sans Pro", sans-serif;
 }
 
-.topCl {
+/* Sidebar */
+
+header {
     position:absolute;
     left:0px;
     top:0px;
-    width:100%;
-    height:3px;
-    background: linear-gradient(to right,#7A2259,#FB405A);
-    z-index: 1000;
+}
+
+#clgrad {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:3px;
+    height:100%;
+    background: linear-gradient(to bottom,#7A2259,#FB405A);
+}
+
+#sidebar {
+    position:absolute;
+    left:3px;
+    top:0px;
+    height:100%;
+    background-color: var(--sf0);
+
+    width: 50px;
+    transition-duration: 150ms;
+}
+
+#sidebar:hover {
+    width:200px;
+    transition-duration:150ms;
+}
+
+/* Content */
+
+#content {
+    flex-basis: 100%;
 }
 
 body {
-    background-color: var(--cst)
-}
-
-/* vid background thingy */
-
-#vidBkg {
-    position:absolute;
-    height:100%;
-    width:100%;
-    left:0px;
-    top:0px;
-    overflow:hidden;
-
-    background-image: var(--patak);
-    background-size: cover;
-}
-
-/* content */
-
-#grad { 
-
-    position:absolute;
-    left:0%;
-    top:3px;
-    
-    width:100%;
-    height:calc( 100% - 3px );
-
-    overflow:auto;
-
-    background-image: linear-gradient(to right, #00000000,var(--mtl));
-
-}
-
-@media screen and (max-width: 600px) {
-    
-    #grad {
-        display:none;
-    }
-
-}
-
-#card {
-    
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
     background-color: var(--bse);
-    padding:10px 10px 7px 10px;
-
-}
-
-#me {
-    display:flex;
-    margin: 0 0 5px 0;
-}
-
-#me > img {
-    
-    height:30px;
-    width:30px;
-    
-    border-radius: 100%;
-    display:inline;
-
-}
-
-#me > span {
-    
-    font-size:16px;
-
-    color: var(--txt);
-    font-weight:600;
-    padding-left:10px;
-    font-family: var(--sans-serif);
-    display:inline;
-    align-self: center;
-
-}
-
-@media screen and (max-width: 600px) {
-    
-    #card {
-        border-radius:30px;
-    }
-    
-    #card > #me > img {
-        height:40px;
-        width:40px
-    }
-
-    #card > #me > p {
-        font-size:18px;
-    }
-
+    display: flex;
 }
