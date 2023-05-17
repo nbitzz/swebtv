@@ -11,7 +11,7 @@
 
 /* Sidebar */
 
-.header {
+.menu {
     position:absolute;
     left:0px;
     top:0px;
@@ -43,7 +43,7 @@
     transition-duration:150ms;
 }
 
-header > .sidebar {
+.menu > .sidebar {
     left: 3px;
 }
 
