@@ -25,7 +25,6 @@
 }
 
 .sidebar {
-    position:relative;
     height:100%;
     --level: var(--sf0); /* default */
     background-color: var(--level);
