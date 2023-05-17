@@ -25,9 +25,7 @@
 }
 
 .sidebar {
-    position:absolute;
-    left:0px;
-    top:0px;
+    position:relative;
     height:100%;
     --level: var(--sf0); /* default */
     background-color: var(--level);
@@ -49,7 +47,7 @@
 
 #content {
     flex-basis: 100%;
-    background-color:#FFAAAA;
+    background-color:var(--bse);
 }
 
 #mc {
