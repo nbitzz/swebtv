@@ -12,9 +12,7 @@
 /* Sidebar */
 
 #menu {
-    position:absolute;
-    left:0px;
-    top:0px;
+    flex-basis: auto;
 }
 
 #clgrad {
