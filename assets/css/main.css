@@ -51,8 +51,10 @@
 
 #content {
     flex-basis: 100%;
+    background-color:#FFAAAA;
 }
 
 body {
     background-color: var(--bse);
+    display: flex;
 }
