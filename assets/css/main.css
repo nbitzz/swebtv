@@ -11,8 +11,8 @@
 
 /* Sidebar */
 
-header {
-    position:relative;
+.header {
+    position:absolute;
     left:0px;
     top:0px;
 }
@@ -26,12 +26,13 @@ header {
     background: linear-gradient(to bottom,#7A2259,#FB405A);
 }
 
-#sidebar {
+.sidebar {
     position:absolute;
-    left:3px;
+    left:0px;
     top:0px;
     height:100%;
-    background-color: var(--sf0);
+    --level: var(--sf0); /* default */
+    background-color: var(--level);
 
     width: 50px;
     transition-duration: 150ms;
@@ -40,6 +41,10 @@ header {
 #sidebar:hover {
     width:200px;
     transition-duration:150ms;
+}
+
+header > .sidebar {
+    left: 3px;
 }
 
 /* Content */
