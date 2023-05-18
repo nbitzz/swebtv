@@ -1,4 +1,5 @@
 function noop() { }
+const identity = x => x;
 function run(fn) {
     return fn();
 }
@@ -32,12 +33,64 @@ function subscribe(store, ...callbacks) {
     const unsub = store.subscribe(...callbacks);
     return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
-function set_store_value(store, ret, value) {
-    store.set(value);
-    return ret;
+function component_subscribe(component, store, callback) {
+    component.$$.on_destroy.push(subscribe(store, callback));
+}
+
+const is_client = typeof window !== 'undefined';
+let now = is_client
+    ? () => window.performance.now()
+    : () => Date.now();
+let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+const tasks = new Set();
+function run_tasks(now) {
+    tasks.forEach(task => {
+        if (!task.c(now)) {
+            tasks.delete(task);
+            task.f();
+        }
+    });
+    if (tasks.size !== 0)
+        raf(run_tasks);
+}
+/**
+ * Creates a new task that runs on each raf frame
+ * until it returns a falsy value or is aborted
+ */
+function loop(callback) {
+    let task;
+    if (tasks.size === 0)
+        raf(run_tasks);
+    return {
+        promise: new Promise(fulfill => {
+            tasks.add(task = { c: callback, f: fulfill });
+        }),
+        abort() {
+            tasks.delete(task);
+        }
+    };
 }
 function append(target, node) {
     target.appendChild(node);
+}
+function get_root_for_style(node) {
+    if (!node)
+        return document;
+    const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+    if (root && root.host) {
+        return root;
+    }
+    return node.ownerDocument;
+}
+function append_empty_stylesheet(node) {
+    const style_element = element('style');
+    append_stylesheet(get_root_for_style(node), style_element);
+    return style_element.sheet;
+}
+function append_stylesheet(node, style) {
+    append(node.head || node, style);
+    return style.sheet;
 }
 function insert(target, node, anchor) {
     target.insertBefore(node, anchor || null);
@@ -89,6 +142,11 @@ function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
     }
 }
+function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+    const e = document.createEvent('CustomEvent');
+    e.initCustomEvent(type, bubbles, cancelable, detail);
+    return e;
+}
 class HtmlTag {
     constructor(is_svg = false) {
         this.is_svg = false;
@@ -128,6 +186,74 @@ class HtmlTag {
         this.n.forEach(detach);
     }
 }
+function construct_svelte_component(component, props) {
+    return new component(props);
+}
+
+// we need to store the information for multiple documents because a Svelte application could also contain iframes
+// https://github.com/sveltejs/svelte/issues/3624
+const managed_styles = new Map();
+let active = 0;
+// https://github.com/darkskyapp/string-hash/blob/master/index.js
+function hash(str) {
+    let hash = 5381;
+    let i = str.length;
+    while (i--)
+        hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+    return hash >>> 0;
+}
+function create_style_information(doc, node) {
+    const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
+    managed_styles.set(doc, info);
+    return info;
+}
+function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+    const step = 16.666 / duration;
+    let keyframes = '{\n';
+    for (let p = 0; p <= 1; p += step) {
+        const t = a + (b - a) * ease(p);
+        keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+    }
+    const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+    const name = `__svelte_${hash(rule)}_${uid}`;
+    const doc = get_root_for_style(node);
+    const { stylesheet, rules } = managed_styles.get(doc) || create_style_information(doc, node);
+    if (!rules[name]) {
+        rules[name] = true;
+        stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+    }
+    const animation = node.style.animation || '';
+    node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+    active += 1;
+    return name;
+}
+function delete_rule(node, name) {
+    const previous = (node.style.animation || '').split(', ');
+    const next = previous.filter(name
+        ? anim => anim.indexOf(name) < 0 // remove specific animation
+        : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+    );
+    const deleted = previous.length - next.length;
+    if (deleted) {
+        node.style.animation = next.join(', ');
+        active -= deleted;
+        if (!active)
+            clear_rules();
+    }
+}
+function clear_rules() {
+    raf(() => {
+        if (active)
+            return;
+        managed_styles.forEach(info => {
+            const { ownerNode } = info.stylesheet;
+            // there is no ownerNode if it runs on jsdom.
+            if (ownerNode)
+                detach(ownerNode);
+        });
+        managed_styles.clear();
+    });
+}
 
 let current_component;
 function set_current_component(component) {
@@ -165,6 +291,9 @@ function schedule_update() {
 }
 function add_render_callback(fn) {
     render_callbacks.push(fn);
+}
+function add_flush_callback(fn) {
+    flush_callbacks.push(fn);
 }
 // flush() calls callbacks in this order:
 // 1. All beforeUpdate callbacks, in order: parents before children
@@ -256,8 +385,35 @@ function flush_render_callbacks(fns) {
     targets.forEach((c) => c());
     render_callbacks = filtered;
 }
+
+let promise;
+function wait() {
+    if (!promise) {
+        promise = Promise.resolve();
+        promise.then(() => {
+            promise = null;
+        });
+    }
+    return promise;
+}
+function dispatch(node, direction, kind) {
+    node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+}
 const outroing = new Set();
 let outros;
+function group_outros() {
+    outros = {
+        r: 0,
+        c: [],
+        p: outros // parent group
+    };
+}
+function check_outros() {
+    if (!outros.r) {
+        run_all(outros.c);
+    }
+    outros = outros.p;
+}
 function transition_in(block, local) {
     if (block && block.i) {
         outroing.delete(block);
@@ -282,6 +438,113 @@ function transition_out(block, local, detach, callback) {
     else if (callback) {
         callback();
     }
+}
+const null_transition = { duration: 0 };
+function create_bidirectional_transition(node, fn, params, intro) {
+    const options = { direction: 'both' };
+    let config = fn(node, params, options);
+    let t = intro ? 0 : 1;
+    let running_program = null;
+    let pending_program = null;
+    let animation_name = null;
+    function clear_animation() {
+        if (animation_name)
+            delete_rule(node, animation_name);
+    }
+    function init(program, duration) {
+        const d = (program.b - t);
+        duration *= Math.abs(d);
+        return {
+            a: t,
+            b: program.b,
+            d,
+            duration,
+            start: program.start,
+            end: program.start + duration,
+            group: program.group
+        };
+    }
+    function go(b) {
+        const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+        const program = {
+            start: now() + delay,
+            b
+        };
+        if (!b) {
+            // @ts-ignore todo: improve typings
+            program.group = outros;
+            outros.r += 1;
+        }
+        if (running_program || pending_program) {
+            pending_program = program;
+        }
+        else {
+            // if this is an intro, and there's a delay, we need to do
+            // an initial tick and/or apply CSS animation immediately
+            if (css) {
+                clear_animation();
+                animation_name = create_rule(node, t, b, duration, delay, easing, css);
+            }
+            if (b)
+                tick(0, 1);
+            running_program = init(program, duration);
+            add_render_callback(() => dispatch(node, b, 'start'));
+            loop(now => {
+                if (pending_program && now > pending_program.start) {
+                    running_program = init(pending_program, duration);
+                    pending_program = null;
+                    dispatch(node, running_program.b, 'start');
+                    if (css) {
+                        clear_animation();
+                        animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                    }
+                }
+                if (running_program) {
+                    if (now >= running_program.end) {
+                        tick(t = running_program.b, 1 - t);
+                        dispatch(node, running_program.b, 'end');
+                        if (!pending_program) {
+                            // we're done
+                            if (running_program.b) {
+                                // intro — we can tidy up immediately
+                                clear_animation();
+                            }
+                            else {
+                                // outro — needs to be coordinated
+                                if (!--running_program.group.r)
+                                    run_all(running_program.group.c);
+                            }
+                        }
+                        running_program = null;
+                    }
+                    else if (now >= running_program.start) {
+                        const p = now - running_program.start;
+                        t = running_program.a + running_program.d * easing(p / running_program.duration);
+                        tick(t, 1 - t);
+                    }
+                }
+                return !!(running_program || pending_program);
+            });
+        }
+    }
+    return {
+        run(b) {
+            if (is_function(config)) {
+                wait().then(() => {
+                    // @ts-ignore
+                    config = config(options);
+                    go(b);
+                });
+            }
+            else {
+                go(b);
+            }
+        },
+        end() {
+            clear_animation();
+            running_program = pending_program = null;
+        }
+    };
 }
 
 function destroy_block(block, lookup) {
@@ -365,6 +628,14 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
         insert(new_blocks[n - 1]);
     run_all(updates);
     return new_blocks;
+}
+
+function bind(component, name, callback) {
+    const index = component.$$.props[name];
+    if (index !== undefined) {
+        component.$$.bound[index] = callback;
+        callback(component.$$.ctx[index]);
+    }
 }
 function create_component(block) {
     block && block.c();
@@ -502,6 +773,329 @@ class SvelteComponent {
     }
 }
 
+/* src/svelte/elm/Sidebar.svelte generated by Svelte v3.59.1 */
+
+function get_each_context$1(ctx, list, i) {
+	const child_ctx = ctx.slice();
+	child_ctx[6] = list[i];
+	return child_ctx;
+}
+
+// (21:51) 
+function create_if_block_2(ctx) {
+	let html_tag;
+	let raw_value = /*item*/ ctx[6].icon.content + "";
+	let html_anchor;
+
+	return {
+		c() {
+			html_tag = new HtmlTag(false);
+			html_anchor = empty();
+			html_tag.a = html_anchor;
+		},
+		m(target, anchor) {
+			html_tag.m(raw_value, target, anchor);
+			insert(target, html_anchor, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && raw_value !== (raw_value = /*item*/ ctx[6].icon.content + "")) html_tag.p(raw_value);
+		},
+		d(detaching) {
+			if (detaching) detach(html_anchor);
+			if (detaching) html_tag.d();
+		}
+	};
+}
+
+// (19:51) 
+function create_if_block_1(ctx) {
+	let p;
+	let t_value = /*item*/ ctx[6].icon.content + "";
+	let t;
+
+	return {
+		c() {
+			p = element("p");
+			t = text(t_value);
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, t);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[6].icon.content + "")) set_data(t, t_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+// (17:16) {#if item.icon.type == "image"}
+function create_if_block$2(ctx) {
+	let img;
+	let img_src_value;
+	let img_alt_value;
+
+	return {
+		c() {
+			img = element("img");
+			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*item*/ ctx[6].text);
+		},
+		m(target, anchor) {
+			insert(target, img, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) {
+				attr(img, "src", img_src_value);
+			}
+
+			if (dirty & /*items*/ 2 && img_alt_value !== (img_alt_value = /*item*/ ctx[6].text)) {
+				attr(img, "alt", img_alt_value);
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(img);
+		}
+	};
+}
+
+// (13:4) {#each items as item (item.id)}
+function create_each_block$1(key_1, ctx) {
+	let div2;
+	let div0;
+	let t0;
+	let div1;
+	let p;
+	let t1_value = /*item*/ ctx[6].text + "";
+	let t1;
+	let t2;
+	let button;
+	let t3;
+	let div2_data_active_value;
+	let mounted;
+	let dispose;
+
+	function select_block_type(ctx, dirty) {
+		if (/*item*/ ctx[6].icon.type == "image") return create_if_block$2;
+		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_1;
+		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2;
+	}
+
+	let current_block_type = select_block_type(ctx);
+	let if_block = current_block_type && current_block_type(ctx);
+
+	function click_handler() {
+		return /*click_handler*/ ctx[5](/*item*/ ctx[6]);
+	}
+
+	return {
+		key: key_1,
+		first: null,
+		c() {
+			div2 = element("div");
+			div0 = element("div");
+			if (if_block) if_block.c();
+			t0 = space();
+			div1 = element("div");
+			p = element("p");
+			t1 = text(t1_value);
+			t2 = space();
+			button = element("button");
+			t3 = space();
+			attr(div0, "class", "icon");
+			attr(div1, "class", "content");
+			attr(button, "class", "hitbox");
+			attr(div2, "class", "listItem");
+
+			attr(div2, "data-active", div2_data_active_value = /*item*/ ctx[6].id == /*active*/ ctx[0]
+			? "true"
+			: "false");
+
+			this.first = div2;
+		},
+		m(target, anchor) {
+			insert(target, div2, anchor);
+			append(div2, div0);
+			if (if_block) if_block.m(div0, null);
+			append(div2, t0);
+			append(div2, div1);
+			append(div1, p);
+			append(p, t1);
+			append(div2, t2);
+			append(div2, button);
+			append(div2, t3);
+
+			if (!mounted) {
+				dispose = listen(button, "click", click_handler);
+				mounted = true;
+			}
+		},
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+				if_block.p(ctx, dirty);
+			} else {
+				if (if_block) if_block.d(1);
+				if_block = current_block_type && current_block_type(ctx);
+
+				if (if_block) {
+					if_block.c();
+					if_block.m(div0, null);
+				}
+			}
+
+			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
+
+			if (dirty & /*items, active*/ 3 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*active*/ ctx[0]
+			? "true"
+			: "false")) {
+				attr(div2, "data-active", div2_data_active_value);
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(div2);
+
+			if (if_block) {
+				if_block.d();
+			}
+
+			mounted = false;
+			dispose();
+		}
+	};
+}
+
+function create_fragment$4(ctx) {
+	let div;
+	let each_blocks = [];
+	let each_1_lookup = new Map();
+	let each_value = /*items*/ ctx[1];
+	const get_key = ctx => /*item*/ ctx[6].id;
+
+	for (let i = 0; i < each_value.length; i += 1) {
+		let child_ctx = get_each_context$1(ctx, each_value, i);
+		let key = get_key(child_ctx);
+		each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
+	}
+
+	return {
+		c() {
+			div = element("div");
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].c();
+			}
+
+			attr(div, "class", "sidebar");
+			attr(div, "id", "sidebar_main");
+			set_style(div, "--wdth", `${/*width*/ ctx[2]}px`);
+			set_style(div, "--level", `var(--sf${/*level*/ ctx[3]})`);
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				if (each_blocks[i]) {
+					each_blocks[i].m(div, null);
+				}
+			}
+		},
+		p(ctx, [dirty]) {
+			if (dirty & /*items, active*/ 3) {
+				each_value = /*items*/ ctx[1];
+				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block$1, null, get_each_context$1);
+			}
+
+			if (dirty & /*width*/ 4) {
+				set_style(div, "--wdth", `${/*width*/ ctx[2]}px`);
+			}
+
+			if (dirty & /*level*/ 8) {
+				set_style(div, "--level", `var(--sf${/*level*/ ctx[3]})`);
+			}
+		},
+		i: noop,
+		o: noop,
+		d(detaching) {
+			if (detaching) detach(div);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].d();
+			}
+		}
+	};
+}
+
+function instance$2($$self, $$props, $$invalidate) {
+	let { items = [] } = $$props;
+	let { width = 200 } = $$props;
+	let { level = 2 } = $$props;
+	let { dft = undefined } = $$props;
+	let { active = dft } = $$props;
+	const click_handler = item => $$invalidate(0, active = item.id);
+
+	$$self.$$set = $$props => {
+		if ('items' in $$props) $$invalidate(1, items = $$props.items);
+		if ('width' in $$props) $$invalidate(2, width = $$props.width);
+		if ('level' in $$props) $$invalidate(3, level = $$props.level);
+		if ('dft' in $$props) $$invalidate(4, dft = $$props.dft);
+		if ('active' in $$props) $$invalidate(0, active = $$props.active);
+	};
+
+	return [active, items, width, level, dft, click_handler];
+}
+
+class Sidebar extends SvelteComponent {
+	constructor(options) {
+		super();
+
+		init(this, options, instance$2, create_fragment$4, safe_not_equal, {
+			items: 1,
+			width: 2,
+			level: 3,
+			dft: 4,
+			active: 0
+		});
+	}
+}
+
+/* src/svelte/screens/ScreenHome.svelte generated by Svelte v3.59.1 */
+
+function create_fragment$3(ctx) {
+	let div;
+
+	return {
+		c() {
+			div = element("div");
+
+			div.innerHTML = `<h1>webtv
+        <span><br/>simple and sweet. let&#39;s get started.</span></h1>`;
+
+			attr(div, "class", "screen");
+			attr(div, "id", "screenHome");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+		},
+		p: noop,
+		i: noop,
+		o: noop,
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
+class ScreenHome extends SvelteComponent {
+	constructor(options) {
+		super();
+		init(this, options, null, create_fragment$3, safe_not_equal, {});
+	}
+}
+
 const subscriber_queue = [];
 /**
  * Create a `Writable` store that allows both updating and reading by subscription.
@@ -550,7 +1144,47 @@ function writable(value, start = noop) {
     return { set, update, subscribe };
 }
 
-/* src/svelte/elm/Sidebar.svelte generated by Svelte v3.59.1 */
+var lists;
+(function (lists) {
+    lists.quality = [
+        "best",
+        "good",
+        "ok" // 480p
+    ];
+    lists.formats = [
+        "main",
+        "hardsub",
+        "dub"
+    ];
+})(lists || (lists = {}));
+// set up svt stores
+let cfg = writable();
+let tv = writable();
+let movies = writable();
+let embeddables = writable();
+let ready = writable(false);
+// fetch cfg; tv; movies
+// might DRY up this code later
+fetch("/db/webtv.json").then(res => {
+    if (res.status == 200)
+        res.json().then(e => cfg.set(e));
+})
+    .then(() => fetch("/db/tv.json").then(res => {
+    if (res.status == 200)
+        res.json().then(e => tv.set(e));
+}))
+    .then(() => fetch("/db/movie.json").then(res => {
+    if (res.status == 200)
+        res.json().then(e => movies.set(e));
+}))
+    .then(() => fetch("/db/embeddables.json").then(res => {
+    if (res.status == 200)
+        res.json().then(e => embeddables.set(e));
+})).then(() => {
+    ready.set(true);
+});
+
+/* src/svelte/screens/ScreenEmbeddables.svelte generated by Svelte v3.59.1 */
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
@@ -558,199 +1192,37 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (19:51) 
-function create_if_block_2(ctx) {
-	let html_tag;
-	let raw_value = /*item*/ ctx[7].icon.content + "";
-	let html_anchor;
-
-	return {
-		c() {
-			html_tag = new HtmlTag(false);
-			html_anchor = empty();
-			html_tag.a = html_anchor;
-		},
-		m(target, anchor) {
-			html_tag.m(raw_value, target, anchor);
-			insert(target, html_anchor, anchor);
-		},
-		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && raw_value !== (raw_value = /*item*/ ctx[7].icon.content + "")) html_tag.p(raw_value);
-		},
-		d(detaching) {
-			if (detaching) detach(html_anchor);
-			if (detaching) html_tag.d();
-		}
-	};
-}
-
-// (17:51) 
-function create_if_block_1(ctx) {
-	let p;
-	let t_value = /*item*/ ctx[7].icon.content + "";
-	let t;
-
-	return {
-		c() {
-			p = element("p");
-			t = text(t_value);
-		},
-		m(target, anchor) {
-			insert(target, p, anchor);
-			append(p, t);
-		},
-		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && t_value !== (t_value = /*item*/ ctx[7].icon.content + "")) set_data(t, t_value);
-		},
-		d(detaching) {
-			if (detaching) detach(p);
-		}
-	};
-}
-
-// (15:16) {#if item.icon.type == "image"}
-function create_if_block(ctx) {
-	let img;
-	let img_src_value;
-	let img_alt_value;
-
-	return {
-		c() {
-			img = element("img");
-			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[7].icon.content)) attr(img, "src", img_src_value);
-			attr(img, "alt", img_alt_value = /*item*/ ctx[7].text);
-		},
-		m(target, anchor) {
-			insert(target, img, anchor);
-		},
-		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[7].icon.content)) {
-				attr(img, "src", img_src_value);
-			}
-
-			if (dirty & /*items*/ 1 && img_alt_value !== (img_alt_value = /*item*/ ctx[7].text)) {
-				attr(img, "alt", img_alt_value);
-			}
-		},
-		d(detaching) {
-			if (detaching) detach(img);
-		}
-	};
-}
-
-// (11:4) {#each items as item (item.id)}
-function create_each_block(key_1, ctx) {
-	let div2;
-	let div0;
-	let t0;
-	let div1;
-	let p;
-	let t1_value = /*item*/ ctx[7].text + "";
-	let t1;
-	let t2;
-	let button;
-	let t3;
-	let div2_data_active_value;
-	let mounted;
-	let dispose;
-
-	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[7].icon.type == "image") return create_if_block;
-		if (/*item*/ ctx[7].icon.type == "text") return create_if_block_1;
-		if (/*item*/ ctx[7].icon.type == "html") return create_if_block_2;
-	}
-
-	let current_block_type = select_block_type(ctx);
-	let if_block = current_block_type && current_block_type(ctx);
-
-	function click_handler() {
-		return /*click_handler*/ ctx[6](/*item*/ ctx[7]);
-	}
-
-	return {
-		key: key_1,
-		first: null,
-		c() {
-			div2 = element("div");
-			div0 = element("div");
-			if (if_block) if_block.c();
-			t0 = space();
-			div1 = element("div");
-			p = element("p");
-			t1 = text(t1_value);
-			t2 = space();
-			button = element("button");
-			t3 = space();
-			attr(div0, "class", "icon");
-			attr(div1, "class", "content");
-			attr(button, "class", "hitbox");
-			attr(div2, "class", "listItem");
-
-			attr(div2, "data-active", div2_data_active_value = /*item*/ ctx[7].id == /*$active*/ ctx[4]
-			? "true"
-			: "false");
-
-			this.first = div2;
-		},
-		m(target, anchor) {
-			insert(target, div2, anchor);
-			append(div2, div0);
-			if (if_block) if_block.m(div0, null);
-			append(div2, t0);
-			append(div2, div1);
-			append(div1, p);
-			append(p, t1);
-			append(div2, t2);
-			append(div2, button);
-			append(div2, t3);
-
-			if (!mounted) {
-				dispose = listen(button, "click", click_handler);
-				mounted = true;
-			}
-		},
-		p(new_ctx, dirty) {
-			ctx = new_ctx;
-
-			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-				if_block.p(ctx, dirty);
-			} else {
-				if (if_block) if_block.d(1);
-				if_block = current_block_type && current_block_type(ctx);
-
-				if (if_block) {
-					if_block.c();
-					if_block.m(div0, null);
-				}
-			}
-
-			if (dirty & /*items*/ 1 && t1_value !== (t1_value = /*item*/ ctx[7].text + "")) set_data(t1, t1_value);
-
-			if (dirty & /*items, $active*/ 17 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[7].id == /*$active*/ ctx[4]
-			? "true"
-			: "false")) {
-				attr(div2, "data-active", div2_data_active_value);
-			}
-		},
-		d(detaching) {
-			if (detaching) detach(div2);
-
-			if (if_block) {
-				if_block.d();
-			}
-
-			mounted = false;
-			dispose();
-		}
-	};
-}
-
-function create_fragment$1(ctx) {
+// (33:8) {:else}
+function create_else_block(ctx) {
 	let div;
+
+	return {
+		c() {
+			div = element("div");
+
+			div.innerHTML = `<h1>embeddables
+                    <span><br/>these links embed in discord; send them to your friends &amp; such
+                        <br/>try selecting something!</span></h1>`;
+
+			attr(div, "class", "nothingSelected");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+		},
+		p: noop,
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
+// (26:8) {#if activeEl}
+function create_if_block$1(ctx) {
 	let each_blocks = [];
 	let each_1_lookup = new Map();
-	let each_value = /*items*/ ctx[0];
-	const get_key = ctx => /*item*/ ctx[7].id;
+	let each_1_anchor;
+	let each_value = /*idx*/ ctx[2][/*activeEl*/ ctx[0]].urls;
+	const get_key = ctx => /*url*/ ctx[7].url;
 
 	for (let i = 0; i < each_value.length; i += 1) {
 		let child_ctx = get_each_context(ctx, each_value, i);
@@ -760,112 +1232,310 @@ function create_fragment$1(ctx) {
 
 	return {
 		c() {
-			div = element("div");
-
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				each_blocks[i].c();
 			}
 
-			attr(div, "class", "sidebar");
-			attr(div, "id", "sidebar_main");
-			set_style(div, "--wdth", `${/*width*/ ctx[1]}px`);
-			set_style(div, "--level", `var(--sf${/*level*/ ctx[2]})`);
+			each_1_anchor = empty();
 		},
 		m(target, anchor) {
-			insert(target, div, anchor);
-
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				if (each_blocks[i]) {
-					each_blocks[i].m(div, null);
+					each_blocks[i].m(target, anchor);
+				}
+			}
+
+			insert(target, each_1_anchor, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*idx, activeEl*/ 5) {
+				each_value = /*idx*/ ctx[2][/*activeEl*/ ctx[0]].urls;
+				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, destroy_block, create_each_block, each_1_anchor, get_each_context);
+			}
+		},
+		d(detaching) {
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].d(detaching);
+			}
+
+			if (detaching) detach(each_1_anchor);
+		}
+	};
+}
+
+// (27:12) {#each idx[activeEl].urls as url (url.url)}
+function create_each_block(key_1, ctx) {
+	let p;
+	let a;
+	let t0_value = /*url*/ ctx[7].url + "";
+	let t0;
+	let a_href_value;
+	let t1;
+	let t2_value = /*url*/ ctx[7].description + "";
+	let t2;
+	let t3;
+
+	return {
+		key: key_1,
+		first: null,
+		c() {
+			p = element("p");
+			a = element("a");
+			t0 = text(t0_value);
+			t1 = text("\n                    [ ");
+			t2 = text(t2_value);
+			t3 = text(" ]\n                ");
+			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
+			attr(p, "class", "u");
+			this.first = p;
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, a);
+			append(a, t0);
+			append(p, t1);
+			append(p, t2);
+			append(p, t3);
+		},
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+			if (dirty & /*idx, activeEl*/ 5 && t0_value !== (t0_value = /*url*/ ctx[7].url + "")) set_data(t0, t0_value);
+
+			if (dirty & /*idx, activeEl*/ 5 && a_href_value !== (a_href_value = /*url*/ ctx[7].url)) {
+				attr(a, "href", a_href_value);
+			}
+
+			if (dirty & /*idx, activeEl*/ 5 && t2_value !== (t2_value = /*url*/ ctx[7].description + "")) set_data(t2, t2_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+function create_fragment$2(ctx) {
+	let div1;
+	let sidebar;
+	let updating_active;
+	let updating_items;
+	let t;
+	let div0;
+	let current;
+
+	function sidebar_active_binding(value) {
+		/*sidebar_active_binding*/ ctx[5](value);
+	}
+
+	function sidebar_items_binding(value) {
+		/*sidebar_items_binding*/ ctx[6](value);
+	}
+
+	let sidebar_props = { level: 1, width: 250 };
+
+	if (/*activeEl*/ ctx[0] !== void 0) {
+		sidebar_props.active = /*activeEl*/ ctx[0];
+	}
+
+	if (/*sbItems*/ ctx[1] !== void 0) {
+		sidebar_props.items = /*sbItems*/ ctx[1];
+	}
+
+	sidebar = new Sidebar({ props: sidebar_props });
+	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
+	binding_callbacks.push(() => bind(sidebar, 'items', sidebar_items_binding));
+
+	function select_block_type(ctx, dirty) {
+		if (/*activeEl*/ ctx[0]) return create_if_block$1;
+		return create_else_block;
+	}
+
+	let current_block_type = select_block_type(ctx);
+	let if_block = current_block_type(ctx);
+
+	return {
+		c() {
+			div1 = element("div");
+			create_component(sidebar.$$.fragment);
+			t = space();
+			div0 = element("div");
+			if_block.c();
+			attr(div0, "class", "content");
+			attr(div1, "class", "screen");
+			attr(div1, "id", "screenEmbeddables");
+		},
+		m(target, anchor) {
+			insert(target, div1, anchor);
+			mount_component(sidebar, div1, null);
+			append(div1, t);
+			append(div1, div0);
+			if_block.m(div0, null);
+			current = true;
+		},
+		p(ctx, [dirty]) {
+			const sidebar_changes = {};
+
+			if (!updating_active && dirty & /*activeEl*/ 1) {
+				updating_active = true;
+				sidebar_changes.active = /*activeEl*/ ctx[0];
+				add_flush_callback(() => updating_active = false);
+			}
+
+			if (!updating_items && dirty & /*sbItems*/ 2) {
+				updating_items = true;
+				sidebar_changes.items = /*sbItems*/ ctx[1];
+				add_flush_callback(() => updating_items = false);
+			}
+
+			sidebar.$set(sidebar_changes);
+
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+				if_block.p(ctx, dirty);
+			} else {
+				if_block.d(1);
+				if_block = current_block_type(ctx);
+
+				if (if_block) {
+					if_block.c();
+					if_block.m(div0, null);
 				}
 			}
 		},
-		p(ctx, [dirty]) {
-			if (dirty & /*items, $active*/ 17) {
-				each_value = /*items*/ ctx[0];
-				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block, null, get_each_context);
-			}
-
-			if (dirty & /*width*/ 2) {
-				set_style(div, "--wdth", `${/*width*/ ctx[1]}px`);
-			}
-
-			if (dirty & /*level*/ 4) {
-				set_style(div, "--level", `var(--sf${/*level*/ ctx[2]})`);
-			}
+		i(local) {
+			if (current) return;
+			transition_in(sidebar.$$.fragment, local);
+			current = true;
 		},
-		i: noop,
-		o: noop,
+		o(local) {
+			transition_out(sidebar.$$.fragment, local);
+			current = false;
+		},
 		d(detaching) {
-			if (detaching) detach(div);
-
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].d();
-			}
+			if (detaching) detach(div1);
+			destroy_component(sidebar);
+			if_block.d();
 		}
 	};
 }
 
 function instance$1($$self, $$props, $$invalidate) {
-	let $active,
-		$$unsubscribe_active = noop,
-		$$subscribe_active = () => ($$unsubscribe_active(), $$unsubscribe_active = subscribe(active, $$value => $$invalidate(4, $active = $$value)), active);
+	let $embeddables;
+	let $cfg;
+	component_subscribe($$self, embeddables, $$value => $$invalidate(3, $embeddables = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(4, $cfg = $$value));
+	let activeEl = undefined;
+	let sbItems = [];
+	let idx = {};
 
-	$$self.$$.on_destroy.push(() => $$unsubscribe_active());
-	let { items = [] } = $$props;
-	let { width = 200 } = $$props;
-	let { level = 2 } = $$props;
-	let { dft = undefined } = $$props;
-	const active = writable(dft);
-	$$subscribe_active();
-	const click_handler = item => set_store_value(active, $active = item.id, $active);
+	function sidebar_active_binding(value) {
+		activeEl = value;
+		$$invalidate(0, activeEl);
+	}
 
-	$$self.$$set = $$props => {
-		if ('items' in $$props) $$invalidate(0, items = $$props.items);
-		if ('width' in $$props) $$invalidate(1, width = $$props.width);
-		if ('level' in $$props) $$invalidate(2, level = $$props.level);
-		if ('dft' in $$props) $$invalidate(5, dft = $$props.dft);
+	function sidebar_items_binding(value) {
+		sbItems = value;
+		(($$invalidate(1, sbItems), $$invalidate(3, $embeddables)), $$invalidate(4, $cfg));
+	}
+
+	$$self.$$.update = () => {
+		if ($$self.$$.dirty & /*$embeddables, $cfg*/ 24) {
+			{
+				$$invalidate(1, sbItems = $embeddables.map(e => {
+					return {
+						id: e.name,
+						text: e.name,
+						icon: {
+							type: "image",
+							content: $cfg.host + e.icon
+						}
+					};
+				}));
+
+				$embeddables.forEach(v => {
+					$$invalidate(2, idx[v.name] = v, idx);
+				});
+			}
+		}
 	};
 
-	return [items, width, level, active, $active, dft, click_handler];
+	return [
+		activeEl,
+		sbItems,
+		idx,
+		$embeddables,
+		$cfg,
+		sidebar_active_binding,
+		sidebar_items_binding
+	];
 }
 
-class Sidebar extends SvelteComponent {
+class ScreenEmbeddables extends SvelteComponent {
 	constructor(options) {
 		super();
-
-		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-			items: 0,
-			width: 1,
-			level: 2,
-			dft: 5,
-			active: 3
-		});
+		init(this, options, instance$1, create_fragment$2, safe_not_equal, {});
 	}
+}
 
-	get active() {
-		return this.$$.ctx[3];
+/* src/svelte/screens/ScreenPlaceholder.svelte generated by Svelte v3.59.1 */
+
+function create_fragment$1(ctx) {
+	let div;
+
+	return {
+		c() {
+			div = element("div");
+
+			div.innerHTML = `<h1>501
+        <span><br/>not implemented</span></h1>`;
+
+			attr(div, "class", "screen");
+			attr(div, "id", "screenHome");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+		},
+		p: noop,
+		i: noop,
+		o: noop,
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
+class ScreenPlaceholder extends SvelteComponent {
+	constructor(options) {
+		super();
+		init(this, options, null, create_fragment$1, safe_not_equal, {});
 	}
+}
+
+function fade(node, { delay = 0, duration = 400, easing = identity } = {}) {
+    const o = +getComputedStyle(node).opacity;
+    return {
+        delay,
+        duration,
+        easing,
+        css: t => `opacity: ${t * o}`
+    };
 }
 
 /* src/svelte/App.svelte generated by Svelte v3.59.1 */
 
-function create_fragment(ctx) {
-	let div4;
+function create_if_block(ctx) {
 	let div1;
 	let div0;
 	let t0;
 	let sidebar;
+	let updating_active;
+	let div1_transition;
 	let t1;
-	let div3;
 	let div2;
-	let h1;
-	let t2;
-	let span;
-	let br;
-	let t3;
-	let t4;
+	let switch_instance;
 	let current;
+
+	function sidebar_active_binding(value) {
+		/*sidebar_active_binding*/ ctx[5](value);
+	}
 
 	let sidebar_props = {
 		width: 250,
@@ -898,77 +1568,182 @@ function create_fragment(ctx) {
 		]
 	};
 
+	if (/*activeSbElem*/ ctx[1] !== void 0) {
+		sidebar_props.active = /*activeSbElem*/ ctx[1];
+	}
+
 	sidebar = new Sidebar({ props: sidebar_props });
-	/*sidebar_binding*/ ctx[2](sidebar);
+	/*sidebar_binding*/ ctx[4](sidebar);
+	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
+	var switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"];
+
+	function switch_props(ctx) {
+		return {};
+	}
+
+	if (switch_value) {
+		switch_instance = construct_svelte_component(switch_value, switch_props());
+	}
 
 	return {
 		c() {
-			div4 = element("div");
 			div1 = element("div");
 			div0 = element("div");
 			t0 = space();
 			create_component(sidebar.$$.fragment);
 			t1 = space();
-			div3 = element("div");
 			div2 = element("div");
-			h1 = element("h1");
-			t2 = text("webtv\n                ");
-			span = element("span");
-			br = element("br");
-			t3 = text("simple and sweet. let's get started. ");
-			t4 = text(/*activeSbElem*/ ctx[1]);
+			if (switch_instance) create_component(switch_instance.$$.fragment);
 			attr(div0, "id", "clgrad");
 			attr(div1, "id", "menu");
-			attr(div2, "class", "screen");
-			attr(div2, "id", "screenHome");
-			attr(div3, "id", "content");
-			attr(div4, "id", "mc");
+			attr(div2, "id", "content");
 		},
 		m(target, anchor) {
-			insert(target, div4, anchor);
-			append(div4, div1);
+			insert(target, div1, anchor);
 			append(div1, div0);
 			append(div1, t0);
 			mount_component(sidebar, div1, null);
-			append(div4, t1);
-			append(div4, div3);
-			append(div3, div2);
-			append(div2, h1);
-			append(h1, t2);
-			append(h1, span);
-			append(span, br);
-			append(span, t3);
-			append(span, t4);
+			insert(target, t1, anchor);
+			insert(target, div2, anchor);
+			if (switch_instance) mount_component(switch_instance, div2, null);
 			current = true;
 		},
-		p(ctx, [dirty]) {
+		p(ctx, dirty) {
 			const sidebar_changes = {};
+
+			if (!updating_active && dirty & /*activeSbElem*/ 2) {
+				updating_active = true;
+				sidebar_changes.active = /*activeSbElem*/ ctx[1];
+				add_flush_callback(() => updating_active = false);
+			}
+
 			sidebar.$set(sidebar_changes);
-			if (!current || dirty & /*activeSbElem*/ 2) set_data(t4, /*activeSbElem*/ ctx[1]);
+
+			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"])) {
+				if (switch_instance) {
+					group_outros();
+					const old_component = switch_instance;
+
+					transition_out(old_component.$$.fragment, 1, 0, () => {
+						destroy_component(old_component, 1);
+					});
+
+					check_outros();
+				}
+
+				if (switch_value) {
+					switch_instance = construct_svelte_component(switch_value, switch_props());
+					create_component(switch_instance.$$.fragment);
+					transition_in(switch_instance.$$.fragment, 1);
+					mount_component(switch_instance, div2, null);
+				} else {
+					switch_instance = null;
+				}
+			}
 		},
 		i(local) {
 			if (current) return;
 			transition_in(sidebar.$$.fragment, local);
+
+			add_render_callback(() => {
+				if (!current) return;
+				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, true);
+				div1_transition.run(1);
+			});
+
+			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
 			transition_out(sidebar.$$.fragment, local);
+			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, false);
+			div1_transition.run(0);
+			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div4);
-			/*sidebar_binding*/ ctx[2](null);
+			if (detaching) detach(div1);
+			/*sidebar_binding*/ ctx[4](null);
 			destroy_component(sidebar);
+			if (detaching && div1_transition) div1_transition.end();
+			if (detaching) detach(t1);
+			if (detaching) detach(div2);
+			if (switch_instance) destroy_component(switch_instance);
+		}
+	};
+}
+
+function create_fragment(ctx) {
+	let div;
+	let current;
+	let if_block = /*$ready*/ ctx[2] && create_if_block(ctx);
+
+	return {
+		c() {
+			div = element("div");
+			if (if_block) if_block.c();
+			attr(div, "id", "mc");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+			if (if_block) if_block.m(div, null);
+			current = true;
+		},
+		p(ctx, [dirty]) {
+			if (/*$ready*/ ctx[2]) {
+				if (if_block) {
+					if_block.p(ctx, dirty);
+
+					if (dirty & /*$ready*/ 4) {
+						transition_in(if_block, 1);
+					}
+				} else {
+					if_block = create_if_block(ctx);
+					if_block.c();
+					transition_in(if_block, 1);
+					if_block.m(div, null);
+				}
+			} else if (if_block) {
+				group_outros();
+
+				transition_out(if_block, 1, 1, () => {
+					if_block = null;
+				});
+
+				check_outros();
+			}
+		},
+		i(local) {
+			if (current) return;
+			transition_in(if_block);
+			current = true;
+		},
+		o(local) {
+			transition_out(if_block);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+			if (if_block) if_block.d();
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
+	let $ready;
+	component_subscribe($$self, ready, $$value => $$invalidate(2, $ready = $$value));
 	let sb;
 	let activeSbElem = undefined;
 
+	let scrTab = {
+		"home": ScreenHome,
+		"embeddables": ScreenEmbeddables,
+		"movies": ScreenPlaceholder,
+		"settings": ScreenPlaceholder
+	};
+
 	onMount(() => {
-		sb.active.subscribe(sbs => $$invalidate(1, activeSbElem = sbs));
+		
 	});
 
 	function sidebar_binding($$value) {
@@ -978,7 +1753,12 @@ function instance($$self, $$props, $$invalidate) {
 		});
 	}
 
-	return [sb, activeSbElem, sidebar_binding];
+	function sidebar_active_binding(value) {
+		activeSbElem = value;
+		$$invalidate(1, activeSbElem);
+	}
+
+	return [sb, activeSbElem, $ready, scrTab, sidebar_binding, sidebar_active_binding];
 }
 
 class App extends SvelteComponent {

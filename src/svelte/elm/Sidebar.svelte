@@ -1,17 +1,16 @@
-<script lang="ts">
-
-    import { writable } from "svelte/store";
-
-    interface SidebarItemIcon {
+<script lang="ts" context="module">
+    export interface SidebarItemIcon {
         type: "image" | "text" | "html",
         content: string
     }
 
-    interface SidebarItem {
+    export interface SidebarItem {
         id: string,
         text: string,
         icon: SidebarItemIcon,
     }
+</script>
+<script lang="ts">
 
     export let items: SidebarItem[] = [];
 
@@ -19,7 +18,8 @@
     export let level: number = 2
     export let dft:string|undefined = undefined
 
-    export const active = writable<string>(dft);
+    export let active = dft
+    //export const active = writable<string>(dft);
 
 </script>
 
@@ -27,7 +27,7 @@
 
     {#each items as item (item.id)}
 
-        <div class="listItem" data-active={item.id == $active ? "true" : "false"}>
+        <div class="listItem" data-active={item.id == active ? "true" : "false"}>
             <div class="icon">
                 {#if item.icon.type == "image"}
                     <img src={item.icon.content} alt={item.text} />
@@ -40,7 +40,7 @@
             <div class="content">
                 <p>{item.text}</p>
             </div>
-            <button class="hitbox" on:click={() => $active = item.id}></button>
+            <button class="hitbox" on:click={() => active = item.id}></button>
         </div>
 
     {/each}

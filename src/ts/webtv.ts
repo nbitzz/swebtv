@@ -101,5 +101,25 @@ export let embeddables = writable<Embeddable[]>()
 export let ready = writable<boolean>(false)
 
 // fetch cfg; tv; movies
+// might DRY up this code later
 
-fetch("/db/webtv")
+fetch("/db/webtv.json").then(res => {
+    if (res.status == 200) res.json().then(e => cfg.set(e))
+})
+.then(() => 
+    fetch("/db/tv.json").then(res => {
+        if (res.status == 200) res.json().then(e => tv.set(e))
+    })
+)
+.then(() => 
+    fetch("/db/movie.json").then(res => {
+        if (res.status == 200) res.json().then(e => movies.set(e))
+    })    
+)
+.then(() => 
+    fetch("/db/embeddables.json").then(res => {
+        if (res.status == 200) res.json().then(e => embeddables.set(e))
+    })
+).then(() => {
+    ready.set(true)
+})
