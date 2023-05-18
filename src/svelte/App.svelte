@@ -4,7 +4,7 @@
     onMount(() => {
         console.log("mounted")
     })
-    console.log("WORK")
+    
 </script>
 
 <div id="mc">
