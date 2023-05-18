@@ -89,6 +89,17 @@
     height:30px;
 }
 
+.sidebar > .listItem > .icon > p {
+    position:absolute;
+    margin: 0 0 0 0;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color: var(--txt);
+    font-family: var(--sans-serif);
+    font-size:16px;
+}
+
 .sidebar > .listItem > .content > p {
     position:absolute;
     margin: 0 0 0 0;
@@ -101,16 +112,6 @@
     font-size:16px;
 }
 
-.sidebar > .listItem > .icon > p {
-    position:absolute;
-    margin: 0 0 0 0;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    color: var(--txt);
-    font-family: var(--sans-serif);
-    font-size:16px;
-}
 
 /* Content */
 
