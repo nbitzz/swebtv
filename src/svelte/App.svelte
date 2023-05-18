@@ -1,5 +1,5 @@
 <script lang="ts">
-
+    console.log("WORK")
 </script>
 
 <div id="mc">

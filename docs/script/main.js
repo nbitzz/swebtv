@@ -327,6 +327,7 @@ function create_fragment(ctx) {
 }
 
 function instance($$self) {
+	console.log("WORK");
 	return [];
 }
 
