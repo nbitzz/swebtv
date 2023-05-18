@@ -17,8 +17,9 @@
 
     export let width: number = 200
     export let level: number = 2
+    export let dft:string|undefined = undefined
 
-    export const active = writable<string>();
+    export const active = writable<string>(dft);
 
 </script>
 

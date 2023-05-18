@@ -67,8 +67,13 @@
     transition-duration:50ms;
 }
 
-.sidebar > .listItem[data-active=true]:not(:hover) > .icon, .sidebar > .listItem[data-active=true]:not(:hover) > .content {
+.sidebar > .listItem[data-active=true]:not(:hover) > .icon {
     left:-3px;
+    transition-duration:50ms;
+}
+
+.sidebar > .listItem[data-active=true]:not(:hover) > .content {
+    left: 47px;
     transition-duration:50ms;
 }
 

@@ -1,12 +1,13 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Sidebar from "./elm/Sidebar.svelte";
-
-    onMount(() => {
-        console.log("mounted")
-    })
     
     let sb:Sidebar
+    let activeSbElem:string|undefined = undefined
+
+    onMount(() => {
+        sb.active.subscribe(sbs => activeSbElem = sbs)
+    })
 
 </script>
 
@@ -51,7 +52,7 @@
             <h1>
                 webtv
                 <span>
-                    <br>simple and sweet. let's get started. {sb ? `${sb.$active}` : "notfound"}
+                    <br>simple and sweet. let's get started. {activeSbElem}
                 </span>
             </h1>
         </div>
