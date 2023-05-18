@@ -7,7 +7,7 @@ export default [
     {
         input: "src/ts/index.ts",
         output: {
-            file: 'docs/script/main.js',
+            file: 'pages/assets/script/main.js',
             format: 'esm',
             sourcemap:true
         },
