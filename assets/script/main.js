@@ -1,4 +1,5 @@
 function noop() { }
+const identity = x => x;
 function run(fn) {
     return fn();
 }
@@ -25,8 +26,71 @@ function src_url_equal(element_src, url) {
 function is_empty(obj) {
     return Object.keys(obj).length === 0;
 }
+function subscribe(store, ...callbacks) {
+    if (store == null) {
+        return noop;
+    }
+    const unsub = store.subscribe(...callbacks);
+    return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+}
+function component_subscribe(component, store, callback) {
+    component.$$.on_destroy.push(subscribe(store, callback));
+}
+
+const is_client = typeof window !== 'undefined';
+let now = is_client
+    ? () => window.performance.now()
+    : () => Date.now();
+let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+const tasks = new Set();
+function run_tasks(now) {
+    tasks.forEach(task => {
+        if (!task.c(now)) {
+            tasks.delete(task);
+            task.f();
+        }
+    });
+    if (tasks.size !== 0)
+        raf(run_tasks);
+}
+/**
+ * Creates a new task that runs on each raf frame
+ * until it returns a falsy value or is aborted
+ */
+function loop(callback) {
+    let task;
+    if (tasks.size === 0)
+        raf(run_tasks);
+    return {
+        promise: new Promise(fulfill => {
+            tasks.add(task = { c: callback, f: fulfill });
+        }),
+        abort() {
+            tasks.delete(task);
+        }
+    };
+}
 function append(target, node) {
     target.appendChild(node);
+}
+function get_root_for_style(node) {
+    if (!node)
+        return document;
+    const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+    if (root && root.host) {
+        return root;
+    }
+    return node.ownerDocument;
+}
+function append_empty_stylesheet(node) {
+    const style_element = element('style');
+    append_stylesheet(get_root_for_style(node), style_element);
+    return style_element.sheet;
+}
+function append_stylesheet(node, style) {
+    append(node.head || node, style);
+    return style.sheet;
 }
 function insert(target, node, anchor) {
     target.insertBefore(node, anchor || null);
@@ -78,6 +142,11 @@ function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
     }
 }
+function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+    const e = document.createEvent('CustomEvent');
+    e.initCustomEvent(type, bubbles, cancelable, detail);
+    return e;
+}
 class HtmlTag {
     constructor(is_svg = false) {
         this.is_svg = false;
@@ -119,6 +188,71 @@ class HtmlTag {
 }
 function construct_svelte_component(component, props) {
     return new component(props);
+}
+
+// we need to store the information for multiple documents because a Svelte application could also contain iframes
+// https://github.com/sveltejs/svelte/issues/3624
+const managed_styles = new Map();
+let active = 0;
+// https://github.com/darkskyapp/string-hash/blob/master/index.js
+function hash(str) {
+    let hash = 5381;
+    let i = str.length;
+    while (i--)
+        hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+    return hash >>> 0;
+}
+function create_style_information(doc, node) {
+    const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
+    managed_styles.set(doc, info);
+    return info;
+}
+function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+    const step = 16.666 / duration;
+    let keyframes = '{\n';
+    for (let p = 0; p <= 1; p += step) {
+        const t = a + (b - a) * ease(p);
+        keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+    }
+    const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+    const name = `__svelte_${hash(rule)}_${uid}`;
+    const doc = get_root_for_style(node);
+    const { stylesheet, rules } = managed_styles.get(doc) || create_style_information(doc, node);
+    if (!rules[name]) {
+        rules[name] = true;
+        stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+    }
+    const animation = node.style.animation || '';
+    node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+    active += 1;
+    return name;
+}
+function delete_rule(node, name) {
+    const previous = (node.style.animation || '').split(', ');
+    const next = previous.filter(name
+        ? anim => anim.indexOf(name) < 0 // remove specific animation
+        : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+    );
+    const deleted = previous.length - next.length;
+    if (deleted) {
+        node.style.animation = next.join(', ');
+        active -= deleted;
+        if (!active)
+            clear_rules();
+    }
+}
+function clear_rules() {
+    raf(() => {
+        if (active)
+            return;
+        managed_styles.forEach(info => {
+            const { ownerNode } = info.stylesheet;
+            // there is no ownerNode if it runs on jsdom.
+            if (ownerNode)
+                detach(ownerNode);
+        });
+        managed_styles.clear();
+    });
 }
 
 let current_component;
@@ -251,6 +385,20 @@ function flush_render_callbacks(fns) {
     targets.forEach((c) => c());
     render_callbacks = filtered;
 }
+
+let promise;
+function wait() {
+    if (!promise) {
+        promise = Promise.resolve();
+        promise.then(() => {
+            promise = null;
+        });
+    }
+    return promise;
+}
+function dispatch(node, direction, kind) {
+    node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+}
 const outroing = new Set();
 let outros;
 function group_outros() {
@@ -290,6 +438,113 @@ function transition_out(block, local, detach, callback) {
     else if (callback) {
         callback();
     }
+}
+const null_transition = { duration: 0 };
+function create_bidirectional_transition(node, fn, params, intro) {
+    const options = { direction: 'both' };
+    let config = fn(node, params, options);
+    let t = intro ? 0 : 1;
+    let running_program = null;
+    let pending_program = null;
+    let animation_name = null;
+    function clear_animation() {
+        if (animation_name)
+            delete_rule(node, animation_name);
+    }
+    function init(program, duration) {
+        const d = (program.b - t);
+        duration *= Math.abs(d);
+        return {
+            a: t,
+            b: program.b,
+            d,
+            duration,
+            start: program.start,
+            end: program.start + duration,
+            group: program.group
+        };
+    }
+    function go(b) {
+        const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+        const program = {
+            start: now() + delay,
+            b
+        };
+        if (!b) {
+            // @ts-ignore todo: improve typings
+            program.group = outros;
+            outros.r += 1;
+        }
+        if (running_program || pending_program) {
+            pending_program = program;
+        }
+        else {
+            // if this is an intro, and there's a delay, we need to do
+            // an initial tick and/or apply CSS animation immediately
+            if (css) {
+                clear_animation();
+                animation_name = create_rule(node, t, b, duration, delay, easing, css);
+            }
+            if (b)
+                tick(0, 1);
+            running_program = init(program, duration);
+            add_render_callback(() => dispatch(node, b, 'start'));
+            loop(now => {
+                if (pending_program && now > pending_program.start) {
+                    running_program = init(pending_program, duration);
+                    pending_program = null;
+                    dispatch(node, running_program.b, 'start');
+                    if (css) {
+                        clear_animation();
+                        animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                    }
+                }
+                if (running_program) {
+                    if (now >= running_program.end) {
+                        tick(t = running_program.b, 1 - t);
+                        dispatch(node, running_program.b, 'end');
+                        if (!pending_program) {
+                            // we're done
+                            if (running_program.b) {
+                                // intro — we can tidy up immediately
+                                clear_animation();
+                            }
+                            else {
+                                // outro — needs to be coordinated
+                                if (!--running_program.group.r)
+                                    run_all(running_program.group.c);
+                            }
+                        }
+                        running_program = null;
+                    }
+                    else if (now >= running_program.start) {
+                        const p = now - running_program.start;
+                        t = running_program.a + running_program.d * easing(p / running_program.duration);
+                        tick(t, 1 - t);
+                    }
+                }
+                return !!(running_program || pending_program);
+            });
+        }
+    }
+    return {
+        run(b) {
+            if (is_function(config)) {
+                wait().then(() => {
+                    // @ts-ignore
+                    config = config(options);
+                    go(b);
+                });
+            }
+            else {
+                go(b);
+            }
+        },
+        end() {
+            clear_animation();
+            running_program = pending_program = null;
+        }
+    };
 }
 
 function destroy_block(block, lookup) {
@@ -518,63 +773,15 @@ class SvelteComponent {
     }
 }
 
-const subscriber_queue = [];
-/**
- * Create a `Writable` store that allows both updating and reading by subscription.
- * @param {*=}value initial value
- * @param {StartStopNotifier=} start
- */
-function writable(value, start = noop) {
-    let stop;
-    const subscribers = new Set();
-    function set(new_value) {
-        if (safe_not_equal(value, new_value)) {
-            value = new_value;
-            if (stop) { // store is ready
-                const run_queue = !subscriber_queue.length;
-                for (const subscriber of subscribers) {
-                    subscriber[1]();
-                    subscriber_queue.push(subscriber, value);
-                }
-                if (run_queue) {
-                    for (let i = 0; i < subscriber_queue.length; i += 2) {
-                        subscriber_queue[i][0](subscriber_queue[i + 1]);
-                    }
-                    subscriber_queue.length = 0;
-                }
-            }
-        }
-    }
-    function update(fn) {
-        set(fn(value));
-    }
-    function subscribe(run, invalidate = noop) {
-        const subscriber = [run, invalidate];
-        subscribers.add(subscriber);
-        if (subscribers.size === 1) {
-            stop = start(set) || noop;
-        }
-        run(value);
-        return () => {
-            subscribers.delete(subscriber);
-            if (subscribers.size === 0 && stop) {
-                stop();
-                stop = null;
-            }
-        };
-    }
-    return { set, update, subscribe };
-}
-
 /* src/svelte/elm/Sidebar.svelte generated by Svelte v3.59.1 */
 
-function get_each_context(ctx, list, i) {
+function get_each_context$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
 	child_ctx[6] = list[i];
 	return child_ctx;
 }
 
-// (20:51) 
+// (21:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
@@ -600,7 +807,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (18:51) 
+// (19:51) 
 function create_if_block_1(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
@@ -624,8 +831,8 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (16:16) {#if item.icon.type == "image"}
-function create_if_block(ctx) {
+// (17:16) {#if item.icon.type == "image"}
+function create_if_block$2(ctx) {
 	let img;
 	let img_src_value;
 	let img_alt_value;
@@ -654,8 +861,8 @@ function create_if_block(ctx) {
 	};
 }
 
-// (12:4) {#each items as item (item.id)}
-function create_each_block(key_1, ctx) {
+// (13:4) {#each items as item (item.id)}
+function create_each_block$1(key_1, ctx) {
 	let div2;
 	let div0;
 	let t0;
@@ -671,7 +878,7 @@ function create_each_block(key_1, ctx) {
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[6].icon.type == "image") return create_if_block;
+		if (/*item*/ ctx[6].icon.type == "image") return create_if_block$2;
 		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_1;
 		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2;
 	}
@@ -769,9 +976,9 @@ function create_fragment$4(ctx) {
 	const get_key = ctx => /*item*/ ctx[6].id;
 
 	for (let i = 0; i < each_value.length; i += 1) {
-		let child_ctx = get_each_context(ctx, each_value, i);
+		let child_ctx = get_each_context$1(ctx, each_value, i);
 		let key = get_key(child_ctx);
-		each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+		each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
 	}
 
 	return {
@@ -799,7 +1006,7 @@ function create_fragment$4(ctx) {
 		p(ctx, [dirty]) {
 			if (dirty & /*items, active*/ 3) {
 				each_value = /*items*/ ctx[1];
-				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block, null, get_each_context);
+				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block$1, null, get_each_context$1);
 			}
 
 			if (dirty & /*width*/ 4) {
@@ -889,6 +1096,54 @@ class ScreenHome extends SvelteComponent {
 	}
 }
 
+const subscriber_queue = [];
+/**
+ * Create a `Writable` store that allows both updating and reading by subscription.
+ * @param {*=}value initial value
+ * @param {StartStopNotifier=} start
+ */
+function writable(value, start = noop) {
+    let stop;
+    const subscribers = new Set();
+    function set(new_value) {
+        if (safe_not_equal(value, new_value)) {
+            value = new_value;
+            if (stop) { // store is ready
+                const run_queue = !subscriber_queue.length;
+                for (const subscriber of subscribers) {
+                    subscriber[1]();
+                    subscriber_queue.push(subscriber, value);
+                }
+                if (run_queue) {
+                    for (let i = 0; i < subscriber_queue.length; i += 2) {
+                        subscriber_queue[i][0](subscriber_queue[i + 1]);
+                    }
+                    subscriber_queue.length = 0;
+                }
+            }
+        }
+    }
+    function update(fn) {
+        set(fn(value));
+    }
+    function subscribe(run, invalidate = noop) {
+        const subscriber = [run, invalidate];
+        subscribers.add(subscriber);
+        if (subscribers.size === 1) {
+            stop = start(set) || noop;
+        }
+        run(value);
+        return () => {
+            subscribers.delete(subscriber);
+            if (subscribers.size === 0 && stop) {
+                stop();
+                stop = null;
+            }
+        };
+    }
+    return { set, update, subscribe };
+}
+
 var lists;
 (function (lists) {
     lists.quality = [
@@ -907,56 +1162,213 @@ let cfg = writable();
 let tv = writable();
 let movies = writable();
 let embeddables = writable();
+let ready = writable(false);
 // fetch cfg; tv; movies
 // might DRY up this code later
 fetch("/db/webtv.json").then(res => {
     if (res.status == 200)
         res.json().then(e => cfg.set(e));
-}).catch(e => console.error(e))
+})
     .then(() => fetch("/db/tv.json").then(res => {
     if (res.status == 200)
         res.json().then(e => tv.set(e));
-}).catch())
+}))
     .then(() => fetch("/db/movie.json").then(res => {
     if (res.status == 200)
         res.json().then(e => movies.set(e));
-}).catch())
+}))
     .then(() => fetch("/db/embeddables.json").then(res => {
     if (res.status == 200)
         res.json().then(e => embeddables.set(e));
-}).catch());
+})).then(() => {
+    ready.set(true);
+});
 
 /* src/svelte/screens/ScreenEmbeddables.svelte generated by Svelte v3.59.1 */
 
-function create_fragment$2(ctx) {
+function get_each_context(ctx, list, i) {
+	const child_ctx = ctx.slice();
+	child_ctx[7] = list[i];
+	return child_ctx;
+}
+
+// (33:8) {:else}
+function create_else_block(ctx) {
 	let div;
+
+	return {
+		c() {
+			div = element("div");
+
+			div.innerHTML = `<h1>embeddables
+                    <span><br/>these links embed in discord; send them to your friends &amp; such
+                        <br/>try selecting something!</span></h1>`;
+
+			attr(div, "class", "nothingSelected");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+		},
+		p: noop,
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
+// (26:8) {#if activeEl}
+function create_if_block$1(ctx) {
+	let each_blocks = [];
+	let each_1_lookup = new Map();
+	let each_1_anchor;
+	let each_value = /*idx*/ ctx[2][/*activeEl*/ ctx[0]].urls;
+	const get_key = ctx => /*url*/ ctx[7].url;
+
+	for (let i = 0; i < each_value.length; i += 1) {
+		let child_ctx = get_each_context(ctx, each_value, i);
+		let key = get_key(child_ctx);
+		each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+	}
+
+	return {
+		c() {
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].c();
+			}
+
+			each_1_anchor = empty();
+		},
+		m(target, anchor) {
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				if (each_blocks[i]) {
+					each_blocks[i].m(target, anchor);
+				}
+			}
+
+			insert(target, each_1_anchor, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*idx, activeEl*/ 5) {
+				each_value = /*idx*/ ctx[2][/*activeEl*/ ctx[0]].urls;
+				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, destroy_block, create_each_block, each_1_anchor, get_each_context);
+			}
+		},
+		d(detaching) {
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].d(detaching);
+			}
+
+			if (detaching) detach(each_1_anchor);
+		}
+	};
+}
+
+// (27:12) {#each idx[activeEl].urls as url (url.url)}
+function create_each_block(key_1, ctx) {
+	let p;
+	let a;
+	let t0_value = /*url*/ ctx[7].url + "";
+	let t0;
+	let a_href_value;
+	let t1;
+	let t2_value = /*url*/ ctx[7].description + "";
+	let t2;
+	let t3;
+
+	return {
+		key: key_1,
+		first: null,
+		c() {
+			p = element("p");
+			a = element("a");
+			t0 = text(t0_value);
+			t1 = text("\n                    [ ");
+			t2 = text(t2_value);
+			t3 = text(" ]\n                ");
+			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
+			attr(p, "class", "u");
+			this.first = p;
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, a);
+			append(a, t0);
+			append(p, t1);
+			append(p, t2);
+			append(p, t3);
+		},
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+			if (dirty & /*idx, activeEl*/ 5 && t0_value !== (t0_value = /*url*/ ctx[7].url + "")) set_data(t0, t0_value);
+
+			if (dirty & /*idx, activeEl*/ 5 && a_href_value !== (a_href_value = /*url*/ ctx[7].url)) {
+				attr(a, "href", a_href_value);
+			}
+
+			if (dirty & /*idx, activeEl*/ 5 && t2_value !== (t2_value = /*url*/ ctx[7].description + "")) set_data(t2, t2_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+function create_fragment$2(ctx) {
+	let div1;
 	let sidebar;
 	let updating_active;
+	let updating_items;
+	let t;
+	let div0;
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[1](value);
+		/*sidebar_active_binding*/ ctx[5](value);
 	}
 
-	let sidebar_props = { level: 1, width: 300 };
+	function sidebar_items_binding(value) {
+		/*sidebar_items_binding*/ ctx[6](value);
+	}
+
+	let sidebar_props = { level: 1, width: 250 };
 
 	if (/*activeEl*/ ctx[0] !== void 0) {
 		sidebar_props.active = /*activeEl*/ ctx[0];
 	}
 
+	if (/*sbItems*/ ctx[1] !== void 0) {
+		sidebar_props.items = /*sbItems*/ ctx[1];
+	}
+
 	sidebar = new Sidebar({ props: sidebar_props });
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
+	binding_callbacks.push(() => bind(sidebar, 'items', sidebar_items_binding));
+
+	function select_block_type(ctx, dirty) {
+		if (/*activeEl*/ ctx[0]) return create_if_block$1;
+		return create_else_block;
+	}
+
+	let current_block_type = select_block_type(ctx);
+	let if_block = current_block_type(ctx);
 
 	return {
 		c() {
-			div = element("div");
+			div1 = element("div");
 			create_component(sidebar.$$.fragment);
-			attr(div, "class", "screen");
-			attr(div, "id", "screenEmbeddables");
+			t = space();
+			div0 = element("div");
+			if_block.c();
+			attr(div0, "class", "content");
+			attr(div1, "class", "screen");
+			attr(div1, "id", "screenEmbeddables");
 		},
 		m(target, anchor) {
-			insert(target, div, anchor);
-			mount_component(sidebar, div, null);
+			insert(target, div1, anchor);
+			mount_component(sidebar, div1, null);
+			append(div1, t);
+			append(div1, div0);
+			if_block.m(div0, null);
 			current = true;
 		},
 		p(ctx, [dirty]) {
@@ -968,7 +1380,25 @@ function create_fragment$2(ctx) {
 				add_flush_callback(() => updating_active = false);
 			}
 
+			if (!updating_items && dirty & /*sbItems*/ 2) {
+				updating_items = true;
+				sidebar_changes.items = /*sbItems*/ ctx[1];
+				add_flush_callback(() => updating_items = false);
+			}
+
 			sidebar.$set(sidebar_changes);
+
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+				if_block.p(ctx, dirty);
+			} else {
+				if_block.d(1);
+				if_block = current_block_type(ctx);
+
+				if (if_block) {
+					if_block.c();
+					if_block.m(div0, null);
+				}
+			}
 		},
 		i(local) {
 			if (current) return;
@@ -980,21 +1410,62 @@ function create_fragment$2(ctx) {
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div);
+			if (detaching) detach(div1);
 			destroy_component(sidebar);
+			if_block.d();
 		}
 	};
 }
 
 function instance$1($$self, $$props, $$invalidate) {
+	let $embeddables;
+	let $cfg;
+	component_subscribe($$self, embeddables, $$value => $$invalidate(3, $embeddables = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(4, $cfg = $$value));
 	let activeEl = undefined;
+	let sbItems = [];
+	let idx = {};
 
 	function sidebar_active_binding(value) {
 		activeEl = value;
 		$$invalidate(0, activeEl);
 	}
 
-	return [activeEl, sidebar_active_binding];
+	function sidebar_items_binding(value) {
+		sbItems = value;
+		(($$invalidate(1, sbItems), $$invalidate(3, $embeddables)), $$invalidate(4, $cfg));
+	}
+
+	$$self.$$.update = () => {
+		if ($$self.$$.dirty & /*$embeddables, $cfg*/ 24) {
+			{
+				$$invalidate(1, sbItems = $embeddables.map(e => {
+					return {
+						id: e.name,
+						text: e.name,
+						icon: {
+							type: "image",
+							content: $cfg.host + e.icon
+						}
+					};
+				}));
+
+				$embeddables.forEach(v => {
+					$$invalidate(2, idx[v.name] = v, idx);
+				});
+			}
+		}
+	};
+
+	return [
+		activeEl,
+		sbItems,
+		idx,
+		$embeddables,
+		$cfg,
+		sidebar_active_binding,
+		sidebar_items_binding
+	];
 }
 
 class ScreenEmbeddables extends SvelteComponent {
@@ -1038,22 +1509,32 @@ class ScreenPlaceholder extends SvelteComponent {
 	}
 }
 
+function fade(node, { delay = 0, duration = 400, easing = identity } = {}) {
+    const o = +getComputedStyle(node).opacity;
+    return {
+        delay,
+        duration,
+        easing,
+        css: t => `opacity: ${t * o}`
+    };
+}
+
 /* src/svelte/App.svelte generated by Svelte v3.59.1 */
 
-function create_fragment(ctx) {
-	let div3;
+function create_if_block(ctx) {
 	let div1;
 	let div0;
 	let t0;
 	let sidebar;
 	let updating_active;
+	let div1_transition;
 	let t1;
 	let div2;
 	let switch_instance;
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[4](value);
+		/*sidebar_active_binding*/ ctx[5](value);
 	}
 
 	let sidebar_props = {
@@ -1092,9 +1573,9 @@ function create_fragment(ctx) {
 	}
 
 	sidebar = new Sidebar({ props: sidebar_props });
-	/*sidebar_binding*/ ctx[3](sidebar);
+	/*sidebar_binding*/ ctx[4](sidebar);
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
-	var switch_value = /*scrTab*/ ctx[2][/*activeSbElem*/ ctx[1] || "home"];
+	var switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"];
 
 	function switch_props(ctx) {
 		return {};
@@ -1106,7 +1587,6 @@ function create_fragment(ctx) {
 
 	return {
 		c() {
-			div3 = element("div");
 			div1 = element("div");
 			div0 = element("div");
 			t0 = space();
@@ -1117,20 +1597,18 @@ function create_fragment(ctx) {
 			attr(div0, "id", "clgrad");
 			attr(div1, "id", "menu");
 			attr(div2, "id", "content");
-			attr(div3, "id", "mc");
 		},
 		m(target, anchor) {
-			insert(target, div3, anchor);
-			append(div3, div1);
+			insert(target, div1, anchor);
 			append(div1, div0);
 			append(div1, t0);
 			mount_component(sidebar, div1, null);
-			append(div3, t1);
-			append(div3, div2);
+			insert(target, t1, anchor);
+			insert(target, div2, anchor);
 			if (switch_instance) mount_component(switch_instance, div2, null);
 			current = true;
 		},
-		p(ctx, [dirty]) {
+		p(ctx, dirty) {
 			const sidebar_changes = {};
 
 			if (!updating_active && dirty & /*activeSbElem*/ 2) {
@@ -1141,7 +1619,7 @@ function create_fragment(ctx) {
 
 			sidebar.$set(sidebar_changes);
 
-			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = /*scrTab*/ ctx[2][/*activeSbElem*/ ctx[1] || "home"])) {
+			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"])) {
 				if (switch_instance) {
 					group_outros();
 					const old_component = switch_instance;
@@ -1166,24 +1644,94 @@ function create_fragment(ctx) {
 		i(local) {
 			if (current) return;
 			transition_in(sidebar.$$.fragment, local);
+
+			add_render_callback(() => {
+				if (!current) return;
+				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, true);
+				div1_transition.run(1);
+			});
+
 			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
 			transition_out(sidebar.$$.fragment, local);
+			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, false);
+			div1_transition.run(0);
 			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div3);
-			/*sidebar_binding*/ ctx[3](null);
+			if (detaching) detach(div1);
+			/*sidebar_binding*/ ctx[4](null);
 			destroy_component(sidebar);
+			if (detaching && div1_transition) div1_transition.end();
+			if (detaching) detach(t1);
+			if (detaching) detach(div2);
 			if (switch_instance) destroy_component(switch_instance);
 		}
 	};
 }
 
+function create_fragment(ctx) {
+	let div;
+	let current;
+	let if_block = /*$ready*/ ctx[2] && create_if_block(ctx);
+
+	return {
+		c() {
+			div = element("div");
+			if (if_block) if_block.c();
+			attr(div, "id", "mc");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+			if (if_block) if_block.m(div, null);
+			current = true;
+		},
+		p(ctx, [dirty]) {
+			if (/*$ready*/ ctx[2]) {
+				if (if_block) {
+					if_block.p(ctx, dirty);
+
+					if (dirty & /*$ready*/ 4) {
+						transition_in(if_block, 1);
+					}
+				} else {
+					if_block = create_if_block(ctx);
+					if_block.c();
+					transition_in(if_block, 1);
+					if_block.m(div, null);
+				}
+			} else if (if_block) {
+				group_outros();
+
+				transition_out(if_block, 1, 1, () => {
+					if_block = null;
+				});
+
+				check_outros();
+			}
+		},
+		i(local) {
+			if (current) return;
+			transition_in(if_block);
+			current = true;
+		},
+		o(local) {
+			transition_out(if_block);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+			if (if_block) if_block.d();
+		}
+	};
+}
+
 function instance($$self, $$props, $$invalidate) {
+	let $ready;
+	component_subscribe($$self, ready, $$value => $$invalidate(2, $ready = $$value));
 	let sb;
 	let activeSbElem = undefined;
 
@@ -1210,7 +1758,7 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(1, activeSbElem);
 	}
 
-	return [sb, activeSbElem, scrTab, sidebar_binding, sidebar_active_binding];
+	return [sb, activeSbElem, $ready, scrTab, sidebar_binding, sidebar_active_binding];
 }
 
 class App extends SvelteComponent {

@@ -1,7 +1,7 @@
 [
     {
         "name":"ONIMAI: I'm Now Your Sister!",
-        "icon": "onic.png",
+        "icon": "onimai.webp",
         "urls": [
             {
                 "url": "https://coolviruses.download/onimai",
@@ -19,7 +19,7 @@
     },
     {
         "name":"Bocchi the Rock!",
-        "icon": "bocchiic.png",
+        "icon": "bocchi_ic.webp",
         "urls": [
             {
                 "url": "https://beta.fyle.uk/bocchi",

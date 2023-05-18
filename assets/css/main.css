@@ -162,7 +162,7 @@
 
 /* Screens */
 
-.screen {
+.screen, .nothingSelected {
     position:relative;
     left:0px;
     top:0px;
@@ -172,7 +172,7 @@
 
 /* Screen: Home */
 
-#screenHome > h1 {
+#screenHome > h1, .nothingSelected > h1 {
     position:absolute;
     left:50%;
     top:50%;
@@ -183,10 +183,29 @@
     text-align:center;
 }
 
-#screenHome > h1 > span {
+#screenHome > h1 > span, .nothingSelected > h1 {
     color:var(--sf1);
     font-size:16px;
     margin: 0 0 0 0;
+}
+
+/* Screen: Embeddables */
+
+#screenEmbeddables {
+    display:flex;
+}
+
+#screenEmbeddables > .content > p {
+    font-family: var(--sans-serif);
+    color: var(--st0);
+    font-size:16px;
+    font-weight:300;
+}
+
+#screenEmbeddables > .content > p > a {
+    color: var(--txt);
+    font-weight:600;
+    text-decoration: none;
 }
 
 body {
