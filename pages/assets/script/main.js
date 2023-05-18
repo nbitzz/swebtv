@@ -721,8 +721,8 @@ function create_each_block(key_1, ctx) {
 			attr(div2, "class", "listItem");
 
 			attr(div2, "data-active", div2_data_active_value = /*item*/ ctx[6].id == /*$active*/ ctx[4]
-			? true
-			: undefined);
+			? "true"
+			: "false");
 
 			this.first = div2;
 		},
@@ -748,8 +748,8 @@ function create_each_block(key_1, ctx) {
 			if (if_block) if_block.p(ctx, dirty);
 
 			if (dirty & /*$active*/ 16 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*$active*/ ctx[4]
-			? true
-			: undefined)) {
+			? "true"
+			: "false")) {
 				attr(div2, "data-active", div2_data_active_value);
 			}
 		},
@@ -802,7 +802,7 @@ function create_fragment$1(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*items, $active, undefined*/ 17) {
+			if (dirty & /*items, $active*/ 17) {
 				each_value = /*items*/ ctx[0];
 				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block, null, get_each_context);
 			}
