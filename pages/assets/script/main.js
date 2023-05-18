@@ -36,16 +36,6 @@ function set_store_value(store, ret, value) {
     store.set(value);
     return ret;
 }
-
-new Set();
-
-const globals = (typeof window !== 'undefined'
-    ? window
-    : typeof globalThis !== 'undefined'
-        ? globalThis
-        : global);
-// Needs to be written like this to pass the tree-shake-test
-'WeakMap' in globals ? new WeakMap() : undefined;
 function append(target, node) {
     target.appendChild(node);
 }
@@ -138,10 +128,6 @@ class HtmlTag {
         this.n.forEach(detach);
     }
 }
-
-// we need to store the information for multiple documents because a Svelte application could also contain iframes
-// https://github.com/sveltejs/svelte/issues/3624
-new Map();
 
 let current_component;
 function set_current_component(component) {
@@ -380,39 +366,6 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
     run_all(updates);
     return new_blocks;
 }
-
-const _boolean_attributes = [
-    'allowfullscreen',
-    'allowpaymentrequest',
-    'async',
-    'autofocus',
-    'autoplay',
-    'checked',
-    'controls',
-    'default',
-    'defer',
-    'disabled',
-    'formnovalidate',
-    'hidden',
-    'inert',
-    'ismap',
-    'loop',
-    'multiple',
-    'muted',
-    'nomodule',
-    'novalidate',
-    'open',
-    'playsinline',
-    'readonly',
-    'required',
-    'reversed',
-    'selected'
-];
-/**
- * List of HTML boolean attributes (e.g. `<input disabled>`).
- * Source: https://html.spec.whatwg.org/multipage/indices.html
- */
-new Set([..._boolean_attributes]);
 function create_component(block) {
     block && block.c();
 }
@@ -601,14 +554,14 @@ function writable(value, start = noop) {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[6] = list[i];
+	child_ctx[7] = list[i];
 	return child_ctx;
 }
 
-// (18:51) 
+// (19:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
-	let raw_value = /*item*/ ctx[6].icon.content + "";
+	let raw_value = /*item*/ ctx[7].icon.content + "";
 	let html_anchor;
 
 	return {
@@ -622,7 +575,7 @@ function create_if_block_2(ctx) {
 			insert(target, html_anchor, anchor);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && raw_value !== (raw_value = /*item*/ ctx[6].icon.content + "")) html_tag.p(raw_value);
+			if (dirty & /*items*/ 1 && raw_value !== (raw_value = /*item*/ ctx[7].icon.content + "")) html_tag.p(raw_value);
 		},
 		d(detaching) {
 			if (detaching) detach(html_anchor);
@@ -631,10 +584,10 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (16:51) 
+// (17:51) 
 function create_if_block_1(ctx) {
 	let p;
-	let t_value = /*item*/ ctx[6].icon.content + "";
+	let t_value = /*item*/ ctx[7].icon.content + "";
 	let t;
 
 	return {
@@ -647,7 +600,7 @@ function create_if_block_1(ctx) {
 			append(p, t);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && t_value !== (t_value = /*item*/ ctx[6].icon.content + "")) set_data(t, t_value);
+			if (dirty & /*items*/ 1 && t_value !== (t_value = /*item*/ ctx[7].icon.content + "")) set_data(t, t_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
@@ -655,7 +608,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (14:16) {#if item.icon.type == "image"}
+// (15:16) {#if item.icon.type == "image"}
 function create_if_block(ctx) {
 	let img;
 	let img_src_value;
@@ -664,18 +617,18 @@ function create_if_block(ctx) {
 	return {
 		c() {
 			img = element("img");
-			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) attr(img, "src", img_src_value);
-			attr(img, "alt", img_alt_value = /*item*/ ctx[6].text);
+			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[7].icon.content)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*item*/ ctx[7].text);
 		},
 		m(target, anchor) {
 			insert(target, img, anchor);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) {
+			if (dirty & /*items*/ 1 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[7].icon.content)) {
 				attr(img, "src", img_src_value);
 			}
 
-			if (dirty & /*items*/ 1 && img_alt_value !== (img_alt_value = /*item*/ ctx[6].text)) {
+			if (dirty & /*items*/ 1 && img_alt_value !== (img_alt_value = /*item*/ ctx[7].text)) {
 				attr(img, "alt", img_alt_value);
 			}
 		},
@@ -685,14 +638,14 @@ function create_if_block(ctx) {
 	};
 }
 
-// (10:4) {#each items as item (item.id)}
+// (11:4) {#each items as item (item.id)}
 function create_each_block(key_1, ctx) {
 	let div2;
 	let div0;
 	let t0;
 	let div1;
 	let p;
-	let t1_value = /*item*/ ctx[6].text + "";
+	let t1_value = /*item*/ ctx[7].text + "";
 	let t1;
 	let t2;
 	let button;
@@ -702,16 +655,16 @@ function create_each_block(key_1, ctx) {
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[6].icon.type == "image") return create_if_block;
-		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_1;
-		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2;
+		if (/*item*/ ctx[7].icon.type == "image") return create_if_block;
+		if (/*item*/ ctx[7].icon.type == "text") return create_if_block_1;
+		if (/*item*/ ctx[7].icon.type == "html") return create_if_block_2;
 	}
 
 	let current_block_type = select_block_type(ctx);
 	let if_block = current_block_type && current_block_type(ctx);
 
 	function click_handler() {
-		return /*click_handler*/ ctx[5](/*item*/ ctx[6]);
+		return /*click_handler*/ ctx[6](/*item*/ ctx[7]);
 	}
 
 	return {
@@ -733,7 +686,7 @@ function create_each_block(key_1, ctx) {
 			attr(button, "class", "hitbox");
 			attr(div2, "class", "listItem");
 
-			attr(div2, "data-active", div2_data_active_value = /*item*/ ctx[6].id == /*$active*/ ctx[4]
+			attr(div2, "data-active", div2_data_active_value = /*item*/ ctx[7].id == /*$active*/ ctx[4]
 			? "true"
 			: "false");
 
@@ -771,9 +724,9 @@ function create_each_block(key_1, ctx) {
 				}
 			}
 
-			if (dirty & /*items*/ 1 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
+			if (dirty & /*items*/ 1 && t1_value !== (t1_value = /*item*/ ctx[7].text + "")) set_data(t1, t1_value);
 
-			if (dirty & /*items, $active*/ 17 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*$active*/ ctx[4]
+			if (dirty & /*items, $active*/ 17 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[7].id == /*$active*/ ctx[4]
 			? "true"
 			: "false")) {
 				attr(div2, "data-active", div2_data_active_value);
@@ -797,7 +750,7 @@ function create_fragment$1(ctx) {
 	let each_blocks = [];
 	let each_1_lookup = new Map();
 	let each_value = /*items*/ ctx[0];
-	const get_key = ctx => /*item*/ ctx[6].id;
+	const get_key = ctx => /*item*/ ctx[7].id;
 
 	for (let i = 0; i < each_value.length; i += 1) {
 		let child_ctx = get_each_context(ctx, each_value, i);
@@ -862,7 +815,8 @@ function instance$1($$self, $$props, $$invalidate) {
 	let { items = [] } = $$props;
 	let { width = 200 } = $$props;
 	let { level = 2 } = $$props;
-	const active = writable();
+	let { dft = undefined } = $$props;
+	const active = writable(dft);
 	$$subscribe_active();
 	const click_handler = item => set_store_value(active, $active = item.id, $active);
 
@@ -870,15 +824,23 @@ function instance$1($$self, $$props, $$invalidate) {
 		if ('items' in $$props) $$invalidate(0, items = $$props.items);
 		if ('width' in $$props) $$invalidate(1, width = $$props.width);
 		if ('level' in $$props) $$invalidate(2, level = $$props.level);
+		if ('dft' in $$props) $$invalidate(5, dft = $$props.dft);
 	};
 
-	return [items, width, level, active, $active, click_handler];
+	return [items, width, level, active, $active, dft, click_handler];
 }
 
 class Sidebar extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance$1, create_fragment$1, safe_not_equal, { items: 0, width: 1, level: 2, active: 3 });
+
+		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+			items: 0,
+			width: 1,
+			level: 2,
+			dft: 5,
+			active: 3
+		});
 	}
 
 	get active() {
@@ -902,7 +864,6 @@ function create_fragment(ctx) {
 	let span;
 	let br;
 	let t3;
-	let t4_value = (/*sb*/ ctx[0] ? `${/*sb*/ ctx[0].$active}` : "notfound") + "";
 	let t4;
 	let current;
 
@@ -938,7 +899,7 @@ function create_fragment(ctx) {
 	};
 
 	sidebar = new Sidebar({ props: sidebar_props });
-	/*sidebar_binding*/ ctx[1](sidebar);
+	/*sidebar_binding*/ ctx[2](sidebar);
 
 	return {
 		c() {
@@ -955,7 +916,7 @@ function create_fragment(ctx) {
 			span = element("span");
 			br = element("br");
 			t3 = text("simple and sweet. let's get started. ");
-			t4 = text(t4_value);
+			t4 = text(/*activeSbElem*/ ctx[1]);
 			attr(div0, "id", "clgrad");
 			attr(div1, "id", "menu");
 			attr(div2, "class", "screen");
@@ -983,7 +944,7 @@ function create_fragment(ctx) {
 		p(ctx, [dirty]) {
 			const sidebar_changes = {};
 			sidebar.$set(sidebar_changes);
-			if ((!current || dirty & /*sb*/ 1) && t4_value !== (t4_value = (/*sb*/ ctx[0] ? `${/*sb*/ ctx[0].$active}` : "notfound") + "")) set_data(t4, t4_value);
+			if (!current || dirty & /*activeSbElem*/ 2) set_data(t4, /*activeSbElem*/ ctx[1]);
 		},
 		i(local) {
 			if (current) return;
@@ -996,18 +957,19 @@ function create_fragment(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div4);
-			/*sidebar_binding*/ ctx[1](null);
+			/*sidebar_binding*/ ctx[2](null);
 			destroy_component(sidebar);
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
-	onMount(() => {
-		console.log("mounted");
-	});
-
 	let sb;
+	let activeSbElem = undefined;
+
+	onMount(() => {
+		sb.active.subscribe(sbs => $$invalidate(1, activeSbElem = sbs));
+	});
 
 	function sidebar_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
@@ -1016,7 +978,7 @@ function instance($$self, $$props, $$invalidate) {
 		});
 	}
 
-	return [sb, sidebar_binding];
+	return [sb, activeSbElem, sidebar_binding];
 }
 
 class App extends SvelteComponent {
