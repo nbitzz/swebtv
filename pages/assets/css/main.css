@@ -120,6 +120,13 @@
     top: 10px;
     width:30px;
     height:30px;
+    opacity: 0;
+    transition-duration: 250ms;
+}
+
+.sidebar > .listItem > .icon > img[data-loaded] {
+    transition-duration:250ms;
+    opacity: 1;
 }
 
 .sidebar > .listItem > .icon > p {

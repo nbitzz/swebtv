@@ -30,7 +30,7 @@
         <div class="listItem" data-active={item.id == active ? "true" : "false"}>
             <div class="icon">
                 {#if item.icon.type == "image"}
-                    <img src={item.icon.content} alt={item.text} />
+                    <img src={item.icon.content} alt={item.text} on:load={(e) => e.currentTarget.setAttribute("data-loaded","")} />
                 {:else if item.icon.type == "text"}
                     <p>{item.icon.content}</p>
                 {:else if item.icon.type == "html"}
