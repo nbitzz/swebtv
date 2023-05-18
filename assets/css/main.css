@@ -107,7 +107,7 @@
 
 .sidebar > .listItem > .content > p {
     position:absolute;
-    margin: 0 0 0 0;
+    margin: 0 10px 0 0;
     top:50%; /* probably just me being stupid but
                 couldnt get margin auto 0 auto  0 towork
              */
@@ -144,6 +144,7 @@
     top:0px;
     width:100%;
     height:100%;
+    display:none;
 }
 
 /* Screen: Home */
