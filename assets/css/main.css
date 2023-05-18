@@ -50,6 +50,7 @@
     transition-duration:50ms;
     border-left: 0px solid var(--sky);
     overflow:hidden;
+    position:relative;
 }
 
 .sidebar > .listItem:hover, .sidebar > .listItem[data-active] {
