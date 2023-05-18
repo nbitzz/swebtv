@@ -136,7 +136,7 @@
     height:100%;
 }
 
-/* Screens & Home */
+/* Screens */
 
 .screen {
     position:relative;
@@ -146,6 +146,8 @@
     height:100%;
 }
 
+/* Screen: Home */
+
 #screenHome > h1 {
     position:absolute;
     left:50%;
@@ -153,7 +155,12 @@
     margin: 0 0 0 0;
     font-family: var(--sans-serif);
     transform:translate(-50%,-50%);
-    color:var(--sf0)
+    color:var(--sf1);
+}
+
+#screenHome > h1 > span {
+    color:var(--sf1);
+    font-size:16px;
 }
 
 body {
