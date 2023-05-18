@@ -1,0 +1,171 @@
+@import "/assets/css/fonts/source_sans.css";
+@import "/assets/css/fonts/inconsolata.css";
+
+/* main page */
+
+:root {
+    --s-body: #7A2259;
+    --s-top: #FB405A;
+
+    --sans-serif: "Source Sans Pro", sans-serif;
+    --monospace: "Inconsolata", monospace;
+}
+
+/* Sidebar */
+
+#menu {
+    flex-basis: auto;
+}
+
+#clgrad {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:3px;
+    height:100%;
+    background: linear-gradient(to bottom,#7A2259,#FB405A);
+}
+
+.sidebar {
+    height:100%;
+    --level: var(--sf2); /* default */
+    background-color: var(--level);
+
+    width: 50px;
+    transition-duration: 150ms;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar:hover {
+    width:200px;
+    transition-duration:150ms;
+}
+
+#menu > .sidebar {
+    left: 3px;
+    position:relative;
+}
+
+.sidebar > .listItem {
+    width:200px;
+    height:50px;
+    transition-duration:50ms;
+    border-left: 0px solid var(--sky);
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+}
+
+.sidebar > .listItem > * {
+    cursor: pointer;
+}
+
+.sidebar > .listItem:hover, .sidebar > .listItem[data-active] {
+    border-left: 3px solid var(--sky);
+    transition-duration:50ms;
+}
+
+.sidebar > .listItem > .icon, .sidebar > .listItem > .content {
+    position:absolute;
+    top:0px;
+    width:50px;
+    height:50px;
+    overflow:hidden;
+}
+
+.sidebar > .listItem > .icon {
+    left:0px;
+    width:50px;
+}
+
+.sidebar > .listItem > .content {
+    left:50px;
+    width:150px;
+}
+
+/* sidebar util */
+
+.sidebar > .listItem > .icon > img {
+    position:absolute;
+    left: 10px;
+    top: 10px;
+    width:30px;
+    height:30px;
+}
+
+.sidebar > .listItem > .icon > p {
+    position:absolute;
+    margin: 0 0 0 0;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color: var(--txt);
+    font-family: var(--monospace);
+    font-size:18px;
+}
+
+.sidebar > .listItem > .content > p {
+    position:absolute;
+    margin: 0 10px 0 0;
+    top:50%; /* probably just me being stupid but
+                couldnt get margin auto 0 auto  0 towork
+             */
+    transform:translateY(-50%);
+    color: var(--st1);
+    font-family: var(--sans-serif);
+    font-size:16px;
+}
+
+
+/* Content */
+
+#content {
+    flex-basis: 100%;
+    background-color:var(--bse);
+}
+
+#mc {
+    background-color: var(--bse);
+    display: flex;
+
+    position:fixed;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+}
+
+/* Screens */
+
+.screen {
+    position:relative;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+/* Screen: Home */
+
+#screenHome > h1 {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin: 0 0 0 0;
+    font-family: var(--sans-serif);
+    transform:translate(-50%,-50%);
+    color:var(--sf1);
+    text-align:center;
+}
+
+#screenHome > h1 > span {
+    color:var(--sf1);
+    font-size:16px;
+    margin: 0 0 0 0;
+}
+
+body {
+    background-color: var(--bse)
+}

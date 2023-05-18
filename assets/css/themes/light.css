@@ -1,0 +1,37 @@
+/*
+    
+    Catppuccin Latte
+    https://github.com/catppuccin/catppuccin
+
+*/
+
+:root {
+    /* colors */
+    --sky: #04a5e5;
+    --red: #d20f39;
+    --yel: #df8e1d;
+    --gre: #40a02b;
+
+    /* text */
+    --txt: #4c4f69;
+    
+    /* subtext */
+    --st1: #5c5f77;
+    --st0: #6c6f85;
+
+    /* overlay */
+    --ol2: #7c7f93;
+    --ol1: #8c8fa1;
+    --ol0: #9ca0b0;
+
+    /* surface */
+    --sf2: #acb0be;
+    --sf1: #bcc0cc;
+    --sf0: #ccd0da;
+
+    /* layers */
+    --bse: #eff1f5; /* base */
+    --mtl: #e6e9ef; /* mantle */
+    --cst: #dce0e8; /* crust */
+}
+

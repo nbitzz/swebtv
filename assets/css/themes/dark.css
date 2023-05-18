@@ -1,0 +1,36 @@
+/*
+    
+    Catppuccin Macchiato
+    https://github.com/catppuccin/catppuccin
+
+*/
+
+:root {
+    /* colors */
+    --sky: #91d7e3;
+    --red: #ed8796;
+    --yel: #eed49f;
+    --gre: #a6da95;
+
+    /* text */
+    --txt: #cad3f5;
+    
+    /* subtext */
+    --st1: #b8c0e0;
+    --st0: #a5adcb;
+
+    /* overlay */
+    --ol2: #939ab7;
+    --ol1: #8087a2;
+    --ol0: #6e738d;
+
+    /* surface */
+    --sf2: #5b6078;
+    --sf1: #494d64;
+    --sf0: #363a4f;
+
+    /* layers */
+    --bse: #24273a; /* base */
+    --mtl: #1e2030; /* mantle */
+    --cst: #181926; /* crust */
+}
