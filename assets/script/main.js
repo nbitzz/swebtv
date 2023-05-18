@@ -61,6 +61,10 @@ function space() {
 function empty() {
     return text('');
 }
+function listen(node, event, handler, options) {
+    node.addEventListener(event, handler, options);
+    return () => node.removeEventListener(event, handler, options);
+}
 function attr(node, attribute, value) {
     if (value == null)
         node.removeAttribute(attribute);
@@ -538,14 +542,14 @@ class SvelteComponent {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[3] = list[i];
+	child_ctx[5] = list[i];
 	return child_ctx;
 }
 
-// (16:51) 
+// (18:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
-	let raw_value = /*item*/ ctx[3].icon.content + "";
+	let raw_value = /*item*/ ctx[5].icon.content + "";
 	let html_anchor;
 
 	return {
@@ -559,7 +563,7 @@ function create_if_block_2(ctx) {
 			insert(target, html_anchor, anchor);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && raw_value !== (raw_value = /*item*/ ctx[3].icon.content + "")) html_tag.p(raw_value);
+			if (dirty & /*items*/ 2 && raw_value !== (raw_value = /*item*/ ctx[5].icon.content + "")) html_tag.p(raw_value);
 		},
 		d(detaching) {
 			if (detaching) detach(html_anchor);
@@ -568,10 +572,10 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (14:51) 
+// (16:51) 
 function create_if_block_1(ctx) {
 	let p;
-	let t_value = /*item*/ ctx[3].icon.content + "";
+	let t_value = /*item*/ ctx[5].icon.content + "";
 	let t;
 
 	return {
@@ -584,7 +588,7 @@ function create_if_block_1(ctx) {
 			append(p, t);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && t_value !== (t_value = /*item*/ ctx[3].icon.content + "")) set_data(t, t_value);
+			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[5].icon.content + "")) set_data(t, t_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
@@ -592,7 +596,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (12:16) {#if item.icon.type == "image"}
+// (14:16) {#if item.icon.type == "image"}
 function create_if_block(ctx) {
 	let img;
 	let img_src_value;
@@ -601,18 +605,18 @@ function create_if_block(ctx) {
 	return {
 		c() {
 			img = element("img");
-			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[3].icon.content)) attr(img, "src", img_src_value);
-			attr(img, "alt", img_alt_value = /*item*/ ctx[3].text);
+			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[5].icon.content)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*item*/ ctx[5].text);
 		},
 		m(target, anchor) {
 			insert(target, img, anchor);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 1 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[3].icon.content)) {
+			if (dirty & /*items*/ 2 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[5].icon.content)) {
 				attr(img, "src", img_src_value);
 			}
 
-			if (dirty & /*items*/ 1 && img_alt_value !== (img_alt_value = /*item*/ ctx[3].text)) {
+			if (dirty & /*items*/ 2 && img_alt_value !== (img_alt_value = /*item*/ ctx[5].text)) {
 				attr(img, "alt", img_alt_value);
 			}
 		},
@@ -622,25 +626,34 @@ function create_if_block(ctx) {
 	};
 }
 
-// (8:4) {#each items as item (item.id)}
+// (10:4) {#each items as item (item.id)}
 function create_each_block(key_1, ctx) {
 	let div2;
 	let div0;
 	let t0;
 	let div1;
 	let p;
-	let t1_value = /*item*/ ctx[3].text + "";
+	let t1_value = /*item*/ ctx[5].text + "";
 	let t1;
 	let t2;
+	let button;
+	let t3;
+	let div2_data_active_value;
+	let mounted;
+	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[3].icon.type == "image") return create_if_block;
-		if (/*item*/ ctx[3].icon.type == "text") return create_if_block_1;
-		if (/*item*/ ctx[3].icon.type == "html") return create_if_block_2;
+		if (/*item*/ ctx[5].icon.type == "image") return create_if_block;
+		if (/*item*/ ctx[5].icon.type == "text") return create_if_block_1;
+		if (/*item*/ ctx[5].icon.type == "html") return create_if_block_2;
 	}
 
 	let current_block_type = select_block_type(ctx);
 	let if_block = current_block_type && current_block_type(ctx);
+
+	function click_handler() {
+		return /*click_handler*/ ctx[4](/*item*/ ctx[5]);
+	}
 
 	return {
 		key: key_1,
@@ -654,9 +667,17 @@ function create_each_block(key_1, ctx) {
 			p = element("p");
 			t1 = text(t1_value);
 			t2 = space();
+			button = element("button");
+			t3 = space();
 			attr(div0, "class", "icon");
 			attr(div1, "class", "content");
+			attr(button, "class", "hitbox");
 			attr(div2, "class", "listItem");
+
+			attr(div2, "data-active", div2_data_active_value = /*item*/ ctx[5].id == /*active*/ ctx[0]
+			? true
+			: undefined);
+
 			this.first = div2;
 		},
 		m(target, anchor) {
@@ -668,6 +689,13 @@ function create_each_block(key_1, ctx) {
 			append(div1, p);
 			append(p, t1);
 			append(div2, t2);
+			append(div2, button);
+			append(div2, t3);
+
+			if (!mounted) {
+				dispose = listen(button, "click", click_handler);
+				mounted = true;
+			}
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
@@ -684,7 +712,13 @@ function create_each_block(key_1, ctx) {
 				}
 			}
 
-			if (dirty & /*items*/ 1 && t1_value !== (t1_value = /*item*/ ctx[3].text + "")) set_data(t1, t1_value);
+			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[5].text + "")) set_data(t1, t1_value);
+
+			if (dirty & /*items, active*/ 3 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[5].id == /*active*/ ctx[0]
+			? true
+			: undefined)) {
+				attr(div2, "data-active", div2_data_active_value);
+			}
 		},
 		d(detaching) {
 			if (detaching) detach(div2);
@@ -692,6 +726,9 @@ function create_each_block(key_1, ctx) {
 			if (if_block) {
 				if_block.d();
 			}
+
+			mounted = false;
+			dispose();
 		}
 	};
 }
@@ -700,8 +737,8 @@ function create_fragment$1(ctx) {
 	let div;
 	let each_blocks = [];
 	let each_1_lookup = new Map();
-	let each_value = /*items*/ ctx[0];
-	const get_key = ctx => /*item*/ ctx[3].id;
+	let each_value = /*items*/ ctx[1];
+	const get_key = ctx => /*item*/ ctx[5].id;
 
 	for (let i = 0; i < each_value.length; i += 1) {
 		let child_ctx = get_each_context(ctx, each_value, i);
@@ -719,8 +756,8 @@ function create_fragment$1(ctx) {
 
 			attr(div, "class", "sidebar");
 			attr(div, "id", "sidebar_main");
-			set_style(div, "--wdth", /*width*/ ctx[1]);
-			set_style(div, "--level", `var(--sf${/*level*/ ctx[2]})`);
+			set_style(div, "--wdth", `${/*width*/ ctx[2]}px`);
+			set_style(div, "--level", `var(--sf${/*level*/ ctx[3]})`);
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
@@ -732,17 +769,17 @@ function create_fragment$1(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*items*/ 1) {
-				each_value = /*items*/ ctx[0];
+			if (dirty & /*items, active, undefined*/ 3) {
+				each_value = /*items*/ ctx[1];
 				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block, null, get_each_context);
 			}
 
-			if (dirty & /*width*/ 2) {
-				set_style(div, "--wdth", /*width*/ ctx[1]);
+			if (dirty & /*width*/ 4) {
+				set_style(div, "--wdth", `${/*width*/ ctx[2]}px`);
 			}
 
-			if (dirty & /*level*/ 4) {
-				set_style(div, "--level", `var(--sf${/*level*/ ctx[2]})`);
+			if (dirty & /*level*/ 8) {
+				set_style(div, "--level", `var(--sf${/*level*/ ctx[3]})`);
 			}
 		},
 		i: noop,
@@ -761,20 +798,23 @@ function instance$1($$self, $$props, $$invalidate) {
 	let { items = [] } = $$props;
 	let { width = 200 } = $$props;
 	let { level = 2 } = $$props;
+	let { active = null } = $$props;
+	const click_handler = item => $$invalidate(0, active = item.id);
 
 	$$self.$$set = $$props => {
-		if ('items' in $$props) $$invalidate(0, items = $$props.items);
-		if ('width' in $$props) $$invalidate(1, width = $$props.width);
-		if ('level' in $$props) $$invalidate(2, level = $$props.level);
+		if ('items' in $$props) $$invalidate(1, items = $$props.items);
+		if ('width' in $$props) $$invalidate(2, width = $$props.width);
+		if ('level' in $$props) $$invalidate(3, level = $$props.level);
+		if ('active' in $$props) $$invalidate(0, active = $$props.active);
 	};
 
-	return [items, width, level];
+	return [active, items, width, level, click_handler];
 }
 
 class Sidebar extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance$1, create_fragment$1, safe_not_equal, { items: 0, width: 1, level: 2 });
+		init(this, options, instance$1, create_fragment$1, safe_not_equal, { items: 1, width: 2, level: 3, active: 0 });
 	}
 }
 
@@ -788,40 +828,49 @@ function create_fragment(ctx) {
 	let sidebar;
 	let t1;
 	let div3;
+	let div2;
+	let h1;
+	let t2;
+	let span;
+	let br;
+	let t3;
+	let t4_value = /*sb*/ ctx[0].active + "";
+	let t4;
 	let current;
 
-	sidebar = new Sidebar({
-			props: {
-				width: 250,
-				level: 2,
-				items: [
-					{
-						id: "movies",
-						text: "Movies",
-						icon: {
-							type: "image",
-							content: "/assets/icons/tv.svg"
-						}
-					},
-					{
-						id: "embeddables",
-						text: "Embeddables",
-						icon: {
-							type: "image",
-							content: "/assets/icons/embed.svg"
-						}
-					},
-					{
-						id: "settings",
-						text: "Settings",
-						icon: {
-							type: "image",
-							content: "/assets/icons/settings.svg"
-						}
-					}
-				]
+	let sidebar_props = {
+		width: 250,
+		level: 2,
+		items: [
+			{
+				id: "movies",
+				text: "Movies",
+				icon: {
+					type: "image",
+					content: "/assets/icons/tv.svg"
+				}
+			},
+			{
+				id: "embeddables",
+				text: "Embeddables",
+				icon: {
+					type: "image",
+					content: "/assets/icons/embed.svg"
+				}
+			},
+			{
+				id: "settings",
+				text: "Settings",
+				icon: {
+					type: "image",
+					content: "/assets/icons/settings.svg"
+				}
 			}
-		});
+		]
+	};
+
+	sidebar = new Sidebar({ props: sidebar_props });
+	/*sidebar_binding*/ ctx[1](sidebar);
 
 	return {
 		c() {
@@ -832,12 +881,17 @@ function create_fragment(ctx) {
 			create_component(sidebar.$$.fragment);
 			t1 = space();
 			div3 = element("div");
-
-			div3.innerHTML = `<div class="screen" id="screenHome"><h1>webtv
-                <span><br/>simple and sweet. let&#39;s get started.</span></h1></div>`;
-
+			div2 = element("div");
+			h1 = element("h1");
+			t2 = text("webtv\n                ");
+			span = element("span");
+			br = element("br");
+			t3 = text("simple and sweet. let's get started. ");
+			t4 = text(t4_value);
 			attr(div0, "id", "clgrad");
 			attr(div1, "id", "menu");
+			attr(div2, "class", "screen");
+			attr(div2, "id", "screenHome");
 			attr(div3, "id", "content");
 			attr(div4, "id", "mc");
 		},
@@ -849,9 +903,20 @@ function create_fragment(ctx) {
 			mount_component(sidebar, div1, null);
 			append(div4, t1);
 			append(div4, div3);
+			append(div3, div2);
+			append(div2, h1);
+			append(h1, t2);
+			append(h1, span);
+			append(span, br);
+			append(span, t3);
+			append(span, t4);
 			current = true;
 		},
-		p: noop,
+		p(ctx, [dirty]) {
+			const sidebar_changes = {};
+			sidebar.$set(sidebar_changes);
+			if ((!current || dirty & /*sb*/ 1) && t4_value !== (t4_value = /*sb*/ ctx[0].active + "")) set_data(t4, t4_value);
+		},
 		i(local) {
 			if (current) return;
 			transition_in(sidebar.$$.fragment, local);
@@ -863,17 +928,27 @@ function create_fragment(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div4);
+			/*sidebar_binding*/ ctx[1](null);
 			destroy_component(sidebar);
 		}
 	};
 }
 
-function instance($$self) {
+function instance($$self, $$props, $$invalidate) {
 	onMount(() => {
 		console.log("mounted");
 	});
 
-	return [];
+	let sb;
+
+	function sidebar_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			sb = $$value;
+			$$invalidate(0, sb);
+		});
+	}
+
+	return [sb, sidebar_binding];
 }
 
 class App extends SvelteComponent {
