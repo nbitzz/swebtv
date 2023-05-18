@@ -31,7 +31,8 @@
 
     width: 50px;
     transition-duration: 150ms;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .sidebar:hover {
