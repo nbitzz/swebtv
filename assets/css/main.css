@@ -53,7 +53,7 @@
 }
 
 .sidebar > .listItem {
-    width:200px;
+    width:var(--wdth);
     height:50px;
     transition-duration:50ms;
     border-left: 0px solid var(--sky);
