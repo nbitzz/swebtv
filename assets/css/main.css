@@ -54,6 +54,11 @@
     border-left: 0px solid var(--sky);
     overflow:hidden;
     position:relative;
+    cursor:pointer;
+}
+
+.sidebar > .listItem > * {
+    cursor: pointer;
 }
 
 .sidebar > .listItem:hover, .sidebar > .listItem[data-active] {
@@ -97,7 +102,7 @@
     transform:translate(-50%,-50%);
     color: var(--txt);
     font-family: var(--monospace);
-    font-size:16px;
+    font-size:18px;
 }
 
 .sidebar > .listItem > .content > p {
@@ -109,7 +114,7 @@
     transform:translateY(-50%);
     color: var(--st1);
     font-family: var(--sans-serif);
-    font-size:18px;
+    font-size:16px;
 }
 
 
