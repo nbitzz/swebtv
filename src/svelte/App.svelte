@@ -6,6 +6,8 @@
         console.log("mounted")
     })
     
+    let sb:Sidebar
+
 </script>
 
 <div id="mc">
@@ -14,7 +16,7 @@
         <!-- sidebar -->
         
         <div id="clgrad"></div>
-        <Sidebar width={250} level={2} items={[
+        <Sidebar bind:this={sb} width={250} level={2} items={[
             {
                 id: "movies",
                 text: "Movies",
@@ -49,7 +51,7 @@
             <h1>
                 webtv
                 <span>
-                    <br>simple and sweet. let's get started.
+                    <br>simple and sweet. let's get started. {sb.active}
                 </span>
             </h1>
         </div>

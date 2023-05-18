@@ -1,5 +1,7 @@
 <script lang="ts">
 
+    import { writable } from "svelte/store";
+
     interface SidebarItemIcon {
         type: "image" | "text" | "html",
         content: string
@@ -16,13 +18,15 @@
     export let width: number = 200
     export let level: number = 2
 
+    export let active: string|null = null
+
 </script>
 
-<div class="sidebar" id="sidebar_main" style:--wdth={width} style:--level={`var(--sf${level})`}>
+<div class="sidebar" id="sidebar_main" style:--wdth={`${width}px`} style:--level={`var(--sf${level})`}>
 
     {#each items as item (item.id)}
 
-        <div class="listItem">
+        <div class="listItem" data-active={item.id == active ? true : undefined}>
             <div class="icon">
                 {#if item.icon.type == "image"}
                     <img src={item.icon.content} alt={item.text} />
@@ -35,6 +39,7 @@
             <div class="content">
                 <p>{item.text}</p>
             </div>
+            <button class="hitbox" on:click={() => active = item.id}></button>
         </div>
 
     {/each}
