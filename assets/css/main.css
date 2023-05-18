@@ -1,4 +1,5 @@
 @import "/assets/css/fonts/source_sans.css";
+@import "/assets/css/fonts/inconsolata.css";
 
 /* main page */
 
@@ -7,6 +8,7 @@
     --s-top: #FB405A;
 
     --sans-serif: "Source Sans Pro", sans-serif;
+    --monospace: "Inconsolata", monospace;
 }
 
 /* Sidebar */
@@ -94,6 +96,17 @@
                 couldnt get margin auto 0 auto  0 towork
              */
     transform:translateY(-50%);
+    color: var(--st1);
+    font-family: var(--monospace);
+    font-size:16px;
+}
+
+.sidebar > .listItem > .content > p {
+    position:absolute;
+    margin: 0 0 0 0;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     color: var(--txt);
     font-family: var(--sans-serif);
     font-size:16px;
