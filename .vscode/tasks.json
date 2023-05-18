@@ -10,6 +10,14 @@
 			},
 			"label": "Build"
 		},
-
+		{
+			"type": "shell",
+			"command":"npm run deploy",
+			"group": {
+				"kind": "none",
+				"isDefault": true
+			},
+			"label": "Deploy"
+		},
 	]
 }
