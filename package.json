@@ -1,0 +1,24 @@
+{
+  "name": "swebtv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "nbitzz",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.1",
+    "@tsconfig/svelte": "^4.0.1",
+    "rollup": "^3.22.0",
+    "rollup-plugin-svelte": "^7.1.4",
+    "svelte": "^3.59.1",
+    "svelte-check": "^3.3.2",
+    "svelte-preprocess": "^5.0.3",
+    "tslib": "^2.5.1",
+    "typescript": "^5.0.4"
+  }
+}
