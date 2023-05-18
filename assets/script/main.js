@@ -874,6 +874,7 @@ function create_if_block$2(ctx) {
 function create_each_block$1(key_1, ctx) {
 	let div2;
 	let div0;
+	let div0_data_circular_value;
 	let t0;
 	let div1;
 	let p;
@@ -914,6 +915,7 @@ function create_each_block$1(key_1, ctx) {
 			button = element("button");
 			t3 = space();
 			attr(div0, "class", "icon");
+			attr(div0, "data-circular", div0_data_circular_value = /*item*/ ctx[6].icon.circular);
 			attr(div1, "class", "content");
 			attr(button, "class", "hitbox");
 			attr(div2, "class", "listItem");
@@ -954,6 +956,10 @@ function create_each_block$1(key_1, ctx) {
 					if_block.c();
 					if_block.m(div0, null);
 				}
+			}
+
+			if (dirty & /*items*/ 2 && div0_data_circular_value !== (div0_data_circular_value = /*item*/ ctx[6].icon.circular)) {
+				attr(div0, "data-circular", div0_data_circular_value);
 			}
 
 			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
@@ -1203,7 +1209,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (33:8) {:else}
+// (34:8) {:else}
 function create_else_block(ctx) {
 	let div;
 
@@ -1227,7 +1233,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (26:8) {#if activeEl}
+// (27:8) {#if activeEl}
 function create_if_block$1(ctx) {
 	let each_blocks = [];
 	let each_1_lookup = new Map();
@@ -1274,7 +1280,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (27:12) {#each idx[activeEl].urls as url (url.url)}
+// (28:12) {#each idx[activeEl].urls as url (url.url)}
 function create_each_block(key_1, ctx) {
 	let p;
 	let a;
@@ -1456,7 +1462,8 @@ function instance$1($$self, $$props, $$invalidate) {
 						text: e.name,
 						icon: {
 							type: "image",
-							content: $cfg.host + e.icon
+							content: $cfg.host + e.icon,
+							circular: true
 						}
 					};
 				}));

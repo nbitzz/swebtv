@@ -120,9 +120,17 @@
     top: 10px;
     width:30px;
     height:30px;
-    fill: var(--txt);
     transition-duration: 250ms;
-    border-radius:100%;
+    opacity: 0;
+}
+
+.sidebar > .listItem > .icon[data-circular=true] {
+    border-radius: 100%;
+    background-color:var(--txt);
+}
+
+.sidebar > .listItem > .icon[data-circular=true] > img {
+    border-radius: 100%;
 }
 
 .sidebar > .listItem > .icon > img[data-loaded] {
