@@ -120,8 +120,9 @@
     top: 10px;
     width:30px;
     height:30px;
-    opacity: 0;
+    fill: var(--txt);
     transition-duration: 250ms;
+    border-radius:100%;
 }
 
 .sidebar > .listItem > .icon > img[data-loaded] {
