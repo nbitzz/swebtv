@@ -42,6 +42,23 @@ let current_component;
 function set_current_component(component) {
     current_component = component;
 }
+function get_current_component() {
+    if (!current_component)
+        throw new Error('Function called outside component initialization');
+    return current_component;
+}
+/**
+ * The `onMount` function schedules a callback to run as soon as the component has been mounted to the DOM.
+ * It must be called during the component's initialisation (but doesn't need to live *inside* the component;
+ * it can be called from an external module).
+ *
+ * `onMount` does not run inside a [server-side component](/docs#run-time-server-side-component-api).
+ *
+ * https://svelte.dev/docs#run-time-svelte-onmount
+ */
+function onMount(fn) {
+    get_current_component().$$.on_mount.push(fn);
+}
 
 const dirty_components = [];
 const binding_callbacks = [];
@@ -327,6 +344,10 @@ function create_fragment(ctx) {
 }
 
 function instance($$self) {
+	onMount(() => {
+		console.log("mounted");
+	});
+
 	console.log("WORK");
 	return [];
 }
@@ -338,9 +359,7 @@ class App extends SvelteComponent {
 	}
 }
 
-let app = new App({
+new App({
     target: document.body
 });
-
-export { app as default };
 //# sourceMappingURL=main.js.map
