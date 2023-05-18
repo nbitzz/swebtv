@@ -27,6 +27,8 @@ Quality should use the following scale:
     - 480p, very low bitrate
     - `ffmpeg -i input.mp4 -b:a 120k -b:v 500k -vcodec libx265 -vf scale=-1:480 ok.mp4`
 
+Priorities should be set on **best** and **good** for quick releases, while other qualities can be slowly rolled out.
+
 ## Data structures
 
 ### `Movie`
