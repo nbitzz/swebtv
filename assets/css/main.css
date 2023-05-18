@@ -62,12 +62,12 @@
     cursor: pointer;
 }
 
-.sidebar > .listItem:hover, .sidebar > .listItem[data-active] {
+.sidebar > .listItem:hover, .sidebar > .listItem[data-active=true] {
     border-left: 3px solid var(--sky);
     transition-duration:50ms;
 }
 
-.sidebar > .listItem[data-active]:not(:hover) > .icon, .sidebar > .listItem[data-active]:not(:hover) > .content {
+.sidebar > .listItem[data-active=true]:not(:hover) > .icon, .sidebar > .listItem[data-active=true]:not(:hover) > .content {
     left:-3px;
     transition-duration:50ms;
 }
