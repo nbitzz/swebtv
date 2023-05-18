@@ -834,7 +834,7 @@ function create_fragment(ctx) {
 	let span;
 	let br;
 	let t3;
-	let t4_value = /*sb*/ ctx[0].active + "";
+	let t4_value = (/*sb*/ ctx[0] ? `${/*sb*/ ctx[0].active}` : "notfound") + "";
 	let t4;
 	let current;
 
@@ -915,7 +915,7 @@ function create_fragment(ctx) {
 		p(ctx, [dirty]) {
 			const sidebar_changes = {};
 			sidebar.$set(sidebar_changes);
-			if ((!current || dirty & /*sb*/ 1) && t4_value !== (t4_value = /*sb*/ ctx[0].active + "")) set_data(t4, t4_value);
+			if ((!current || dirty & /*sb*/ 1) && t4_value !== (t4_value = (/*sb*/ ctx[0] ? `${/*sb*/ ctx[0].active}` : "notfound") + "")) set_data(t4, t4_value);
 		},
 		i(local) {
 			if (current) return;
