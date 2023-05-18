@@ -101,7 +101,7 @@
     font-size:16px;
 }
 
-.sidebar > .listItem > .content > p {
+.sidebar > .listItem > .icon > p {
     position:absolute;
     margin: 0 0 0 0;
     top:50%;
