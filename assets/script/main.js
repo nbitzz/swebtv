@@ -781,7 +781,7 @@ function get_each_context$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (21:51) 
+// (23:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
@@ -807,7 +807,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (19:51) 
+// (21:51) 
 function create_if_block_1(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
@@ -833,6 +833,7 @@ function create_if_block_1(ctx) {
 
 // (17:16) {#if item.icon.type == "image"}
 function create_if_block$2(ctx) {
+	let div;
 	let img;
 	let img_src_value;
 	let img_alt_value;
@@ -841,12 +842,15 @@ function create_if_block$2(ctx) {
 
 	return {
 		c() {
+			div = element("div");
 			img = element("img");
 			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*item*/ ctx[6].text);
+			attr(div, "class", "icontainer");
 		},
 		m(target, anchor) {
-			insert(target, img, anchor);
+			insert(target, div, anchor);
+			append(div, img);
 
 			if (!mounted) {
 				dispose = listen(img, "load", load_handler);
@@ -863,7 +867,7 @@ function create_if_block$2(ctx) {
 			}
 		},
 		d(detaching) {
-			if (detaching) detach(img);
+			if (detaching) detach(div);
 			mounted = false;
 			dispose();
 		}
