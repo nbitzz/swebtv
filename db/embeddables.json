@@ -1,0 +1,66 @@
+[
+    {
+        "name":"ONIMAI: I'm Now Your Sister!",
+        "icon": "onic.png",
+        "urls": [
+            {
+                "url": "https://coolviruses.download/onimai",
+                "description": "low quality ver"
+            },
+            {
+                "url": "https://coolviruses.download/onimaiplus",
+                "description": "high quality ver"
+            },
+            {
+                "url": "https://pls.can-i.win/onimai",
+                "description": "high quality ver"
+            }
+        ]
+    },
+    {
+        "name":"Bocchi the Rock!",
+        "icon": "bocchiic.png",
+        "urls": [
+            {
+                "url": "https://beta.fyle.uk/bocchi",
+                "description": "lowest quality ver"
+            },
+            {
+                "url": "https://coolviruses.download/bocchi",
+                "description": "high quality ver"
+            },
+            {
+                "url": "https://coolviruses.download/bocchiplus",
+                "description": "higher quality ver"
+            },
+            {
+                "url": "https://pls.can-i.win/bocchiplus",
+                "description": "higher quality ver"
+            }
+        ]
+    },
+    {
+        "name":"Lucky Star",
+        "icon": "luckystaric.png",
+        "urls": [
+            {
+                "url": "https://coolviruses.download/luckystar",
+                "description": "low quality ver"
+            }
+        ]
+    },
+    {
+        "name":"Don't Toy With Me, Miss Nagatoro",
+        "icon": "nagatoroic.png",
+        "urls": [
+            {
+                "url": "https://beta.fyle.uk/nagatoro",
+                "description": "lowest quality ver"
+            },
+            {
+                "url": "https://coolviruses.download/nagatoro",
+                "description": "low quality ver"
+            }
+        ]
+    }
+]
