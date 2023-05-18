@@ -542,7 +542,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (16:47) 
+// (16:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[3].icon.content + "";
@@ -568,7 +568,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (14:47) 
+// (14:51) 
 function create_if_block_1(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[3].icon.content + "";
@@ -592,7 +592,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (12:12) {#if item.icon.type == "image"}
+// (12:16) {#if item.icon.type == "image"}
 function create_if_block(ctx) {
 	let img;
 	let img_src_value;
@@ -667,7 +667,7 @@ function create_each_block(key_1, ctx) {
 			append(div2, div1);
 			append(div1, p);
 			append(p, t1);
-			insert(target, t2, anchor);
+			append(div2, t2);
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
@@ -692,8 +692,6 @@ function create_each_block(key_1, ctx) {
 			if (if_block) {
 				if_block.d();
 			}
-
-			if (detaching) detach(t2);
 		}
 	};
 }
@@ -810,7 +808,7 @@ function create_fragment(ctx) {
 						text: "Embeddables",
 						icon: {
 							type: "image",
-							content: "/assets/icons/embeddables.svg"
+							content: "/assets/icons/embed.svg"
 						}
 					},
 					{

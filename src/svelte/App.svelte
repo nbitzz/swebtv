@@ -28,7 +28,7 @@
                 text: "Embeddables",
                 icon: {
                     type: "image",
-                    content: "/assets/icons/embeddables.svg"
+                    content: "/assets/icons/embed.svg"
                 }
             },
             {

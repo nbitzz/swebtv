@@ -22,49 +22,20 @@
 
     {#each items as item (item.id)}
 
-    <div class="listItem">
-        <div class="icon">
-            {#if item.icon.type == "image"}
-                <img src={item.icon.content} alt={item.text} />
-            {:else if item.icon.type == "text"}
-                <p>{item.icon.content}</p>
-            {:else if item.icon.type == "html"}
-                {@html item.icon.content}
-            {/if}
+        <div class="listItem">
+            <div class="icon">
+                {#if item.icon.type == "image"}
+                    <img src={item.icon.content} alt={item.text} />
+                {:else if item.icon.type == "text"}
+                    <p>{item.icon.content}</p>
+                {:else if item.icon.type == "html"}
+                    {@html item.icon.content}
+                {/if}
+            </div>
+            <div class="content">
+                <p>{item.text}</p>
+            </div>
         </div>
-        <div class="content">
-            <p>{item.text}</p>
-        </div>
-    </div>
-
-    <!--
-    <div class="listItem">
-        <div class="icon">
-            <img src="/assets/icons/tv.svg" alt="tv" />
-        </div>
-        <div class="content">
-            <p>Movies</p>
-        </div>
-    </div>
-
-    <div class="listItem">
-        <div class="icon">
-            <img src="/assets/icons/embed.svg" alt="embed" />
-        </div>
-        <div class="content">
-            <p>Embeddables</p>
-        </div>
-    </div>
-
-    <div class="listItem">
-        <div class="icon">
-            <img src="/assets/icons/settings.svg" alt="settings" />
-        </div>
-        <div class="content">
-            <p>Settings</p>
-        </div>
-    </div>
-    -->
 
     {/each}
 
