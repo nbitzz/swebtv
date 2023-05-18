@@ -114,7 +114,7 @@
 
 /* sidebar util */
 
-.sidebar > .listItem > .icontainer {
+.sidebar > .listItem > .icon > .icontainer {
     position:absolute;
     left: 10px;
     top:10px;
