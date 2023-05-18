@@ -26,7 +26,7 @@
 
     {#each items as item (item.id)}
 
-        <div class="listItem" data-active={item.id == $active ? true : undefined}>
+        <div class="listItem" data-active={item.id == $active ? "true" : "false"}>
             <div class="icon">
                 {#if item.icon.type == "image"}
                     <img src={item.icon.content} alt={item.text} />
