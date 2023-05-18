@@ -621,7 +621,9 @@ function create_if_block_2(ctx) {
 			html_tag.m(raw_value, target, anchor);
 			insert(target, html_anchor, anchor);
 		},
-		p: noop,
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 1 && raw_value !== (raw_value = /*item*/ ctx[6].icon.content + "")) html_tag.p(raw_value);
+		},
 		d(detaching) {
 			if (detaching) detach(html_anchor);
 			if (detaching) html_tag.d();
@@ -644,7 +646,9 @@ function create_if_block_1(ctx) {
 			insert(target, p, anchor);
 			append(p, t);
 		},
-		p: noop,
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 1 && t_value !== (t_value = /*item*/ ctx[6].icon.content + "")) set_data(t, t_value);
+		},
 		d(detaching) {
 			if (detaching) detach(p);
 		}
@@ -655,17 +659,26 @@ function create_if_block_1(ctx) {
 function create_if_block(ctx) {
 	let img;
 	let img_src_value;
+	let img_alt_value;
 
 	return {
 		c() {
 			img = element("img");
 			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) attr(img, "src", img_src_value);
-			attr(img, "alt", /*item*/ ctx[6].text);
+			attr(img, "alt", img_alt_value = /*item*/ ctx[6].text);
 		},
 		m(target, anchor) {
 			insert(target, img, anchor);
 		},
-		p: noop,
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 1 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) {
+				attr(img, "src", img_src_value);
+			}
+
+			if (dirty & /*items*/ 1 && img_alt_value !== (img_alt_value = /*item*/ ctx[6].text)) {
+				attr(img, "alt", img_alt_value);
+			}
+		},
 		d(detaching) {
 			if (detaching) detach(img);
 		}
@@ -745,9 +758,22 @@ function create_each_block(key_1, ctx) {
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
-			if (if_block) if_block.p(ctx, dirty);
 
-			if (dirty & /*$active*/ 16 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*$active*/ ctx[4]
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+				if_block.p(ctx, dirty);
+			} else {
+				if (if_block) if_block.d(1);
+				if_block = current_block_type && current_block_type(ctx);
+
+				if (if_block) {
+					if_block.c();
+					if_block.m(div0, null);
+				}
+			}
+
+			if (dirty & /*items*/ 1 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
+
+			if (dirty & /*items, $active*/ 17 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*$active*/ ctx[4]
 			? "true"
 			: "false")) {
 				attr(div2, "data-active", div2_data_active_value);
@@ -833,7 +859,7 @@ function instance$1($$self, $$props, $$invalidate) {
 		$$subscribe_active = () => ($$unsubscribe_active(), $$unsubscribe_active = subscribe(active, $$value => $$invalidate(4, $active = $$value)), active);
 
 	$$self.$$.on_destroy.push(() => $$unsubscribe_active());
-	const items = [];
+	let { items = [] } = $$props;
 	let { width = 200 } = $$props;
 	let { level = 2 } = $$props;
 	const active = writable();
@@ -841,6 +867,7 @@ function instance$1($$self, $$props, $$invalidate) {
 	const click_handler = item => set_store_value(active, $active = item.id, $active);
 
 	$$self.$$set = $$props => {
+		if ('items' in $$props) $$invalidate(0, items = $$props.items);
 		if ('width' in $$props) $$invalidate(1, width = $$props.width);
 		if ('level' in $$props) $$invalidate(2, level = $$props.level);
 	};
@@ -852,10 +879,6 @@ class Sidebar extends SvelteComponent {
 	constructor(options) {
 		super();
 		init(this, options, instance$1, create_fragment$1, safe_not_equal, { items: 0, width: 1, level: 2, active: 3 });
-	}
-
-	get items() {
-		return this.$$.ctx[0];
 	}
 
 	get active() {

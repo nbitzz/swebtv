@@ -13,7 +13,7 @@
         icon: SidebarItemIcon,
     }
 
-    export const items: SidebarItem[] = [];
+    export let items: SidebarItem[] = [];
 
     export let width: number = 200
     export let level: number = 2
