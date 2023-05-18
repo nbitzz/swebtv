@@ -836,6 +836,8 @@ function create_if_block$2(ctx) {
 	let img;
 	let img_src_value;
 	let img_alt_value;
+	let mounted;
+	let dispose;
 
 	return {
 		c() {
@@ -845,6 +847,11 @@ function create_if_block$2(ctx) {
 		},
 		m(target, anchor) {
 			insert(target, img, anchor);
+
+			if (!mounted) {
+				dispose = listen(img, "load", load_handler);
+				mounted = true;
+			}
 		},
 		p(ctx, dirty) {
 			if (dirty & /*items*/ 2 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) {
@@ -857,6 +864,8 @@ function create_if_block$2(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(img);
+			mounted = false;
+			dispose();
 		}
 	};
 }
@@ -1028,6 +1037,8 @@ function create_fragment$4(ctx) {
 		}
 	};
 }
+
+const load_handler = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$2($$self, $$props, $$invalidate) {
 	let { items = [] } = $$props;
