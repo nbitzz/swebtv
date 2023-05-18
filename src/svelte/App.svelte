@@ -51,7 +51,7 @@
             <h1>
                 webtv
                 <span>
-                    <br>simple and sweet. let's get started. {sb ? `${sb.active}` : "notfound"}
+                    <br>simple and sweet. let's get started. {sb ? `${sb.$active}` : "notfound"}
                 </span>
             </h1>
         </div>

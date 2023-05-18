@@ -13,12 +13,12 @@
         icon: SidebarItemIcon,
     }
 
-    export let items:SidebarItem[] = [];
+    export const items: SidebarItem[] = [];
 
     export let width: number = 200
     export let level: number = 2
 
-    export let active: string|null = null
+    export const active = writable<string>();
 
 </script>
 
@@ -26,7 +26,7 @@
 
     {#each items as item (item.id)}
 
-        <div class="listItem" data-active={item.id == active ? true : undefined}>
+        <div class="listItem" data-active={item.id == $active ? true : undefined}>
             <div class="icon">
                 {#if item.icon.type == "image"}
                     <img src={item.icon.content} alt={item.text} />
@@ -39,7 +39,7 @@
             <div class="content">
                 <p>{item.text}</p>
             </div>
-            <button class="hitbox" on:click={() => active = item.id}></button>
+            <button class="hitbox" on:click={() => $active = item.id}></button>
         </div>
 
     {/each}
