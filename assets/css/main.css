@@ -96,7 +96,7 @@
     left:50%;
     transform:translate(-50%,-50%);
     color: var(--txt);
-    font-family: var(--sans-serif);
+    font-family: var(--monospace);
     font-size:16px;
 }
 
@@ -108,8 +108,8 @@
              */
     transform:translateY(-50%);
     color: var(--st1);
-    font-family: var(--monospace);
-    font-size:16px;
+    font-family: var(--sans-serif);
+    font-size:18px;
 }
 
 
