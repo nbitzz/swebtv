@@ -7,6 +7,8 @@
     import ScreenPlaceholder from "./screens/ScreenPlaceholder.svelte";
     import { fade } from "svelte/transition";
     import { cfg, ready, tv } from "../ts/webtv";
+    import { selected } from "../ts/stores";
+    import ScreenShow from "./screens/ScreenShow.svelte";
     
     let sb:Sidebar
     let activeSbElem:string|undefined = undefined
@@ -66,6 +68,8 @@
         }
     }
 
+    $: $selected = activeSbElem
+
     onMount(() => {
         
     })
@@ -86,7 +90,7 @@
 
         <div id="content">
 
-            <svelte:component this={(activeSbElem || "scr:home").startsWith("scr:") ? scrTab[(activeSbElem || "scr:home").slice(4)] : ScreenPlaceholder} />
+            <svelte:component this={(activeSbElem || "scr:home").startsWith("scr:") ? scrTab[(activeSbElem || "scr:home").slice(4)] : ScreenShow} />
 
         </div>
 
