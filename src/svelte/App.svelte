@@ -22,6 +22,14 @@
 
     let menuItems:SidebarItem[] = [
                 {
+                    id: "scr:settings",
+                    text: "Settings",
+                    icon: {
+                        type: "image",
+                        content: "/assets/icons/settings.svg"
+                    }
+                },
+                {
                     id: "scr:movies",
                     text: "Movies",
                     icon: {
@@ -36,32 +44,24 @@
                         type: "image",
                         content: "/assets/icons/embed.svg"
                     }
-                },
-                {
-                    id: "scr:settings",
-                    text: "Settings",
-                    icon: {
-                        type: "image",
-                        content: "/assets/icons/settings.svg"
-                    }
                 }
             ]
 
     $: {
         if ($ready) {
             sbItems = [
+                ...menuItems,
                 ...$tv.map((show):SidebarItem => {
                         return {
                             text: show.name,
                             id: `show:${show.id}`,
                             icon: {
                                 type:"image",
-                                content: show.icon,
+                                content: $cfg.host + show.icon,
                                 circular: true
                             }
                         } 
-                }),
-                ...menuItems
+                })
             ]
         }
     }

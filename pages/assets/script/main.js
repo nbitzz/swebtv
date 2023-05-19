@@ -1227,19 +1227,19 @@ let embeddables = writable();
 let ready = writable(false);
 // fetch cfg; tv; movies
 // might DRY up this code later
-fetch("/db/webtv.json").then(res => {
+fetch("/db/webtv.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => cfg.set(e));
 })
-    .then(() => fetch("/db/tv.json").then(res => {
+    .then(() => fetch("/db/tv.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => tv.set(e));
 }))
-    .then(() => fetch("/db/movie.json").then(res => {
+    .then(() => fetch("/db/movie.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => movies.set(e));
 }))
-    .then(() => fetch("/db/embeddables.json").then(res => {
+    .then(() => fetch("/db/embeddables.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => embeddables.set(e));
 })).then(() => {
@@ -1603,7 +1603,7 @@ function create_if_block(ctx) {
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[7](value);
+		/*sidebar_active_binding*/ ctx[8](value);
 	}
 
 	let sidebar_props = {
@@ -1617,7 +1617,7 @@ function create_if_block(ctx) {
 	}
 
 	sidebar = new Sidebar({ props: sidebar_props });
-	/*sidebar_binding*/ ctx[6](sidebar);
+	/*sidebar_binding*/ ctx[7](sidebar);
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
 
 	var switch_value = (/*activeSbElem*/ ctx[2] || "scr:home").startsWith("scr:")
@@ -1713,7 +1713,7 @@ function create_if_block(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div1);
-			/*sidebar_binding*/ ctx[6](null);
+			/*sidebar_binding*/ ctx[7](null);
 			destroy_component(sidebar);
 			if (detaching && div1_transition) div1_transition.end();
 			if (detaching) detach(t1);
@@ -1780,9 +1780,11 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+	let $cfg;
 	let $tv;
 	let $ready;
-	component_subscribe($$self, tv, $$value => $$invalidate(5, $tv = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(5, $cfg = $$value));
+	component_subscribe($$self, tv, $$value => $$invalidate(6, $tv = $$value));
 	component_subscribe($$self, ready, $$value => $$invalidate(0, $ready = $$value));
 	let sb;
 	let activeSbElem = undefined;
@@ -1798,6 +1800,14 @@ function instance($$self, $$props, $$invalidate) {
 
 	let menuItems = [
 		{
+			id: "scr:settings",
+			text: "Settings",
+			icon: {
+				type: "image",
+				content: "/assets/icons/settings.svg"
+			}
+		},
+		{
 			id: "scr:movies",
 			text: "Movies",
 			icon: {
@@ -1811,14 +1821,6 @@ function instance($$self, $$props, $$invalidate) {
 			icon: {
 				type: "image",
 				content: "/assets/icons/embed.svg"
-			}
-		},
-		{
-			id: "scr:settings",
-			text: "Settings",
-			icon: {
-				type: "image",
-				content: "/assets/icons/settings.svg"
 			}
 		}
 	];
@@ -1840,18 +1842,22 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$ready, $tv*/ 33) {
+		if ($$self.$$.dirty & /*$ready, $tv, $cfg*/ 97) {
 			{
 				if ($ready) {
 					$$invalidate(3, sbItems = [
+						...menuItems,
 						...$tv.map(show => {
 							return {
 								text: show.name,
 								id: `show:${show.id}`,
-								icon: { type: "image", content: show.icon }
+								icon: {
+									type: "image",
+									content: $cfg.host + show.icon,
+									circular: true
+								}
 							};
-						}),
-						...menuItems
+						})
 					]);
 				}
 			}
@@ -1864,6 +1870,7 @@ function instance($$self, $$props, $$invalidate) {
 		activeSbElem,
 		sbItems,
 		scrTab,
+		$cfg,
 		$tv,
 		sidebar_binding,
 		sidebar_active_binding
