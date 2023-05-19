@@ -822,7 +822,7 @@ function get_each_context$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (21:51) 
+// (23:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
@@ -848,7 +848,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (19:51) 
+// (21:51) 
 function create_if_block_1(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
@@ -874,6 +874,7 @@ function create_if_block_1(ctx) {
 
 // (17:16) {#if item.icon.type == "image"}
 function create_if_block$2(ctx) {
+	let div;
 	let img;
 	let img_src_value;
 	let img_alt_value;
@@ -882,12 +883,15 @@ function create_if_block$2(ctx) {
 
 	return {
 		c() {
+			div = element("div");
 			img = element("img");
 			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*item*/ ctx[6].text);
+			attr(div, "class", "icontainer");
 		},
 		m(target, anchor) {
-			insert(target, img, anchor);
+			insert(target, div, anchor);
+			append(div, img);
 
 			if (!mounted) {
 				dispose = listen(img, "load", load_handler);
@@ -904,7 +908,7 @@ function create_if_block$2(ctx) {
 			}
 		},
 		d(detaching) {
-			if (detaching) detach(img);
+			if (detaching) detach(div);
 			mounted = false;
 			dispose();
 		}
@@ -915,6 +919,7 @@ function create_if_block$2(ctx) {
 function create_each_block$1(key_1, ctx) {
 	let div2;
 	let div0;
+	let div0_data_circular_value;
 	let t0;
 	let div1;
 	let p;
@@ -955,6 +960,7 @@ function create_each_block$1(key_1, ctx) {
 			button = element("button");
 			t3 = space();
 			attr(div0, "class", "icon");
+			attr(div0, "data-circular", div0_data_circular_value = /*item*/ ctx[6].icon.circular);
 			attr(div1, "class", "content");
 			attr(button, "class", "hitbox");
 			attr(div2, "class", "listItem");
@@ -995,6 +1001,10 @@ function create_each_block$1(key_1, ctx) {
 					if_block.c();
 					if_block.m(div0, null);
 				}
+			}
+
+			if (dirty & /*items*/ 2 && div0_data_circular_value !== (div0_data_circular_value = /*item*/ ctx[6].icon.circular)) {
+				attr(div0, "data-circular", div0_data_circular_value);
 			}
 
 			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
@@ -1201,7 +1211,7 @@ var lists;
     lists.quality = [
         "best",
         "good",
-        "ok" // 480p
+        "okay" // 480p
     ];
     lists.formats = [
         "main",
@@ -1217,19 +1227,19 @@ let embeddables = writable();
 let ready = writable(false);
 // fetch cfg; tv; movies
 // might DRY up this code later
-fetch("/db/webtv.json").then(res => {
+fetch("/db/webtv.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => cfg.set(e));
 })
-    .then(() => fetch("/db/tv.json").then(res => {
+    .then(() => fetch("/db/tv.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => tv.set(e));
 }))
-    .then(() => fetch("/db/movie.json").then(res => {
+    .then(() => fetch("/db/movie.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => movies.set(e));
 }))
-    .then(() => fetch("/db/embeddables.json").then(res => {
+    .then(() => fetch("/db/embeddables.json", { cache: "no-store" }).then(res => {
     if (res.status == 200)
         res.json().then(e => embeddables.set(e));
 })).then(() => {
@@ -1244,7 +1254,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (33:8) {:else}
+// (34:8) {:else}
 function create_else_block(ctx) {
 	let div;
 
@@ -1268,7 +1278,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (26:8) {#if activeEl}
+// (27:8) {#if activeEl}
 function create_if_block$1(ctx) {
 	let each_blocks = [];
 	let each_1_lookup = new Map();
@@ -1315,7 +1325,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (27:12) {#each idx[activeEl].urls as url (url.url)}
+// (28:12) {#each idx[activeEl].urls as url (url.url)}
 function create_each_block(key_1, ctx) {
 	let p;
 	let a;
@@ -1323,9 +1333,11 @@ function create_each_block(key_1, ctx) {
 	let t0;
 	let a_href_value;
 	let t1;
-	let t2_value = /*url*/ ctx[7].description + "";
+	let br;
 	let t2;
+	let t3_value = /*url*/ ctx[7].description + "";
 	let t3;
+	let t4;
 
 	return {
 		key: key_1,
@@ -1334,9 +1346,11 @@ function create_each_block(key_1, ctx) {
 			p = element("p");
 			a = element("a");
 			t0 = text(t0_value);
-			t1 = text("\n                    [ ");
-			t2 = text(t2_value);
-			t3 = text(" ]\n                ");
+			t1 = space();
+			br = element("br");
+			t2 = text("    ");
+			t3 = text(t3_value);
+			t4 = space();
 			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
 			attr(p, "class", "u");
 			this.first = p;
@@ -1346,8 +1360,10 @@ function create_each_block(key_1, ctx) {
 			append(p, a);
 			append(a, t0);
 			append(p, t1);
+			append(p, br);
 			append(p, t2);
 			append(p, t3);
+			append(p, t4);
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
@@ -1357,7 +1373,7 @@ function create_each_block(key_1, ctx) {
 				attr(a, "href", a_href_value);
 			}
 
-			if (dirty & /*idx, activeEl*/ 5 && t2_value !== (t2_value = /*url*/ ctx[7].description + "")) set_data(t2, t2_value);
+			if (dirty & /*idx, activeEl*/ 5 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
@@ -1497,7 +1513,8 @@ function instance$1($$self, $$props, $$invalidate) {
 						text: e.name,
 						icon: {
 							type: "image",
-							content: $cfg.host + e.icon
+							content: $cfg.host + e.icon,
+							circular: true
 						}
 					};
 				}));
@@ -1831,7 +1848,11 @@ function instance($$self, $$props, $$invalidate) {
 							return {
 								text: show.name,
 								id: `show:${show.id}`,
-								icon: { type: "image", content: show.icon }
+								icon: {
+									type: "image",
+									content: show.icon,
+									circular: true
+								}
 							};
 						}),
 						...menuItems
