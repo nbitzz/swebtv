@@ -36,6 +36,7 @@
     --wdth: 200px;
     background-color: var(--level);
 
+    min-width:50px;
     width: 50px;
     transition-duration: 150ms;
     overflow-x: hidden;
@@ -43,6 +44,7 @@
 }
 
 .sidebar:hover {
+    min-width:var(--wdth);
     width:var(--wdth);
     transition-duration:150ms;
 }
