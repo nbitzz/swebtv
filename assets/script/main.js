@@ -1292,9 +1292,11 @@ function create_each_block(key_1, ctx) {
 	let t0;
 	let a_href_value;
 	let t1;
-	let t2_value = /*url*/ ctx[7].description + "";
+	let br;
 	let t2;
+	let t3_value = /*url*/ ctx[7].description + "";
 	let t3;
+	let t4;
 
 	return {
 		key: key_1,
@@ -1303,9 +1305,11 @@ function create_each_block(key_1, ctx) {
 			p = element("p");
 			a = element("a");
 			t0 = text(t0_value);
-			t1 = text("\n                    [ ");
-			t2 = text(t2_value);
-			t3 = text(" ]\n                ");
+			t1 = space();
+			br = element("br");
+			t2 = text("  | ");
+			t3 = text(t3_value);
+			t4 = space();
 			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
 			attr(p, "class", "u");
 			this.first = p;
@@ -1315,8 +1319,10 @@ function create_each_block(key_1, ctx) {
 			append(p, a);
 			append(a, t0);
 			append(p, t1);
+			append(p, br);
 			append(p, t2);
 			append(p, t3);
+			append(p, t4);
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
@@ -1326,7 +1332,7 @@ function create_each_block(key_1, ctx) {
 				attr(a, "href", a_href_value);
 			}
 
-			if (dirty & /*idx, activeEl*/ 5 && t2_value !== (t2_value = /*url*/ ctx[7].description + "")) set_data(t2, t2_value);
+			if (dirty & /*idx, activeEl*/ 5 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
