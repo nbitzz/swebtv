@@ -1592,19 +1592,19 @@ function create_if_block(ctx) {
 	let sidebar_props = {
 		width: 250,
 		level: 2,
-		items: /*sbItems*/ ctx[2]
+		items: /*sbItems*/ ctx[3]
 	};
 
-	if (/*activeSbElem*/ ctx[1] !== void 0) {
-		sidebar_props.active = /*activeSbElem*/ ctx[1];
+	if (/*activeSbElem*/ ctx[2] !== void 0) {
+		sidebar_props.active = /*activeSbElem*/ ctx[2];
 	}
 
 	sidebar = new Sidebar({ props: sidebar_props });
 	/*sidebar_binding*/ ctx[6](sidebar);
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
 
-	var switch_value = (/*activeSbElem*/ ctx[1] || "scr:home").startsWith("scr:")
-	? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[1] || "scr:home").slice(4)]
+	var switch_value = (/*activeSbElem*/ ctx[2] || "scr:home").startsWith("scr:")
+	? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[2] || "scr:home").slice(4)]
 	: ScreenPlaceholder;
 
 	function switch_props(ctx) {
@@ -1640,18 +1640,18 @@ function create_if_block(ctx) {
 		},
 		p(ctx, dirty) {
 			const sidebar_changes = {};
-			if (dirty & /*sbItems*/ 4) sidebar_changes.items = /*sbItems*/ ctx[2];
+			if (dirty & /*sbItems*/ 8) sidebar_changes.items = /*sbItems*/ ctx[3];
 
-			if (!updating_active && dirty & /*activeSbElem*/ 2) {
+			if (!updating_active && dirty & /*activeSbElem*/ 4) {
 				updating_active = true;
-				sidebar_changes.active = /*activeSbElem*/ ctx[1];
+				sidebar_changes.active = /*activeSbElem*/ ctx[2];
 				add_flush_callback(() => updating_active = false);
 			}
 
 			sidebar.$set(sidebar_changes);
 
-			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = (/*activeSbElem*/ ctx[1] || "scr:home").startsWith("scr:")
-			? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[1] || "scr:home").slice(4)]
+			if (dirty & /*activeSbElem*/ 4 && switch_value !== (switch_value = (/*activeSbElem*/ ctx[2] || "scr:home").startsWith("scr:")
+			? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[2] || "scr:home").slice(4)]
 			: ScreenPlaceholder)) {
 				if (switch_instance) {
 					group_outros();
@@ -1709,7 +1709,7 @@ function create_if_block(ctx) {
 function create_fragment(ctx) {
 	let div;
 	let current;
-	let if_block = /*$ready*/ ctx[3] && create_if_block(ctx);
+	let if_block = /*$ready*/ ctx[0] && create_if_block(ctx);
 
 	return {
 		c() {
@@ -1723,11 +1723,11 @@ function create_fragment(ctx) {
 			current = true;
 		},
 		p(ctx, [dirty]) {
-			if (/*$ready*/ ctx[3]) {
+			if (/*$ready*/ ctx[0]) {
 				if (if_block) {
 					if_block.p(ctx, dirty);
 
-					if (dirty & /*$ready*/ 8) {
+					if (dirty & /*$ready*/ 1) {
 						transition_in(if_block, 1);
 					}
 				} else {
@@ -1766,7 +1766,7 @@ function instance($$self, $$props, $$invalidate) {
 	let $tv;
 	let $ready;
 	component_subscribe($$self, tv, $$value => $$invalidate(5, $tv = $$value));
-	component_subscribe($$self, ready, $$value => $$invalidate(3, $ready = $$value));
+	component_subscribe($$self, ready, $$value => $$invalidate(0, $ready = $$value));
 	let sb;
 	let activeSbElem = undefined;
 
@@ -1813,37 +1813,39 @@ function instance($$self, $$props, $$invalidate) {
 	function sidebar_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			sb = $$value;
-			$$invalidate(0, sb);
+			$$invalidate(1, sb);
 		});
 	}
 
 	function sidebar_active_binding(value) {
 		activeSbElem = value;
-		$$invalidate(1, activeSbElem);
+		$$invalidate(2, activeSbElem);
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$tv*/ 32) {
+		if ($$self.$$.dirty & /*$ready, $tv*/ 33) {
 			{
-				$$invalidate(2, sbItems = [
-					...$tv.map(show => {
-						return {
-							text: show.name,
-							id: `show:${show.id}`,
-							icon: { type: "image", content: show.icon }
-						};
-					}),
-					...menuItems
-				]);
+				if ($ready) {
+					$$invalidate(3, sbItems = [
+						...$tv.map(show => {
+							return {
+								text: show.name,
+								id: `show:${show.id}`,
+								icon: { type: "image", content: show.icon }
+							};
+						}),
+						...menuItems
+					]);
+				}
 			}
 		}
 	};
 
 	return [
+		$ready,
 		sb,
 		activeSbElem,
 		sbItems,
-		$ready,
 		scrTab,
 		$tv,
 		sidebar_binding,
