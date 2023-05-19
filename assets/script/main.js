@@ -1562,11 +1562,11 @@ function create_if_block_3(ctx) {
 	let current;
 
 	function sidebar_active_binding_1(value) {
-		/*sidebar_active_binding_1*/ ctx[10](value);
+		/*sidebar_active_binding_1*/ ctx[11](value);
 	}
 
 	function sidebar_items_binding_1(value) {
-		/*sidebar_items_binding_1*/ ctx[11](value);
+		/*sidebar_items_binding_1*/ ctx[12](value);
 	}
 
 	let sidebar_props = { level: 0, width: 250 };
@@ -1687,7 +1687,7 @@ function create_if_block$1(ctx) {
 	let p2;
 	let mounted;
 	let dispose;
-	let if_block = /*show*/ ctx[5]?.poster && create_if_block_1(ctx);
+	let if_block = /*show*/ ctx[6]?.poster && create_if_block_1(ctx);
 
 	return {
 		c() {
@@ -1698,10 +1698,10 @@ function create_if_block$1(ctx) {
 			img = element("img");
 			t1 = space();
 			h1 = element("h1");
-			h1.textContent = `${/*show*/ ctx[5]?.name}`;
+			h1.textContent = `${/*show*/ ctx[6]?.name}`;
 			t3 = space();
 			p0 = element("p");
-			p0.textContent = `${/*show*/ ctx[5]?.seasons?.length} seasons, ${/*show*/ ctx[5]?.seasons?.map(func).reduce(func_1)} episodes`;
+			p0.textContent = `${/*show*/ ctx[6]?.seasons?.length} season(s), ${/*show*/ ctx[6]?.seasons?.map(func).reduce(func_1)} episode(s)`;
 			t8 = space();
 			div3 = element("div");
 			div1 = element("div");
@@ -1709,16 +1709,16 @@ function create_if_block$1(ctx) {
 			h20.textContent = "Description";
 			t10 = space();
 			p1 = element("p");
-			p1.textContent = `${/*show*/ ctx[5]?.description || "No description"}`;
+			p1.textContent = `${/*show*/ ctx[6]?.description || "No description"}`;
 			t12 = space();
 			div2 = element("div");
 			h21 = element("h2");
 			h21.textContent = "Notes";
 			t14 = space();
 			p2 = element("p");
-			p2.textContent = `${/*show*/ ctx[5]?.notes || "No notes"}`;
-			if (!src_url_equal(img.src, img_src_value = /*show*/ ctx[5]?.icon)) attr(img, "src", img_src_value);
-			attr(img, "alt", /*show*/ ctx[5]?.name);
+			p2.textContent = `${/*show*/ ctx[6]?.notes || "No notes"}`;
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[5].host + /*show*/ ctx[6]?.icon)) attr(img, "src", img_src_value);
+			attr(img, "alt", /*show*/ ctx[6]?.name);
 			attr(div0, "class", "header");
 			attr(div3, "class", "otherInfo");
 			attr(div4, "class", "showAbout");
@@ -1751,7 +1751,11 @@ function create_if_block$1(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (/*show*/ ctx[5]?.poster) if_block.p(ctx, dirty);
+			if (/*show*/ ctx[6]?.poster) if_block.p(ctx, dirty);
+
+			if (dirty & /*$cfg*/ 32 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[5].host + /*show*/ ctx[6]?.icon)) {
+				attr(img, "src", img_src_value);
+			}
 		},
 		d(detaching) {
 			if (if_block) if_block.d(detaching);
@@ -1779,8 +1783,8 @@ function create_if_block_1(ctx) {
 			img = element("img");
 			t = space();
 			div0 = element("div");
-			if (!src_url_equal(img.src, img_src_value = /*show*/ ctx[5]?.poster)) attr(img, "src", img_src_value);
-			attr(img, "alt", /*show*/ ctx[5]?.name);
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[5].host + /*show*/ ctx[6]?.poster)) attr(img, "src", img_src_value);
+			attr(img, "alt", /*show*/ ctx[6]?.name);
 			attr(div0, "class", "posterOverlay");
 			attr(div1, "class", "poster");
 		},
@@ -1795,7 +1799,11 @@ function create_if_block_1(ctx) {
 				mounted = true;
 			}
 		},
-		p: noop,
+		p(ctx, dirty) {
+			if (dirty & /*$cfg*/ 32 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[5].host + /*show*/ ctx[6]?.poster)) {
+				attr(img, "src", img_src_value);
+			}
+		},
 		d(detaching) {
 			if (detaching) detach(div1);
 			mounted = false;
@@ -1815,11 +1823,11 @@ function create_fragment$1(ctx) {
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[8](value);
+		/*sidebar_active_binding*/ ctx[9](value);
 	}
 
 	function sidebar_items_binding(value) {
-		/*sidebar_items_binding*/ ctx[9](value);
+		/*sidebar_items_binding*/ ctx[10](value);
 	}
 
 	let sidebar_props = { level: 1, width: 250 };
@@ -1950,9 +1958,11 @@ function instance$1($$self, $$props, $$invalidate) {
 	let $ready;
 	let $tv;
 	let $selected;
-	component_subscribe($$self, ready, $$value => $$invalidate(7, $ready = $$value));
-	component_subscribe($$self, tv, $$value => $$invalidate(12, $tv = $$value));
-	component_subscribe($$self, selected, $$value => $$invalidate(13, $selected = $$value));
+	let $cfg;
+	component_subscribe($$self, ready, $$value => $$invalidate(8, $ready = $$value));
+	component_subscribe($$self, tv, $$value => $$invalidate(13, $tv = $$value));
+	component_subscribe($$self, selected, $$value => $$invalidate(14, $selected = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(5, $cfg = $$value));
 	let pSS = "showAbout";
 	let selectedSeason = "showAbout";
 	let selectedSeason_obj;
@@ -1973,21 +1983,21 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function sidebar_items_binding(value) {
 		seasonList = value;
-		(($$invalidate(3, seasonList), $$invalidate(7, $ready)), $$invalidate(5, show));
+		(($$invalidate(3, seasonList), $$invalidate(8, $ready)), $$invalidate(6, show));
 	}
 
 	function sidebar_active_binding_1(value) {
 		selectedEpisode = value;
-		(($$invalidate(2, selectedEpisode), $$invalidate(6, pSS)), $$invalidate(0, selectedSeason));
+		(($$invalidate(2, selectedEpisode), $$invalidate(7, pSS)), $$invalidate(0, selectedSeason));
 	}
 
 	function sidebar_items_binding_1(value) {
 		episodeList = value;
-		(((($$invalidate(4, episodeList), $$invalidate(7, $ready)), $$invalidate(5, show)), $$invalidate(0, selectedSeason)), $$invalidate(1, selectedSeason_obj));
+		(((($$invalidate(4, episodeList), $$invalidate(8, $ready)), $$invalidate(6, show)), $$invalidate(0, selectedSeason)), $$invalidate(1, selectedSeason_obj));
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$ready*/ 128) {
+		if ($$self.$$.dirty & /*$ready*/ 256) {
 			{
 				if ($ready && show) {
 					$$invalidate(3, seasonList = [
@@ -2011,7 +2021,7 @@ function instance$1($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*$ready, selectedSeason, selectedSeason_obj*/ 131) {
+		if ($$self.$$.dirty & /*$ready, selectedSeason, selectedSeason_obj*/ 259) {
 			{
 				if ($ready && show && selectedSeason != "showAbout") {
 					$$invalidate(1, selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason));
@@ -2035,9 +2045,9 @@ function instance$1($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*pSS, selectedSeason*/ 65) {
+		if ($$self.$$.dirty & /*pSS, selectedSeason*/ 129) {
 			if (pSS != selectedSeason) {
-				$$invalidate(6, pSS = selectedSeason);
+				$$invalidate(7, pSS = selectedSeason);
 				$$invalidate(2, selectedEpisode = undefined);
 			}
 		}
@@ -2049,6 +2059,7 @@ function instance$1($$self, $$props, $$invalidate) {
 		selectedEpisode,
 		seasonList,
 		episodeList,
+		$cfg,
 		show,
 		pSS,
 		$ready,
