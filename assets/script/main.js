@@ -1623,7 +1623,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (106:12) {:else}
+// (108:12) {:else}
 function create_else_block(ctx) {
 	let div;
 	let h1;
@@ -1658,7 +1658,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (102:12) {#if selectedEpisode}
+// (104:12) {#if selectedEpisode}
 function create_if_block_2(ctx) {
 	return { c: noop, m: noop, p: noop, d: noop };
 }
@@ -1666,22 +1666,23 @@ function create_if_block_2(ctx) {
 // (70:8) {#if selectedSeason == "showAbout"}
 function create_if_block$1(ctx) {
 	let t0;
-	let div4;
-	let div0;
+	let div5;
+	let div1;
 	let img;
 	let img_src_value;
 	let t1;
+	let div0;
 	let h1;
 	let t3;
 	let p0;
 	let t8;
-	let div3;
-	let div1;
+	let div4;
+	let div2;
 	let h20;
 	let t10;
 	let p1;
 	let t12;
-	let div2;
+	let div3;
 	let h21;
 	let t14;
 	let p2;
@@ -1693,25 +1694,26 @@ function create_if_block$1(ctx) {
 		c() {
 			if (if_block) if_block.c();
 			t0 = space();
-			div4 = element("div");
-			div0 = element("div");
+			div5 = element("div");
+			div1 = element("div");
 			img = element("img");
 			t1 = space();
+			div0 = element("div");
 			h1 = element("h1");
 			h1.textContent = `${/*show*/ ctx[6]?.name}`;
 			t3 = space();
 			p0 = element("p");
 			p0.textContent = `${/*show*/ ctx[6]?.seasons?.length} season(s), ${/*show*/ ctx[6]?.seasons?.map(func).reduce(func_1)} episode(s)`;
 			t8 = space();
-			div3 = element("div");
-			div1 = element("div");
+			div4 = element("div");
+			div2 = element("div");
 			h20 = element("h2");
 			h20.textContent = "Description";
 			t10 = space();
 			p1 = element("p");
 			p1.textContent = `${/*show*/ ctx[6]?.description || "No description"}`;
 			t12 = space();
-			div2 = element("div");
+			div3 = element("div");
 			h21 = element("h2");
 			h21.textContent = "Notes";
 			t14 = space();
@@ -1719,31 +1721,33 @@ function create_if_block$1(ctx) {
 			p2.textContent = `${/*show*/ ctx[6]?.notes || "No notes"}`;
 			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[5].host + /*show*/ ctx[6]?.icon)) attr(img, "src", img_src_value);
 			attr(img, "alt", /*show*/ ctx[6]?.name);
-			attr(div0, "class", "header");
-			attr(div3, "class", "otherInfo");
-			attr(div4, "class", "showAbout");
+			attr(div0, "class", "txt");
+			attr(div1, "class", "header");
+			attr(div4, "class", "otherInfo");
+			attr(div5, "class", "showAbout");
 		},
 		m(target, anchor) {
 			if (if_block) if_block.m(target, anchor);
 			insert(target, t0, anchor);
-			insert(target, div4, anchor);
-			append(div4, div0);
-			append(div0, img);
-			append(div0, t1);
+			insert(target, div5, anchor);
+			append(div5, div1);
+			append(div1, img);
+			append(div1, t1);
+			append(div1, div0);
 			append(div0, h1);
 			append(div0, t3);
 			append(div0, p0);
-			append(div4, t8);
+			append(div5, t8);
+			append(div5, div4);
+			append(div4, div2);
+			append(div2, h20);
+			append(div2, t10);
+			append(div2, p1);
+			append(div4, t12);
 			append(div4, div3);
-			append(div3, div1);
-			append(div1, h20);
-			append(div1, t10);
-			append(div1, p1);
-			append(div3, t12);
-			append(div3, div2);
-			append(div2, h21);
-			append(div2, t14);
-			append(div2, p2);
+			append(div3, h21);
+			append(div3, t14);
+			append(div3, p2);
 
 			if (!mounted) {
 				dispose = listen(img, "load", load_handler_1);
@@ -1760,7 +1764,7 @@ function create_if_block$1(ctx) {
 		d(detaching) {
 			if (if_block) if_block.d(detaching);
 			if (detaching) detach(t0);
-			if (detaching) detach(div4);
+			if (detaching) detach(div5);
 			mounted = false;
 			dispose();
 		}

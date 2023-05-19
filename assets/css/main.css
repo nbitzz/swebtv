@@ -289,6 +289,49 @@
     z-index:2;
 }
 
+#screenShow > .content > .showAbout {
+    background-color: var(--sf2);
+    width:500px;
+    padding: 10px;
+}
+
+#screenShow > .content > .showAbout > .header {
+    width:100%;
+    height:70px;
+    padding-bottom: 10px;
+}
+
+#screenShow > .content > .showAbout > .header > img {
+    border-radius:100%;
+    width:60px;
+    height:60px;
+}
+
+#screenShow > .content > .showAbout > .header > .txt {
+    position:relative;
+    width: calc( 100% - 70px );
+    left: 70px;
+    height:60px;
+}
+
+#screenShow > .content > .showAbout > .header > .txt > * {
+    position:relative;
+    margin: 0 0 0 0;
+}
+
+#screenShow > .content > .showAbout > .header > .txt > h1 {
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--txt);
+}
+
+#screenShow > .content > .showAbout > .header > .txt > p {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--st0);
+    margin-top: 10px;
+}
+
 body {
     background-color: var(--bse)
 }
