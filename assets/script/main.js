@@ -75,14 +75,6 @@ function loop(callback) {
         }
     };
 }
-
-const globals = (typeof window !== 'undefined'
-    ? window
-    : typeof globalThis !== 'undefined'
-        ? globalThis
-        : global);
-// Needs to be written like this to pass the tree-shake-test
-'WeakMap' in globals ? new WeakMap() : undefined;
 function append(target, node) {
     target.appendChild(node);
 }
@@ -641,39 +633,6 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
     run_all(updates);
     return new_blocks;
 }
-
-const _boolean_attributes = [
-    'allowfullscreen',
-    'allowpaymentrequest',
-    'async',
-    'autofocus',
-    'autoplay',
-    'checked',
-    'controls',
-    'default',
-    'defer',
-    'disabled',
-    'formnovalidate',
-    'hidden',
-    'inert',
-    'ismap',
-    'loop',
-    'multiple',
-    'muted',
-    'nomodule',
-    'novalidate',
-    'open',
-    'playsinline',
-    'readonly',
-    'required',
-    'reversed',
-    'selected'
-];
-/**
- * List of HTML boolean attributes (e.g. `<input disabled>`).
- * Source: https://html.spec.whatwg.org/multipage/indices.html
- */
-new Set([..._boolean_attributes]);
 
 function bind(component, name, callback) {
     const index = component.$$.props[name];
@@ -1603,11 +1562,11 @@ function create_if_block_1(ctx) {
 	let current;
 
 	function sidebar_active_binding_1(value) {
-		/*sidebar_active_binding_1*/ ctx[8](value);
+		/*sidebar_active_binding_1*/ ctx[9](value);
 	}
 
 	function sidebar_items_binding_1(value) {
-		/*sidebar_items_binding_1*/ ctx[9](value);
+		/*sidebar_items_binding_1*/ ctx[10](value);
 	}
 
 	let sidebar_props = { level: 0, width: 250 };
@@ -1664,12 +1623,12 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (69:8) {:else}
+// (72:8) {:else}
 function create_else_block(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
 
-// (67:8) {#if selectedSeason != "showAbout"}
+// (70:8) {#if selectedSeason != "showAbout"}
 function create_if_block$1(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
@@ -1685,11 +1644,11 @@ function create_fragment$1(ctx) {
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[6](value);
+		/*sidebar_active_binding*/ ctx[7](value);
 	}
 
 	function sidebar_items_binding(value) {
-		/*sidebar_items_binding*/ ctx[7](value);
+		/*sidebar_items_binding*/ ctx[8](value);
 	}
 
 	let sidebar_props = { level: 1, width: 250 };
@@ -1812,9 +1771,10 @@ function instance$1($$self, $$props, $$invalidate) {
 	let $ready;
 	let $tv;
 	let $selected;
-	component_subscribe($$self, ready, $$value => $$invalidate(5, $ready = $$value));
-	component_subscribe($$self, tv, $$value => $$invalidate(10, $tv = $$value));
-	component_subscribe($$self, selected, $$value => $$invalidate(11, $selected = $$value));
+	component_subscribe($$self, ready, $$value => $$invalidate(6, $ready = $$value));
+	component_subscribe($$self, tv, $$value => $$invalidate(11, $tv = $$value));
+	component_subscribe($$self, selected, $$value => $$invalidate(12, $selected = $$value));
+	let pSS = "showAbout";
 	let selectedSeason = "showAbout";
 	let selectedSeason_obj;
 	let selectedEpisode = "";
@@ -1834,28 +1794,31 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function sidebar_items_binding(value) {
 		seasonList = value;
-		(($$invalidate(2, seasonList), $$invalidate(5, $ready)), $$invalidate(13, show));
+		(($$invalidate(2, seasonList), $$invalidate(6, $ready)), $$invalidate(14, show));
 	}
 
 	function sidebar_active_binding_1(value) {
 		selectedEpisode = value;
-		(((($$invalidate(1, selectedEpisode), $$invalidate(5, $ready)), $$invalidate(13, show)), $$invalidate(0, selectedSeason)), $$invalidate(4, selectedSeason_obj));
+		((((($$invalidate(1, selectedEpisode), $$invalidate(6, $ready)), $$invalidate(14, show)), $$invalidate(0, selectedSeason)), $$invalidate(4, pSS)), $$invalidate(5, selectedSeason_obj));
 	}
 
 	function sidebar_items_binding_1(value) {
 		episodeList = value;
-		(((($$invalidate(3, episodeList), $$invalidate(5, $ready)), $$invalidate(13, show)), $$invalidate(0, selectedSeason)), $$invalidate(4, selectedSeason_obj));
+		((((($$invalidate(3, episodeList), $$invalidate(6, $ready)), $$invalidate(14, show)), $$invalidate(0, selectedSeason)), $$invalidate(4, pSS)), $$invalidate(5, selectedSeason_obj));
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$ready*/ 32) {
+		if ($$self.$$.dirty & /*$ready*/ 64) {
 			{
 				if ($ready && show) {
 					$$invalidate(2, seasonList = [
 						{
 							text: "About This Show",
 							id: "showAbout",
-							icon: { type: "text", content: `?` }
+							icon: {
+								type: "image",
+								content: "/assets/icons/question.svg"
+							}
 						},
 						...show.seasons.map((v, x) => {
 							return {
@@ -1869,15 +1832,17 @@ function instance$1($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*$ready, selectedSeason, selectedSeason_obj*/ 49) {
+		if ($$self.$$.dirty & /*$ready, selectedSeason, pSS, selectedSeason_obj*/ 113) {
 			{
 				if ($ready && show && selectedSeason != "showAbout") {
-					$$invalidate(4, selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason));
-					$$invalidate(1, selectedEpisode = undefined);
+					$$invalidate(5, selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason));
+
+					if (pSS != selectedSeason) {
+						$$invalidate(4, pSS = selectedSeason);
+						$$invalidate(1, selectedEpisode = undefined);
+					}
 
 					if (selectedSeason_obj) {
-						$$invalidate(1, selectedEpisode = undefined);
-
 						$$invalidate(3, episodeList = selectedSeason_obj.episodes.map((v, x) => {
 							return {
 								text: v.name,
@@ -1890,7 +1855,7 @@ function instance$1($$self, $$props, $$invalidate) {
 						}));
 					}
 				} else {
-					$$invalidate(4, selectedSeason_obj = undefined);
+					$$invalidate(5, selectedSeason_obj = undefined);
 					$$invalidate(3, episodeList = []);
 				}
 			}
@@ -1902,6 +1867,7 @@ function instance$1($$self, $$props, $$invalidate) {
 		selectedEpisode,
 		seasonList,
 		episodeList,
+		pSS,
 		selectedSeason_obj,
 		$ready,
 		sidebar_active_binding,
