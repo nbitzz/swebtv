@@ -172,7 +172,7 @@
 
 /* Content */
 
-#content {
+#content, .screen > .content {
     flex-basis: 100%;
     background-color:var(--bse);
 }
