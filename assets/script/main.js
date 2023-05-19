@@ -1666,25 +1666,7 @@ function create_if_block_1(ctx) {
 
 // (45:8) {:else}
 function create_else_block(ctx) {
-	let div;
-
-	return {
-		c() {
-			div = element("div");
-
-			div.innerHTML = `<h1>embeddables
-                    <span><br/>these links embed in discord; send them to your friends &amp; such
-                        <br/>try selecting something!</span></h1>`;
-
-			attr(div, "class", "nothingSelected");
-		},
-		m(target, anchor) {
-			insert(target, div, anchor);
-		},
-		d(detaching) {
-			if (detaching) detach(div);
-		}
-	};
+	return { c: noop, m: noop, d: noop };
 }
 
 // (43:8) {#if selectedSeason != "showAbout"}
@@ -1837,7 +1819,11 @@ function instance$1($$self, $$props, $$invalidate) {
 	let selectedEpisode = "";
 	let seasonList = [];
 	let episodeList = [];
-	let showId = $selected || "";
+
+	let showId = ($selected === null || $selected === void 0
+	? void 0
+	: $selected.slice(5)) || "";
+
 	let show = $tv.find(e => e.id == showId);
 
 	function sidebar_active_binding(value) {
