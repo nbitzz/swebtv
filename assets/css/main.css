@@ -251,6 +251,45 @@
     text-decoration: none;
 }
 
+/* Screen: Show */
+
+#screenShow {
+    display:flex;
+}
+
+#screenShow > .poster {
+    position:absolute;
+    width:auto;
+    height:100%;
+    left:100%;
+    transform:translateX(-100%);
+    overflow:hidden;
+}
+
+#screenShow > .poster > img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    opacity:0;
+    transition-duration:250ms;
+}
+
+#screenShow > .poster > img[data-loaded] {
+    opacity: 1;
+    transition-duration:250ms;
+}
+
+#screenShow > .poster > .posterOverlay {
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%;
+    background: linear-gradient(to right, var(--bse), var(--IV_bse));
+    z-index:2;
+}
+
 body {
     background-color: var(--bse)
 }
