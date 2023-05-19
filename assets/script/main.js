@@ -1846,6 +1846,7 @@ function instance($$self, $$props, $$invalidate) {
 			{
 				if ($ready) {
 					$$invalidate(3, sbItems = [
+						...menuItems,
 						...$tv.map(show => {
 							return {
 								text: show.name,
@@ -1856,8 +1857,7 @@ function instance($$self, $$props, $$invalidate) {
 									circular: true
 								}
 							};
-						}),
-						...menuItems
+						})
 					]);
 				}
 			}
