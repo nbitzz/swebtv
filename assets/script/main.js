@@ -1664,12 +1664,12 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (67:8) {:else}
+// (68:8) {:else}
 function create_else_block(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
 
-// (65:8) {#if selectedSeason != "showAbout"}
+// (66:8) {#if selectedSeason != "showAbout"}
 function create_if_block$1(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
@@ -1839,7 +1839,7 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function sidebar_active_binding_1(value) {
 		selectedEpisode = value;
-		$$invalidate(1, selectedEpisode);
+		(((($$invalidate(1, selectedEpisode), $$invalidate(5, $ready)), $$invalidate(13, show)), $$invalidate(0, selectedSeason)), $$invalidate(4, selectedSeason_obj));
 	}
 
 	function sidebar_items_binding_1(value) {
@@ -1889,6 +1889,7 @@ function instance$1($$self, $$props, $$invalidate) {
 				} else {
 					$$invalidate(4, selectedSeason_obj = undefined);
 					$$invalidate(3, episodeList = []);
+					$$invalidate(1, selectedEpisode = undefined);
 				}
 			}
 		}
