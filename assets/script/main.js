@@ -1603,11 +1603,11 @@ function create_if_block_1(ctx) {
 	let current;
 
 	function sidebar_active_binding_1(value) {
-		/*sidebar_active_binding_1*/ ctx[7](value);
+		/*sidebar_active_binding_1*/ ctx[8](value);
 	}
 
 	function sidebar_items_binding_1(value) {
-		/*sidebar_items_binding_1*/ ctx[8](value);
+		/*sidebar_items_binding_1*/ ctx[9](value);
 	}
 
 	let sidebar_props = { level: 0, width: 250 };
@@ -1664,12 +1664,12 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (45:8) {:else}
+// (67:8) {:else}
 function create_else_block(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
 
-// (43:8) {#if selectedSeason != "showAbout"}
+// (65:8) {#if selectedSeason != "showAbout"}
 function create_if_block$1(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
@@ -1685,11 +1685,11 @@ function create_fragment$1(ctx) {
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[5](value);
+		/*sidebar_active_binding*/ ctx[6](value);
 	}
 
 	function sidebar_items_binding(value) {
-		/*sidebar_items_binding*/ ctx[6](value);
+		/*sidebar_items_binding*/ ctx[7](value);
 	}
 
 	let sidebar_props = { level: 1, width: 250 };
@@ -1812,10 +1812,11 @@ function instance$1($$self, $$props, $$invalidate) {
 	let $ready;
 	let $tv;
 	let $selected;
-	component_subscribe($$self, ready, $$value => $$invalidate(4, $ready = $$value));
-	component_subscribe($$self, tv, $$value => $$invalidate(9, $tv = $$value));
-	component_subscribe($$self, selected, $$value => $$invalidate(10, $selected = $$value));
+	component_subscribe($$self, ready, $$value => $$invalidate(5, $ready = $$value));
+	component_subscribe($$self, tv, $$value => $$invalidate(10, $tv = $$value));
+	component_subscribe($$self, selected, $$value => $$invalidate(11, $selected = $$value));
 	let selectedSeason = "showAbout";
+	let selectedSeason_obj;
 	let selectedEpisode = "";
 	let seasonList = [];
 	let episodeList = [];
@@ -1833,7 +1834,7 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function sidebar_items_binding(value) {
 		seasonList = value;
-		(($$invalidate(2, seasonList), $$invalidate(4, $ready)), $$invalidate(12, show));
+		(($$invalidate(2, seasonList), $$invalidate(5, $ready)), $$invalidate(13, show));
 	}
 
 	function sidebar_active_binding_1(value) {
@@ -1843,11 +1844,11 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function sidebar_items_binding_1(value) {
 		episodeList = value;
-		$$invalidate(3, episodeList);
+		(((($$invalidate(3, episodeList), $$invalidate(5, $ready)), $$invalidate(13, show)), $$invalidate(0, selectedSeason)), $$invalidate(4, selectedSeason_obj));
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$ready*/ 16) {
+		if ($$self.$$.dirty & /*$ready*/ 32) {
 			{
 				if ($ready && show) {
 					$$invalidate(2, seasonList = [
@@ -1859,11 +1860,35 @@ function instance$1($$self, $$props, $$invalidate) {
 						...show.seasons.map((v, x) => {
 							return {
 								text: v.name || `Season ${x + 1}`,
-								id: x.toString(),
+								id: v.id,
 								icon: { type: "text", content: `S${x + 1}` }
 							};
 						})
 					]);
+				}
+			}
+		}
+
+		if ($$self.$$.dirty & /*$ready, selectedSeason, selectedSeason_obj*/ 49) {
+			{
+				if ($ready && show && selectedSeason != "showAbout") {
+					$$invalidate(4, selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason));
+
+					if (selectedSeason_obj) {
+						$$invalidate(3, episodeList = selectedSeason_obj.episodes.map((v, x) => {
+							return {
+								text: v.name,
+								id: v.id,
+								icon: {
+									type: "text",
+									content: `${(x + 1).toString().length < 2 ? "0" : ""}${x + 1}`
+								}
+							};
+						}));
+					}
+				} else {
+					$$invalidate(4, selectedSeason_obj = undefined);
+					$$invalidate(3, episodeList = []);
 				}
 			}
 		}
@@ -1874,6 +1899,7 @@ function instance$1($$self, $$props, $$invalidate) {
 		selectedEpisode,
 		seasonList,
 		episodeList,
+		selectedSeason_obj,
 		$ready,
 		sidebar_active_binding,
 		sidebar_items_binding,
