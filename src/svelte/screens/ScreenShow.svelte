@@ -42,8 +42,10 @@
     $: {
         if ($ready && show && selectedSeason != "showAbout") {
             selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason)
-
+            selectedEpisode = undefined
             if (selectedSeason_obj) {
+                selectedEpisode = undefined;
+
                 episodeList = selectedSeason_obj.episodes.map((v,x):SidebarItem => {
                     return {
                         text: v.name,
@@ -55,7 +57,7 @@
                     }
                 })
             }
-        } else { selectedSeason_obj = undefined; episodeList = []; selectedEpisode = undefined }
+        } else { selectedSeason_obj = undefined; episodeList = []; }
     }
 
 </script>

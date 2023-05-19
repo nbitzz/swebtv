@@ -1664,12 +1664,12 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (68:8) {:else}
+// (69:8) {:else}
 function create_else_block(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
 
-// (66:8) {#if selectedSeason != "showAbout"}
+// (67:8) {#if selectedSeason != "showAbout"}
 function create_if_block$1(ctx) {
 	return { c: noop, m: noop, d: noop };
 }
@@ -1873,8 +1873,11 @@ function instance$1($$self, $$props, $$invalidate) {
 			{
 				if ($ready && show && selectedSeason != "showAbout") {
 					$$invalidate(4, selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason));
+					$$invalidate(1, selectedEpisode = undefined);
 
 					if (selectedSeason_obj) {
+						$$invalidate(1, selectedEpisode = undefined);
+
 						$$invalidate(3, episodeList = selectedSeason_obj.episodes.map((v, x) => {
 							return {
 								text: v.name,
@@ -1889,7 +1892,6 @@ function instance$1($$self, $$props, $$invalidate) {
 				} else {
 					$$invalidate(4, selectedSeason_obj = undefined);
 					$$invalidate(3, episodeList = []);
-					$$invalidate(1, selectedEpisode = undefined);
 				}
 			}
 		}
