@@ -257,7 +257,7 @@
     display:flex;
 }
 
-#screenShow > .poster {
+#screenShow > .content > .poster {
     position:absolute;
     width:auto;
     height:100%;
@@ -266,7 +266,7 @@
     overflow:hidden;
 }
 
-#screenShow > .poster > img {
+#screenShow > .content > .poster > img {
     position:absolute;
     left:0px;
     top:0px;
@@ -275,12 +275,12 @@
     transition-duration:250ms;
 }
 
-#screenShow > .poster > img[data-loaded] {
+#screenShow > .content > .poster > img[data-loaded] {
     opacity: 1;
     transition-duration:250ms;
 }
 
-#screenShow > .poster > .posterOverlay {
+#screenShow > .content > .poster > .posterOverlay {
     position:absolute;
     left:0px;
     top:0px;
