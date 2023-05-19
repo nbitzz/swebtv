@@ -267,7 +267,6 @@
 }
 
 #screenShow > .content > .poster > img {
-    position:absolute;
     left:0px;
     top:0px;
     height:100%;
