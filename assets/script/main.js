@@ -1307,7 +1307,7 @@ function create_each_block(key_1, ctx) {
 			t0 = text(t0_value);
 			t1 = space();
 			br = element("br");
-			t2 = text("  | ");
+			t2 = text("    ");
 			t3 = text(t3_value);
 			t4 = space();
 			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
