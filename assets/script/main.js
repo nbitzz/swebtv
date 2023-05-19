@@ -71,6 +71,14 @@ function loop(callback) {
         }
     };
 }
+
+const globals = (typeof window !== 'undefined'
+    ? window
+    : typeof globalThis !== 'undefined'
+        ? globalThis
+        : global);
+// Needs to be written like this to pass the tree-shake-test
+'WeakMap' in globals ? new WeakMap() : undefined;
 function append(target, node) {
     target.appendChild(node);
 }
@@ -630,6 +638,39 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
     return new_blocks;
 }
 
+const _boolean_attributes = [
+    'allowfullscreen',
+    'allowpaymentrequest',
+    'async',
+    'autofocus',
+    'autoplay',
+    'checked',
+    'controls',
+    'default',
+    'defer',
+    'disabled',
+    'formnovalidate',
+    'hidden',
+    'inert',
+    'ismap',
+    'loop',
+    'multiple',
+    'muted',
+    'nomodule',
+    'novalidate',
+    'open',
+    'playsinline',
+    'readonly',
+    'required',
+    'reversed',
+    'selected'
+];
+/**
+ * List of HTML boolean attributes (e.g. `<input disabled>`).
+ * Source: https://html.spec.whatwg.org/multipage/indices.html
+ */
+new Set([..._boolean_attributes]);
+
 function bind(component, name, callback) {
     const index = component.$$.props[name];
     if (index !== undefined) {
@@ -781,7 +822,7 @@ function get_each_context$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (23:51) 
+// (21:51) 
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
@@ -807,7 +848,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (21:51) 
+// (19:51) 
 function create_if_block_1(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
@@ -833,7 +874,6 @@ function create_if_block_1(ctx) {
 
 // (17:16) {#if item.icon.type == "image"}
 function create_if_block$2(ctx) {
-	let div;
 	let img;
 	let img_src_value;
 	let img_alt_value;
@@ -842,15 +882,12 @@ function create_if_block$2(ctx) {
 
 	return {
 		c() {
-			div = element("div");
 			img = element("img");
 			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[6].icon.content)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*item*/ ctx[6].text);
-			attr(div, "class", "icontainer");
 		},
 		m(target, anchor) {
-			insert(target, div, anchor);
-			append(div, img);
+			insert(target, img, anchor);
 
 			if (!mounted) {
 				dispose = listen(img, "load", load_handler);
@@ -867,7 +904,7 @@ function create_if_block$2(ctx) {
 			}
 		},
 		d(detaching) {
-			if (detaching) detach(div);
+			if (detaching) detach(img);
 			mounted = false;
 			dispose();
 		}
@@ -878,7 +915,6 @@ function create_if_block$2(ctx) {
 function create_each_block$1(key_1, ctx) {
 	let div2;
 	let div0;
-	let div0_data_circular_value;
 	let t0;
 	let div1;
 	let p;
@@ -919,7 +955,6 @@ function create_each_block$1(key_1, ctx) {
 			button = element("button");
 			t3 = space();
 			attr(div0, "class", "icon");
-			attr(div0, "data-circular", div0_data_circular_value = /*item*/ ctx[6].icon.circular);
 			attr(div1, "class", "content");
 			attr(button, "class", "hitbox");
 			attr(div2, "class", "listItem");
@@ -960,10 +995,6 @@ function create_each_block$1(key_1, ctx) {
 					if_block.c();
 					if_block.m(div0, null);
 				}
-			}
-
-			if (dirty & /*items*/ 2 && div0_data_circular_value !== (div0_data_circular_value = /*item*/ ctx[6].icon.circular)) {
-				attr(div0, "data-circular", div0_data_circular_value);
 			}
 
 			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
@@ -1170,7 +1201,7 @@ var lists;
     lists.quality = [
         "best",
         "good",
-        "okay" // 480p
+        "ok" // 480p
     ];
     lists.formats = [
         "main",
@@ -1213,7 +1244,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (34:8) {:else}
+// (33:8) {:else}
 function create_else_block(ctx) {
 	let div;
 
@@ -1237,7 +1268,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (27:8) {#if activeEl}
+// (26:8) {#if activeEl}
 function create_if_block$1(ctx) {
 	let each_blocks = [];
 	let each_1_lookup = new Map();
@@ -1284,7 +1315,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (28:12) {#each idx[activeEl].urls as url (url.url)}
+// (27:12) {#each idx[activeEl].urls as url (url.url)}
 function create_each_block(key_1, ctx) {
 	let p;
 	let a;
@@ -1292,11 +1323,9 @@ function create_each_block(key_1, ctx) {
 	let t0;
 	let a_href_value;
 	let t1;
-	let br;
+	let t2_value = /*url*/ ctx[7].description + "";
 	let t2;
-	let t3_value = /*url*/ ctx[7].description + "";
 	let t3;
-	let t4;
 
 	return {
 		key: key_1,
@@ -1305,11 +1334,9 @@ function create_each_block(key_1, ctx) {
 			p = element("p");
 			a = element("a");
 			t0 = text(t0_value);
-			t1 = space();
-			br = element("br");
-			t2 = text("    ");
-			t3 = text(t3_value);
-			t4 = space();
+			t1 = text("\n                    [ ");
+			t2 = text(t2_value);
+			t3 = text(" ]\n                ");
 			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
 			attr(p, "class", "u");
 			this.first = p;
@@ -1319,10 +1346,8 @@ function create_each_block(key_1, ctx) {
 			append(p, a);
 			append(a, t0);
 			append(p, t1);
-			append(p, br);
 			append(p, t2);
 			append(p, t3);
-			append(p, t4);
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
@@ -1332,7 +1357,7 @@ function create_each_block(key_1, ctx) {
 				attr(a, "href", a_href_value);
 			}
 
-			if (dirty & /*idx, activeEl*/ 5 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
+			if (dirty & /*idx, activeEl*/ 5 && t2_value !== (t2_value = /*url*/ ctx[7].description + "")) set_data(t2, t2_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
@@ -1472,8 +1497,7 @@ function instance$1($$self, $$props, $$invalidate) {
 						text: e.name,
 						icon: {
 							type: "image",
-							content: $cfg.host + e.icon,
-							circular: true
+							content: $cfg.host + e.icon
 						}
 					};
 				}));
@@ -1562,38 +1586,13 @@ function create_if_block(ctx) {
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[5](value);
+		/*sidebar_active_binding*/ ctx[7](value);
 	}
 
 	let sidebar_props = {
 		width: 250,
 		level: 2,
-		items: [
-			{
-				id: "movies",
-				text: "Movies",
-				icon: {
-					type: "image",
-					content: "/assets/icons/tv.svg"
-				}
-			},
-			{
-				id: "embeddables",
-				text: "Embeddables",
-				icon: {
-					type: "image",
-					content: "/assets/icons/embed.svg"
-				}
-			},
-			{
-				id: "settings",
-				text: "Settings",
-				icon: {
-					type: "image",
-					content: "/assets/icons/settings.svg"
-				}
-			}
-		]
+		items: /*sbItems*/ ctx[2]
 	};
 
 	if (/*activeSbElem*/ ctx[1] !== void 0) {
@@ -1601,9 +1600,12 @@ function create_if_block(ctx) {
 	}
 
 	sidebar = new Sidebar({ props: sidebar_props });
-	/*sidebar_binding*/ ctx[4](sidebar);
+	/*sidebar_binding*/ ctx[6](sidebar);
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
-	var switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"];
+
+	var switch_value = (/*activeSbElem*/ ctx[1] || "scr:home").startsWith("scr:")
+	? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[1] || "scr:home").slice(4)]
+	: ScreenPlaceholder;
 
 	function switch_props(ctx) {
 		return {};
@@ -1638,6 +1640,7 @@ function create_if_block(ctx) {
 		},
 		p(ctx, dirty) {
 			const sidebar_changes = {};
+			if (dirty & /*sbItems*/ 4) sidebar_changes.items = /*sbItems*/ ctx[2];
 
 			if (!updating_active && dirty & /*activeSbElem*/ 2) {
 				updating_active = true;
@@ -1647,7 +1650,9 @@ function create_if_block(ctx) {
 
 			sidebar.$set(sidebar_changes);
 
-			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"])) {
+			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = (/*activeSbElem*/ ctx[1] || "scr:home").startsWith("scr:")
+			? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[1] || "scr:home").slice(4)]
+			: ScreenPlaceholder)) {
 				if (switch_instance) {
 					group_outros();
 					const old_component = switch_instance;
@@ -1691,7 +1696,7 @@ function create_if_block(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div1);
-			/*sidebar_binding*/ ctx[4](null);
+			/*sidebar_binding*/ ctx[6](null);
 			destroy_component(sidebar);
 			if (detaching && div1_transition) div1_transition.end();
 			if (detaching) detach(t1);
@@ -1704,7 +1709,7 @@ function create_if_block(ctx) {
 function create_fragment(ctx) {
 	let div;
 	let current;
-	let if_block = /*$ready*/ ctx[2] && create_if_block(ctx);
+	let if_block = /*$ready*/ ctx[3] && create_if_block(ctx);
 
 	return {
 		c() {
@@ -1718,11 +1723,11 @@ function create_fragment(ctx) {
 			current = true;
 		},
 		p(ctx, [dirty]) {
-			if (/*$ready*/ ctx[2]) {
+			if (/*$ready*/ ctx[3]) {
 				if (if_block) {
 					if_block.p(ctx, dirty);
 
-					if (dirty & /*$ready*/ 4) {
+					if (dirty & /*$ready*/ 8) {
 						transition_in(if_block, 1);
 					}
 				} else {
@@ -1758,8 +1763,10 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+	let $tv;
 	let $ready;
-	component_subscribe($$self, ready, $$value => $$invalidate(2, $ready = $$value));
+	component_subscribe($$self, tv, $$value => $$invalidate(5, $tv = $$value));
+	component_subscribe($$self, ready, $$value => $$invalidate(3, $ready = $$value));
 	let sb;
 	let activeSbElem = undefined;
 
@@ -1769,6 +1776,35 @@ function instance($$self, $$props, $$invalidate) {
 		"movies": ScreenPlaceholder,
 		"settings": ScreenPlaceholder
 	};
+
+	let sbItems = [];
+
+	let menuItems = [
+		{
+			id: "scr:movies",
+			text: "Movies",
+			icon: {
+				type: "image",
+				content: "/assets/icons/tv.svg"
+			}
+		},
+		{
+			id: "scr:embeddables",
+			text: "Embeddables",
+			icon: {
+				type: "image",
+				content: "/assets/icons/embed.svg"
+			}
+		},
+		{
+			id: "scr:settings",
+			text: "Settings",
+			icon: {
+				type: "image",
+				content: "/assets/icons/settings.svg"
+			}
+		}
+	];
 
 	onMount(() => {
 		
@@ -1786,7 +1822,33 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(1, activeSbElem);
 	}
 
-	return [sb, activeSbElem, $ready, scrTab, sidebar_binding, sidebar_active_binding];
+	$$self.$$.update = () => {
+		if ($$self.$$.dirty & /*$tv*/ 32) {
+			{
+				$$invalidate(2, sbItems = [
+					...$tv.map(show => {
+						return {
+							text: show.name,
+							id: `show:${show.id}`,
+							icon: { type: "image", content: show.icon }
+						};
+					}),
+					...menuItems
+				]);
+			}
+		}
+	};
+
+	return [
+		sb,
+		activeSbElem,
+		sbItems,
+		$ready,
+		scrTab,
+		$tv,
+		sidebar_binding,
+		sidebar_active_binding
+	];
 }
 
 class App extends SvelteComponent {

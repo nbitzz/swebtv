@@ -62,27 +62,5 @@
                 "description": "low quality ver"
             }
         ]
-    },
-    {
-        "name": "Breaking Bad",
-        "icon": "breakingbad_ic.png",
-        "urls": [
-            {
-                "url": "https://pls.can-i.win/bb/1",
-                "description": "season 1"
-            },
-            {
-                "url": "https://coolviruses.download/bb/s1",
-                "description": "season 1"
-            },
-            {
-                "url": "https://pls.can-i.win/bb/2",
-                "description": "season 2 (incompatible with mobile)"
-            },
-            {
-                "url": "https://coolviruses.download/bb/s2",
-                "description": "season 2 (incompatible with mobile)"
-            }
-        ]
     }
 ]
