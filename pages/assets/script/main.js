@@ -71,6 +71,14 @@ function loop(callback) {
         }
     };
 }
+
+const globals = (typeof window !== 'undefined'
+    ? window
+    : typeof globalThis !== 'undefined'
+        ? globalThis
+        : global);
+// Needs to be written like this to pass the tree-shake-test
+'WeakMap' in globals ? new WeakMap() : undefined;
 function append(target, node) {
     target.appendChild(node);
 }
@@ -629,6 +637,39 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
     run_all(updates);
     return new_blocks;
 }
+
+const _boolean_attributes = [
+    'allowfullscreen',
+    'allowpaymentrequest',
+    'async',
+    'autofocus',
+    'autoplay',
+    'checked',
+    'controls',
+    'default',
+    'defer',
+    'disabled',
+    'formnovalidate',
+    'hidden',
+    'inert',
+    'ismap',
+    'loop',
+    'multiple',
+    'muted',
+    'nomodule',
+    'novalidate',
+    'open',
+    'playsinline',
+    'readonly',
+    'required',
+    'reversed',
+    'selected'
+];
+/**
+ * List of HTML boolean attributes (e.g. `<input disabled>`).
+ * Source: https://html.spec.whatwg.org/multipage/indices.html
+ */
+new Set([..._boolean_attributes]);
 
 function bind(component, name, callback) {
     const index = component.$$.props[name];
@@ -1562,48 +1603,26 @@ function create_if_block(ctx) {
 	let current;
 
 	function sidebar_active_binding(value) {
-		/*sidebar_active_binding*/ ctx[5](value);
+		/*sidebar_active_binding*/ ctx[7](value);
 	}
 
 	let sidebar_props = {
 		width: 250,
 		level: 2,
-		items: [
-			{
-				id: "movies",
-				text: "Movies",
-				icon: {
-					type: "image",
-					content: "/assets/icons/tv.svg"
-				}
-			},
-			{
-				id: "embeddables",
-				text: "Embeddables",
-				icon: {
-					type: "image",
-					content: "/assets/icons/embed.svg"
-				}
-			},
-			{
-				id: "settings",
-				text: "Settings",
-				icon: {
-					type: "image",
-					content: "/assets/icons/settings.svg"
-				}
-			}
-		]
+		items: /*sbItems*/ ctx[3]
 	};
 
-	if (/*activeSbElem*/ ctx[1] !== void 0) {
-		sidebar_props.active = /*activeSbElem*/ ctx[1];
+	if (/*activeSbElem*/ ctx[2] !== void 0) {
+		sidebar_props.active = /*activeSbElem*/ ctx[2];
 	}
 
 	sidebar = new Sidebar({ props: sidebar_props });
-	/*sidebar_binding*/ ctx[4](sidebar);
+	/*sidebar_binding*/ ctx[6](sidebar);
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
-	var switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"];
+
+	var switch_value = (/*activeSbElem*/ ctx[2] || "scr:home").startsWith("scr:")
+	? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[2] || "scr:home").slice(4)]
+	: ScreenPlaceholder;
 
 	function switch_props(ctx) {
 		return {};
@@ -1638,16 +1657,19 @@ function create_if_block(ctx) {
 		},
 		p(ctx, dirty) {
 			const sidebar_changes = {};
+			if (dirty & /*sbItems*/ 8) sidebar_changes.items = /*sbItems*/ ctx[3];
 
-			if (!updating_active && dirty & /*activeSbElem*/ 2) {
+			if (!updating_active && dirty & /*activeSbElem*/ 4) {
 				updating_active = true;
-				sidebar_changes.active = /*activeSbElem*/ ctx[1];
+				sidebar_changes.active = /*activeSbElem*/ ctx[2];
 				add_flush_callback(() => updating_active = false);
 			}
 
 			sidebar.$set(sidebar_changes);
 
-			if (dirty & /*activeSbElem*/ 2 && switch_value !== (switch_value = /*scrTab*/ ctx[3][/*activeSbElem*/ ctx[1] || "home"])) {
+			if (dirty & /*activeSbElem*/ 4 && switch_value !== (switch_value = (/*activeSbElem*/ ctx[2] || "scr:home").startsWith("scr:")
+			? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[2] || "scr:home").slice(4)]
+			: ScreenPlaceholder)) {
 				if (switch_instance) {
 					group_outros();
 					const old_component = switch_instance;
@@ -1691,7 +1713,7 @@ function create_if_block(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div1);
-			/*sidebar_binding*/ ctx[4](null);
+			/*sidebar_binding*/ ctx[6](null);
 			destroy_component(sidebar);
 			if (detaching && div1_transition) div1_transition.end();
 			if (detaching) detach(t1);
@@ -1704,7 +1726,7 @@ function create_if_block(ctx) {
 function create_fragment(ctx) {
 	let div;
 	let current;
-	let if_block = /*$ready*/ ctx[2] && create_if_block(ctx);
+	let if_block = /*$ready*/ ctx[0] && create_if_block(ctx);
 
 	return {
 		c() {
@@ -1718,11 +1740,11 @@ function create_fragment(ctx) {
 			current = true;
 		},
 		p(ctx, [dirty]) {
-			if (/*$ready*/ ctx[2]) {
+			if (/*$ready*/ ctx[0]) {
 				if (if_block) {
 					if_block.p(ctx, dirty);
 
-					if (dirty & /*$ready*/ 4) {
+					if (dirty & /*$ready*/ 1) {
 						transition_in(if_block, 1);
 					}
 				} else {
@@ -1758,8 +1780,10 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+	let $tv;
 	let $ready;
-	component_subscribe($$self, ready, $$value => $$invalidate(2, $ready = $$value));
+	component_subscribe($$self, tv, $$value => $$invalidate(5, $tv = $$value));
+	component_subscribe($$self, ready, $$value => $$invalidate(0, $ready = $$value));
 	let sb;
 	let activeSbElem = undefined;
 
@@ -1770,6 +1794,35 @@ function instance($$self, $$props, $$invalidate) {
 		"settings": ScreenPlaceholder
 	};
 
+	let sbItems = [];
+
+	let menuItems = [
+		{
+			id: "scr:movies",
+			text: "Movies",
+			icon: {
+				type: "image",
+				content: "/assets/icons/tv.svg"
+			}
+		},
+		{
+			id: "scr:embeddables",
+			text: "Embeddables",
+			icon: {
+				type: "image",
+				content: "/assets/icons/embed.svg"
+			}
+		},
+		{
+			id: "scr:settings",
+			text: "Settings",
+			icon: {
+				type: "image",
+				content: "/assets/icons/settings.svg"
+			}
+		}
+	];
+
 	onMount(() => {
 		
 	});
@@ -1777,16 +1830,44 @@ function instance($$self, $$props, $$invalidate) {
 	function sidebar_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			sb = $$value;
-			$$invalidate(0, sb);
+			$$invalidate(1, sb);
 		});
 	}
 
 	function sidebar_active_binding(value) {
 		activeSbElem = value;
-		$$invalidate(1, activeSbElem);
+		$$invalidate(2, activeSbElem);
 	}
 
-	return [sb, activeSbElem, $ready, scrTab, sidebar_binding, sidebar_active_binding];
+	$$self.$$.update = () => {
+		if ($$self.$$.dirty & /*$ready, $tv*/ 33) {
+			{
+				if ($ready) {
+					$$invalidate(3, sbItems = [
+						...$tv.map(show => {
+							return {
+								text: show.name,
+								id: `show:${show.id}`,
+								icon: { type: "image", content: show.icon }
+							};
+						}),
+						...menuItems
+					]);
+				}
+			}
+		}
+	};
+
+	return [
+		$ready,
+		sb,
+		activeSbElem,
+		sbItems,
+		scrTab,
+		$tv,
+		sidebar_binding,
+		sidebar_active_binding
+	];
 }
 
 class App extends SvelteComponent {
