@@ -1,7 +1,8 @@
 <script lang="ts" context="module">
     export interface SidebarItemIcon {
         type: "image" | "text" | "html",
-        content: string
+        content: string,
+        circular?: boolean
     }
 
     export interface SidebarItem {
@@ -28,9 +29,11 @@
     {#each items as item (item.id)}
 
         <div class="listItem" data-active={item.id == active ? "true" : "false"}>
-            <div class="icon">
+            <div class="icon" data-circular={item.icon.circular}>
                 {#if item.icon.type == "image"}
-                    <img src={item.icon.content} alt={item.text} on:load={(e) => e.currentTarget.setAttribute("data-loaded","")} />
+                    <div class="icontainer">
+                        <img src={item.icon.content} alt={item.text} on:load={(e) => e.currentTarget.setAttribute("data-loaded","")} />
+                    </div>
                 {:else if item.icon.type == "text"}
                     <p>{item.icon.content}</p>
                 {:else if item.icon.type == "html"}

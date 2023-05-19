@@ -4,7 +4,7 @@ export namespace lists {
     export const quality = [
         "best", // 1080p
         "good", // 720p
-        "ok"    // 480p
+        "okay"    // 480p
     ] as const
 
     export const formats = [
@@ -26,6 +26,7 @@ export interface Object {
 
 export interface Video extends Object {
 
+    description?: string,
     thumbnail?: string,
     length: number, // should be in seconds.
                     // may be useful but don't rely on it
@@ -45,7 +46,7 @@ export interface Episode extends Video {
                                // allows for skip intro button
 
     outro?: [ number, number? ] // when the outro plays;
-                                // allows for autoplay to skip the intro
+                                // allows for autoplay to skip the outro
                                 // specify a second number for a
                                 // skip to end of credits scene button
 }

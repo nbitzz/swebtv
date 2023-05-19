@@ -14,9 +14,9 @@ Quality should use the following scale:
 - **good**
     - 720p
     - `ffmpeg -i input.mp4 -b:a 240k -b:v 6m -vcodec libx265 -vf scale=-1:720 good.mp4`
-- **ok**
-    - 480p
-    - `ffmpeg -i input.mp4 -b:a 160k -b:v 2m -vcodec libx265 -vf scale=-1:480 ok.mp4`
+- **okay**
+    - 468p
+    - `ffmpeg -i input.mp4 -b:a 160k -b:v 2m -vcodec libx265 -vf scale=-1:468 okay.mp4`
 
 ## Data structures
 

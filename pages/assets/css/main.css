@@ -36,6 +36,7 @@
     --wdth: 200px;
     background-color: var(--level);
 
+    min-width:50px;
     width: 50px;
     transition-duration: 150ms;
     overflow-x: hidden;
@@ -43,6 +44,7 @@
 }
 
 .sidebar:hover {
+    min-width:var(--wdth);
     width:var(--wdth);
     transition-duration:150ms;
 }
@@ -114,17 +116,34 @@
 
 /* sidebar util */
 
-.sidebar > .listItem > .icon > img {
+.sidebar > .listItem > .icon > .icontainer {
     position:absolute;
     left: 10px;
-    top: 10px;
+    top:10px;
     width:30px;
     height:30px;
-    opacity: 0;
-    transition-duration: 250ms;
 }
 
-.sidebar > .listItem > .icon > img[data-loaded] {
+.sidebar > .listItem > .icon > .icontainer > img {
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width:100%;
+    height:100%;
+    transition-duration: 250ms;
+    opacity: 0;
+}
+
+.sidebar > .listItem > .icon[data-circular=true] > .icontainer {
+    border-radius: 100%;
+    background-color:var(--txt);
+}
+
+.sidebar > .listItem > .icon[data-circular=true] > .icontainer > img {
+    border-radius: 100%;
+}
+
+.sidebar > .listItem > .icon > .icontainer > img[data-loaded] {
     transition-duration:250ms;
     opacity: 1;
 }
@@ -155,7 +174,7 @@
 
 /* Content */
 
-#content {
+#content, .screen > .content {
     flex-basis: 100%;
     background-color:var(--bse);
 }
@@ -182,7 +201,7 @@
 }
 
 .nothingSelected {
-    position:absolute;
+    position:relative;
     left:0px;
     top:0px;
     width:100%;

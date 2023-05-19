@@ -13,7 +13,8 @@
                 text: e.name,
                 icon: {
                     type: "image",
-                    content: $cfg.host + e.icon
+                    content: $cfg.host + e.icon,
+                    circular: true
                 }
             }
         })
@@ -32,7 +33,7 @@
             {#each idx[activeEl].urls as url (url.url)}
                 <p class="u">
                     <a href={url.url}>{url.url}</a>
-                    [ {url.description} ]
+                    <br />&nbsp;&nbsp;&nbsp;&nbsp;{url.description}
                 </p>
             {/each}
         {:else}
