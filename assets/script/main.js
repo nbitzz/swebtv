@@ -1170,7 +1170,7 @@ var lists;
     lists.quality = [
         "best",
         "good",
-        "ok" // 480p
+        "okay" // 480p
     ];
     lists.formats = [
         "main",
