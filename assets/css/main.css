@@ -303,15 +303,15 @@
 
 #screenShow > .content > .showAbout > .header > img {
     border-radius:100%;
-    width:60px;
-    height:60px;
+    width:40px;
+    height:40px;
 }
 
 #screenShow > .content > .showAbout > .header > .txt {
     position:relative;
-    width: calc( 100% - 70px );
-    left: 70px;
-    height:60px;
+    width: calc( 100% - 50px );
+    left: 50px;
+    height:40px;
 }
 
 #screenShow > .content > .showAbout > .header > .txt > * {
@@ -321,7 +321,7 @@
 
 #screenShow > .content > .showAbout > .header > .txt > h1 {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     color: var(--txt);
 }
 
