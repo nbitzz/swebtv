@@ -251,6 +251,111 @@
     text-decoration: none;
 }
 
+/* Screen: Show */
+
+#screenShow {
+    display:flex;
+}
+
+#screenShow > .content {
+    position:relative;
+}
+
+#screenShow > .content > .poster {
+    position:absolute;
+    width:auto;
+    height:100%;
+    left:100%;
+    transform:translateX(-100%);
+    overflow:hidden;
+}
+
+#screenShow > .content > .poster > img {
+    left:0px;
+    top:0px;
+    height:100%;
+    opacity:0;
+    transition-duration:250ms;
+}
+
+#screenShow > .content > .poster > img[data-loaded] {
+    opacity: 1;
+    transition-duration:250ms;
+}
+
+#screenShow > .content > .poster > .posterOverlay {
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%;
+    background: linear-gradient(to right, var(--bse), var(--IV_bse));
+    z-index:2;
+}
+
+#screenShow > .content > .showAbout {
+    background-color: var(--bse);
+    width:600px;
+    padding: 15px;
+
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    border: 1px solid var(--cst);
+    border-radius:8px;
+}
+
+#screenShow > .content > .showAbout > .header {
+    width:100%;
+    height:45px;
+    padding-bottom: 10px;
+    gap: 10px;
+    display:flex;
+}
+
+#screenShow > .content > .showAbout > .header > img {
+    border-radius:100%;
+    width:45px;
+    height:45px;
+}
+
+#screenShow > .content > .showAbout > .header > .txt {
+    width: calc( 100% - 55px );
+}
+
+#screenShow > .content > .showAbout > .header > .txt > * {
+    position:relative;
+    margin: 0 0 0 0;
+}
+
+#screenShow > .content > .showAbout > .header > .txt > h1 {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--txt);
+}
+
+#screenShow > .content > .showAbout > .header > .txt > p {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--st0);
+}
+
+#screenShow > .content > .showAbout > .otherInfo {
+    display:flex;
+    gap: 10px;
+}
+
+#screenShow > .content > .showAbout > .otherInfo > div {
+    flex-basis: 50%;
+}
+
+#screenShow > .content > .showAbout > .otherInfo > div > * {
+    margin: 0 0 0 0;
+    color: var(--txt);
+}
+
 body {
     background-color: var(--bse)
 }
