@@ -91,7 +91,7 @@
                     <img src={$cfg.host + show?.icon} alt={show?.name} on:load={e => e.currentTarget.setAttribute("data-loaded","")} />
                     <div class="txt">
                         <h1>{show?.name}</h1>
-                        <p>{show?.seasons?.length} season(s), {show?.seasons?.map(e => e.episodes.length).reduce((pv, cv) => pv+cv)} episode(s)</p>
+                        <p>{show?.seasons?.length} season(s), {(show?.seasons?.length??0) >= 1 ? show?.seasons?.map(e => e.episodes.length).reduce((pv, cv) => pv+cv) : 0} episode(s)</p>
                     </div>
                 </div>
 

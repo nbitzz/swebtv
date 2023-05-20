@@ -90,8 +90,9 @@
 
         <div id="content">
 
-            <svelte:component this={(activeSbElem || "scr:home").startsWith("scr:") ? scrTab[(activeSbElem || "scr:home").slice(4)] : ScreenShow} />
-
+            {#key activeSbElem}
+                <svelte:component this={(activeSbElem || "scr:home").startsWith("scr:") ? scrTab[(activeSbElem || "scr:home").slice(4)] : ScreenShow} />
+            {/key}
         </div>
 
     {/if}

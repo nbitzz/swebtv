@@ -1771,7 +1771,11 @@ function create_if_block$1(ctx) {
 			h1.textContent = `${/*show*/ ctx[6]?.name}`;
 			t3 = space();
 			p0 = element("p");
-			p0.textContent = `${/*show*/ ctx[6]?.seasons?.length} season(s), ${/*show*/ ctx[6]?.seasons?.map(func).reduce(func_1)} episode(s)`;
+
+			p0.textContent = `${/*show*/ ctx[6]?.seasons?.length} season(s), ${(/*show*/ ctx[6]?.seasons?.length ?? 0) >= 1
+			? /*show*/ ctx[6]?.seasons?.map(func).reduce(func_1)
+			: 0} episode(s)`;
+
 			t8 = space();
 			div4 = element("div");
 			div2 = element("div");
@@ -2167,7 +2171,7 @@ function create_if_block(ctx) {
 	let div1_transition;
 	let t1;
 	let div2;
-	let switch_instance;
+	let previous_key = /*activeSbElem*/ ctx[0];
 	let current;
 
 	function sidebar_active_binding(value) {
@@ -2187,6 +2191,92 @@ function create_if_block(ctx) {
 	sidebar = new Sidebar({ props: sidebar_props });
 	/*sidebar_binding*/ ctx[7](sidebar);
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
+	let key_block = create_key_block(ctx);
+
+	return {
+		c() {
+			div1 = element("div");
+			div0 = element("div");
+			t0 = space();
+			create_component(sidebar.$$.fragment);
+			t1 = space();
+			div2 = element("div");
+			key_block.c();
+			attr(div0, "id", "clgrad");
+			attr(div1, "id", "menu");
+			attr(div2, "id", "content");
+		},
+		m(target, anchor) {
+			insert(target, div1, anchor);
+			append(div1, div0);
+			append(div1, t0);
+			mount_component(sidebar, div1, null);
+			insert(target, t1, anchor);
+			insert(target, div2, anchor);
+			key_block.m(div2, null);
+			current = true;
+		},
+		p(ctx, dirty) {
+			const sidebar_changes = {};
+			if (dirty & /*sbItems*/ 8) sidebar_changes.items = /*sbItems*/ ctx[3];
+
+			if (!updating_active && dirty & /*activeSbElem*/ 1) {
+				updating_active = true;
+				sidebar_changes.active = /*activeSbElem*/ ctx[0];
+				add_flush_callback(() => updating_active = false);
+			}
+
+			sidebar.$set(sidebar_changes);
+
+			if (dirty & /*activeSbElem*/ 1 && safe_not_equal(previous_key, previous_key = /*activeSbElem*/ ctx[0])) {
+				group_outros();
+				transition_out(key_block, 1, 1, noop);
+				check_outros();
+				key_block = create_key_block(ctx);
+				key_block.c();
+				transition_in(key_block, 1);
+				key_block.m(div2, null);
+			} else {
+				key_block.p(ctx, dirty);
+			}
+		},
+		i(local) {
+			if (current) return;
+			transition_in(sidebar.$$.fragment, local);
+
+			add_render_callback(() => {
+				if (!current) return;
+				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, true);
+				div1_transition.run(1);
+			});
+
+			transition_in(key_block);
+			current = true;
+		},
+		o(local) {
+			transition_out(sidebar.$$.fragment, local);
+			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, false);
+			div1_transition.run(0);
+			transition_out(key_block);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) detach(div1);
+			/*sidebar_binding*/ ctx[7](null);
+			destroy_component(sidebar);
+			if (detaching && div1_transition) div1_transition.end();
+			if (detaching) detach(t1);
+			if (detaching) detach(div2);
+			key_block.d(detaching);
+		}
+	};
+}
+
+// (82:12) {#key activeSbElem}
+function create_key_block(ctx) {
+	let switch_instance;
+	let switch_instance_anchor;
+	let current;
 
 	var switch_value = (/*activeSbElem*/ ctx[0] || "scr:home").startsWith("scr:")
 	? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[0] || "scr:home").slice(4)]
@@ -2202,39 +2292,15 @@ function create_if_block(ctx) {
 
 	return {
 		c() {
-			div1 = element("div");
-			div0 = element("div");
-			t0 = space();
-			create_component(sidebar.$$.fragment);
-			t1 = space();
-			div2 = element("div");
 			if (switch_instance) create_component(switch_instance.$$.fragment);
-			attr(div0, "id", "clgrad");
-			attr(div1, "id", "menu");
-			attr(div2, "id", "content");
+			switch_instance_anchor = empty();
 		},
 		m(target, anchor) {
-			insert(target, div1, anchor);
-			append(div1, div0);
-			append(div1, t0);
-			mount_component(sidebar, div1, null);
-			insert(target, t1, anchor);
-			insert(target, div2, anchor);
-			if (switch_instance) mount_component(switch_instance, div2, null);
+			if (switch_instance) mount_component(switch_instance, target, anchor);
+			insert(target, switch_instance_anchor, anchor);
 			current = true;
 		},
 		p(ctx, dirty) {
-			const sidebar_changes = {};
-			if (dirty & /*sbItems*/ 8) sidebar_changes.items = /*sbItems*/ ctx[3];
-
-			if (!updating_active && dirty & /*activeSbElem*/ 1) {
-				updating_active = true;
-				sidebar_changes.active = /*activeSbElem*/ ctx[0];
-				add_flush_callback(() => updating_active = false);
-			}
-
-			sidebar.$set(sidebar_changes);
-
 			if (dirty & /*activeSbElem*/ 1 && switch_value !== (switch_value = (/*activeSbElem*/ ctx[0] || "scr:home").startsWith("scr:")
 			? /*scrTab*/ ctx[4][(/*activeSbElem*/ ctx[0] || "scr:home").slice(4)]
 			: ScreenShow)) {
@@ -2253,7 +2319,7 @@ function create_if_block(ctx) {
 					switch_instance = construct_svelte_component(switch_value, switch_props());
 					create_component(switch_instance.$$.fragment);
 					transition_in(switch_instance.$$.fragment, 1);
-					mount_component(switch_instance, div2, null);
+					mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
 				} else {
 					switch_instance = null;
 				}
@@ -2261,32 +2327,16 @@ function create_if_block(ctx) {
 		},
 		i(local) {
 			if (current) return;
-			transition_in(sidebar.$$.fragment, local);
-
-			add_render_callback(() => {
-				if (!current) return;
-				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, true);
-				div1_transition.run(1);
-			});
-
 			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
-			transition_out(sidebar.$$.fragment, local);
-			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, false);
-			div1_transition.run(0);
 			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div1);
-			/*sidebar_binding*/ ctx[7](null);
-			destroy_component(sidebar);
-			if (detaching && div1_transition) div1_transition.end();
-			if (detaching) detach(t1);
-			if (detaching) detach(div2);
-			if (switch_instance) destroy_component(switch_instance);
+			if (detaching) detach(switch_instance_anchor);
+			if (switch_instance) destroy_component(switch_instance, detaching);
 		}
 	};
 }
