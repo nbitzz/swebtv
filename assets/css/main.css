@@ -297,21 +297,19 @@
 
 #screenShow > .content > .showAbout > .header {
     width:100%;
-    height:70px;
+    height:45px;
     padding-bottom: 10px;
+    gap: 10px;
 }
 
 #screenShow > .content > .showAbout > .header > img {
     border-radius:100%;
-    width:40px;
-    height:40px;
+    width:45px;
+    height:45px;
 }
 
 #screenShow > .content > .showAbout > .header > .txt {
-    position:relative;
-    width: calc( 100% - 50px );
-    left: 50px;
-    height:40px;
+    width: calc( 100% - 55px );
 }
 
 #screenShow > .content > .showAbout > .header > .txt > * {
@@ -326,10 +324,9 @@
 }
 
 #screenShow > .content > .showAbout > .header > .txt > p {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 16px;
     color: var(--st0);
-    margin-top: 10px;
 }
 
 body {
