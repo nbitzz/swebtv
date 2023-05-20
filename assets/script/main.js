@@ -1623,7 +1623,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (108:12) {:else}
+// (110:12) {:else}
 function create_else_block(ctx) {
 	let div;
 	let h1;
@@ -1658,7 +1658,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (104:12) {#if selectedEpisode}
+// (106:12) {#if selectedEpisode}
 function create_if_block_2(ctx) {
 	return { c: noop, m: noop, p: noop, d: noop };
 }
@@ -1773,30 +1773,37 @@ function create_if_block$1(ctx) {
 
 // (72:8) {#if show?.poster}
 function create_if_block_1(ctx) {
-	let div1;
+	let div2;
 	let img;
 	let img_src_value;
-	let t;
+	let t0;
 	let div0;
+	let t1;
+	let div1;
 	let mounted;
 	let dispose;
 
 	return {
 		c() {
-			div1 = element("div");
+			div2 = element("div");
 			img = element("img");
-			t = space();
+			t0 = space();
 			div0 = element("div");
+			t1 = space();
+			div1 = element("div");
 			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[5].host + /*show*/ ctx[6]?.poster)) attr(img, "src", img_src_value);
 			attr(img, "alt", /*show*/ ctx[6]?.name);
 			attr(div0, "class", "posterOverlay");
-			attr(div1, "class", "poster");
+			attr(div1, "class", "poBlendFix");
+			attr(div2, "class", "poster");
 		},
 		m(target, anchor) {
-			insert(target, div1, anchor);
-			append(div1, img);
-			append(div1, t);
-			append(div1, div0);
+			insert(target, div2, anchor);
+			append(div2, img);
+			append(div2, t0);
+			append(div2, div0);
+			append(div2, t1);
+			append(div2, div1);
 
 			if (!mounted) {
 				dispose = listen(img, "load", load_handler);
@@ -1809,7 +1816,7 @@ function create_if_block_1(ctx) {
 			}
 		},
 		d(detaching) {
-			if (detaching) detach(div1);
+			if (detaching) detach(div2);
 			mounted = false;
 			dispose();
 		}

@@ -267,7 +267,7 @@
     height:100%;
     left:100%;
     transform:translateX(-100%);
-    overflow:hidden;
+    /* overflow:hidden; */
 }
 
 #screenShow > .content > .poster > img {
@@ -276,6 +276,7 @@
     height:100%;
     opacity:0;
     transition-duration:250ms;
+    z-index: -1;
 }
 
 #screenShow > .content > .poster > img[data-loaded] {
@@ -290,7 +291,15 @@
     height:100%;
     width:100%;
     background: linear-gradient(to right, var(--bse), var(--IV_bse));
-    z-index:2;
+}
+
+#screenShow > .content > .poster > .poBlendFix {
+    position:absolute;
+    left:-5px;
+    top:0px;
+    height:100%;
+    width:5px;
+    background: var(--bse);
 }
 
 #screenShow > .content > .showAbout {
