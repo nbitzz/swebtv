@@ -295,10 +295,10 @@
 
 #screenShow > .content > .poster > .poBlendFix {
     position:absolute;
-    left:-5px;
+    left:-1px;
     top:0px;
     height:100%;
-    width:5px;
+    width:2px;
     background: var(--bse);
 }
 
