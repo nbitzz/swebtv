@@ -303,7 +303,7 @@
     top:50%;
     transform:translate(-50%,-50%);
 
-    border: 1px solid var(--mtl);
+    border: 1px solid var(--brd);
     border-radius:8px;
 }
 

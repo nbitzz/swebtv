@@ -36,5 +36,7 @@
     --cst: #dce0e8; /* crust */
 
     --IV_bse: #eff1f500;
+
+    --brd: var(--cst);
 }
 
