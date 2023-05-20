@@ -1250,17 +1250,22 @@ function create_else_block$1(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, true);
-				div_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, true);
+					div_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, false);
-			div_transition.run(0);
+			if (local) {
+				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, false);
+				div_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
@@ -1274,7 +1279,6 @@ function create_else_block$1(ctx) {
 function create_if_block$2(ctx) {
 	let previous_key = /*activeEl*/ ctx[1];
 	let key_block_anchor;
-	let current;
 	let key_block = create_key_block(ctx);
 
 	return {
@@ -1285,7 +1289,6 @@ function create_if_block$2(ctx) {
 		m(target, anchor) {
 			key_block.m(target, anchor);
 			insert(target, key_block_anchor, anchor);
-			current = true;
 		},
 		p(ctx, dirty) {
 			if (dirty & /*activeEl*/ 2 && safe_not_equal(previous_key, previous_key = /*activeEl*/ ctx[1])) {
@@ -1301,13 +1304,10 @@ function create_if_block$2(ctx) {
 			}
 		},
 		i(local) {
-			if (current) return;
 			transition_in(key_block);
-			current = true;
 		},
 		o(local) {
 			transition_out(key_block);
-			current = false;
 		},
 		d(detaching) {
 			if (detaching) detach(key_block_anchor);
@@ -1480,17 +1480,22 @@ function create_key_block(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, true);
-				div3_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, true);
+					div3_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, false);
-			div3_transition.run(0);
+			if (local) {
+				if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, false);
+				div3_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
