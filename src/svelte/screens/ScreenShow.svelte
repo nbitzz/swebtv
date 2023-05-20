@@ -80,6 +80,8 @@
             <div class="poster">
                 <img src={$cfg.host + show?.poster} alt={show?.name} on:load={e => e.currentTarget.setAttribute("data-loaded","")}>
                 <div class="posterOverlay" />
+                <!-- lazy quick fix for in case theres a little sliver left with the overlay -->
+                <div class="poBlendFix" />
             </div>
         {/if}
 

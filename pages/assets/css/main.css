@@ -175,6 +175,7 @@
 /* Content */
 
 #content, .screen > .content {
+    position:relative;
     flex-basis: 100%;
     background-color:var(--bse);
 }
@@ -237,7 +238,7 @@
     padding: 10px;
 }
 
-#screenEmbeddables > .content > p {
+#screenEmbeddables > .content > .embList > .otherInfo > p {
     font-family: var(--sans-serif);
     color: var(--st0);
     font-size:16px;
@@ -245,7 +246,7 @@
     margin: 0 0 0 0;
 }
 
-#screenEmbeddables > .content > p > a {
+#screenEmbeddables > .content > .embList > .otherInfo > p > a {
     color: var(--txt);
     font-weight:600;
     text-decoration: none;
@@ -257,17 +258,13 @@
     display:flex;
 }
 
-#screenShow > .content {
-    position:relative;
-}
-
 #screenShow > .content > .poster {
     position:absolute;
     width:auto;
     height:100%;
     left:100%;
     transform:translateX(-100%);
-    overflow:hidden;
+    /* overflow:hidden; */
 }
 
 #screenShow > .content > .poster > img {
@@ -276,6 +273,7 @@
     height:100%;
     opacity:0;
     transition-duration:250ms;
+    z-index: -1;
 }
 
 #screenShow > .content > .poster > img[data-loaded] {
@@ -290,10 +288,18 @@
     height:100%;
     width:100%;
     background: linear-gradient(to right, var(--bse), var(--IV_bse));
-    z-index:2;
 }
 
-#screenShow > .content > .showAbout {
+#screenShow > .content > .poster > .poBlendFix {
+    position:absolute;
+    left:-1px;
+    top:0px;
+    height:100%;
+    width:2px;
+    background: var(--bse);
+}
+
+#screenShow > .content > .showAbout, #screenEmbeddables > .content > .embList {
     background-color: var(--bse);
     width:600px;
     padding: 15px;
@@ -303,11 +309,11 @@
     top:50%;
     transform:translate(-50%,-50%);
 
-    border: 1px solid var(--cst);
+    border: 1px solid var(--brd);
     border-radius:8px;
 }
 
-#screenShow > .content > .showAbout > .header {
+#screenShow > .content > .showAbout > .header, #screenEmbeddables > .content > .embList > .header {
     width:100%;
     height:45px;
     padding-bottom: 10px;
@@ -315,28 +321,33 @@
     display:flex;
 }
 
-#screenShow > .content > .showAbout > .header > img {
+#screenShow > .content > .showAbout > .header > img, 
+#screenEmbeddables > .content > .embList > .header > img {
     border-radius:100%;
     width:45px;
     height:45px;
 }
 
-#screenShow > .content > .showAbout > .header > .txt {
+#screenShow > .content > .showAbout > .header > .txt, 
+#screenEmbeddables > .content > .embList > .header > .txt {
     width: calc( 100% - 55px );
 }
 
-#screenShow > .content > .showAbout > .header > .txt > * {
+#screenShow > .content > .showAbout > .header > .txt > *, 
+#screenEmbeddables > .content > .embList > .header > .txt > * {
     position:relative;
     margin: 0 0 0 0;
 }
 
-#screenShow > .content > .showAbout > .header > .txt > h1 {
+#screenShow > .content > .showAbout > .header > .txt > h1, 
+#screenEmbeddables > .content > .embList > .header > .txt > h1 {
     font-weight: 600;
     font-size: 20px;
     color: var(--txt);
 }
 
-#screenShow > .content > .showAbout > .header > .txt > p {
+#screenShow > .content > .showAbout > .header > .txt > p, 
+#screenEmbeddables > .content > .embList > .header > .txt > p {
     font-weight: 400;
     font-size: 16px;
     color: var(--st0);

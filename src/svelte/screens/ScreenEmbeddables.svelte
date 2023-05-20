@@ -30,19 +30,32 @@
 
     <div class="content">
         {#if activeEl}
-            {#each idx[activeEl].urls as url (url.url)}
-                <p class="u">
-                    <a href={url.url}>{url.url}</a>
-                    <br />&nbsp;&nbsp;&nbsp;&nbsp;{url.description}
-                </p>
-            {/each}
+            <div class="embList">
+                
+                <div class="header">
+                    <img src={$cfg.host + idx[activeEl].icon} alt={idx[activeEl].name} on:load={e => e.currentTarget.setAttribute("data-loaded","")} />
+                    <div class="txt">
+                        <h1>{idx[activeEl].name}</h1>
+                        <p>{idx[activeEl].urls.length} url(s)</p>
+                    </div>
+                </div>
+
+                <div class="otherInfo">
+                    {#each idx[activeEl].urls as url (url.url)}
+                        <p>
+                            <a href={url.url}>{url.url}</a>
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;{url.description}
+                        </p>
+                    {/each}
+                </div>
+
+            </div>
         {:else}
             <div class="nothingSelected">
                 <h1>
                     embeddables
                     <span>
                         <br>these links embed in discord; send them to your friends & such
-                        <br>try selecting something!
                     </span>
                 </h1>
             </div>
