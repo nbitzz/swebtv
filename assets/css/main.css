@@ -300,6 +300,7 @@
     height:45px;
     padding-bottom: 10px;
     gap: 10px;
+    display:flex;
 }
 
 #screenShow > .content > .showAbout > .header > img {
