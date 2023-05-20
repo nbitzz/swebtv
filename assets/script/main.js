@@ -1227,7 +1227,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (49:8) {:else}
+// (51:8) {:else}
 function create_else_block$1(ctx) {
 	let div;
 	let div_transition;
@@ -1272,6 +1272,107 @@ function create_else_block$1(ctx) {
 
 // (28:8) {#if activeEl}
 function create_if_block$2(ctx) {
+	let previous_key = /*activeEl*/ ctx[1];
+	let key_block_anchor;
+	let current;
+	let key_block = create_key_block(ctx);
+
+	return {
+		c() {
+			key_block.c();
+			key_block_anchor = empty();
+		},
+		m(target, anchor) {
+			key_block.m(target, anchor);
+			insert(target, key_block_anchor, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			if (dirty & /*activeEl*/ 2 && safe_not_equal(previous_key, previous_key = /*activeEl*/ ctx[1])) {
+				group_outros();
+				transition_out(key_block, 1, 1, noop);
+				check_outros();
+				key_block = create_key_block(ctx);
+				key_block.c();
+				transition_in(key_block, 1);
+				key_block.m(key_block_anchor.parentNode, key_block_anchor);
+			} else {
+				key_block.p(ctx, dirty);
+			}
+		},
+		i(local) {
+			if (current) return;
+			transition_in(key_block);
+			current = true;
+		},
+		o(local) {
+			transition_out(key_block);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) detach(key_block_anchor);
+			key_block.d(detaching);
+		}
+	};
+}
+
+// (41:24) {#each idx[activeEl].urls as url (url.url)}
+function create_each_block(key_1, ctx) {
+	let p;
+	let a;
+	let t0_value = /*url*/ ctx[7].url + "";
+	let t0;
+	let a_href_value;
+	let t1;
+	let br;
+	let t2;
+	let t3_value = /*url*/ ctx[7].description + "";
+	let t3;
+	let t4;
+
+	return {
+		key: key_1,
+		first: null,
+		c() {
+			p = element("p");
+			a = element("a");
+			t0 = text(t0_value);
+			t1 = space();
+			br = element("br");
+			t2 = text("    ");
+			t3 = text(t3_value);
+			t4 = space();
+			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
+			this.first = p;
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, a);
+			append(a, t0);
+			append(p, t1);
+			append(p, br);
+			append(p, t2);
+			append(p, t3);
+			append(p, t4);
+		},
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+			if (dirty & /*idx, activeEl*/ 10 && t0_value !== (t0_value = /*url*/ ctx[7].url + "")) set_data(t0, t0_value);
+
+			if (dirty & /*idx, activeEl*/ 10 && a_href_value !== (a_href_value = /*url*/ ctx[7].url)) {
+				attr(a, "href", a_href_value);
+			}
+
+			if (dirty & /*idx, activeEl*/ 10 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+// (29:12) {#key activeEl}
+function create_key_block(ctx) {
 	let div3;
 	let div1;
 	let img;
@@ -1402,61 +1503,6 @@ function create_if_block$2(ctx) {
 			if (detaching && div3_transition) div3_transition.end();
 			mounted = false;
 			dispose();
-		}
-	};
-}
-
-// (40:20) {#each idx[activeEl].urls as url (url.url)}
-function create_each_block(key_1, ctx) {
-	let p;
-	let a;
-	let t0_value = /*url*/ ctx[7].url + "";
-	let t0;
-	let a_href_value;
-	let t1;
-	let br;
-	let t2;
-	let t3_value = /*url*/ ctx[7].description + "";
-	let t3;
-	let t4;
-
-	return {
-		key: key_1,
-		first: null,
-		c() {
-			p = element("p");
-			a = element("a");
-			t0 = text(t0_value);
-			t1 = space();
-			br = element("br");
-			t2 = text("    ");
-			t3 = text(t3_value);
-			t4 = space();
-			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
-			this.first = p;
-		},
-		m(target, anchor) {
-			insert(target, p, anchor);
-			append(p, a);
-			append(a, t0);
-			append(p, t1);
-			append(p, br);
-			append(p, t2);
-			append(p, t3);
-			append(p, t4);
-		},
-		p(new_ctx, dirty) {
-			ctx = new_ctx;
-			if (dirty & /*idx, activeEl*/ 10 && t0_value !== (t0_value = /*url*/ ctx[7].url + "")) set_data(t0, t0_value);
-
-			if (dirty & /*idx, activeEl*/ 10 && a_href_value !== (a_href_value = /*url*/ ctx[7].url)) {
-				attr(a, "href", a_href_value);
-			}
-
-			if (dirty & /*idx, activeEl*/ 10 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
-		},
-		d(detaching) {
-			if (detaching) detach(p);
 		}
 	};
 }
