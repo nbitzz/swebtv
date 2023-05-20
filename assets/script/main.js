@@ -1691,7 +1691,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (123:12) {:else}
+// (110:12) {:else}
 function create_else_block(ctx) {
 	let div;
 	let h1;
@@ -1726,12 +1726,12 @@ function create_else_block(ctx) {
 	};
 }
 
-// (119:12) {#if selectedEpisode}
+// (106:12) {#if selectedEpisode}
 function create_if_block_2(ctx) {
 	return { c: noop, m: noop, p: noop, d: noop };
 }
 
-// (83:8) {#if selectedSeason == "showAbout"}
+// (70:8) {#if selectedSeason == "showAbout"}
 function create_if_block$1(ctx) {
 	let t0;
 	let div5;
@@ -1771,7 +1771,11 @@ function create_if_block$1(ctx) {
 			h1.textContent = `${/*show*/ ctx[6]?.name}`;
 			t3 = space();
 			p0 = element("p");
-			p0.textContent = `${/*show*/ ctx[6]?.seasons?.length} season(s), ${/*show*/ ctx[6]?.seasons?.map(func).reduce(func_1)} episode(s)`;
+
+			p0.textContent = `${/*show*/ ctx[6]?.seasons?.length} season(s), ${(/*show*/ ctx[6]?.seasons?.length ?? 0) >= 1
+			? /*show*/ ctx[6]?.seasons?.map(func).reduce(func_1)
+			: 0} episode(s)`;
+
 			t8 = space();
 			div4 = element("div");
 			div2 = element("div");
@@ -1839,7 +1843,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (85:8) {#if show?.poster}
+// (72:8) {#if show?.poster}
 function create_if_block_1(ctx) {
 	let div2;
 	let img;
@@ -2077,19 +2081,6 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	$$self.$$.update = () => {
 		if ($$self.$$.dirty & /*$ready*/ 256) {
-			/*
-$: if ($selected?.slice(5) || "" != showId) {
-    // reset
-    seasonList = []
-    episodeList = []
-    selectedEpisode = ""
-    selectedSeason_obj = undefined
-    pSS = "showAbout"
-    selectedSeason = "showAbout"
-    showId = $selected?.slice(5) || ""
-    show = $tv.find( e => e.id == showId )
-}
-*/
 			{
 				if ($ready && show) {
 					$$invalidate(3, seasonList = [
