@@ -257,6 +257,10 @@
     display:flex;
 }
 
+#screenShow > .content {
+    position:relative;
+}
+
 #screenShow > .content > .poster {
     position:absolute;
     width:auto;
