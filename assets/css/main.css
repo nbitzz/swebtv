@@ -237,7 +237,7 @@
     padding: 10px;
 }
 
-#screenEmbeddables > .content > p {
+#screenEmbeddables > .content > .showAbout > .otherInfo > p {
     font-family: var(--sans-serif);
     color: var(--st0);
     font-size:16px;
@@ -245,7 +245,7 @@
     margin: 0 0 0 0;
 }
 
-#screenEmbeddables > .content > p > a {
+#screenEmbeddables > .content > .showAbout > .otherInfo > p > a {
     color: var(--txt);
     font-weight:600;
     text-decoration: none;
@@ -302,7 +302,7 @@
     background: var(--bse);
 }
 
-#screenShow > .content > .showAbout {
+#screenShow > .content > .showAbout, #screenEmbeddables > .content > .embList {
     background-color: var(--bse);
     width:600px;
     padding: 15px;
@@ -316,7 +316,7 @@
     border-radius:8px;
 }
 
-#screenShow > .content > .showAbout > .header {
+#screenShow > .content > .showAbout > .header, #screenEmbeddables > .content > .embList > .header {
     width:100%;
     height:45px;
     padding-bottom: 10px;
@@ -324,28 +324,33 @@
     display:flex;
 }
 
-#screenShow > .content > .showAbout > .header > img {
+#screenShow > .content > .showAbout > .header > img, 
+#screenEmbeddables > .content > .embList > .header > img {
     border-radius:100%;
     width:45px;
     height:45px;
 }
 
-#screenShow > .content > .showAbout > .header > .txt {
+#screenShow > .content > .showAbout > .header > .txt, 
+#screenEmbeddables > .content > .embList > .header > .txt {
     width: calc( 100% - 55px );
 }
 
-#screenShow > .content > .showAbout > .header > .txt > * {
+#screenShow > .content > .showAbout > .header > .txt > *, 
+#screenEmbeddables > .content > .embList > .header > .txt > * {
     position:relative;
     margin: 0 0 0 0;
 }
 
-#screenShow > .content > .showAbout > .header > .txt > h1 {
+#screenShow > .content > .showAbout > .header > .txt > h1, 
+#screenEmbeddables > .content > .embList > .header > .txt > h1 {
     font-weight: 600;
     font-size: 20px;
     color: var(--txt);
 }
 
-#screenShow > .content > .showAbout > .header > .txt > p {
+#screenShow > .content > .showAbout > .header > .txt > p, 
+#screenEmbeddables > .content > .embList > .header > .txt > p {
     font-weight: 400;
     font-size: 16px;
     color: var(--st0);

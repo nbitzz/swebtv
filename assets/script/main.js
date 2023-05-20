@@ -857,7 +857,7 @@ function create_if_block$3(ctx) {
 			append(div, img);
 
 			if (!mounted) {
-				dispose = listen(img, "load", load_handler$1);
+				dispose = listen(img, "load", load_handler$2);
 				mounted = true;
 			}
 		},
@@ -1052,7 +1052,7 @@ function create_fragment$5(ctx) {
 	};
 }
 
-const load_handler$1 = e => e.currentTarget.setAttribute("data-loaded", "");
+const load_handler$2 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$3($$self, $$props, $$invalidate) {
 	let { items = [] } = $$props;
@@ -1217,7 +1217,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (34:8) {:else}
+// (48:8) {:else}
 function create_else_block$1(ctx) {
 	let div;
 
@@ -1243,10 +1243,28 @@ function create_else_block$1(ctx) {
 
 // (27:8) {#if activeEl}
 function create_if_block$2(ctx) {
+	let div3;
+	let div1;
+	let img;
+	let img_src_value;
+	let img_alt_value;
+	let t0;
+	let div0;
+	let h1;
+	let t1_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].name + "";
+	let t1;
+	let t2;
+	let p;
+	let t3_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].urls.length + "";
+	let t3;
+	let t4;
+	let t5;
+	let div2;
 	let each_blocks = [];
 	let each_1_lookup = new Map();
-	let each_1_anchor;
-	let each_value = /*idx*/ ctx[2][/*activeEl*/ ctx[0]].urls;
+	let mounted;
+	let dispose;
+	let each_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].urls;
 	const get_key = ctx => /*url*/ ctx[7].url;
 
 	for (let i = 0; i < each_value.length; i += 1) {
@@ -1257,38 +1275,88 @@ function create_if_block$2(ctx) {
 
 	return {
 		c() {
+			div3 = element("div");
+			div1 = element("div");
+			img = element("img");
+			t0 = space();
+			div0 = element("div");
+			h1 = element("h1");
+			t1 = text(t1_value);
+			t2 = space();
+			p = element("p");
+			t3 = text(t3_value);
+			t4 = text(" url(s)");
+			t5 = space();
+			div2 = element("div");
+
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				each_blocks[i].c();
 			}
 
-			each_1_anchor = empty();
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[0].host + /*idx*/ ctx[3][/*activeEl*/ ctx[1]].icon)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].name);
+			attr(div0, "class", "txt");
+			attr(div1, "class", "header");
+			attr(div2, "class", "otherInfo");
+			attr(div3, "class", "showAbout");
 		},
 		m(target, anchor) {
+			insert(target, div3, anchor);
+			append(div3, div1);
+			append(div1, img);
+			append(div1, t0);
+			append(div1, div0);
+			append(div0, h1);
+			append(h1, t1);
+			append(div0, t2);
+			append(div0, p);
+			append(p, t3);
+			append(p, t4);
+			append(div3, t5);
+			append(div3, div2);
+
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				if (each_blocks[i]) {
-					each_blocks[i].m(target, anchor);
+					each_blocks[i].m(div2, null);
 				}
 			}
 
-			insert(target, each_1_anchor, anchor);
+			if (!mounted) {
+				dispose = listen(img, "load", load_handler$1);
+				mounted = true;
+			}
 		},
 		p(ctx, dirty) {
-			if (dirty & /*idx, activeEl*/ 5) {
-				each_value = /*idx*/ ctx[2][/*activeEl*/ ctx[0]].urls;
-				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, each_1_anchor.parentNode, destroy_block, create_each_block, each_1_anchor, get_each_context);
+			if (dirty & /*$cfg, idx, activeEl*/ 11 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[0].host + /*idx*/ ctx[3][/*activeEl*/ ctx[1]].icon)) {
+				attr(img, "src", img_src_value);
+			}
+
+			if (dirty & /*idx, activeEl*/ 10 && img_alt_value !== (img_alt_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].name)) {
+				attr(img, "alt", img_alt_value);
+			}
+
+			if (dirty & /*idx, activeEl*/ 10 && t1_value !== (t1_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].name + "")) set_data(t1, t1_value);
+			if (dirty & /*idx, activeEl*/ 10 && t3_value !== (t3_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].urls.length + "")) set_data(t3, t3_value);
+
+			if (dirty & /*idx, activeEl*/ 10) {
+				each_value = /*idx*/ ctx[3][/*activeEl*/ ctx[1]].urls;
+				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div2, destroy_block, create_each_block, null, get_each_context);
 			}
 		},
 		d(detaching) {
+			if (detaching) detach(div3);
+
 			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].d(detaching);
+				each_blocks[i].d();
 			}
 
-			if (detaching) detach(each_1_anchor);
+			mounted = false;
+			dispose();
 		}
 	};
 }
 
-// (28:12) {#each idx[activeEl].urls as url (url.url)}
+// (39:20) {#each idx[activeEl].urls as url (url.url)}
 function create_each_block(key_1, ctx) {
 	let p;
 	let a;
@@ -1315,7 +1383,6 @@ function create_each_block(key_1, ctx) {
 			t3 = text(t3_value);
 			t4 = space();
 			attr(a, "href", a_href_value = /*url*/ ctx[7].url);
-			attr(p, "class", "u");
 			this.first = p;
 		},
 		m(target, anchor) {
@@ -1330,13 +1397,13 @@ function create_each_block(key_1, ctx) {
 		},
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
-			if (dirty & /*idx, activeEl*/ 5 && t0_value !== (t0_value = /*url*/ ctx[7].url + "")) set_data(t0, t0_value);
+			if (dirty & /*idx, activeEl*/ 10 && t0_value !== (t0_value = /*url*/ ctx[7].url + "")) set_data(t0, t0_value);
 
-			if (dirty & /*idx, activeEl*/ 5 && a_href_value !== (a_href_value = /*url*/ ctx[7].url)) {
+			if (dirty & /*idx, activeEl*/ 10 && a_href_value !== (a_href_value = /*url*/ ctx[7].url)) {
 				attr(a, "href", a_href_value);
 			}
 
-			if (dirty & /*idx, activeEl*/ 5 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
+			if (dirty & /*idx, activeEl*/ 10 && t3_value !== (t3_value = /*url*/ ctx[7].description + "")) set_data(t3, t3_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
@@ -1363,12 +1430,12 @@ function create_fragment$3(ctx) {
 
 	let sidebar_props = { level: 1, width: 250 };
 
-	if (/*activeEl*/ ctx[0] !== void 0) {
-		sidebar_props.active = /*activeEl*/ ctx[0];
+	if (/*activeEl*/ ctx[1] !== void 0) {
+		sidebar_props.active = /*activeEl*/ ctx[1];
 	}
 
-	if (/*sbItems*/ ctx[1] !== void 0) {
-		sidebar_props.items = /*sbItems*/ ctx[1];
+	if (/*sbItems*/ ctx[2] !== void 0) {
+		sidebar_props.items = /*sbItems*/ ctx[2];
 	}
 
 	sidebar = new Sidebar({ props: sidebar_props });
@@ -1376,7 +1443,7 @@ function create_fragment$3(ctx) {
 	binding_callbacks.push(() => bind(sidebar, 'items', sidebar_items_binding));
 
 	function select_block_type(ctx, dirty) {
-		if (/*activeEl*/ ctx[0]) return create_if_block$2;
+		if (/*activeEl*/ ctx[1]) return create_if_block$2;
 		return create_else_block$1;
 	}
 
@@ -1405,15 +1472,15 @@ function create_fragment$3(ctx) {
 		p(ctx, [dirty]) {
 			const sidebar_changes = {};
 
-			if (!updating_active && dirty & /*activeEl*/ 1) {
+			if (!updating_active && dirty & /*activeEl*/ 2) {
 				updating_active = true;
-				sidebar_changes.active = /*activeEl*/ ctx[0];
+				sidebar_changes.active = /*activeEl*/ ctx[1];
 				add_flush_callback(() => updating_active = false);
 			}
 
-			if (!updating_items && dirty & /*sbItems*/ 2) {
+			if (!updating_items && dirty & /*sbItems*/ 4) {
 				updating_items = true;
-				sidebar_changes.items = /*sbItems*/ ctx[1];
+				sidebar_changes.items = /*sbItems*/ ctx[2];
 				add_flush_callback(() => updating_items = false);
 			}
 
@@ -1448,29 +1515,31 @@ function create_fragment$3(ctx) {
 	};
 }
 
+const load_handler$1 = e => e.currentTarget.setAttribute("data-loaded", "");
+
 function instance$2($$self, $$props, $$invalidate) {
 	let $embeddables;
 	let $cfg;
-	component_subscribe($$self, embeddables, $$value => $$invalidate(3, $embeddables = $$value));
-	component_subscribe($$self, cfg, $$value => $$invalidate(4, $cfg = $$value));
+	component_subscribe($$self, embeddables, $$value => $$invalidate(4, $embeddables = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(0, $cfg = $$value));
 	let activeEl = undefined;
 	let sbItems = [];
 	let idx = {};
 
 	function sidebar_active_binding(value) {
 		activeEl = value;
-		$$invalidate(0, activeEl);
+		$$invalidate(1, activeEl);
 	}
 
 	function sidebar_items_binding(value) {
 		sbItems = value;
-		(($$invalidate(1, sbItems), $$invalidate(3, $embeddables)), $$invalidate(4, $cfg));
+		(($$invalidate(2, sbItems), $$invalidate(4, $embeddables)), $$invalidate(0, $cfg));
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$embeddables, $cfg*/ 24) {
+		if ($$self.$$.dirty & /*$embeddables, $cfg*/ 17) {
 			{
-				$$invalidate(1, sbItems = $embeddables.map(e => {
+				$$invalidate(2, sbItems = $embeddables.map(e => {
 					return {
 						id: e.name,
 						text: e.name,
@@ -1483,18 +1552,18 @@ function instance$2($$self, $$props, $$invalidate) {
 				}));
 
 				$embeddables.forEach(v => {
-					$$invalidate(2, idx[v.name] = v, idx);
+					$$invalidate(3, idx[v.name] = v, idx);
 				});
 			}
 		}
 	};
 
 	return [
+		$cfg,
 		activeEl,
 		sbItems,
 		idx,
 		$embeddables,
-		$cfg,
 		sidebar_active_binding,
 		sidebar_items_binding
 	];
