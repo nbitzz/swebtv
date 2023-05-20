@@ -175,6 +175,7 @@
 /* Content */
 
 #content, .screen > .content {
+    position:relative;
     flex-basis: 100%;
     background-color:var(--bse);
 }
@@ -255,10 +256,6 @@
 
 #screenShow {
     display:flex;
-}
-
-#screenShow > .content {
-    position:relative;
 }
 
 #screenShow > .content > .poster {
