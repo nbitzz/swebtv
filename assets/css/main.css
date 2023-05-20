@@ -290,7 +290,7 @@
 }
 
 #screenShow > .content > .showAbout {
-    background-color: var(--sf2);
+    /*background-color: var(--sf2);*/
     width:600px;
     padding: 10px;
 
@@ -333,6 +333,20 @@
     font-weight: 400;
     font-size: 16px;
     color: var(--st0);
+}
+
+#screenShow > .content > .showAbout > .otherInfo {
+    display:flex;
+    gap: 10px;
+}
+
+#screenShow > .content > .showAbout > .otherInfo > div {
+    flex-basis: 50%;
+}
+
+#screenShow > .content > .showAbout > .otherInfo > div > * {
+    margin: 0 0 0 0;
+    color: var(--txt);
 }
 
 body {
