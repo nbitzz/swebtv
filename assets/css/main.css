@@ -237,7 +237,7 @@
     padding: 10px;
 }
 
-#screenEmbeddables > .content > .showAbout > .otherInfo > p {
+#screenEmbeddables > .content > .embList > .otherInfo > p {
     font-family: var(--sans-serif);
     color: var(--st0);
     font-size:16px;
@@ -245,7 +245,7 @@
     margin: 0 0 0 0;
 }
 
-#screenEmbeddables > .content > .showAbout > .otherInfo > p > a {
+#screenEmbeddables > .content > .embList > .otherInfo > p > a {
     color: var(--txt);
     font-weight:600;
     text-decoration: none;

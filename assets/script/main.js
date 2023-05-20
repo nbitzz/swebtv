@@ -1226,8 +1226,7 @@ function create_else_block$1(ctx) {
 			div = element("div");
 
 			div.innerHTML = `<h1>embeddables
-                    <span><br/>these links embed in discord; send them to your friends &amp; such
-                        <br/>try selecting something!</span></h1>`;
+                    <span><br/>these links embed in discord; send them to your friends &amp; such</span></h1>`;
 
 			attr(div, "class", "nothingSelected");
 		},
@@ -1298,7 +1297,7 @@ function create_if_block$2(ctx) {
 			attr(div0, "class", "txt");
 			attr(div1, "class", "header");
 			attr(div2, "class", "otherInfo");
-			attr(div3, "class", "showAbout");
+			attr(div3, "class", "embList");
 		},
 		m(target, anchor) {
 			insert(target, div3, anchor);
