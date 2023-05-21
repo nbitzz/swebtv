@@ -45,6 +45,28 @@
         ]
     },
     {
+        "name": "BOCCHI THE ROCK!",
+        "id":"bocchi",
+
+        "description": "Hitori \"Bocchi-chan\" Goto is a lonely high school girl whose heart lies in her guitar; she meets Nijika Ijichi and joins \"Kessoku Band.\"",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "bocchi_ic.webp",
+        "poster": "bcposter",
+
+        "seasons": []
+    },
+    {
+        "name": "DON'T TOY WITH ME, MISS NAGATORO",
+        "id":"nagatoro",
+
+        "description": "\"A girl in a lower grade just made me cry!\"\nOne day, Senpai visits the library after school and becomes the target of a super sadistic junior!  The name of the girl who teases, torments, and tantalizes Senpai is \"Nagatoro!\"  She's annoying yet adorable. It's painful, but you still want to be by her side. This is a story about an extremely sadistic and temperamental girl and you'll feel something awaken inside of you.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "nagatoroic.png",
+        "poster": "ngposter",
+
+        "seasons": []
+    },
+    {
         "name": "Lucky Star",
         "id":"luckystar",
 
