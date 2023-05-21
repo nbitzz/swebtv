@@ -45,6 +45,28 @@
         ]
     },
     {
+        "name": "BOCCHI THE ROCK!",
+        "id":"bocchi",
+
+        "description": "What’s the best way to eat dessert? Do twins really have a psychic connection? What kind of guys are into moe girls? These are the kinds of questions that float through the inquisitive mind of anime super-fan Konata Izumi. When she’s not lost in her favorite manga or logging hours in one of her online games, she’s debating the mysteries of the universe with the best friends a girl could ask for.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "bocchi_ic.webp",
+        "poster": "bcposter",
+
+        "seasons": []
+    },
+    {
+        "name": "DON'T TOY WITH ME, MISS NAGATORO",
+        "id":"nagatoro",
+
+        "description": "\"A girl in a lower grade just made me cry!\"<br>One day, Senpai visits the library after school and becomes the target of a super sadistic junior!  The name of the girl who teases, torments, and tantalizes Senpai is \"Nagatoro!\"  She's annoying yet adorable. It's painful, but you still want to be by her side. This is a story about an extremely sadistic and temperamental girl and you'll feel something awaken inside of you.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "nagatoroic.png",
+        "poster": "ngposter",
+
+        "seasons": []
+    },
+    {
         "name": "Lucky Star",
         "id":"luckystar",
 

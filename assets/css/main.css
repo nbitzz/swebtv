@@ -326,6 +326,14 @@
     border-radius:100%;
     width:45px;
     height:45px;
+    opacity: 0;
+    transition-duration: 250ms;
+}
+
+#screenShow > .content > .showAbout > .header > img[data-loaded], 
+#screenEmbeddables > .content > .embList > .header > img[data-loaded] {
+    transition-duration: 250ms;
+    opacity: 1;
 }
 
 #screenShow > .content > .showAbout > .header > .txt, 
