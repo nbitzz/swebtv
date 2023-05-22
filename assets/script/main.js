@@ -2187,6 +2187,14 @@ function create_fragment$1(ctx) {
 				}
 			},
 			{
+				text: "Player",
+				id: "player",
+				icon: {
+					type: "image",
+					content: "/assets/icons/player.svg"
+				}
+			},
+			{
 				text: "Sync",
 				id: "sync",
 				icon: {
@@ -2249,7 +2257,7 @@ function create_fragment$1(ctx) {
 }
 
 function instance$1($$self, $$props, $$invalidate) {
-	let activeEl = "videc";
+	let activeEl = "video";
 
 	function sidebar_active_binding(value) {
 		activeEl = value;
