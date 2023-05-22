@@ -9,6 +9,7 @@
     import { cfg, ready, tv } from "../ts/webtv";
     import { selected } from "../ts/stores";
     import ScreenShow from "./screens/ScreenShow.svelte";
+    import ScreenSettings from "./screens/ScreenSettings.svelte";
     
     let sb:Sidebar
     let activeSbElem:string|undefined = undefined
@@ -17,7 +18,7 @@
         "home": ScreenHome,
         "embeddables": ScreenEmbeddables,
         "movies": ScreenPlaceholder,
-        "settings": ScreenPlaceholder
+        "settings": ScreenSettings
     }
 
     let sbItems:SidebarItem[] = []
