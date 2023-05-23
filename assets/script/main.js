@@ -1233,13 +1233,14 @@ var settings;
         autoplay: true,
         autoskipintro: false,
         autoskipoutro: false,
+        skipbutton: true,
         developerMode: false
     };
     // controls ui elements in the settings menu
     settings.suiLinks = [
         {
             name: "Video",
-            icon: "/video/",
+            icon: "/assets/icons/video.svg",
             children: [
                 {
                     label: "Preferred quality",
@@ -1255,7 +1256,7 @@ var settings;
         },
         {
             name: "Player",
-            icon: "/assets/icon/player.svg",
+            icon: "/assets/icons/player.svg",
             children: [
                 {
                     label: "Autoplay",
@@ -1281,6 +1282,11 @@ var settings;
                 {
                     label: "Developer mode",
                     targetSetting: "developerMode",
+                    input: "boolean"
+                },
+                {
+                    label: "Show skip intro/outro buttons",
+                    targetSetting: "skipbutton",
                     input: "boolean"
                 }
             ]
@@ -2349,7 +2355,7 @@ const func = v => {
 };
 
 function instance$1($$self, $$props, $$invalidate) {
-	let activeEl = "video";
+	let activeEl = "Video";
 
 	function sidebar_active_binding(value) {
 		activeEl = value;
