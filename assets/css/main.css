@@ -390,6 +390,7 @@
     height: 32px;
     align-items:center;
     gap: 10px;
+    position:relative;
 }
 
 #screenSettings > .content > .stUI > .topic > img {
