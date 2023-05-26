@@ -92,6 +92,118 @@ export interface WebTVConfig {
     host: string
 }
 
+// settings
+
+export namespace settings {
+
+    export let defaults: JSONEncodedSettings = {
+
+        videoQuality: "good",
+        videoFormat: "hardsub",
+
+        autoplay: true,
+        autoskipintro: false,
+        autoskipoutro: false,
+
+        skipbutton: true,
+        developerMode: false
+        
+    }
+    export let userSet: JSONEncodedSettings = defaults
+    
+    export interface JSONEncodedSettings {
+        videoQuality: typeof lists.quality[number],
+        videoFormat: typeof lists.formats[number],
+
+        autoplay: boolean,
+        autoskipintro: boolean,
+        autoskipoutro: boolean,
+
+        developerMode: boolean,
+        skipbutton: boolean,
+
+        syncToken?: string // probably not secure but oh well
+    }
+
+    export type SettingsInput = "string" | "number" | "boolean" | string[]
+
+    export interface SettingsItem {
+        label: string,
+        targetSetting: keyof JSONEncodedSettings,
+        input: SettingsInput
+    }
+
+    export interface SettingsCategory {
+        name: string,
+        icon: string,
+        children: SettingsItem[]
+    }
+
+    // controls ui elements in the settings menu
+    export let suiLinks: SettingsCategory[] = [
+        {
+            name: "Video",
+            icon: "/assets/icons/video.svg",
+            children: [
+                {
+                    label: "Preferred quality",
+                    targetSetting: "videoQuality",
+                    input: [ "best", "good", "okay" ]
+                },
+                {
+                    label: "Preferred format",
+                    targetSetting: "videoFormat",
+                    input: [ "main", "hardsub", "dub" ]
+                }
+            ]
+        },
+        {
+            name: "Player",
+            icon: "/assets/icons/player.svg",
+            children: [
+                {
+                    label: "Autoplay",
+                    targetSetting: "autoplay",
+                    input: "boolean"
+                },
+                {
+                    label: "Automatically skip intro",
+                    targetSetting: "autoskipintro",
+                    input: "boolean"
+                },
+                {
+                    label: "Automatically skip outro",
+                    targetSetting: "autoskipoutro",
+                    input: "boolean"
+                }
+            ]
+        },
+        {
+            name: "Interface",
+            icon: "/assets/icons/embed.svg", // todo: replace with fluent icons Window 
+            children: [
+                {
+                    label: "Developer mode",
+                    targetSetting: "developerMode",
+                    input: "boolean"
+                },
+                {
+                    label: "Show skip intro/outro buttons",
+                    targetSetting: "skipbutton",
+                    input: "boolean"
+                }
+            ]
+        }
+    ]
+
+    // ok this is just painful i gave up here
+    export function set( setting: keyof JSONEncodedSettings, value: string | boolean | number ) {
+        //@ts-ignore
+        userSet[ setting ] = value
+    }
+
+}
+
 // set up svt stores
 
 export let cfg = writable<WebTVConfig>()

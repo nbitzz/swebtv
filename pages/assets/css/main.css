@@ -299,7 +299,7 @@
     background: var(--bse);
 }
 
-#screenShow > .content > .showAbout, #screenEmbeddables > .content > .embList {
+#screenShow > .content > .showAbout, #screenEmbeddables > .content > .embList, #screenSettings > .content > .stUI {
     background-color: var(--bse);
     width:600px;
     padding: 15px;
@@ -374,6 +374,35 @@
     margin: 0 0 0 0;
     color: var(--txt);
 }
+
+/* Screen: Settings */
+
+#screenSettings {
+    display:flex;
+}
+
+#screenSettings > .content > .stUI > .settingsList {
+    width:100%;
+}
+
+#screenSettings > .content > .stUI > .topic {
+    display:flex;
+    height: 32px;
+    align-items:center;
+    gap: 5px;
+    position:relative;
+}
+
+#screenSettings > .content > .stUI > .topic > img {
+    width: 32px;
+    height: 32px;
+}
+
+#screenSettings > .content > .stUI > .topic > h1 {
+    color: var(--txt);
+    margin: 0 0 0 0;
+    font-size:20px;
+} 
 
 body {
     background-color: var(--bse)
