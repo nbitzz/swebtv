@@ -2303,7 +2303,7 @@ function get_each_context_1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (42:64) 
+// (43:64) 
 function create_if_block_3(ctx) {
 	let select;
 	let each_blocks = [];
@@ -2331,6 +2331,8 @@ function create_if_block_3(ctx) {
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				each_blocks[i].c();
 			}
+
+			attr(select, "class", "inp");
 		},
 		m(target, anchor) {
 			insert(target, select, anchor);
@@ -2373,7 +2375,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (40:57) 
+// (41:57) 
 function create_if_block_2(ctx) {
 	let input;
 	let input_value_value;
@@ -2387,6 +2389,7 @@ function create_if_block_2(ctx) {
 	return {
 		c() {
 			input = element("input");
+			attr(input, "class", "inp");
 			attr(input, "type", "number");
 			input.value = input_value_value = settings.userSet[/*item*/ ctx[7].targetSetting];
 		},
@@ -2413,7 +2416,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (38:57) 
+// (39:57) 
 function create_if_block_1(ctx) {
 	let input;
 	let input_value_value;
@@ -2427,6 +2430,7 @@ function create_if_block_1(ctx) {
 	return {
 		c() {
 			input = element("input");
+			attr(input, "class", "inp");
 			attr(input, "type", "input");
 			input.value = input_value_value = settings.userSet[/*item*/ ctx[7].targetSetting];
 		},
@@ -2453,7 +2457,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (36:24) {#if item.input == "boolean"}
+// (37:24) {#if item.input == "boolean"}
 function create_if_block$1(ctx) {
 	let input;
 	let input_checked_value;
@@ -2467,6 +2471,7 @@ function create_if_block$1(ctx) {
 	return {
 		c() {
 			input = element("input");
+			attr(input, "class", "inp");
 			attr(input, "type", "checkbox");
 			input.checked = input_checked_value = !!settings.userSet[/*item*/ ctx[7].targetSetting];
 		},
@@ -2493,7 +2498,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (45:32) {#each item.input as s (s)}
+// (46:32) {#each item.input as s (s)}
 function create_each_block_1(key_1, ctx) {
 	let option;
 	let t_value = /*s*/ ctx[10] + "";
@@ -2529,7 +2534,7 @@ function create_each_block_1(key_1, ctx) {
 	};
 }
 
-// (30:16) {#each currentCategory.children as item (item.targetSetting)}
+// (31:16) {#each currentCategory.children as item (item.targetSetting)}
 function create_each_block(key_1, ctx) {
 	let div;
 	let p;
@@ -2607,6 +2612,10 @@ function create_fragment$1(ctx) {
 	let img_src_value;
 	let img_alt_value;
 	let t1;
+	let h1;
+	let t2_value = /*currentCategory*/ ctx[1].name + "";
+	let t2;
+	let t3;
 	let div1;
 	let each_blocks = [];
 	let each_1_lookup = new Map();
@@ -2647,6 +2656,9 @@ function create_fragment$1(ctx) {
 			div0 = element("div");
 			img = element("img");
 			t1 = space();
+			h1 = element("h1");
+			t2 = text(t2_value);
+			t3 = space();
 			div1 = element("div");
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -2657,10 +2669,10 @@ function create_fragment$1(ctx) {
 			attr(img, "alt", img_alt_value = /*currentCategory*/ ctx[1].name);
 			attr(div0, "class", "topic");
 			attr(div1, "class", "settingsList");
-			attr(div2, "class", "settingsList");
+			attr(div2, "class", "stUI");
 			attr(div3, "class", "content");
 			attr(div4, "class", "screen");
-			attr(div4, "id", "screenEmbeddables");
+			attr(div4, "id", "screenSettings");
 		},
 		m(target, anchor) {
 			insert(target, div4, anchor);
@@ -2670,7 +2682,10 @@ function create_fragment$1(ctx) {
 			append(div3, div2);
 			append(div2, div0);
 			append(div0, img);
-			append(div2, t1);
+			append(div0, t1);
+			append(div0, h1);
+			append(h1, t2);
+			append(div2, t3);
 			append(div2, div1);
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -2699,6 +2714,8 @@ function create_fragment$1(ctx) {
 			if (!current || dirty & /*currentCategory*/ 2 && img_alt_value !== (img_alt_value = /*currentCategory*/ ctx[1].name)) {
 				attr(img, "alt", img_alt_value);
 			}
+
+			if ((!current || dirty & /*currentCategory*/ 2) && t2_value !== (t2_value = /*currentCategory*/ ctx[1].name + "")) set_data(t2, t2_value);
 
 			if (dirty & /*settings, currentCategory*/ 2) {
 				each_value = /*currentCategory*/ ctx[1].children;

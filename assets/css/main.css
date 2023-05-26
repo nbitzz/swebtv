@@ -375,6 +375,37 @@
     color: var(--txt);
 }
 
+/* Screen: Settings */
+
+#screenSettings {
+    display:flex;
+}
+
+#screenSettings > .content > .stUI {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:400px;
+    height:auto;
+}
+
+#screenSettings > .content > .stUI > .settingsList {
+    position:absolute;
+    width: calc( 100% - 50px );
+    height:100%;
+    left: 50px;
+    padding: 10px 10px 10px 0px;
+}
+
+#screenSettings > .content > .stUI > .topic {
+    position:absolute;
+    display:flex;
+    height: 50px;
+    left: 0px;
+    transform:90px;
+} 
+
 body {
     background-color: var(--bse)
 }
