@@ -387,19 +387,20 @@
 
 #screenSettings > .content > .stUI > .topic {
     display:flex;
-    height: 36px;
+    height: 32px;
     justify-items:center;
+    gap: 10px;
 }
 
 #screenSettings > .content > .stUI > .topic > img {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
 }
 
 #screenSettings > .content > .stUI > .topic > h1 {
     color: var(--txt);
     margin: 0 0 0 0;
-    font-size:24px;
+    font-size:20px;
 } 
 
 body {
