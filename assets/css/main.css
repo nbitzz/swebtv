@@ -299,7 +299,7 @@
     background: var(--bse);
 }
 
-#screenShow > .content > .showAbout, #screenEmbeddables > .content > .embList {
+#screenShow > .content > .showAbout, #screenEmbeddables > .content > .embList, #screenSettings > .content > .stUI {
     background-color: var(--bse);
     width:600px;
     padding: 15px;
@@ -381,27 +381,25 @@
     display:flex;
 }
 
-#screenSettings > .content > .stUI {
-    position: absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:400px;
-    height:auto;
-    display:flex;
-    flex-direction:row;
-}
-
 #screenSettings > .content > .stUI > .settingsList {
-    flex-basis:100%;
-    height:100%;
-    padding: 10px 10px 10px 0px;
+    width:100%;
 }
 
 #screenSettings > .content > .stUI > .topic {
     display:flex;
-    height: 50px;
-    transform:rotate( 90deg );
+    height: 44px;
+    justify-items:center;
+}
+
+#screenSettings > .content > .stUI > .topic > img {
+    width: 24px;
+    height: 24px;
+}
+
+#screenSettings > .content > .stUI > .topic > h1 {
+    color: var(--txt);
+    margin: 0 0 0 0;
+    font-size:18px;
 } 
 
 body {
