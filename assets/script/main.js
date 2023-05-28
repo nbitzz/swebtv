@@ -1267,6 +1267,7 @@ var settings;
     function set(setting, value) {
         //@ts-ignore
         settings.userSet[setting] = value;
+        settings.userSet = settings.userSet;
     }
     settings.set = set;
 })(settings || (settings = {}));
