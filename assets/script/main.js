@@ -1830,7 +1830,7 @@ function create_else_block(ctx) {
 	let html_tag;
 
 	let raw_value = (settings.userSet.developerMode
-	? `sidebar: <span style="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span style="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
+	? `sidebar: <span class="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
 	: "select an episode") + "";
 
 	return {
@@ -1858,7 +1858,7 @@ function create_else_block(ctx) {
 			if (dirty & /*selectedSeason_obj*/ 2 && t0_value !== (t0_value = (/*selectedSeason_obj*/ ctx[1]?.name || "[ ... ]") + "")) set_data(t0, t0_value);
 
 			if (dirty & /*selectedSeason, selectedSeason_obj*/ 3 && raw_value !== (raw_value = (settings.userSet.developerMode
-			? `sidebar: <span style="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span style="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
+			? `sidebar: <span class="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
 			: "select an episode") + "")) html_tag.p(raw_value);
 		},
 		i: noop,
@@ -2424,8 +2424,8 @@ function instance$2($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*pSS, selectedSeason, $ready, selectedSeason_obj, selectedEpisode*/ 775) {
-			if (pSS != selectedSeason && $ready && selectedSeason_obj) {
+		if ($$self.$$.dirty & /*$ready, selectedSeason_obj, selectedEpisode*/ 518) {
+			if ($ready && selectedSeason_obj) {
 				$$invalidate(3, selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == selectedEpisode));
 			}
 		}
