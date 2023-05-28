@@ -1313,7 +1313,7 @@ function create_else_block$1(ctx) {
 		c() {
 			div = element("div");
 
-			div.innerHTML = `<h1>embeddables
+			div.innerHTML = `<h1>webtv <em>embeddables</em> 
                     <span><br/>these links embed in discord; send them to your friends &amp; such</span></h1>`;
 
 			attr(div, "class", "nothingSelected");
