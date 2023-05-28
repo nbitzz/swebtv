@@ -7,12 +7,21 @@
     --s-body: #7A2259;
     --s-top: #FB405A;
 
-    --sans-serif: "Source Sans Pro", sans-serif;
-    --monospace: "Inconsolata", monospace;
+    /* attempts at fallbacks lol */
+    --sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", sans-serif;
+    --monospace: "Inconsolata", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
 }
 
 * {
     font-family: var(--sans-serif)
+}
+
+.monospaceText {
+    font-family: var(--monospace)
+}
+
+*:focus-visible {
+    outline: 2px var(--brd);
 }
 
 /* Sidebar */
@@ -403,6 +412,41 @@
     margin: 0 0 0 0;
     font-size:20px;
 } 
+
+#screenSettings > .content > .stUI > .settingsList {
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    padding-top:10px;
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem {
+    display:flex;
+    align-items: center;
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > p {
+    color: var(--st0);
+    font-size: 16px;
+    margin: 0 0 0 0;
+    flex-basis:100%; /* lazy fix to push input to the end */
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp[type="checkbox"] {
+    accent-color: var(--txt);
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > select {
+    background-color: var(--txt);
+    color: var(--bse);
+    padding: 3px;
+    border: none;
+    border-radius:8px;
+    outline:none
+}
+
+/* VideoView */
+
 
 body {
     background-color: var(--bse)

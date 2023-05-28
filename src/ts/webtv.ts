@@ -72,9 +72,8 @@ export interface Show extends Object {
 
 export interface Movie extends Video {
 
-    notes?: string,
-    icon: string,
-    poster?: string
+    icon: string
+    notes?: string
 
 }
 
@@ -180,7 +179,7 @@ export namespace settings {
         },
         {
             name: "Interface",
-            icon: "/assets/icons/embed.svg", // todo: replace with fluent icons Window 
+            icon: "/assets/icons/window.svg",
             children: [
                 {
                     label: "Developer mode",
@@ -199,10 +198,15 @@ export namespace settings {
     // ok this is just painful i gave up here
     export function set( setting: keyof JSONEncodedSettings, value: string | boolean | number ) {
         //@ts-ignore
-        userSet[ setting ] = value
+        userSet[ setting ] = value;
     }
 
 }
+
+// typeguards
+
+export let isEpisode = (video: Video & { parent?: string }): video is Episode => { return !!video.parent }
+export let isMovie = (video: Video & { icon?: string }): video is Movie => { return !!video.icon }
 
 // set up svt stores
 

@@ -4,7 +4,7 @@
 
     import ScreenHome from "./screens/ScreenHome.svelte";
     import ScreenEmbeddables from "./screens/ScreenEmbeddables.svelte"
-    import ScreenPlaceholder from "./screens/ScreenPlaceholder.svelte";
+    import ScreenMovies from "./screens/ScreenMovies.svelte";
     import { fade } from "svelte/transition";
     import { cfg, ready, tv } from "../ts/webtv";
     import { selected } from "../ts/stores";
@@ -17,7 +17,7 @@
     let scrTab: {[key:string]: ComponentType} = {
         "home": ScreenHome,
         "embeddables": ScreenEmbeddables,
-        "movies": ScreenPlaceholder,
+        "movies": ScreenMovies,
         "settings": ScreenSettings
     }
 

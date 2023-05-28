@@ -1,13 +1,15 @@
 <script lang="ts">
     import Sidebar, { type SidebarItem } from "../elm/Sidebar.svelte";
-    import { cfg, ready, tv, type Season, type Show } from "../../ts/webtv";
+    import { cfg, ready, tv, type Season, type Show, type Episode, settings } from "../../ts/webtv";
     import { selected } from "../../ts/stores";
+    import VideoView from "../elm/VideoView.svelte";
 
     let pSS: string = "showAbout"
     let selectedSeason: string = "showAbout";
     let selectedSeason_obj: Season | undefined
 
     let selectedEpisode: string | undefined = "";
+    let selectedEpisode_obj: Episode | undefined;
     let seasonList:SidebarItem[] = []
     let episodeList: SidebarItem[] = []
 
@@ -65,6 +67,10 @@
             selectedEpisode = undefined;
     }
 
+    $: if ($ready && selectedSeason_obj) {
+        selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == selectedEpisode)
+    }
+
 </script>
 <div class="screen" id="screenShow">
     <Sidebar level={1} width={250} bind:active={selectedSeason} bind:items={seasonList} />
@@ -91,7 +97,7 @@
                     <img src={$cfg.host + show?.icon} alt={show?.name} on:load={e => e.currentTarget.setAttribute("data-loaded","")} />
                     <div class="txt">
                         <h1>{show?.name}</h1>
-                        <p>{show?.seasons?.length} season(s), {(show?.seasons?.length??0) >= 1 ? show?.seasons?.map(e => e.episodes.length).reduce((pv, cv) => pv+cv) : 0} episode(s)</p>
+                        <p>{#if settings.userSet.developerMode} <span class="monospaceText">{show?.id}</span> | {/if}{show?.seasons?.length} season(s), {(show?.seasons?.length??0) >= 1 ? show?.seasons?.map(e => e.episodes.length).reduce((pv, cv) => pv+cv) : 0} episode(s)</p>
                     </div>
                 </div>
 
@@ -110,9 +116,11 @@
 
         {:else}
             
-            {#if selectedEpisode}
+            {#if selectedEpisode && selectedEpisode_obj}
 
-                
+                {#key selectedEpisode_obj}
+                    <VideoView targetVideo={selectedEpisode_obj} />
+                {/key}
 
             {:else}
 
@@ -120,7 +128,7 @@
                     <h1>
                         {selectedSeason_obj?.name || "[ ... ]"}
                         <span>
-                            <br>select an episode
+                            <br>{@html settings.userSet.developerMode ? `sidebar: <span class="monospaceText">${selectedSeason}</span>; obj: <span class="monospaceText">${selectedSeason_obj?.id}</span>` : "select an episode" }
                         </span>
                     </h1>
                 </div>

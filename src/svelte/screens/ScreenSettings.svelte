@@ -35,7 +35,7 @@
             <div class="settingsList">
                 {#each currentCategory.children as item (item.targetSetting)}
                     <div class="settingsItem">
-                        <p>{item.label}</p>
+                        <p>{item.label} {#if settings.userSet.developerMode} <span class="monospaceText">{item.targetSetting}</span> {/if}</p>
 
                         <!-- TODO: probably clean up this mess lmao -->
                         

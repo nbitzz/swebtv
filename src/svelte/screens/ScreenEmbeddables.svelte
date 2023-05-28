@@ -53,7 +53,7 @@
         {:else}
             <div class="nothingSelected">
                 <h1>
-                    embeddables
+                    webtv <em>embeddables</em>
                     <span>
                         <br>these links embed in discord; send them to your friends & such
                     </span>
