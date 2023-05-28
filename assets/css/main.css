@@ -409,6 +409,20 @@
     font-size:20px;
 } 
 
+#screenSettings > .content > .stUI > .settingsList > .settingsItem {
+    display:flex;
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > p {
+    align-self: flex-start;
+    color: var(--st0);
+    font-size: 16px;
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp {
+    align-self: flex-end;
+}
+
 /* VideoView */
 
 
