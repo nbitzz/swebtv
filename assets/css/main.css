@@ -409,9 +409,16 @@
     font-size:20px;
 } 
 
+#screenSettings > .content > .stUI > .settingsList {
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    padding-top:10px;
+}
+
 #screenSettings > .content > .stUI > .settingsList > .settingsItem {
     display:flex;
-    padding: 0 5px 0 0;
+    align-items: center;
 }
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > p {
