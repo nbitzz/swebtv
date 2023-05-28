@@ -425,7 +425,7 @@
     accent-color: var(--txt);
 }
 
-#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp select {
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > select {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
