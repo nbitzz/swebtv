@@ -7,8 +7,9 @@
     --s-body: #7A2259;
     --s-top: #FB405A;
 
-    --sans-serif: "Source Sans Pro", sans-serif;
-    --monospace: "Inconsolata", monospace;
+    /* attempts at fallbacks lol */
+    --sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", sans-serif;
+    --monospace: "Inconsolata", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
 }
 
 * {
