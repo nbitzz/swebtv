@@ -15,6 +15,10 @@
     font-family: var(--sans-serif)
 }
 
+.monospaceText {
+    font-family: var(--monospace)
+}
+
 /* Sidebar */
 
 #menu {
@@ -403,6 +407,9 @@
     margin: 0 0 0 0;
     font-size:20px;
 } 
+
+/* VideoView */
+
 
 body {
     background-color: var(--bse)
