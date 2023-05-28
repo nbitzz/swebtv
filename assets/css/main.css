@@ -411,7 +411,7 @@
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem {
     display:flex;
-    padding: 5px 0 5px 0;
+    padding: 0 5px 0 0;
 }
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > p {
@@ -429,6 +429,8 @@
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
+    border: none;
+    border-radius:8px;
 }
 
 /* VideoView */
