@@ -1248,7 +1248,7 @@ var settings;
         },
         {
             name: "Interface",
-            icon: "/assets/icons/embed.svg",
+            icon: "/assets/icons/window.svg",
             children: [
                 {
                     label: "Developer mode",
