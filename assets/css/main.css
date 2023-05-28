@@ -415,14 +415,20 @@
 }
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > p {
-    justify-self: flex-start;
     color: var(--st0);
     font-size: 16px;
     margin: 0 0 0 0;
+    flex-basis:100%; /* lazy fix to push input to the end */
 }
 
-#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp {
-    justify-self: flex-end;
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp[type="checkbox"] {
+    accent-color: var(--txt);
+}
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp select {
+    background-color: var(--txt);
+    color: var(--bse);
+    padding: 3px;
 }
 
 /* VideoView */
