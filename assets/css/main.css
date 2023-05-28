@@ -409,7 +409,7 @@
 
 #screenSettings > .content > .stUI > .topic > h1 {
     color: var(--txt);
-    margin: 0 0 0 0;
+    margin: 0 0 1px 0;
     font-size:20px;
 } 
 
@@ -435,6 +435,11 @@
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp[type="checkbox"] {
     accent-color: var(--txt);
 }
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp[type="checkbox"]:not(:checked) {
+    filter:invert(50%); /* darken a bit so that it sorta fits theming */
+}
+
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > select {
     background-color: var(--txt);
