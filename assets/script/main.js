@@ -2142,23 +2142,23 @@ function create_if_block_2$1(ctx) {
 // (92:27) {#if settings.userSet.developerMode}
 function create_if_block_1$1(ctx) {
 	let span;
-	let t2;
+	let t1;
 
 	return {
 		c() {
 			span = element("span");
-			span.textContent = `${/*show*/ ctx[7]?.id} |`;
-			t2 = space();
+			span.textContent = `${/*show*/ ctx[7]?.id}`;
+			t1 = space();
 			attr(span, "class", "monospaceText");
 		},
 		m(target, anchor) {
 			insert(target, span, anchor);
-			insert(target, t2, anchor);
+			insert(target, t1, anchor);
 		},
 		p: noop,
 		d(detaching) {
 			if (detaching) detach(span);
-			if (detaching) detach(t2);
+			if (detaching) detach(t1);
 		}
 	};
 }
