@@ -1747,7 +1747,7 @@ function create_fragment$4(ctx) {
 
 	let t4_value = (/*mtdt*/ ctx[1].type != "UNKNOWN" && (/*mtdt*/ ctx[1].type == "movie"
 	? `Runtime ${/*targetVideo*/ ctx[0].length}; `
-	: `${/*mtdt*/ ctx[1].show.name} — S${/*mtdt*/ ctx[1].season_number}E${/*mtdt*/ ctx[1].episode_number}`)) + "";
+	: `S${/*mtdt*/ ctx[1].season_number}E${/*mtdt*/ ctx[1].episode_number} — ${/*mtdt*/ ctx[1].show.name}`)) + "";
 
 	let t4;
 	let current;
@@ -1804,7 +1804,7 @@ function create_fragment$4(ctx) {
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t4_value !== (t4_value = (/*mtdt*/ ctx[1].type != "UNKNOWN" && (/*mtdt*/ ctx[1].type == "movie"
 			? `Runtime ${/*targetVideo*/ ctx[0].length}; `
-			: `${/*mtdt*/ ctx[1].show.name} — S${/*mtdt*/ ctx[1].season_number}E${/*mtdt*/ ctx[1].episode_number}`)) + "")) set_data(t4, t4_value);
+			: `S${/*mtdt*/ ctx[1].season_number}E${/*mtdt*/ ctx[1].episode_number} — ${/*mtdt*/ ctx[1].show.name}`)) + "")) set_data(t4, t4_value);
 		},
 		i(local) {
 			if (current) return;
