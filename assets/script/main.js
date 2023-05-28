@@ -2148,7 +2148,7 @@ function create_if_block_1$1(ctx) {
 		c() {
 			span = element("span");
 			span.textContent = `${/*show*/ ctx[7]?.id}`;
-			t1 = space();
+			t1 = text(" | ");
 			attr(span, "class", "monospaceText");
 		},
 		m(target, anchor) {

@@ -411,16 +411,18 @@
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem {
     display:flex;
+    padding: 5px 0 5px 0;
 }
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > p {
-    align-self: flex-start;
+    justify-self: flex-start;
     color: var(--st0);
     font-size: 16px;
+    margin: 0 0 0 0;
 }
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp {
-    align-self: flex-end;
+    justify-self: flex-end;
 }
 
 /* VideoView */
