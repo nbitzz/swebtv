@@ -1267,7 +1267,6 @@ var settings;
     function set(setting, value) {
         //@ts-ignore
         settings.userSet[setting] = value;
-        settings.userSet = settings.userSet;
     }
     settings.set = set;
 })(settings || (settings = {}));
@@ -1828,12 +1827,11 @@ function create_else_block(ctx) {
 	let t1;
 	let span;
 	let br;
+	let html_tag;
 
-	let t2_value = (settings.userSet.developerMode
-	? "select an episode"
-	: /*selectedEpisode_obj*/ ctx[3]?.id) + "";
-
-	let t2;
+	let raw_value = (settings.userSet.developerMode
+	? `sidebar: <span style="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span style="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
+	: "select an episode") + "";
 
 	return {
 		c() {
@@ -1843,7 +1841,8 @@ function create_else_block(ctx) {
 			t1 = space();
 			span = element("span");
 			br = element("br");
-			t2 = text(t2_value);
+			html_tag = new HtmlTag(false);
+			html_tag.a = null;
 			attr(div, "class", "nothingSelected");
 		},
 		m(target, anchor) {
@@ -1853,14 +1852,14 @@ function create_else_block(ctx) {
 			append(h1, t1);
 			append(h1, span);
 			append(span, br);
-			append(span, t2);
+			html_tag.m(raw_value, span);
 		},
 		p(ctx, dirty) {
 			if (dirty & /*selectedSeason_obj*/ 2 && t0_value !== (t0_value = (/*selectedSeason_obj*/ ctx[1]?.name || "[ ... ]") + "")) set_data(t0, t0_value);
 
-			if (dirty & /*selectedEpisode_obj*/ 8 && t2_value !== (t2_value = (settings.userSet.developerMode
-			? "select an episode"
-			: /*selectedEpisode_obj*/ ctx[3]?.id) + "")) set_data(t2, t2_value);
+			if (dirty & /*selectedSeason, selectedSeason_obj*/ 3 && raw_value !== (raw_value = (settings.userSet.developerMode
+			? `sidebar: <span style="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span style="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
+			: "select an episode") + "")) html_tag.p(raw_value);
 		},
 		i: noop,
 		o: noop,
