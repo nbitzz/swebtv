@@ -2170,7 +2170,7 @@ function create_fragment$5(ctx) {
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
 
 			progress_1.value = progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? /*progress*/ ctx[2] / (/*duration*/ ctx[1] || /*playing*/ ctx[0].length)
+			? (/*progress*/ ctx[2] ?? 0) / (/*duration*/ ctx[1] || /*playing*/ ctx[0].length)
 			: undefined;
 
 			attr(div0, "class", "controls");
@@ -2226,7 +2226,7 @@ function create_fragment$5(ctx) {
 			video_updating = false;
 
 			if (dirty & /*videoReadyState, progress, duration, playing*/ 39 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? /*progress*/ ctx[2] / (/*duration*/ ctx[1] || /*playing*/ ctx[0].length)
+			? (/*progress*/ ctx[2] ?? 0) / (/*duration*/ ctx[1] || /*playing*/ ctx[0].length)
 			: undefined)) {
 				progress_1.value = progress_1_value_value;
 			}
