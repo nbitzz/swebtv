@@ -2113,20 +2113,31 @@ class FormatDownloader extends SvelteComponent {
 
 function create_fragment$5(ctx) {
 	let div;
+	let progress;
+	let t;
+	let video;
+	let video_src_value;
 
 	return {
 		c() {
 			div = element("div");
-
-			div.innerHTML = `<progress></progress> 
-    <video></video>`;
-
+			progress = element("progress");
+			t = space();
+			video = element("video");
+			if (!src_url_equal(video.src, video_src_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) attr(video, "src", video_src_value);
 			attr(div, "class", "player");
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
+			append(div, progress);
+			append(div, t);
+			append(div, video);
 		},
-		p: noop,
+		p(ctx, [dirty]) {
+			if (dirty & /*playing*/ 1 && !src_url_equal(video.src, video_src_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
+				attr(video, "src", video_src_value);
+			}
+		},
 		i: noop,
 		o: noop,
 		d(detaching) {
@@ -2137,12 +2148,14 @@ function create_fragment$5(ctx) {
 
 function instance$5($$self, $$props, $$invalidate) {
 	let { playing } = $$props;
+	let format = getBestFormat(playing, settings.userSet.videoFormat);
+	let quality = settings.userSet.videoQuality;
 
 	$$self.$$set = $$props => {
 		if ('playing' in $$props) $$invalidate(0, playing = $$props.playing);
 	};
 
-	return [playing];
+	return [playing, format, quality];
 }
 
 class VideoPlayer extends SvelteComponent {
