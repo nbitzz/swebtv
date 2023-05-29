@@ -4,7 +4,8 @@ export namespace lists {
     export const quality = [
         "best", // 1080p
         "good", // 720p
-        "okay"    // 480p
+        "okay", // 480p
+        "h264compat" // exactly what it says on the tin
     ] as const
 
     export const formats = [
@@ -105,7 +106,6 @@ export namespace settings {
         autoskipoutro: false,
 
         skipbutton: true,
-        overlayControls: true,
         embeddedSkipButton: false,
         developerMode: false
         
@@ -121,7 +121,6 @@ export namespace settings {
         autoskipoutro: boolean,
 
         developerMode: boolean,
-        overlayControls: boolean,
         embeddedSkipButton: boolean,
         skipbutton: boolean,
 
@@ -151,7 +150,7 @@ export namespace settings {
                 {
                     label: "Preferred quality",
                     targetSetting: "videoQuality",
-                    input: [ "best", "good", "okay" ]
+                    input: [ "best", "good", "okay", "h264compat" ]
                 },
                 {
                     label: "Preferred format",
@@ -188,11 +187,6 @@ export namespace settings {
                 {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
-                    input: "boolean"
-                },
-                {
-                    label: "Overlay controls on top of video",
-                    targetSetting: "overlayControls",
                     input: "boolean"
                 },
                 {
