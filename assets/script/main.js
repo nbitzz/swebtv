@@ -2142,7 +2142,7 @@ function create_fragment$5(ctx) {
 			progress_1 = element("progress");
 			t = space();
 			video = element("video");
-			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1];
+			progress_1.value = progress_1_value_value = (/*progress*/ ctx[2] || 0) / (/*duration*/ ctx[1] || 0);
 			attr(div0, "class", "controls");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[3].host + /*playing*/ ctx[0].formats[/*format*/ ctx[4]][/*quality*/ ctx[5]])) attr(video, "src", video_src_value);
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[7].call(video));
@@ -2165,7 +2165,7 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1])) {
+			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = (/*progress*/ ctx[2] || 0) / (/*duration*/ ctx[1] || 0))) {
 				progress_1.value = progress_1_value_value;
 			}
 
