@@ -454,6 +454,7 @@
 
 .videoView > .container button {
     padding: 5px;
+    cursor: pointer;
 }
 
 /* VideoView */
