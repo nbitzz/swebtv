@@ -2146,7 +2146,7 @@ function create_fragment$5(ctx) {
 			video_updating = true;
 		}
 
-		/*video_timeupdate_handler*/ ctx[9].call(video);
+		/*video_timeupdate_handler*/ ctx[11].call(video);
 	}
 
 	return {
@@ -2165,9 +2165,14 @@ function create_fragment$5(ctx) {
 			t5 = space();
 			button2 = element("button");
 			button2.textContent = "Quality & Format";
-			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[5].host + /*playing*/ ctx[0].formats[/*format*/ ctx[6]][/*quality*/ ctx[7]])) attr(video, "src", video_src_value);
-			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[10].call(video));
-			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
+			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) attr(video, "src", video_src_value);
+			if (/*videoReadyState*/ ctx[5] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9].call(video));
+			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
+
+			progress_1.value = progress_1_value_value = /*videoReadyState*/ ctx[5] > 0
+			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
+			: null;
+
 			attr(div0, "class", "controls");
 			attr(div1, "class", "videoPlayer");
 		},
@@ -2183,23 +2188,30 @@ function create_fragment$5(ctx) {
 			append(div0, button1);
 			append(div0, t5);
 			append(div0, button2);
-			/*div1_binding*/ ctx[13](div1);
+			/*div1_binding*/ ctx[15](div1);
 
 			if (!mounted) {
 				dispose = [
-					listen(video, "play", /*video_play_pause_handler*/ ctx[8]),
-					listen(video, "pause", /*video_play_pause_handler*/ ctx[8]),
+					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9]),
+					listen(video, "play", /*video_play_pause_handler*/ ctx[10]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[10]),
 					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[10]),
-					listen(button0, "click", /*click_handler*/ ctx[11]),
-					listen(button1, "click", /*click_handler_1*/ ctx[12])
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[12]),
+					listen(button0, "click", /*click_handler*/ ctx[13]),
+					listen(button1, "click", /*click_handler_1*/ ctx[14])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*$cfg, playing*/ 33 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[5].host + /*playing*/ ctx[0].formats[/*format*/ ctx[6]][/*quality*/ ctx[7]])) {
+			if (dirty & /*$cfg, playing*/ 65 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) {
 				attr(video, "src", video_src_value);
 			}
 
@@ -2213,7 +2225,9 @@ function create_fragment$5(ctx) {
 
 			video_updating = false;
 
-			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1)) {
+			if (dirty & /*videoReadyState, progress, duration*/ 38 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] > 0
+			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
+			: null)) {
 				progress_1.value = progress_1_value_value;
 			}
 		},
@@ -2221,7 +2235,7 @@ function create_fragment$5(ctx) {
 		o: noop,
 		d(detaching) {
 			if (detaching) detach(div1);
-			/*div1_binding*/ ctx[13](null);
+			/*div1_binding*/ ctx[15](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2230,7 +2244,7 @@ function create_fragment$5(ctx) {
 
 function instance$5($$self, $$props, $$invalidate) {
 	let $cfg;
-	component_subscribe($$self, cfg, $$value => $$invalidate(5, $cfg = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(6, $cfg = $$value));
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
@@ -2238,6 +2252,12 @@ function instance$5($$self, $$props, $$invalidate) {
 	let progress;
 	let isPaused;
 	let vplayer;
+	let videoReadyState;
+
+	function video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler() {
+		videoReadyState = this.readyState;
+		$$invalidate(5, videoReadyState);
+	}
 
 	function video_play_pause_handler() {
 		isPaused = this.paused;
@@ -2274,9 +2294,11 @@ function instance$5($$self, $$props, $$invalidate) {
 		progress,
 		isPaused,
 		vplayer,
+		videoReadyState,
 		$cfg,
 		format,
 		quality,
+		video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler,
 		video_play_pause_handler,
 		video_timeupdate_handler,
 		video_durationchange_handler,
