@@ -442,8 +442,8 @@
 
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > select,
-.videoView > .container > select,
-.videoView > .container > button {
+.videoView > .container select,
+.videoView > .container button {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
