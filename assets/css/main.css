@@ -484,9 +484,9 @@
 
 .videoView > .container {
     max-width: 970px;
-    height: 100%;
+    height: calc(100% - 20px);
     flex-basis:970px;
-    padding: 10px;
+    padding: 0 10px;
     overflow:visible;
 }
 
