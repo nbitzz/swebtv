@@ -503,6 +503,9 @@
 
 /* VideoPlayer */
 
+.videoPlayer > video {
+    width:100%;
+}
 
 body {
     background-color: var(--bse)
