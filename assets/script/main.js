@@ -2124,7 +2124,7 @@ function create_fragment$5(ctx) {
 			progress = element("progress");
 			t = space();
 			video = element("video");
-			if (!src_url_equal(video.src, video_src_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) attr(video, "src", video_src_value);
+			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[1].host + /*playing*/ ctx[0].formats[/*format*/ ctx[2]][/*quality*/ ctx[3]])) attr(video, "src", video_src_value);
 			attr(div, "class", "player");
 		},
 		m(target, anchor) {
@@ -2134,7 +2134,7 @@ function create_fragment$5(ctx) {
 			append(div, video);
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*playing*/ 1 && !src_url_equal(video.src, video_src_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
+			if (dirty & /*$cfg, playing*/ 3 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[1].host + /*playing*/ ctx[0].formats[/*format*/ ctx[2]][/*quality*/ ctx[3]])) {
 				attr(video, "src", video_src_value);
 			}
 		},
@@ -2147,6 +2147,8 @@ function create_fragment$5(ctx) {
 }
 
 function instance$5($$self, $$props, $$invalidate) {
+	let $cfg;
+	component_subscribe($$self, cfg, $$value => $$invalidate(1, $cfg = $$value));
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
@@ -2155,7 +2157,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		if ('playing' in $$props) $$invalidate(0, playing = $$props.playing);
 	};
 
-	return [playing, format, quality];
+	return [playing, $cfg, format, quality];
 }
 
 class VideoPlayer extends SvelteComponent {
@@ -2216,9 +2218,9 @@ function create_fragment$4(ctx) {
 	let t3;
 	let p0;
 
-	let t4_value = (/*mtdt*/ ctx[1].type != "UNKNOWN" && (/*mtdt*/ ctx[1].type == "movie"
+	let t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 	? `Runtime ${/*targetVideo*/ ctx[0].length}`
-	: `S${/*mtdt*/ ctx[1].season_number}E${/*mtdt*/ ctx[1].episode_number} — ${/*mtdt*/ ctx[1].show.name}`)) + "";
+	: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
 
 	let t4;
 	let t5;
@@ -2273,7 +2275,7 @@ function create_fragment$4(ctx) {
 			t10 = space();
 			div3 = element("div");
 			create_component(formatdownloader.$$.fragment);
-			if (!src_url_equal(img.src, img_src_value = /*mtdt*/ ctx[1].icon)) attr(img, "src", img_src_value);
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[1].host + /*mtdt*/ ctx[2].icon)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*targetVideo*/ ctx[0].name + " icon");
 			attr(div0, "class", "shortAbout");
 			attr(div2, "class", "longAbout");
@@ -2313,15 +2315,19 @@ function create_fragment$4(ctx) {
 			if (dirty & /*targetVideo*/ 1) videoplayer_changes.playing = /*targetVideo*/ ctx[0];
 			videoplayer.$set(videoplayer_changes);
 
+			if (!current || dirty & /*$cfg*/ 2 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[1].host + /*mtdt*/ ctx[2].icon)) {
+				attr(img, "src", img_src_value);
+			}
+
 			if (!current || dirty & /*targetVideo*/ 1 && img_alt_value !== (img_alt_value = /*targetVideo*/ ctx[0].name + " icon")) {
 				attr(img, "alt", img_alt_value);
 			}
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t2_value !== (t2_value = /*targetVideo*/ ctx[0].name + "")) set_data(t2, t2_value);
 
-			if ((!current || dirty & /*targetVideo*/ 1) && t4_value !== (t4_value = (/*mtdt*/ ctx[1].type != "UNKNOWN" && (/*mtdt*/ ctx[1].type == "movie"
+			if ((!current || dirty & /*targetVideo*/ 1) && t4_value !== (t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 			? `Runtime ${/*targetVideo*/ ctx[0].length}`
-			: `S${/*mtdt*/ ctx[1].season_number}E${/*mtdt*/ ctx[1].episode_number} — ${/*mtdt*/ ctx[1].show.name}`)) + "")) set_data(t4, t4_value);
+			: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t8_value !== (t8_value = (/*targetVideo*/ ctx[0].description || "No description specified") + "")) set_data(t8, t8_value);
 			if (dirty & /*targetVideo*/ 1) show_if = isMovie(/*targetVideo*/ ctx[0]) && /*targetVideo*/ ctx[0].notes;
@@ -2364,6 +2370,8 @@ function create_fragment$4(ctx) {
 }
 
 function instance$4($$self, $$props, $$invalidate) {
+	let $cfg;
+	component_subscribe($$self, cfg, $$value => $$invalidate(1, $cfg = $$value));
 	let { targetVideo } = $$props;
 
 	// This is a mess. too bad!
@@ -2389,7 +2397,7 @@ function instance$4($$self, $$props, $$invalidate) {
 		if ('targetVideo' in $$props) $$invalidate(0, targetVideo = $$props.targetVideo);
 	};
 
-	return [targetVideo, mtdt];
+	return [targetVideo, $cfg, mtdt];
 }
 
 class VideoView extends SvelteComponent {
