@@ -322,7 +322,9 @@
     border-radius:8px;
 }
 
-#screenShow > .content > .showAbout > .header, #screenEmbeddables > .content > .embList > .header {
+#screenShow > .content > .showAbout > .header, 
+#screenEmbeddables > .content > .embList > .header,
+.videoView > .container > .shortAbout {
     width:100%;
     height:45px;
     padding-bottom: 10px;
@@ -331,7 +333,8 @@
 }
 
 #screenShow > .content > .showAbout > .header > img, 
-#screenEmbeddables > .content > .embList > .header > img {
+#screenEmbeddables > .content > .embList > .header > img,
+.videoView > .container > .shortAbout > img {
     border-radius:100%;
     width:45px;
     height:45px;
@@ -340,37 +343,43 @@
 }
 
 #screenShow > .content > .showAbout > .header > img[data-loaded], 
-#screenEmbeddables > .content > .embList > .header > img[data-loaded] {
+#screenEmbeddables > .content > .embList > .header > img[data-loaded],
+.videoView > .container > .shortAbout > img[data-loaded] {
     transition-duration: 250ms;
     opacity: 1;
 }
 
 #screenShow > .content > .showAbout > .header > .txt, 
-#screenEmbeddables > .content > .embList > .header > .txt {
+#screenEmbeddables > .content > .embList > .header > .txt,
+.videoView > .container > .shortAbout > .txt {
     width: calc( 100% - 55px );
 }
 
 #screenShow > .content > .showAbout > .header > .txt > *, 
-#screenEmbeddables > .content > .embList > .header > .txt > * {
+#screenEmbeddables > .content > .embList > .header > .txt > *,
+.videoView > .container > .shortAbout > .txt > * {
     position:relative;
     margin: 0 0 0 0;
 }
 
 #screenShow > .content > .showAbout > .header > .txt > h1, 
-#screenEmbeddables > .content > .embList > .header > .txt > h1 {
+#screenEmbeddables > .content > .embList > .header > .txt > h1,
+.videoView > .container > .shortAbout > .txt > h1 {
     font-weight: 600;
     font-size: 20px;
     color: var(--txt);
 }
 
 #screenShow > .content > .showAbout > .header > .txt > p, 
-#screenEmbeddables > .content > .embList > .header > .txt > p {
+#screenEmbeddables > .content > .embList > .header > .txt > p,
+.videoView > .container > .shortAbout > .txt > p {
     font-weight: 400;
     font-size: 16px;
     color: var(--st0);
 }
 
-#screenShow > .content > .showAbout > .otherInfo {
+#screenShow > .content > .showAbout > .otherInfo,
+.videoView > .container > .btm_ctn > .longAbout {
     display:flex;
     gap: 10px;
 }
@@ -379,7 +388,8 @@
     flex-basis: 50%;
 }
 
-#screenShow > .content > .showAbout > .otherInfo > div > * {
+#screenShow > .content > .showAbout > .otherInfo > div > *,
+.videoView > .container > .btm_ctn > .longAbout > div > * {
     margin: 0 0 0 0;
     color: var(--txt);
 }
@@ -409,7 +419,7 @@
 
 #screenSettings > .content > .stUI > .topic > h1 {
     color: var(--txt);
-    margin: 0 0 0 0;
+    margin: 0 0 1px 0;
     font-size:20px;
 } 
 
@@ -436,7 +446,14 @@
     accent-color: var(--txt);
 }
 
-#screenSettings > .content > .stUI > .settingsList > .settingsItem > select {
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp[type="checkbox"]:not(:checked) {
+    filter:invert(50%); /* darken / lighten a bit so that it sorta fits theming */
+}
+
+
+#screenSettings > .content > .stUI > .settingsList > .settingsItem > select,
+.videoView > .container select,
+.videoView > .container button {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
@@ -445,8 +462,70 @@
     outline:none
 }
 
+.videoView > .container button {
+    padding: 4px 6px;
+    cursor: pointer;
+}
+
 /* VideoView */
 
+.videoView {
+    position:relative;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    flex-basis:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow:auto;
+}
+
+.videoView > .container {
+    max-width: 970px;
+    height: calc(100% - 20px);
+    flex-basis:970px;
+    padding: 0 10px;
+    overflow:visible;
+}
+
+.videoView > .container > .videoPlayer {
+    
+    position: relative;
+    width:100%;
+    left:0px;
+    top:0px;
+    
+}
+
+.videoView > .container > .shortAbout {
+    padding: 10px 0;
+}
+
+.videoView > .container > .btm_ctn {
+    display: flex;
+    gap:10px;
+}
+
+.videoView > .container > .btm_ctn > .longAbout {
+    flex-basis:100%;
+    display: flex;
+}
+
+.videoView > .container > .btm_ctn > .opts {
+    min-width: 150px;
+}
+
+.videoView > .container > .btm_ctn > .longAbout > div {
+    flex-basis:100%;
+}
+
+/* VideoPlayer */
+
+.videoPlayer > video {
+    width:100%;
+}
 
 body {
     background-color: var(--bse)

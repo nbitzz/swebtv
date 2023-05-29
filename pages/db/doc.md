@@ -9,16 +9,25 @@ Quality should use the following scale:
 
 - **best**
     - Size should top out at 750MiB for movies and 300MiB for episodes
-    - Usually, 320kbps audio and 8mbps video re-encoded under h265 will work:
-    - `ffmpeg -i input.mp4 -b:a 320k -b:v 8m -vcodec libx265 best.mp4`
+    - this would probably be good enough lawl:
+    - `ffmpeg -i input.mp4 -b:a 320k -b:v 8m -vcodec vp9 best.webm`
 - **good**
     - 720p
-    - `ffmpeg -i input.mp4 -b:a 240k -b:v 6m -vcodec libx265 -vf scale=-1:720 good.mp4`
+    - `ffmpeg -i input.mp4 -b:a 240k -b:v 6m -vcodec vp9 -vf scale=-1:720 good.webm`
 - **okay**
     - 468p
-    - `ffmpeg -i input.mp4 -b:a 160k -b:v 2m -vcodec libx265 -vf scale=-1:468 okay.mp4`
+    - go fuck yourself
+    - `ffmpeg -i input.mp4 -b:a 160k -b:v 2m -vcodec vp9 -vf scale=-1:468 okay.webm`
+- **h264compat**
+    - 468p
+    - should not be used on anything other than mobi
+    - `ffmpeg -i input.mp4 -b:a 160k -b:v 1.5m -vcodec libx264 -vf scale=-1:468 h264compat.mp4`
+
+Oh also it might be a better idea to support ~~ASS~~ Advanced SubStation Alpha Subtitle Files. natively so
 
 ## Data structures
+
+God are these outdated. lmao GG IG !!
 
 ### `Movie`
 
