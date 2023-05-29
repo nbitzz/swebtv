@@ -26,14 +26,14 @@
 
                         "formats": {
                             "main": {
-                                "best": "onimai.s1.e1.main.best.mp4",
-                                "good": "onimai.s1.e1.main.good.mp4",
-                                "okay": "onimai.s1.e1.main.okay.mp4"
+                                "best": "ons1e1mb.webm",
+                                "good": "ons1e1mg.webm",
+                                "okay": "ons1e1mo.webm"
                             },
                             "hardsub": {
-                                "best": "onimai.s1.e1.hardsub.best.mp4",
-                                "good": "onimai.s1.e1.hardsub.good.mp4",
-                                "okay": "onimai.s1.e1.hardsub.okay.mp4"
+                                "best": "ons1e1hb.webm",
+                                "good": "ons1e1hg.webm",
+                                "okay": "ons1e1ho.webm"
                             }
                         },
 

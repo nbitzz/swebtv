@@ -322,7 +322,9 @@
     border-radius:8px;
 }
 
-#screenShow > .content > .showAbout > .header, #screenEmbeddables > .content > .embList > .header {
+#screenShow > .content > .showAbout > .header, 
+#screenEmbeddables > .content > .embList > .header,
+.videoView > .container > .shortAbout {
     width:100%;
     height:45px;
     padding-bottom: 10px;
@@ -331,7 +333,8 @@
 }
 
 #screenShow > .content > .showAbout > .header > img, 
-#screenEmbeddables > .content > .embList > .header > img {
+#screenEmbeddables > .content > .embList > .header > img,
+.videoView > .container > .shortAbout > img {
     border-radius:100%;
     width:45px;
     height:45px;
@@ -340,31 +343,36 @@
 }
 
 #screenShow > .content > .showAbout > .header > img[data-loaded], 
-#screenEmbeddables > .content > .embList > .header > img[data-loaded] {
+#screenEmbeddables > .content > .embList > .header > img[data-loaded],
+.videoView > .container > .shortAbout > img[data-loaded] {
     transition-duration: 250ms;
     opacity: 1;
 }
 
 #screenShow > .content > .showAbout > .header > .txt, 
-#screenEmbeddables > .content > .embList > .header > .txt {
+#screenEmbeddables > .content > .embList > .header > .txt,
+.videoView > .container > .shortAbout > .txt {
     width: calc( 100% - 55px );
 }
 
 #screenShow > .content > .showAbout > .header > .txt > *, 
-#screenEmbeddables > .content > .embList > .header > .txt > * {
+#screenEmbeddables > .content > .embList > .header > .txt > *,
+.videoView > .container > .shortAbout > .txt > * {
     position:relative;
     margin: 0 0 0 0;
 }
 
 #screenShow > .content > .showAbout > .header > .txt > h1, 
-#screenEmbeddables > .content > .embList > .header > .txt > h1 {
+#screenEmbeddables > .content > .embList > .header > .txt > h1,
+.videoView > .container > .shortAbout > .txt > h1 {
     font-weight: 600;
     font-size: 20px;
     color: var(--txt);
 }
 
 #screenShow > .content > .showAbout > .header > .txt > p, 
-#screenEmbeddables > .content > .embList > .header > .txt > p {
+#screenEmbeddables > .content > .embList > .header > .txt > p,
+.videoView > .container > .shortAbout > .txt > p {
     font-weight: 400;
     font-size: 16px;
     color: var(--st0);
@@ -453,11 +461,12 @@
 }
 
 .videoView > .container button {
-    padding: 4px;
+    padding: 4px 6px;
     cursor: pointer;
 }
 
 /* VideoView */
+
 
 
 

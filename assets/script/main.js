@@ -954,7 +954,7 @@ function create_if_block$6(ctx) {
 			append(div, img);
 
 			if (!mounted) {
-				dispose = listen(img, "load", load_handler$2);
+				dispose = listen(img, "load", load_handler$3);
 				mounted = true;
 			}
 		},
@@ -1149,7 +1149,7 @@ function create_fragment$9(ctx) {
 	};
 }
 
-const load_handler$2 = e => e.currentTarget.setAttribute("data-loaded", "");
+const load_handler$3 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$8($$self, $$props, $$invalidate) {
 	let { items = [] } = $$props;
@@ -1540,7 +1540,7 @@ function create_if_block$5(ctx) {
 			}
 
 			if (!mounted) {
-				dispose = listen(img, "load", load_handler$1);
+				dispose = listen(img, "load", load_handler$2);
 				mounted = true;
 			}
 		},
@@ -1733,7 +1733,7 @@ function create_fragment$7(ctx) {
 	};
 }
 
-const load_handler$1 = e => e.currentTarget.setAttribute("data-loaded", "");
+const load_handler$2 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$7($$self, $$props, $$invalidate) {
 	let $embeddables;
@@ -2203,15 +2203,16 @@ function create_if_block$4(ctx) {
 }
 
 function create_fragment$4(ctx) {
+	let div6;
 	let div5;
-	let div4;
 	let videoplayer;
 	let t0;
-	let div0;
+	let div1;
 	let img;
 	let img_src_value;
 	let img_alt_value;
 	let t1;
+	let div0;
 	let h1;
 	let t2_value = /*targetVideo*/ ctx[0].name + "";
 	let t2;
@@ -2224,8 +2225,8 @@ function create_fragment$4(ctx) {
 
 	let t4;
 	let t5;
+	let div3;
 	let div2;
-	let div1;
 	let h2;
 	let t7;
 	let p1;
@@ -2234,9 +2235,11 @@ function create_fragment$4(ctx) {
 	let t9;
 	let show_if = isMovie(/*targetVideo*/ ctx[0]) && /*targetVideo*/ ctx[0].notes;
 	let t10;
-	let div3;
+	let div4;
 	let formatdownloader;
 	let current;
+	let mounted;
+	let dispose;
 
 	videoplayer = new VideoPlayer({
 			props: { playing: /*targetVideo*/ ctx[0] }
@@ -2250,21 +2253,22 @@ function create_fragment$4(ctx) {
 
 	return {
 		c() {
+			div6 = element("div");
 			div5 = element("div");
-			div4 = element("div");
 			create_component(videoplayer.$$.fragment);
 			t0 = space();
-			div0 = element("div");
+			div1 = element("div");
 			img = element("img");
 			t1 = space();
+			div0 = element("div");
 			h1 = element("h1");
 			t2 = text(t2_value);
 			t3 = space();
 			p0 = element("p");
 			t4 = text(t4_value);
 			t5 = space();
+			div3 = element("div");
 			div2 = element("div");
-			div1 = element("div");
 			h2 = element("h2");
 			h2.textContent = "Description";
 			t7 = space();
@@ -2273,42 +2277,49 @@ function create_fragment$4(ctx) {
 			t9 = space();
 			if (if_block) if_block.c();
 			t10 = space();
-			div3 = element("div");
+			div4 = element("div");
 			create_component(formatdownloader.$$.fragment);
 			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[1].host + /*mtdt*/ ctx[2].icon)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*targetVideo*/ ctx[0].name + " icon");
-			attr(div0, "class", "shortAbout");
-			attr(div2, "class", "longAbout");
-			attr(div3, "class", "opts");
-			attr(div4, "class", "container");
-			attr(div5, "class", "videoView");
+			attr(div0, "class", "txt");
+			attr(div1, "class", "shortAbout");
+			attr(div3, "class", "longAbout");
+			attr(div4, "class", "opts");
+			attr(div5, "class", "container");
+			attr(div6, "class", "videoView");
 		},
 		m(target, anchor) {
-			insert(target, div5, anchor);
-			append(div5, div4);
-			mount_component(videoplayer, div4, null);
-			append(div4, t0);
-			append(div4, div0);
-			append(div0, img);
-			append(div0, t1);
+			insert(target, div6, anchor);
+			append(div6, div5);
+			mount_component(videoplayer, div5, null);
+			append(div5, t0);
+			append(div5, div1);
+			append(div1, img);
+			append(div1, t1);
+			append(div1, div0);
 			append(div0, h1);
 			append(h1, t2);
 			append(div0, t3);
 			append(div0, p0);
 			append(p0, t4);
-			append(div4, t5);
-			append(div4, div2);
-			append(div2, div1);
-			append(div1, h2);
-			append(div1, t7);
-			append(div1, p1);
+			append(div5, t5);
+			append(div5, div3);
+			append(div3, div2);
+			append(div2, h2);
+			append(div2, t7);
+			append(div2, p1);
 			append(p1, t8);
-			append(div2, t9);
-			if (if_block) if_block.m(div2, null);
-			append(div4, t10);
-			append(div4, div3);
-			mount_component(formatdownloader, div3, null);
+			append(div3, t9);
+			if (if_block) if_block.m(div3, null);
+			append(div5, t10);
+			append(div5, div4);
+			mount_component(formatdownloader, div4, null);
 			current = true;
+
+			if (!mounted) {
+				dispose = listen(img, "load", load_handler$1);
+				mounted = true;
+			}
 		},
 		p(ctx, [dirty]) {
 			const videoplayer_changes = {};
@@ -2338,7 +2349,7 @@ function create_fragment$4(ctx) {
 				} else {
 					if_block = create_if_block$4(ctx);
 					if_block.c();
-					if_block.m(div2, null);
+					if_block.m(div3, null);
 				}
 			} else if (if_block) {
 				if_block.d(1);
@@ -2361,13 +2372,19 @@ function create_fragment$4(ctx) {
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div5);
+			if (detaching) detach(div6);
 			destroy_component(videoplayer);
 			if (if_block) if_block.d();
 			destroy_component(formatdownloader);
+			mounted = false;
+			dispose();
 		}
 	};
 }
+
+const load_handler$1 = e => {
+	e.currentTarget.setAttribute("data-loaded", "");
+};
 
 function instance$4($$self, $$props, $$invalidate) {
 	let $cfg;
