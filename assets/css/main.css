@@ -379,18 +379,17 @@
 }
 
 #screenShow > .content > .showAbout > .otherInfo,
-.videoView > .container > .longAbout {
+.videoView > .container > .btm_ctn > .longAbout {
     display:flex;
     gap: 10px;
 }
 
-#screenShow > .content > .showAbout > .otherInfo > div,
-.videoView > .container > .longAbout > div {
+#screenShow > .content > .showAbout > .otherInfo > div {
     flex-basis: 50%;
 }
 
 #screenShow > .content > .showAbout > .otherInfo > div > *,
-.videoView > .container > .longAbout > div > * {
+.videoView > .container > .btm_ctn > .longAbout > div > * {
     margin: 0 0 0 0;
     color: var(--txt);
 }
@@ -504,19 +503,22 @@
     padding: 10px 0;
 }
 
-/* lazy so */
-
-.videoView > .container > .longAbout {
-    position: relative;
-    width: calc( 100% - 60px );
+.videoView > .container > .btm_ctn {
     display: flex;
-    left: 0px;
+    gap:10px;
 }
 
-.videoView > .container > .opts {
-    position: relative;
-    width: 50px;
-    right: 0px;
+.videoView > .container > .btm_ctn > .longAbout {
+    flex-basis:100%;
+    display: flex;
+}
+
+.videoView > .container > .btm_ctn > .opts {
+    min-width: 150px;
+}
+
+.videoView > .container > .btm_ctn > .longAbout > div {
+    flex-basis:100%;
 }
 
 /* VideoPlayer */

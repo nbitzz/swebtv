@@ -2279,8 +2279,8 @@ function create_if_block$4(ctx) {
 }
 
 function create_fragment$4(ctx) {
+	let div7;
 	let div6;
-	let div5;
 	let videoplayer;
 	let t0;
 	let div1;
@@ -2301,6 +2301,7 @@ function create_fragment$4(ctx) {
 
 	let t4;
 	let t5;
+	let div5;
 	let div3;
 	let div2;
 	let h2;
@@ -2329,8 +2330,8 @@ function create_fragment$4(ctx) {
 
 	return {
 		c() {
+			div7 = element("div");
 			div6 = element("div");
-			div5 = element("div");
 			create_component(videoplayer.$$.fragment);
 			t0 = space();
 			div1 = element("div");
@@ -2343,6 +2344,7 @@ function create_fragment$4(ctx) {
 			p0 = element("p");
 			t4 = text(t4_value);
 			t5 = space();
+			div5 = element("div");
 			div3 = element("div");
 			div2 = element("div");
 			h2 = element("h2");
@@ -2361,15 +2363,16 @@ function create_fragment$4(ctx) {
 			attr(div1, "class", "shortAbout");
 			attr(div3, "class", "longAbout");
 			attr(div4, "class", "opts");
-			attr(div5, "class", "container");
-			attr(div6, "class", "videoView");
+			attr(div5, "class", "btm_ctn");
+			attr(div6, "class", "container");
+			attr(div7, "class", "videoView");
 		},
 		m(target, anchor) {
-			insert(target, div6, anchor);
-			append(div6, div5);
-			mount_component(videoplayer, div5, null);
-			append(div5, t0);
-			append(div5, div1);
+			insert(target, div7, anchor);
+			append(div7, div6);
+			mount_component(videoplayer, div6, null);
+			append(div6, t0);
+			append(div6, div1);
 			append(div1, img);
 			append(div1, t1);
 			append(div1, div0);
@@ -2378,7 +2381,8 @@ function create_fragment$4(ctx) {
 			append(div0, t3);
 			append(div0, p0);
 			append(p0, t4);
-			append(div5, t5);
+			append(div6, t5);
+			append(div6, div5);
 			append(div5, div3);
 			append(div3, div2);
 			append(div2, h2);
@@ -2448,7 +2452,7 @@ function create_fragment$4(ctx) {
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div6);
+			if (detaching) detach(div7);
 			destroy_component(videoplayer);
 			if (if_block) if_block.d();
 			destroy_component(formatdownloader);
