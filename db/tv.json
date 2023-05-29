@@ -29,13 +29,13 @@
                                 "best": "ons1e1mb.webm",
                                 "good": "ons1e1mg.webm",
                                 "okay": "ons1e1mo.webm",
-                                "h264compat": "ons1e1mh.mp4"
+                                "h264compat": "ons1e1mh.webm"
                             },
                             "hardsub": {
                                 "best": "ons1e1hb.webm",
                                 "good": "ons1e1hg.webm",
                                 "okay": "ons1e1ho.webm",
-                                "h264compat": "ons1e1hh.mp4"
+                                "h264compat": "ons1e1hh.webm"
                             }
                         },
 
