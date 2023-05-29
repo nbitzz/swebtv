@@ -2081,7 +2081,7 @@ function instance$6($$self, $$props, $$invalidate) {
 
 	const click_handler = () => {
 		let TMP = document.createElement("a");
-		TMP.setAttribute("href", $cfg.host + target.formats[selectedFormat][quality]);
+		TMP.setAttribute("href", $cfg.host + target.formats[selectedFormat][quality] + "?attachment=1");
 		TMP.setAttribute("download", `${target.id}.${selectedFormat}-${quality}`);
 		TMP.click();
 		TMP.remove();
