@@ -477,12 +477,15 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    overflow:auto;
 }
 
 .videoView > .container {
-    max-width: 600px;
-    height: calc( 100% - 40px );
-    flex-basis:600px;
+    max-width: 920px;
+    height: 100%;
+    flex-basis:920px;
+    padding: 10px;
+    overflow:visible;
 }
 
 .videoView > .container > .videoPlayer {
