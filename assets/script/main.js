@@ -1289,9 +1289,11 @@ var settings;
         autoskipintro: false,
         autoskipoutro: false,
         skipbutton: true,
+        overlayControls: true,
+        embeddedSkipButton: false,
         developerMode: false
     };
-    settings.userSet = settings.defaults;
+    settings.userSet = JSON.parse(JSON.stringify(settings.defaults));
     // controls ui elements in the settings menu
     settings.suiLinks = [
         {
@@ -1336,13 +1338,23 @@ var settings;
             icon: "/assets/icons/window.svg",
             children: [
                 {
-                    label: "Developer mode",
-                    targetSetting: "developerMode",
+                    label: "Show skip intro/outro buttons",
+                    targetSetting: "skipbutton",
                     input: "boolean"
                 },
                 {
-                    label: "Show skip intro/outro buttons",
-                    targetSetting: "skipbutton",
+                    label: "Overlay controls on top of video",
+                    targetSetting: "overlayControls",
+                    input: "boolean"
+                },
+                {
+                    label: "Embed skip intro/outro button into controls",
+                    targetSetting: "embeddedSkipButton",
+                    input: "boolean"
+                },
+                {
+                    label: "Developer mode",
+                    targetSetting: "developerMode",
                     input: "boolean"
                 }
             ]
