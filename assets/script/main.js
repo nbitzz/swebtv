@@ -2129,7 +2129,6 @@ function create_fragment$5(ctx) {
 	let button0;
 	let t2;
 	let progress_1;
-	let progress_1_value_value;
 	let t3;
 	let button1;
 	let t5;
@@ -2146,6 +2145,20 @@ function create_fragment$5(ctx) {
 		}
 
 		/*video_timeupdate_handler*/ ctx[11].call(video);
+	}
+
+	let progress_1_levels = [
+		/*videoReadyState*/ ctx[5] >= 2
+		? {
+				value: /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
+			}
+		: {}
+	];
+
+	let progress_data = {};
+
+	for (let i = 0; i < progress_1_levels.length; i += 1) {
+		progress_data = assign(progress_data, progress_1_levels[i]);
 	}
 
 	return {
@@ -2167,11 +2180,7 @@ function create_fragment$5(ctx) {
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) attr(video, "src", video_src_value);
 			if (/*videoReadyState*/ ctx[5] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9].call(video));
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
-
-			progress_1.value = progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
-			: undefined;
-
+			set_attributes(progress_1, progress_data);
 			attr(div0, "class", "controls");
 			attr(div1, "class", "videoPlayer");
 		},
@@ -2224,11 +2233,13 @@ function create_fragment$5(ctx) {
 
 			video_updating = false;
 
-			if (dirty & /*videoReadyState, progress, duration*/ 38 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
-			: undefined)) {
-				progress_1.value = progress_1_value_value;
-			}
+			set_attributes(progress_1, progress_data = get_spread_update(progress_1_levels, [
+				dirty & /*videoReadyState, progress, duration*/ 38 && (/*videoReadyState*/ ctx[5] >= 2
+				? {
+						value: /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
+					}
+				: {})
+			]));
 		},
 		i: noop,
 		o: noop,
