@@ -2125,14 +2125,14 @@ class FormatDownloader extends SvelteComponent {
 
 function create_fragment$5(ctx) {
 	let div1;
-	let div0;
-	let progress_1;
-	let progress_1_value_value;
-	let t;
 	let video;
 	let video_src_value;
 	let video_updating = false;
 	let video_animationframe;
+	let t;
+	let div0;
+	let progress_1;
+	let progress_1_value_value;
 	let mounted;
 	let dispose;
 
@@ -2150,22 +2150,22 @@ function create_fragment$5(ctx) {
 	return {
 		c() {
 			div1 = element("div");
+			video = element("video");
+			t = space();
 			div0 = element("div");
 			progress_1 = element("progress");
-			t = space();
-			video = element("video");
-			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
-			attr(div0, "class", "controls");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[3].host + /*playing*/ ctx[0].formats[/*format*/ ctx[4]][/*quality*/ ctx[5]])) attr(video, "src", video_src_value);
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[7].call(video));
+			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
+			attr(div0, "class", "controls");
 			attr(div1, "class", "videoPlayer");
 		},
 		m(target, anchor) {
 			insert(target, div1, anchor);
+			append(div1, video);
+			append(div1, t);
 			append(div1, div0);
 			append(div0, progress_1);
-			append(div1, t);
-			append(div1, video);
 
 			if (!mounted) {
 				dispose = [
@@ -2177,10 +2177,6 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1)) {
-				progress_1.value = progress_1_value_value;
-			}
-
 			if (dirty & /*$cfg, playing*/ 9 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[3].host + /*playing*/ ctx[0].formats[/*format*/ ctx[4]][/*quality*/ ctx[5]])) {
 				attr(video, "src", video_src_value);
 			}
@@ -2190,6 +2186,10 @@ function create_fragment$5(ctx) {
 			}
 
 			video_updating = false;
+
+			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1)) {
+				progress_1.value = progress_1_value_value;
+			}
 		},
 		i: noop,
 		o: noop,
