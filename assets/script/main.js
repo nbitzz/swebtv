@@ -1271,8 +1271,7 @@ var lists;
     lists.quality = [
         "best",
         "good",
-        "okay",
-        "h264compat" // exactly what it says on the tin
+        "okay" // 480p
     ];
     lists.formats = [
         "main",
@@ -1293,7 +1292,7 @@ var settings;
         embeddedSkipButton: false,
         developerMode: false
     };
-    settings.userSet = JSON.parse(JSON.stringify(settings.defaults));
+    settings.userSet = Object.assign({}, settings.defaults);
     // controls ui elements in the settings menu
     settings.suiLinks = [
         {
@@ -1303,12 +1302,12 @@ var settings;
                 {
                     label: "Preferred quality",
                     targetSetting: "videoQuality",
-                    input: ["best", "good", "okay", "h264compat"]
+                    input: [...lists.quality]
                 },
                 {
                     label: "Preferred format",
                     targetSetting: "videoFormat",
-                    input: ["main", "hardsub", "dub"]
+                    input: [...lists.formats]
                 }
             ]
         },
@@ -2170,7 +2169,7 @@ function create_fragment$5(ctx) {
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
 
 			progress_1.value = progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? (/*progress*/ ctx[2] ?? 0) / (/*duration*/ ctx[1] || /*playing*/ ctx[0].length)
+			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
 			: undefined;
 
 			attr(div0, "class", "controls");
@@ -2225,8 +2224,8 @@ function create_fragment$5(ctx) {
 
 			video_updating = false;
 
-			if (dirty & /*videoReadyState, progress, duration, playing*/ 39 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? (/*progress*/ ctx[2] ?? 0) / (/*duration*/ ctx[1] || /*playing*/ ctx[0].length)
+			if (dirty & /*videoReadyState, progress, duration*/ 38 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
+			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
 			: undefined)) {
 				progress_1.value = progress_1_value_value;
 			}
