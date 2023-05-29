@@ -452,6 +452,10 @@
     outline:none
 }
 
+.videoView > .container button {
+    padding: 5px;
+}
+
 /* VideoView */
 
 
