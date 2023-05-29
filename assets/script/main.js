@@ -2168,11 +2168,7 @@ function create_fragment$5(ctx) {
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) attr(video, "src", video_src_value);
 			if (/*videoReadyState*/ ctx[5] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9].call(video));
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
-
-			progress_1.value = progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
-			: null;
-
+			progress_1.value = progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2 && /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
 			attr(div0, "class", "controls");
 			attr(div1, "class", "videoPlayer");
 		},
@@ -2225,9 +2221,7 @@ function create_fragment$5(ctx) {
 
 			video_updating = false;
 
-			if (dirty & /*videoReadyState, progress, duration*/ 38 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2
-			? /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1
-			: null)) {
+			if (dirty & /*videoReadyState, progress, duration*/ 38 && progress_1_value_value !== (progress_1_value_value = /*videoReadyState*/ ctx[5] >= 2 && /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1)) {
 				progress_1.value = progress_1_value_value;
 			}
 		},
