@@ -437,7 +437,7 @@
 }
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > .inp[type="checkbox"]:not(:checked) {
-    filter:invert(50%); /* darken a bit so that it sorta fits theming */
+    filter:invert(50%); /* darken / lighten a bit so that it sorta fits theming */
 }
 
 
