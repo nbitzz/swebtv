@@ -2127,12 +2127,19 @@ function create_fragment$5(ctx) {
 	let div1;
 	let video;
 	let video_src_value;
+	let video_is_paused = true;
 	let video_updating = false;
 	let video_animationframe;
-	let t;
+	let t0;
 	let div0;
+	let button0;
+	let t2;
 	let progress_1;
 	let progress_1_value_value;
+	let t3;
+	let button1;
+	let t5;
+	let button2;
 	let mounted;
 	let dispose;
 
@@ -2144,18 +2151,27 @@ function create_fragment$5(ctx) {
 			video_updating = true;
 		}
 
-		/*video_timeupdate_handler*/ ctx[6].call(video);
+		/*video_timeupdate_handler*/ ctx[9].call(video);
 	}
 
 	return {
 		c() {
 			div1 = element("div");
 			video = element("video");
-			t = space();
+			t0 = space();
 			div0 = element("div");
+			button0 = element("button");
+			button0.textContent = "Play/Pause";
+			t2 = space();
 			progress_1 = element("progress");
-			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[3].host + /*playing*/ ctx[0].formats[/*format*/ ctx[4]][/*quality*/ ctx[5]])) attr(video, "src", video_src_value);
-			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[7].call(video));
+			t3 = space();
+			button1 = element("button");
+			button1.textContent = "Fullscreen";
+			t5 = space();
+			button2 = element("button");
+			button2.textContent = "Quality & Format";
+			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[5].host + /*playing*/ ctx[0].formats[/*format*/ ctx[6]][/*quality*/ ctx[7]])) attr(video, "src", video_src_value);
+			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[10].call(video));
 			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
 			attr(div0, "class", "controls");
 			attr(div1, "class", "videoPlayer");
@@ -2163,22 +2179,37 @@ function create_fragment$5(ctx) {
 		m(target, anchor) {
 			insert(target, div1, anchor);
 			append(div1, video);
-			append(div1, t);
+			append(div1, t0);
 			append(div1, div0);
+			append(div0, button0);
+			append(div0, t2);
 			append(div0, progress_1);
+			append(div0, t3);
+			append(div0, button1);
+			append(div0, t5);
+			append(div0, button2);
+			/*div1_binding*/ ctx[13](div1);
 
 			if (!mounted) {
 				dispose = [
+					listen(video, "play", /*video_play_pause_handler*/ ctx[8]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[8]),
 					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[7])
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[10]),
+					listen(button0, "click", /*click_handler*/ ctx[11]),
+					listen(button1, "click", /*click_handler_1*/ ctx[12])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*$cfg, playing*/ 9 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[3].host + /*playing*/ ctx[0].formats[/*format*/ ctx[4]][/*quality*/ ctx[5]])) {
+			if (dirty & /*$cfg, playing*/ 33 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[5].host + /*playing*/ ctx[0].formats[/*format*/ ctx[6]][/*quality*/ ctx[7]])) {
 				attr(video, "src", video_src_value);
+			}
+
+			if (dirty & /*isPaused*/ 8 && video_is_paused !== (video_is_paused = /*isPaused*/ ctx[3])) {
+				video[video_is_paused ? "pause" : "play"]();
 			}
 
 			if (!video_updating && dirty & /*progress*/ 4 && !isNaN(/*progress*/ ctx[2])) {
@@ -2195,6 +2226,7 @@ function create_fragment$5(ctx) {
 		o: noop,
 		d(detaching) {
 			if (detaching) detach(div1);
+			/*div1_binding*/ ctx[13](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2203,12 +2235,19 @@ function create_fragment$5(ctx) {
 
 function instance$5($$self, $$props, $$invalidate) {
 	let $cfg;
-	component_subscribe($$self, cfg, $$value => $$invalidate(3, $cfg = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(5, $cfg = $$value));
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
 	let duration;
 	let progress;
+	let isPaused;
+	let vplayer;
+
+	function video_play_pause_handler() {
+		isPaused = this.paused;
+		$$invalidate(3, isPaused);
+	}
 
 	function video_timeupdate_handler() {
 		progress = this.currentTime;
@@ -2220,6 +2259,16 @@ function instance$5($$self, $$props, $$invalidate) {
 		$$invalidate(1, duration);
 	}
 
+	const click_handler = () => $$invalidate(3, isPaused = !isPaused);
+	const click_handler_1 = () => vplayer.requestFullscreen();
+
+	function div1_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			vplayer = $$value;
+			$$invalidate(4, vplayer);
+		});
+	}
+
 	$$self.$$set = $$props => {
 		if ('playing' in $$props) $$invalidate(0, playing = $$props.playing);
 	};
@@ -2228,11 +2277,17 @@ function instance$5($$self, $$props, $$invalidate) {
 		playing,
 		duration,
 		progress,
+		isPaused,
+		vplayer,
 		$cfg,
 		format,
 		quality,
+		video_play_pause_handler,
 		video_timeupdate_handler,
-		video_durationchange_handler
+		video_durationchange_handler,
+		click_handler,
+		click_handler_1,
+		div1_binding
 	];
 }
 
