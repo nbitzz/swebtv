@@ -693,6 +693,7 @@
 
 .videoPlayer button {
     border:none;
+    cursor: pointer;
 }
 
 .videoPlayer > .skipButton {
