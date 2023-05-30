@@ -697,9 +697,11 @@
     top:calc( 100% - 40px );
     text-align:center;
     font-size: 16px;
-    color: var(--txt);
+    color: var(--txt) !important;
     width:120px;
     transform: translate(-100%,-100%);
+    border-radius:0;
+    background-color: var(--sf0) !important;
 }
 
 @keyframes spinner {

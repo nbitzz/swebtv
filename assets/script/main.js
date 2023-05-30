@@ -2205,7 +2205,7 @@ function create_if_block_1$2(ctx) {
 	let t;
 	let if_block1_anchor;
 	let current;
-	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[2] <= /*playing*/ ctx[0].intro[1] && create_if_block_3$2(ctx);
+	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[2] < /*playing*/ ctx[0].intro[1] && create_if_block_3$2(ctx);
 	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[2] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[1]) && create_if_block_2$2(ctx);
 
 	return {
@@ -2223,7 +2223,7 @@ function create_if_block_1$2(ctx) {
 			current = true;
 		},
 		p(ctx, dirty) {
-			if (/*playing*/ ctx[0].intro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[2] <= /*playing*/ ctx[0].intro[1]) {
+			if (/*playing*/ ctx[0].intro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[2] < /*playing*/ ctx[0].intro[1]) {
 				if (if_block0) {
 					if_block0.p(ctx, dirty);
 
@@ -2289,7 +2289,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (124:8) {#if playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1]}
+// (124:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2912,7 +2912,7 @@ function instance$5($$self, $$props, $$invalidate) {
 			// this is probably horrible for performance. Too bad!
 			// if anyone knows how to make this better pls lmk
 			if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
-				if (playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1] && settings.userSet.autoskipintro) $$invalidate(2, progress = playing.intro[1]); else if (playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) $$invalidate(2, progress = playing.outro[1] || duration);
+				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) $$invalidate(2, progress = playing.intro[1]); else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) $$invalidate(2, progress = playing.outro[1] || duration);
 			}
 		}
 	};
