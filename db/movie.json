@@ -6,10 +6,13 @@
         "description": "Big Buck Bunny (code-named Project Peach) is a 2008 short computer-animated comedy film featuring animals of the forest.",
         "notes": "©️ Blender Foundation",
         "icon": "bigbuckbunny.png",
+        "thumbnail": "bbbthumb",
 
         "formats": {
             "main": {
-
+                "best": "bbbbest",
+                "good": "bbbgood",
+                "okay": "bbbokay"
             }
         }
     }
