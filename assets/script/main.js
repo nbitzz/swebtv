@@ -2250,9 +2250,10 @@ function create_if_block$5(ctx) {
 					listen(div1, "mousedown", /*mousedown_handler*/ ctx[22]),
 					listen(div1, "mousemove", /*seekUpdate*/ ctx[13]),
 					listen(div1, "mouseup", /*mouseup_handler*/ ctx[23]),
-					listen(button1, "click", /*click_handler_2*/ ctx[24]),
-					listen(div3, "mouseenter", /*mouseenter_handler*/ ctx[25]),
-					listen(div3, "mouseleave", /*mouseleave_handler*/ ctx[26])
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[24]),
+					listen(button1, "click", /*click_handler_2*/ ctx[25]),
+					listen(div3, "mouseenter", /*mouseenter_handler*/ ctx[26]),
+					listen(div3, "mouseleave", /*mouseleave_handler_1*/ ctx[27])
 				];
 
 				mounted = true;
@@ -2316,7 +2317,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (78:12) {#if videoReadyState < 2}
+// (84:12) {#if videoReadyState < 2}
 function create_if_block_1$2(ctx) {
 	let p;
 
@@ -2392,7 +2393,7 @@ function create_fragment$5(ctx) {
 			append(div1, video);
 			append(div1, t2);
 			if (if_block) if_block.m(div1, null);
-			/*div1_binding_1*/ ctx[27](div1);
+			/*div1_binding_1*/ ctx[28](div1);
 			current = true;
 
 			if (!mounted) {
@@ -2481,7 +2482,7 @@ function create_fragment$5(ctx) {
 		d(detaching) {
 			if (detaching) detach(div1);
 			if (if_block) if_block.d();
-			/*div1_binding_1*/ ctx[27](null);
+			/*div1_binding_1*/ ctx[28](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2507,7 +2508,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	function seekUpdate(e) {
 		if (!duration || !draggingSeekBar) return;
 		let rect = seekbar.getBoundingClientRect();
-		let ler = e.clientX - rect.left / (rect.right - rect.left);
+		let ler = (e.clientX - rect.left) / rect.width;
 		$$invalidate(2, progress = duration * ler);
 	}
 
@@ -2551,9 +2552,10 @@ function instance$5($$self, $$props, $$invalidate) {
 	};
 
 	const mouseup_handler = () => $$invalidate(7, draggingSeekBar = false);
+	const mouseleave_handler = () => $$invalidate(7, draggingSeekBar = false);
 	const click_handler_2 = () => vplayer.requestFullscreen();
 	const mouseenter_handler = () => $$invalidate(8, showControls = true);
-	const mouseleave_handler = () => $$invalidate(8, showControls = false);
+	const mouseleave_handler_1 = () => $$invalidate(8, showControls = false);
 
 	function div1_binding_1($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
@@ -2591,9 +2593,10 @@ function instance$5($$self, $$props, $$invalidate) {
 		div1_binding,
 		mousedown_handler,
 		mouseup_handler,
+		mouseleave_handler,
 		click_handler_2,
 		mouseenter_handler,
-		mouseleave_handler,
+		mouseleave_handler_1,
 		div1_binding_1
 	];
 }
