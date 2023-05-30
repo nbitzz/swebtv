@@ -2197,7 +2197,6 @@ function create_fragment$5(ctx) {
 			t6 = space();
 			if (if_block) if_block.c();
 			attr(div0, "class", "vbking");
-			set_style(div0, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].thumbnail || "");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) attr(video, "src", video_src_value);
 			if (/*videoReadyState*/ ctx[5] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9].call(video));
@@ -2217,6 +2216,7 @@ function create_fragment$5(ctx) {
 			attr(img1, "alt", "Toggle fullscreen");
 			attr(div1, "class", "controls");
 			attr(div2, "class", "videoPlayer");
+			set_style(div2, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 		},
 		m(target, anchor) {
 			insert(target, div2, anchor);
@@ -2259,10 +2259,6 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*playing*/ 1) {
-				set_style(div0, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
-			}
-
 			if (dirty & /*playing, $cfg*/ 65 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].thumbnail || "")) {
 				attr(video, "poster", video_poster_value);
 			}
@@ -2306,6 +2302,10 @@ function create_fragment$5(ctx) {
 			} else if (if_block) {
 				if_block.d(1);
 				if_block = null;
+			}
+
+			if (dirty & /*playing*/ 1) {
+				set_style(div2, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 			}
 		},
 		i: noop,
