@@ -2129,7 +2129,7 @@ function getPVs(time) {
     return {
         hours: Math.floor(time / 3600),
         minutes: Math.floor(time % 3600 / 60),
-        seconds: Math.round(time % 60)
+        seconds: Math.floor(time % 60)
     };
 }
 function colonTime(time) {
