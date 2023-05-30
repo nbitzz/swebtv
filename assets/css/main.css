@@ -603,9 +603,10 @@
 }
 
 .videoPlayer > .controls > .timeDenotation {
-    flex-basis: 75px;
-    min-width:75px;
+    flex-basis: 100px;
+    min-width:100px;
     position:relative;
+    height:100%;
 }
 
 .videoPlayer > .controls > .timeDenotation > p {
@@ -616,6 +617,7 @@
     top:50%;
     transform:translateY(-50%);
     font-size:14px;
+    margin: 0 0 0 0;
 }
 
 .videoPlayer > .controls > .timeDenotation > p > span {
