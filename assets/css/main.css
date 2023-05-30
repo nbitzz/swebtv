@@ -544,6 +544,10 @@
     color: var(--st0)
 }
 
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker:hover {
+    border-bottom: 1px solid var(--st0)
+}
+
 /* VideoPlayer */
 
 .videoPlayer:fullscreen > .vbking {
