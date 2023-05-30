@@ -581,6 +581,10 @@
     transform:translate(-50%,-50%);
 }
 
+.videoPlayer > .controls > progress {
+    flex-basis:100%;
+}
+
 body {
     background-color: var(--bse)
 }
