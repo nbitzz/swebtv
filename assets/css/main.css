@@ -556,7 +556,28 @@
     left:0px;
     top:100%;
     transform:translateY(-100%);
+    background-color: var(--sf0);
     display:flex;
+}
+
+.videoPlayer > .controls > button {
+    padding: 0px;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 0;
+    background-color: var(--sf0);
+    position:relative;
+}
+
+.videoPlayer > .controls > button:hover {
+    background-color: var(--sf1);
+}
+
+.videoPlayer > .controls > button > img {
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
 }
 
 body {

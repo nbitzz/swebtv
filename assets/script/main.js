@@ -2147,14 +2147,18 @@ function create_fragment$5(ctx) {
 	let t2;
 	let div1;
 	let button0;
-	let t4;
+	let img0;
+	let img0_src_value;
+	let t3;
 	let progress_1;
 	let progress_1_value_value;
-	let t5;
+	let t4;
 	let button1;
-	let t7;
+	let img1;
+	let img1_src_value;
+	let t5;
 	let button2;
-	let t9;
+	let t6;
 	let mounted;
 	let dispose;
 
@@ -2181,16 +2185,16 @@ function create_fragment$5(ctx) {
 			t2 = space();
 			div1 = element("div");
 			button0 = element("button");
-			button0.textContent = "Play/Pause";
-			t4 = space();
+			img0 = element("img");
+			t3 = space();
 			progress_1 = element("progress");
-			t5 = space();
+			t4 = space();
 			button1 = element("button");
-			button1.textContent = "Fullscreen";
-			t7 = space();
+			img1 = element("img");
+			t5 = space();
 			button2 = element("button");
-			button2.textContent = "Quality & Format";
-			t9 = space();
+			button2.innerHTML = `<img src="/assets/icons/player/options.svg" alt="More options"/>`;
+			t6 = space();
 			if (if_block) if_block.c();
 			attr(div0, "class", "vbking");
 			set_style(div0, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
@@ -2198,7 +2202,19 @@ function create_fragment$5(ctx) {
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) attr(video, "src", video_src_value);
 			if (/*videoReadyState*/ ctx[5] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9].call(video));
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
+
+			if (!src_url_equal(img0.src, img0_src_value = /*isPaused*/ ctx[3]
+			? "/assets/icons/player/play.svg"
+			: "/assets/icons/player/pause.svg")) attr(img0, "src", img0_src_value);
+
+			attr(img0, "alt", "Play/pause content");
 			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
+
+			if (!src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
+			? "/assets/icons/player/fullscreenExit.svg"
+			: "/assets/icons/player/fullscreen.svg")) attr(img1, "src", img1_src_value);
+
+			attr(img1, "alt", "Toggle fullscreen");
 			attr(div1, "class", "controls");
 			attr(div2, "class", "videoPlayer");
 		},
@@ -2210,13 +2226,15 @@ function create_fragment$5(ctx) {
 			append(div2, t2);
 			append(div2, div1);
 			append(div1, button0);
-			append(div1, t4);
+			append(button0, img0);
+			append(div1, t3);
 			append(div1, progress_1);
-			append(div1, t5);
+			append(div1, t4);
 			append(div1, button1);
-			append(div1, t7);
+			append(button1, img1);
+			append(div1, t5);
 			append(div1, button2);
-			append(div1, t9);
+			append(div1, t6);
 			if (if_block) if_block.m(div1, null);
 			/*div2_binding*/ ctx[15](div2);
 
@@ -2263,8 +2281,20 @@ function create_fragment$5(ctx) {
 
 			video_updating = false;
 
+			if (dirty & /*isPaused*/ 8 && !src_url_equal(img0.src, img0_src_value = /*isPaused*/ ctx[3]
+			? "/assets/icons/player/play.svg"
+			: "/assets/icons/player/pause.svg")) {
+				attr(img0, "src", img0_src_value);
+			}
+
 			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1)) {
 				progress_1.value = progress_1_value_value;
+			}
+
+			if (dirty & /*vplayer*/ 16 && !src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
+			? "/assets/icons/player/fullscreenExit.svg"
+			: "/assets/icons/player/fullscreen.svg")) {
+				attr(img1, "src", img1_src_value);
 			}
 
 			if (/*videoReadyState*/ ctx[5] < 2) {
