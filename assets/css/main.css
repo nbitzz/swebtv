@@ -592,7 +592,7 @@
     position:relative;
 }
 
-.videoPlayer > .controls > .progress {
+.videoPlayer > .controls > .seekbar > .progress {
     background-color: var(--txt);
     position:absolute;
     left:0px;
