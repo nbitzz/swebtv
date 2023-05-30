@@ -2174,12 +2174,12 @@ function create_fragment$5(ctx) {
 	let t4;
 	let div3;
 	let p;
-	let t5_value = colonTime(/*progress*/ ctx[2]) + "";
+	let t5_value = colonTime(/*progress*/ ctx[2] || 0) + "";
 	let t5;
 	let t6;
 	let span;
 	let t7;
-	let t8_value = colonTime(/*duration*/ ctx[1]) + "";
+	let t8_value = colonTime(/*duration*/ ctx[1] || /*playing*/ ctx[0].length) + "";
 	let t8;
 	let t9;
 	let button1;
@@ -2337,8 +2337,8 @@ function create_fragment$5(ctx) {
 				set_style(div1, "width", `${(/*progress*/ ctx[2] / /*duration*/ ctx[1] || -1) * 100}%`);
 			}
 
-			if (dirty & /*progress*/ 4 && t5_value !== (t5_value = colonTime(/*progress*/ ctx[2]) + "")) set_data(t5, t5_value);
-			if (dirty & /*duration*/ 2 && t8_value !== (t8_value = colonTime(/*duration*/ ctx[1]) + "")) set_data(t8, t8_value);
+			if (dirty & /*progress*/ 4 && t5_value !== (t5_value = colonTime(/*progress*/ ctx[2] || 0) + "")) set_data(t5, t5_value);
+			if (dirty & /*duration, playing*/ 3 && t8_value !== (t8_value = colonTime(/*duration*/ ctx[1] || /*playing*/ ctx[0].length) + "")) set_data(t8, t8_value);
 
 			if (dirty & /*vplayer*/ 16 && !src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
 			? "/assets/icons/player/fullscreenExit.svg"
