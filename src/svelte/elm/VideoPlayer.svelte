@@ -89,7 +89,9 @@
     />
 
     {#if videoReadyState < 2}
-        <div class="loadingOverlay" transition:fade={{duration:200}}>
+        <!-- makes it possible to click to pause/unpause while buffering... i think -->
+        <!-- svelte-ignore a11y-click-events-have-key-events --> 
+        <div class="loadingOverlay" transition:fade|local={{duration:200}} on:click={() => isPaused = !isPaused}>
             <div class="loadingSpinner" />
         </div>
     {/if}
@@ -97,7 +99,7 @@
     {#if showControls}
         <!-- so that you don't need to stay within a 10 px range -->
         <div class="controls" 
-            transition:fade={{duration: 200}}
+            transition:fade|local={{duration: 200}}
             on:mousemove={seekUpdate} 
             on:mouseup={stopSeeking}
             on:mouseleave={stopSeeking}
