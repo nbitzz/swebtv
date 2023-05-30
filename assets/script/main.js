@@ -2220,7 +2220,7 @@ function create_if_block$5(ctx) {
 			attr(div1, "class", "seekbar");
 			attr(div2, "class", "timeDenotation");
 
-			if (!src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
+			if (!src_url_equal(img1.src, img1_src_value = /*inFullscreen*/ ctx[11]
 			? "/assets/icons/player/fullscreenExit.svg"
 			: "/assets/icons/player/fullscreen.svg")) attr(img1, "src", img1_src_value);
 
@@ -2234,7 +2234,7 @@ function create_if_block$5(ctx) {
 			append(div3, t0);
 			append(div3, div1);
 			append(div1, div0);
-			/*div1_binding*/ ctx[24](div1);
+			/*div1_binding*/ ctx[25](div1);
 			append(div3, t1);
 			append(div3, div2);
 			append(div2, p);
@@ -2254,12 +2254,12 @@ function create_if_block$5(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(button0, "click", /*click_handler_1*/ ctx[23]),
-					listen(div1, "mousedown", /*startSeeking*/ ctx[16]),
-					listen(button1, "click", /*click_handler_2*/ ctx[25]),
-					listen(div3, "mousemove", /*seekUpdate*/ ctx[14]),
-					listen(div3, "mouseup", /*stopSeeking*/ ctx[17]),
-					listen(div3, "mouseleave", /*stopSeeking*/ ctx[17])
+					listen(button0, "click", /*click_handler_1*/ ctx[24]),
+					listen(div1, "mousedown", /*startSeeking*/ ctx[17]),
+					listen(button1, "click", /*click_handler_2*/ ctx[26]),
+					listen(div3, "mousemove", /*seekUpdate*/ ctx[15]),
+					listen(div3, "mouseup", /*stopSeeking*/ ctx[18]),
+					listen(div3, "mouseleave", /*stopSeeking*/ ctx[18])
 				];
 
 				mounted = true;
@@ -2284,7 +2284,7 @@ function create_if_block$5(ctx) {
 
 			if ((!current || dirty & /*duration, playing*/ 3) && t5_value !== (t5_value = colonTime(/*duration*/ ctx[1] || /*playing*/ ctx[0].length) + "")) set_data(t5, t5_value);
 
-			if (!current || dirty & /*vplayer*/ 16 && !src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
+			if (!current || dirty & /*inFullscreen*/ 2048 && !src_url_equal(img1.src, img1_src_value = /*inFullscreen*/ ctx[11]
 			? "/assets/icons/player/fullscreenExit.svg"
 			: "/assets/icons/player/fullscreen.svg")) {
 				attr(img1, "src", img1_src_value);
@@ -2319,7 +2319,7 @@ function create_if_block$5(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div3);
-			/*div1_binding*/ ctx[24](null);
+			/*div1_binding*/ ctx[25](null);
 			if (if_block) if_block.d();
 			if (detaching && div3_transition) div3_transition.end();
 			mounted = false;
@@ -2328,7 +2328,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (110:12) {#if videoReadyState < 2}
+// (115:12) {#if videoReadyState < 2}
 function create_if_block_1$2(ctx) {
 	let p;
 
@@ -2369,7 +2369,7 @@ function create_fragment$5(ctx) {
 			video_updating = true;
 		}
 
-		/*video_timeupdate_handler*/ ctx[20].call(video);
+		/*video_timeupdate_handler*/ ctx[21].call(video);
 	}
 
 	let if_block = /*showControls*/ ctx[8] && create_if_block$5(ctx);
@@ -2384,10 +2384,10 @@ function create_fragment$5(ctx) {
 			t2 = space();
 			if (if_block) if_block.c();
 			attr(div0, "class", "vbking");
-			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].thumbnail || "");
-			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].formats[/*format*/ ctx[12]][/*quality*/ ctx[13]])) attr(video, "src", video_src_value);
-			if (/*videoReadyState*/ ctx[6] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18].call(video));
-			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[21].call(video));
+			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "");
+			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) attr(video, "src", video_src_value);
+			if (/*videoReadyState*/ ctx[6] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19].call(video));
+			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[22].call(video));
 			set_style(video, "cursor", /*showControls*/ ctx[8] ? "default" : "none");
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
@@ -2399,36 +2399,37 @@ function create_fragment$5(ctx) {
 			append(div1, video);
 			append(div1, t2);
 			if (if_block) if_block.m(div1, null);
-			/*div1_binding_1*/ ctx[26](div1);
+			/*div1_binding_1*/ ctx[27](div1);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
-					listen(video, "play", /*video_play_pause_handler*/ ctx[19]),
-					listen(video, "pause", /*video_play_pause_handler*/ ctx[19]),
+					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
+					listen(video, "play", /*video_play_pause_handler*/ ctx[20]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[20]),
 					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[21]),
-					listen(video, "click", /*click_handler*/ ctx[22]),
-					listen(div1, "mousemove", /*handleMouseActivity*/ ctx[15]),
-					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[27])
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[22]),
+					listen(video, "click", /*click_handler*/ ctx[23]),
+					listen(div1, "mousemove", /*handleMouseActivity*/ ctx[16]),
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[28]),
+					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[29])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, [dirty]) {
-			if (!current || dirty & /*playing, $cfg*/ 2049 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].thumbnail || "")) {
+			if (!current || dirty & /*playing, $cfg*/ 4097 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "")) {
 				attr(video, "poster", video_poster_value);
 			}
 
-			if (!current || dirty & /*$cfg, playing*/ 2049 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].formats[/*format*/ ctx[12]][/*quality*/ ctx[13]])) {
+			if (!current || dirty & /*$cfg, playing*/ 4097 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) {
 				attr(video, "src", video_src_value);
 			}
 
@@ -2485,7 +2486,7 @@ function create_fragment$5(ctx) {
 		d(detaching) {
 			if (detaching) detach(div1);
 			if (if_block) if_block.d();
-			/*div1_binding_1*/ ctx[26](null);
+			/*div1_binding_1*/ ctx[27](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2494,7 +2495,7 @@ function create_fragment$5(ctx) {
 
 function instance$5($$self, $$props, $$invalidate) {
 	let $cfg;
-	component_subscribe($$self, cfg, $$value => $$invalidate(11, $cfg = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(12, $cfg = $$value));
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
@@ -2509,6 +2510,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	let sCTimeout;
 	let time_tmp;
 	let old_state = true;
+	let inFullscreen = false;
 
 	function seekUpdate(e) {
 		if (!duration || !draggingSeekBar) return;
@@ -2590,6 +2592,8 @@ function instance$5($$self, $$props, $$invalidate) {
 		if (sCTimeout) clearTimeout(sCTimeout);
 	};
 
+	const fullscreenchange_handler = () => $$invalidate(11, inFullscreen = document.fullscreenElement == vplayer);
+
 	$$self.$$set = $$props => {
 		if ('playing' in $$props) $$invalidate(0, playing = $$props.playing);
 	};
@@ -2606,6 +2610,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		showControls,
 		sCTimeout,
 		time_tmp,
+		inFullscreen,
 		$cfg,
 		format,
 		quality,
@@ -2622,7 +2627,8 @@ function instance$5($$self, $$props, $$invalidate) {
 		div1_binding,
 		click_handler_2,
 		div1_binding_1,
-		mouseleave_handler
+		mouseleave_handler,
+		fullscreenchange_handler
 	];
 }
 

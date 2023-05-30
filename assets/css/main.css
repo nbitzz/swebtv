@@ -524,7 +524,7 @@
 /* VideoPlayer */
 
 .videoPlayer:fullscreen > .vbking {
-    background-color: black;
+    background-color: black !important;
 }
 
 .videoPlayer > video {
