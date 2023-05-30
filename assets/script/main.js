@@ -2137,6 +2137,7 @@ function create_if_block$5(ctx) {
 function create_fragment$5(ctx) {
 	let div1;
 	let video;
+	let video_poster_value;
 	let video_src_value;
 	let video_is_paused = true;
 	let video_updating = false;
@@ -2186,6 +2187,7 @@ function create_fragment$5(ctx) {
 			button2.textContent = "Quality & Format";
 			t7 = space();
 			if (if_block) if_block.c();
+			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].thumbnail || "");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) attr(video, "src", video_src_value);
 			if (/*videoReadyState*/ ctx[5] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[9].call(video));
 			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[12].call(video));
@@ -2230,6 +2232,10 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
+			if (dirty & /*playing, $cfg*/ 65 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].thumbnail || "")) {
+				attr(video, "poster", video_poster_value);
+			}
+
 			if (dirty & /*$cfg, playing*/ 65 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[6].host + /*playing*/ ctx[0].formats[/*format*/ ctx[7]][/*quality*/ ctx[8]])) {
 				attr(video, "src", video_src_value);
 			}
