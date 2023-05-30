@@ -595,7 +595,8 @@
     gap: 5px;
 }
 
-.videoPlayer > .controls > button {
+.videoPlayer > .controls > button,
+.videoPlayer > .skipButton {
     padding: 0px;
     min-height: 40px;
     min-width: 40px;
@@ -604,7 +605,8 @@
     position:relative;
 }
 
-.videoPlayer > .controls > button:hover {
+.videoPlayer > .controls > button:hover,
+.videoPlayer > .skipButton {
     background-color: var(--sf1);
 }
 
@@ -686,6 +688,20 @@
     position:absolute;
     left:50%;
     top:50%;
+    transform: translate(-50%,-50%);
+}
+
+.videoPlayer .skipButton {
+    text-align:center;
+    font-size: 16px;
+    color: var(--txt)
+}
+
+.videoPlayer > .skipButton {
+    position:absolute;
+    left:100%;
+    top:calc( 100% - 40px );
+
     transform: translate(-50%,-50%);
 }
 

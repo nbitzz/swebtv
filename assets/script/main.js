@@ -883,7 +883,7 @@ function get_each_context$3(ctx, list, i) {
 }
 
 // (23:51) 
-function create_if_block_2$2(ctx) {
+function create_if_block_2$3(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
 	let html_anchor;
@@ -995,7 +995,7 @@ function create_each_block$3(key_1, ctx) {
 	function select_block_type(ctx, dirty) {
 		if (/*item*/ ctx[6].icon.type == "image") return create_if_block$7;
 		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_1$3;
-		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2$2;
+		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2$3;
 	}
 
 	let current_block_type = select_block_type(ctx);
@@ -1289,7 +1289,6 @@ var settings;
         autoskipintro: false,
         autoskipoutro: false,
         skipbutton: true,
-        embeddedSkipButton: false,
         developerMode: false
     };
     settings.userSet = Object.assign({}, settings.defaults);
@@ -1339,11 +1338,6 @@ var settings;
                 {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
-                    input: "boolean"
-                },
-                {
-                    label: "Embed skip intro/outro button into controls",
-                    targetSetting: "embeddedSkipButton",
                     input: "boolean"
                 },
                 {
@@ -2153,7 +2147,7 @@ function fade(node, { delay = 0, duration = 400, easing = identity } = {}) {
 
 const { document: document_1 } = globals;
 
-function create_if_block_1$2(ctx) {
+function create_if_block_4$2(ctx) {
 	let div1;
 	let div1_transition;
 	let current;
@@ -2206,7 +2200,194 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (108:4) {#if showControls}
+// (122:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+function create_if_block_1$2(ctx) {
+	let t;
+	let if_block1_anchor;
+	let current;
+	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[2] <= /*playing*/ ctx[0].intro[1] && create_if_block_3$2(ctx);
+	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[2] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[1]) && create_if_block_2$2(ctx);
+
+	return {
+		c() {
+			if (if_block0) if_block0.c();
+			t = space();
+			if (if_block1) if_block1.c();
+			if_block1_anchor = empty();
+		},
+		m(target, anchor) {
+			if (if_block0) if_block0.m(target, anchor);
+			insert(target, t, anchor);
+			if (if_block1) if_block1.m(target, anchor);
+			insert(target, if_block1_anchor, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			if (/*playing*/ ctx[0].intro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[2] <= /*playing*/ ctx[0].intro[1]) {
+				if (if_block0) {
+					if_block0.p(ctx, dirty);
+
+					if (dirty[0] & /*playing, progress*/ 5) {
+						transition_in(if_block0, 1);
+					}
+				} else {
+					if_block0 = create_if_block_3$2(ctx);
+					if_block0.c();
+					transition_in(if_block0, 1);
+					if_block0.m(t.parentNode, t);
+				}
+			} else if (if_block0) {
+				group_outros();
+
+				transition_out(if_block0, 1, 1, () => {
+					if_block0 = null;
+				});
+
+				check_outros();
+			}
+
+			if (/*playing*/ ctx[0].outro && /*progress*/ ctx[2] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[2] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[1])) {
+				if (if_block1) {
+					if_block1.p(ctx, dirty);
+
+					if (dirty[0] & /*playing, progress, duration*/ 7) {
+						transition_in(if_block1, 1);
+					}
+				} else {
+					if_block1 = create_if_block_2$2(ctx);
+					if_block1.c();
+					transition_in(if_block1, 1);
+					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
+				}
+			} else if (if_block1) {
+				group_outros();
+
+				transition_out(if_block1, 1, 1, () => {
+					if_block1 = null;
+				});
+
+				check_outros();
+			}
+		},
+		i(local) {
+			if (current) return;
+			transition_in(if_block0);
+			transition_in(if_block1);
+			current = true;
+		},
+		o(local) {
+			transition_out(if_block0);
+			transition_out(if_block1);
+			current = false;
+		},
+		d(detaching) {
+			if (if_block0) if_block0.d(detaching);
+			if (detaching) detach(t);
+			if (if_block1) if_block1.d(detaching);
+			if (detaching) detach(if_block1_anchor);
+		}
+	};
+}
+
+// (123:8) {#if playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1]}
+function create_if_block_3$2(ctx) {
+	let button;
+	let button_transition;
+	let current;
+	let mounted;
+	let dispose;
+
+	return {
+		c() {
+			button = element("button");
+			button.textContent = "Skip intro";
+			attr(button, "class", "skipButton");
+		},
+		m(target, anchor) {
+			insert(target, button, anchor);
+			current = true;
+
+			if (!mounted) {
+				dispose = listen(button, "click", /*click_handler_2*/ ctx[26]);
+				mounted = true;
+			}
+		},
+		p: noop,
+		i(local) {
+			if (current) return;
+
+			add_render_callback(() => {
+				if (!current) return;
+				if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, true);
+				button_transition.run(1);
+			});
+
+			current = true;
+		},
+		o(local) {
+			if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, false);
+			button_transition.run(0);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) detach(button);
+			if (detaching && button_transition) button_transition.end();
+			mounted = false;
+			dispose();
+		}
+	};
+}
+
+// (134:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+function create_if_block_2$2(ctx) {
+	let button;
+	let button_transition;
+	let current;
+	let mounted;
+	let dispose;
+
+	return {
+		c() {
+			button = element("button");
+			button.textContent = "Skip outro";
+			attr(button, "class", "skipButton");
+		},
+		m(target, anchor) {
+			insert(target, button, anchor);
+			current = true;
+
+			if (!mounted) {
+				dispose = listen(button, "click", /*click_handler_3*/ ctx[27]);
+				mounted = true;
+			}
+		},
+		p: noop,
+		i(local) {
+			if (current) return;
+
+			add_render_callback(() => {
+				if (!current) return;
+				if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, true);
+				button_transition.run(1);
+			});
+
+			current = true;
+		},
+		o(local) {
+			if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, false);
+			button_transition.run(0);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) detach(button);
+			if (detaching && button_transition) button_transition.end();
+			mounted = false;
+			dispose();
+		}
+	};
+}
+
+// (145:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2291,7 +2472,7 @@ function create_if_block$5(ctx) {
 			append(div3, t0);
 			append(div3, div1);
 			append(div1, div0);
-			/*div1_binding*/ ctx[27](div1);
+			/*div1_binding*/ ctx[29](div1);
 			append(div3, t1);
 			append(div3, div2);
 			append(div2, p);
@@ -2309,9 +2490,9 @@ function create_if_block$5(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(button0, "click", /*click_handler_2*/ ctx[26]),
+					listen(button0, "click", /*click_handler_4*/ ctx[28]),
 					listen(div1, "mousedown", /*startSeeking*/ ctx[17]),
-					listen(button1, "click", /*click_handler_3*/ ctx[28]),
+					listen(button1, "click", /*click_handler_5*/ ctx[30]),
 					listen(div3, "mousemove", /*seekUpdate*/ ctx[15]),
 					listen(div3, "mouseup", /*stopSeeking*/ ctx[18]),
 					listen(div3, "mouseleave", /*stopSeeking*/ ctx[18])
@@ -2368,7 +2549,7 @@ function create_if_block$5(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div3);
-			/*div1_binding*/ ctx[27](null);
+			/*div1_binding*/ ctx[29](null);
 			if (detaching && div3_transition) div3_transition.end();
 			mounted = false;
 			run_all(dispose);
@@ -2389,6 +2570,9 @@ function create_fragment$5(ctx) {
 	let video_animationframe;
 	let t3;
 	let t4;
+	let show_if = isEpisode(/*playing*/ ctx[0]) && settings.userSet.skipbutton;
+	let t5;
+	let current;
 	let mounted;
 	let dispose;
 
@@ -2403,8 +2587,9 @@ function create_fragment$5(ctx) {
 		/*video_timeupdate_handler*/ ctx[22].call(video);
 	}
 
-	let if_block0 = /*videoReadyState*/ ctx[6] < 2 && create_if_block_1$2(ctx);
-	let if_block1 = /*showControls*/ ctx[8] && create_if_block$5(ctx);
+	let if_block0 = /*videoReadyState*/ ctx[6] < 2 && create_if_block_4$2(ctx);
+	let if_block1 = show_if && create_if_block_1$2(ctx);
+	let if_block2 = /*showControls*/ ctx[8] && create_if_block$5(ctx);
 
 	return {
 		c() {
@@ -2418,6 +2603,8 @@ function create_fragment$5(ctx) {
 			if (if_block0) if_block0.c();
 			t4 = space();
 			if (if_block1) if_block1.c();
+			t5 = space();
+			if (if_block2) if_block2.c();
 			attr(div0, "class", "vbking");
 			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) attr(video, "src", video_src_value);
@@ -2437,7 +2624,10 @@ function create_fragment$5(ctx) {
 			if (if_block0) if_block0.m(div1, null);
 			append(div1, t4);
 			if (if_block1) if_block1.m(div1, null);
-			/*div1_binding_1*/ ctx[29](div1);
+			append(div1, t5);
+			if (if_block2) if_block2.m(div1, null);
+			/*div1_binding_1*/ ctx[31](div1);
+			current = true;
 
 			if (!mounted) {
 				dispose = [
@@ -2455,19 +2645,19 @@ function create_fragment$5(ctx) {
 					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[23]),
 					listen(video, "click", /*click_handler*/ ctx[24]),
 					listen(div1, "mousemove", /*handleActivity*/ ctx[16]),
-					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[30]),
-					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[31])
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[32]),
+					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[33])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing, $cfg*/ 4097 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "")) {
+			if (!current || dirty[0] & /*playing, $cfg*/ 4097 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "")) {
 				attr(video, "poster", video_poster_value);
 			}
 
-			if (dirty[0] & /*$cfg, playing*/ 4097 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) {
+			if (!current || dirty[0] & /*$cfg, playing*/ 4097 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) {
 				attr(video, "src", video_src_value);
 			}
 
@@ -2493,7 +2683,7 @@ function create_fragment$5(ctx) {
 						transition_in(if_block0, 1);
 					}
 				} else {
-					if_block0 = create_if_block_1$2(ctx);
+					if_block0 = create_if_block_4$2(ctx);
 					if_block0.c();
 					transition_in(if_block0, 1);
 					if_block0.m(div1, t4);
@@ -2508,18 +2698,20 @@ function create_fragment$5(ctx) {
 				check_outros();
 			}
 
-			if (/*showControls*/ ctx[8]) {
+			if (dirty[0] & /*playing*/ 1) show_if = isEpisode(/*playing*/ ctx[0]) && settings.userSet.skipbutton;
+
+			if (show_if) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 
-					if (dirty[0] & /*showControls*/ 256) {
+					if (dirty[0] & /*playing*/ 1) {
 						transition_in(if_block1, 1);
 					}
 				} else {
-					if_block1 = create_if_block$5(ctx);
+					if_block1 = create_if_block_1$2(ctx);
 					if_block1.c();
 					transition_in(if_block1, 1);
-					if_block1.m(div1, null);
+					if_block1.m(div1, t5);
 				}
 			} else if (if_block1) {
 				group_outros();
@@ -2531,24 +2723,53 @@ function create_fragment$5(ctx) {
 				check_outros();
 			}
 
+			if (/*showControls*/ ctx[8]) {
+				if (if_block2) {
+					if_block2.p(ctx, dirty);
+
+					if (dirty[0] & /*showControls*/ 256) {
+						transition_in(if_block2, 1);
+					}
+				} else {
+					if_block2 = create_if_block$5(ctx);
+					if_block2.c();
+					transition_in(if_block2, 1);
+					if_block2.m(div1, null);
+				}
+			} else if (if_block2) {
+				group_outros();
+
+				transition_out(if_block2, 1, 1, () => {
+					if_block2 = null;
+				});
+
+				check_outros();
+			}
+
 			if (dirty[0] & /*playing*/ 1) {
 				set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 			}
 		},
 		i(local) {
+			if (current) return;
 			transition_in(if_block0);
 			transition_in(if_block1);
+			transition_in(if_block2);
+			current = true;
 		},
 		o(local) {
 			transition_out(if_block0);
 			transition_out(if_block1);
+			transition_out(if_block2);
+			current = false;
 		},
 		d(detaching) {
 			if (detaching) detach(t0);
 			if (detaching) detach(div1);
 			if (if_block0) if_block0.d();
 			if (if_block1) if_block1.d();
-			/*div1_binding_1*/ ctx[29](null);
+			if (if_block2) if_block2.d();
+			/*div1_binding_1*/ ctx[31](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2639,7 +2860,7 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	function video_timeupdate_handler() {
 		progress = this.currentTime;
-		$$invalidate(2, progress);
+		(($$invalidate(2, progress), $$invalidate(0, playing)), $$invalidate(1, duration));
 	}
 
 	function video_durationchange_handler() {
@@ -2649,7 +2870,13 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	const click_handler = () => $$invalidate(3, isPaused = !isPaused);
 	const click_handler_1 = () => $$invalidate(3, isPaused = !isPaused);
-	const click_handler_2 = () => $$invalidate(3, isPaused = !isPaused);
+
+	const click_handler_2 = () => $$invalidate(2, progress = (isEpisode(playing) && playing.intro
+	? playing.intro
+	: [0, 0])[1]);
+
+	const click_handler_3 = () => $$invalidate(2, progress = (isEpisode(playing) && playing.outro ? playing.outro : [])[1] || duration);
+	const click_handler_4 = () => $$invalidate(3, isPaused = !isPaused);
 
 	function div1_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
@@ -2658,7 +2885,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		});
 	}
 
-	const click_handler_3 = () => {
+	const click_handler_5 = () => {
 		if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
 	};
 
@@ -2678,6 +2905,15 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	$$self.$$set = $$props => {
 		if ('playing' in $$props) $$invalidate(0, playing = $$props.playing);
+	};
+
+	$$self.$$.update = () => {
+		if ($$self.$$.dirty[0] & /*playing, progress, duration*/ 7) {
+			// this is probably horrible for performance. Too bad!
+			if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
+				if (playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1] && settings.userSet.autoskipintro) $$invalidate(2, progress = playing.intro[1]); else if (playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) $$invalidate(2, progress = playing.outro[1] || duration);
+			}
+		}
 	};
 
 	return [
@@ -2708,8 +2944,10 @@ function instance$5($$self, $$props, $$invalidate) {
 		click_handler,
 		click_handler_1,
 		click_handler_2,
-		div1_binding,
 		click_handler_3,
+		click_handler_4,
+		div1_binding,
+		click_handler_5,
 		div1_binding_1,
 		mouseleave_handler,
 		fullscreenchange_handler
