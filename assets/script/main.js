@@ -2164,17 +2164,22 @@ function create_if_block_1$2(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, true);
-				div1_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, true);
+					div1_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, false);
-			div1_transition.run(0);
+			if (local) {
+				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 200 }, false);
+				div1_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
@@ -2326,17 +2331,22 @@ function create_if_block$5(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, true);
-				div3_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, true);
+					div3_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, false);
-			div3_transition.run(0);
+			if (local) {
+				if (!div3_transition) div3_transition = create_bidirectional_transition(div3, fade, { duration: 200 }, false);
+				div3_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
@@ -2361,7 +2371,6 @@ function create_fragment$5(ctx) {
 	let video_animationframe;
 	let t2;
 	let t3;
-	let current;
 	let mounted;
 	let dispose;
 
@@ -2409,7 +2418,6 @@ function create_fragment$5(ctx) {
 			append(div1, t3);
 			if (if_block1) if_block1.m(div1, null);
 			/*div1_binding_1*/ ctx[27](div1);
-			current = true;
 
 			if (!mounted) {
 				dispose = [
@@ -2434,11 +2442,11 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (!current || dirty & /*playing, $cfg*/ 4097 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "")) {
+			if (dirty & /*playing, $cfg*/ 4097 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "")) {
 				attr(video, "poster", video_poster_value);
 			}
 
-			if (!current || dirty & /*$cfg, playing*/ 4097 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) {
+			if (dirty & /*$cfg, playing*/ 4097 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) {
 				attr(video, "src", video_src_value);
 			}
 
@@ -2505,15 +2513,12 @@ function create_fragment$5(ctx) {
 			}
 		},
 		i(local) {
-			if (current) return;
 			transition_in(if_block0);
 			transition_in(if_block1);
-			current = true;
 		},
 		o(local) {
 			transition_out(if_block0);
 			transition_out(if_block1);
-			current = false;
 		},
 		d(detaching) {
 			if (detaching) detach(div1);
