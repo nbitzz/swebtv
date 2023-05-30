@@ -2248,10 +2248,10 @@ function create_if_block$5(ctx) {
 				dispose = [
 					listen(button0, "click", /*click_handler_1*/ ctx[19]),
 					listen(div1, "mousedown", /*mousedown_handler*/ ctx[21]),
-					listen(div1, "mousemove", /*seekUpdate*/ ctx[12]),
-					listen(div1, "mouseup", /*mouseup_handler*/ ctx[22]),
-					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[23]),
-					listen(button1, "click", /*click_handler_2*/ ctx[24])
+					listen(button1, "click", /*click_handler_2*/ ctx[22]),
+					listen(div3, "mousemove", /*seekUpdate*/ ctx[12]),
+					listen(div3, "mouseup", /*mouseup_handler*/ ctx[23]),
+					listen(div3, "mouseleave", /*mouseleave_handler*/ ctx[24])
 				];
 
 				mounted = true;
@@ -2315,7 +2315,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (83:12) {#if videoReadyState < 2}
+// (85:12) {#if videoReadyState < 2}
 function create_if_block_1$2(ctx) {
 	let p;
 
@@ -2549,9 +2549,9 @@ function instance$5($$self, $$props, $$invalidate) {
 		seekUpdate(e);
 	};
 
+	const click_handler_2 = () => vplayer.requestFullscreen();
 	const mouseup_handler = () => $$invalidate(7, draggingSeekBar = false);
 	const mouseleave_handler = () => $$invalidate(7, draggingSeekBar = false);
-	const click_handler_2 = () => vplayer.requestFullscreen();
 
 	function div1_binding_1($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
@@ -2589,9 +2589,9 @@ function instance$5($$self, $$props, $$invalidate) {
 		click_handler_1,
 		div1_binding,
 		mousedown_handler,
+		click_handler_2,
 		mouseup_handler,
 		mouseleave_handler,
-		click_handler_2,
 		div1_binding_1,
 		mouseleave_handler_1
 	];
