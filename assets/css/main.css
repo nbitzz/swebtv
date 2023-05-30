@@ -452,8 +452,8 @@
 
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > select,
-.videoView > .container select,
-.videoView > .container button {
+.videoView > .container > .btm_ctn select,
+.videoView > .container > .btm_ctn button {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
@@ -462,7 +462,7 @@
     outline:none
 }
 
-.videoView > .container button {
+.videoView > .container > .btm_ctn button {
     padding: 4px 6px;
     cursor: pointer;
 }
@@ -701,7 +701,7 @@
     width:120px;
     transform: translate(-100%,-100%);
     border-radius:0;
-    background-color: var(--sf0) !important;
+    background-color: var(--sf0);
 }
 
 @keyframes spinner {
