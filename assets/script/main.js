@@ -207,12 +207,6 @@ function select_option(select, value, mounting) {
         select.selectedIndex = -1; // no option should be selected
     }
 }
-function select_options(select, value) {
-    for (let i = 0; i < select.options.length; i += 1) {
-        const option = select.options[i];
-        option.selected = ~value.indexOf(option.__value);
-    }
-}
 function select_value(select) {
     const selected_option = select.querySelector(':checked');
     return selected_option && selected_option.__value;
@@ -1919,7 +1913,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (15:8) {#each Object.keys(target.formats[selectedFormat]) as qual}
+// (16:8) {#each Object.keys(target.formats[selectedFormat]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[7] + "";
@@ -1955,10 +1949,12 @@ function create_fragment$6(ctx) {
 	let div;
 	let select0;
 	let t0;
-	let select1;
-	let t1;
-	let button;
+	let span;
 	let t2;
+	let select1;
+	let t3;
+	let button;
+	let t4;
 	let mounted;
 	let dispose;
 	let each_value_1 = Object.keys(/*target*/ ctx[0].formats);
@@ -1973,13 +1969,6 @@ function create_fragment$6(ctx) {
 
 	for (let i = 0; i < each_value.length; i += 1) {
 		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
-	}
-
-	let select1_levels = [!/*selectedFormat*/ ctx[1] ? ["disabled"] : []];
-	let select_data = {};
-
-	for (let i = 0; i < select1_levels.length; i += 1) {
-		select_data = assign(select_data, select1_levels[i]);
 	}
 
 	let button_levels = [
@@ -2004,17 +1993,22 @@ function create_fragment$6(ctx) {
 			}
 
 			t0 = space();
+			span = element("span");
+			span.textContent = "/";
+			t2 = space();
 			select1 = element("select");
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				each_blocks[i].c();
 			}
 
-			t1 = space();
+			t3 = space();
 			button = element("button");
-			t2 = text("Download");
+			t4 = text("Download");
+			attr(select0, "class", "fPicker");
 			if (/*selectedFormat*/ ctx[1] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[4].call(select0));
-			set_attributes(select1, select_data);
+			attr(span, "class", "qPicker");
+			attr(select1, "class", "qPicker");
 			if (/*quality*/ ctx[2] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[5].call(select1));
 			set_attributes(button, button_data);
 			attr(div, "class", "downloadPicker");
@@ -2031,6 +2025,8 @@ function create_fragment$6(ctx) {
 
 			select_option(select0, /*selectedFormat*/ ctx[1], true);
 			append(div, t0);
+			append(div, span);
+			append(div, t2);
 			append(div, select1);
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -2039,12 +2035,10 @@ function create_fragment$6(ctx) {
 				}
 			}
 
-			'value' in select_data && (select_data.multiple ? select_options : select_option)(select1, select_data.value);
-			if (select1.autofocus) select1.focus();
 			select_option(select1, /*quality*/ ctx[2], true);
-			append(div, t1);
+			append(div, t3);
 			append(div, button);
-			append(button, t2);
+			append(button, t4);
 			if (button.autofocus) button.focus();
 
 			if (!mounted) {
@@ -2107,12 +2101,6 @@ function create_fragment$6(ctx) {
 
 				each_blocks.length = each_value.length;
 			}
-
-			set_attributes(select1, select_data = get_spread_update(select1_levels, [
-				dirty & /*selectedFormat*/ 2 && (!/*selectedFormat*/ ctx[1] ? ["disabled"] : [])
-			]));
-
-			if (dirty & /*selectedFormat*/ 2 && 'value' in select_data) (select_data.multiple ? select_options : select_option)(select1, select_data.value);
 
 			if (dirty & /*quality, Object, target, selectedFormat*/ 7) {
 				select_option(select1, /*quality*/ ctx[2]);

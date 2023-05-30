@@ -521,6 +521,18 @@
     flex-basis:100%;
 }
 
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > select,
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > span {
+    padding: 0px;
+    font-family: var(--monospace);
+    background-color: var(--IV_bse);
+    color: var(--txt);
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
+    color: var(--st0)
+}
+
 /* VideoPlayer */
 
 .videoPlayer:fullscreen > .vbking {
