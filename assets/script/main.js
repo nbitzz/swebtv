@@ -2200,7 +2200,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (122:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (123:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_1$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2289,7 +2289,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (123:8) {#if playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1]}
+// (124:8) {#if playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1]}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2338,7 +2338,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (134:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (135:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_2$2(ctx) {
 	let button;
 	let button_transition;
@@ -2387,7 +2387,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (145:4) {#if showControls}
+// (146:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2910,6 +2910,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	$$self.$$.update = () => {
 		if ($$self.$$.dirty[0] & /*playing, progress, duration*/ 7) {
 			// this is probably horrible for performance. Too bad!
+			// if anyone knows how to make this better pls lmk
 			if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
 				if (playing.intro && progress >= playing.intro[0] && progress <= playing.intro[1] && settings.userSet.autoskipintro) $$invalidate(2, progress = playing.intro[1]); else if (playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) $$invalidate(2, progress = playing.outro[1] || duration);
 			}
