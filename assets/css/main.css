@@ -587,17 +587,16 @@
 .videoPlayer > .controls > progress {
     flex-basis:100%;
     appearance: none;
-    background-color: var(--sf2);
+    background-color: var(--sf2) !important;
 }
 
 .videoPlayer > .controls > progress::-webkit-progress-bar {
-    background-color: var(--sf2);
-    border-radius: 8px;
+    background-color: var(--sf2) !important;
 }
 
 .videoPlayer > .controls > progress::-moz-progress-bar,
 .videoPlayer > .controls > progress::-webkit-progress-value {
-    background-color: var(--txt);
+    background-color: var(--txt) !important;
 }
 
 body {
