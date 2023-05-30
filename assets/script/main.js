@@ -2650,7 +2650,7 @@ function instance$5($$self, $$props, $$invalidate) {
 				e.preventDefault();
 				break;
 			case "ArrowRight":
-				$$invalidate(2, progress = duration * Math.min(Math.max(progress + 5, 0), 1));
+				$$invalidate(2, progress = Math.min(Math.max(progress + 5, 0), duration));
 				break;
 			case "ArrowLeft":
 				$$invalidate(2, progress = Math.min(Math.max(progress - 5, 0), duration));
