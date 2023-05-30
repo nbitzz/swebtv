@@ -593,7 +593,11 @@
 }
 
 .videoPlayer > .controls > .progress {
-    background-color: var(--txt)
+    background-color: var(--txt);
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
 }
 
 body {
