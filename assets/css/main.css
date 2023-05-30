@@ -618,7 +618,7 @@
     font-size:14px;
 }
 
-.videoPlayer > .controls > .timeDenotation > span {
+.videoPlayer > .controls > .timeDenotation > p > span {
     color: var(--st0);
     font-family: var(--monospace);
 }
