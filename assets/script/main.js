@@ -2574,7 +2574,9 @@ function instance$5($$self, $$props, $$invalidate) {
 		});
 	}
 
-	const click_handler_2 = () => vplayer.requestFullscreen();
+	const click_handler_2 = () => {
+		if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
+	};
 
 	function div1_binding_1($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
