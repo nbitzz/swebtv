@@ -2204,7 +2204,7 @@ function create_if_block_1$2(ctx) {
 			current = true;
 
 			if (!mounted) {
-				dispose = listen(div1, "click", /*click_handler_1*/ ctx[24]);
+				dispose = listen(div1, "click", /*click_handler_1*/ ctx[25]);
 				mounted = true;
 			}
 		},
@@ -2239,7 +2239,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (85:4) {#if showControls}
+// (102:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2324,7 +2324,7 @@ function create_if_block$5(ctx) {
 			append(div3, t0);
 			append(div3, div1);
 			append(div1, div0);
-			/*div1_binding*/ ctx[26](div1);
+			/*div1_binding*/ ctx[27](div1);
 			append(div3, t1);
 			append(div3, div2);
 			append(div2, p);
@@ -2342,9 +2342,9 @@ function create_if_block$5(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(button0, "click", /*click_handler_2*/ ctx[25]),
+					listen(button0, "click", /*click_handler_2*/ ctx[26]),
 					listen(div1, "mousedown", /*startSeeking*/ ctx[17]),
-					listen(button1, "click", /*click_handler_3*/ ctx[27]),
+					listen(button1, "click", /*click_handler_3*/ ctx[28]),
 					listen(div3, "mousemove", /*seekUpdate*/ ctx[15]),
 					listen(div3, "mouseup", /*stopSeeking*/ ctx[18]),
 					listen(div3, "mouseleave", /*stopSeeking*/ ctx[18])
@@ -2401,7 +2401,7 @@ function create_if_block$5(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div3);
-			/*div1_binding*/ ctx[26](null);
+			/*div1_binding*/ ctx[27](null);
 			if (detaching && div3_transition) div3_transition.end();
 			mounted = false;
 			run_all(dispose);
@@ -2432,7 +2432,7 @@ function create_fragment$5(ctx) {
 			video_updating = true;
 		}
 
-		/*video_timeupdate_handler*/ ctx[21].call(video);
+		/*video_timeupdate_handler*/ ctx[22].call(video);
 	}
 
 	let if_block0 = /*videoReadyState*/ ctx[6] < 2 && create_if_block_1$2(ctx);
@@ -2452,8 +2452,8 @@ function create_fragment$5(ctx) {
 			attr(div0, "class", "vbking");
 			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].thumbnail || "");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[12].host + /*playing*/ ctx[0].formats[/*format*/ ctx[13]][/*quality*/ ctx[14]])) attr(video, "src", video_src_value);
-			if (/*videoReadyState*/ ctx[6] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19].call(video));
-			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[22].call(video));
+			if (/*videoReadyState*/ ctx[6] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20].call(video));
+			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[23].call(video));
 			set_style(video, "cursor", /*showControls*/ ctx[8] ? "default" : "none");
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
@@ -2467,25 +2467,26 @@ function create_fragment$5(ctx) {
 			if (if_block0) if_block0.m(div1, null);
 			append(div1, t3);
 			if (if_block1) if_block1.m(div1, null);
-			/*div1_binding_1*/ ctx[28](div1);
+			/*div1_binding_1*/ ctx[29](div1);
 
 			if (!mounted) {
 				dispose = [
-					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[19]),
-					listen(video, "play", /*video_play_pause_handler*/ ctx[20]),
-					listen(video, "pause", /*video_play_pause_handler*/ ctx[20]),
+					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
+					listen(video, "play", /*video_play_pause_handler*/ ctx[21]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[21]),
 					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[22]),
-					listen(video, "click", /*click_handler*/ ctx[23]),
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[23]),
+					listen(video, "click", /*click_handler*/ ctx[24]),
 					listen(div1, "mousemove", /*handleMouseActivity*/ ctx[16]),
-					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[29]),
-					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[30])
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[30]),
+					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[31]),
+					listen(div1, "keypress", /*handleKeypress*/ ctx[19])
 				];
 
 				mounted = true;
@@ -2576,7 +2577,7 @@ function create_fragment$5(ctx) {
 			if (detaching) detach(div1);
 			if (if_block0) if_block0.d();
 			if (if_block1) if_block1.d();
-			/*div1_binding_1*/ ctx[28](null);
+			/*div1_binding_1*/ ctx[29](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2634,6 +2635,23 @@ function instance$5($$self, $$props, $$invalidate) {
 		$$invalidate(7, draggingSeekBar = false);
 		$$invalidate(2, progress = time_tmp);
 		$$invalidate(3, isPaused = old_state);
+	}
+
+	function handleKeypress(e) {
+		switch (e.code) {
+			case "Space":
+				$$invalidate(3, isPaused = !isPaused);
+				break;
+			case "ArrowRight":
+				$$invalidate(2, progress = duration * Math.min(Math.max(progress + 5, 0), 1));
+				break;
+			case "ArrowLeft":
+				$$invalidate(2, progress = duration * Math.min(Math.max(progress - 5, 0), 1));
+				break;
+			case "KeyF":
+				vplayer.requestFullscreen();
+				break;
+		}
 	}
 
 	function video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler() {
@@ -2709,6 +2727,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		handleMouseActivity,
 		startSeeking,
 		stopSeeking,
+		handleKeypress,
 		video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler,
 		video_play_pause_handler,
 		video_timeupdate_handler,
