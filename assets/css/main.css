@@ -620,6 +620,7 @@
 
 .videoPlayer > .controls > .timeDenotation > span {
     color: var(--st0);
+    font-family: var(--monospace);
 }
 
 .videoPlayer > .controls > .seekbar:hover {
