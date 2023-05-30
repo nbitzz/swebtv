@@ -521,6 +521,24 @@
     flex-basis:100%;
 }
 
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > select,
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > span {
+    padding: 0px;
+    font-family: var(--monospace);
+    background-color: var(--IV_bse);
+    color: var(--txt);
+    font-size:14px;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > select {
+    appearance:none;
+    border-radius:0px !important;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
+    color: var(--st0)
+}
+
 /* VideoPlayer */
 
 .videoPlayer:fullscreen > .vbking {
@@ -647,7 +665,8 @@
 .videoPlayer > .loadingOverlay > .loadingSpinner {
     height:75px;
     width:10px;
-    border-radius: 8px;
+    /* lazy */
+    border-radius: 1000px;
     background-color: var(--s-top);
 
     animation-name: spinner;

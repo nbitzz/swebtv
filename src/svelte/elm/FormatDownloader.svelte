@@ -10,12 +10,13 @@
 
 <div class="downloadPicker">
 
-    <select bind:value={selectedFormat}>
+    <select bind:value={selectedFormat} class="fPicker">
         {#each Object.keys(target.formats) as fmt}
             <option>{fmt}</option>
         {/each}
     </select>
-    <select bind:value={quality} {...(!selectedFormat ? ["disabled"] : [])}>
+    <span class="qPicker"> / </span>
+    <select bind:value={quality} class="qPicker">
         {#each Object.keys(target.formats[selectedFormat]) as qual}
             <option>{qual}</option>
         {/each}

@@ -60,7 +60,27 @@
         isPaused=old_state;
     }
 
+    function handleKeypress(e: KeyboardEvent) {
+        switch(e.code) {
+            case "Space":
+                isPaused = !isPaused
+                e.preventDefault();
+                break
+            case "ArrowRight":
+                progress = Math.min(Math.max(progress+5,0),duration)
+                break;
+            case "ArrowLeft":
+                progress = Math.min(Math.max(progress-5,0),duration)
+                break;
+            case "KeyF":
+            if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen()
+                break;
+        }
+    }
+
 </script>
+
+<svelte:document on:keypress={handleKeypress} />
 
 <div class="videoPlayer" 
     bind:this={vplayer} 
