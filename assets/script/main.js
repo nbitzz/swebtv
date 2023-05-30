@@ -2328,7 +2328,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (106:12) {#if videoReadyState < 2}
+// (108:12) {#if videoReadyState < 2}
 function create_if_block_1$2(ctx) {
 	let p;
 
@@ -2537,7 +2537,8 @@ function instance$5($$self, $$props, $$invalidate) {
 		seekUpdate(e);
 	}
 
-	function stopSeeking(e) {
+	function stopSeeking() {
+		if (!draggingSeekBar) return;
 		$$invalidate(7, draggingSeekBar = false);
 		$$invalidate(2, progress = time_tmp);
 		$$invalidate(3, isPaused = old_state);
