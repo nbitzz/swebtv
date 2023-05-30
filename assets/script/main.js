@@ -2241,7 +2241,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (103:4) {#if showControls}
+// (107:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2647,15 +2647,16 @@ function instance$5($$self, $$props, $$invalidate) {
 		switch (e.code) {
 			case "Space":
 				$$invalidate(3, isPaused = !isPaused);
+				e.preventDefault();
 				break;
 			case "ArrowRight":
 				$$invalidate(2, progress = duration * Math.min(Math.max(progress + 5, 0), 1));
 				break;
 			case "ArrowLeft":
-				$$invalidate(2, progress = duration * Math.min(Math.max(progress - 5, 0), 1));
+				$$invalidate(2, progress = Math.min(Math.max(progress - 5, 0), duration));
 				break;
 			case "KeyF":
-				vplayer.requestFullscreen();
+				if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
 				break;
 		}
 	}
