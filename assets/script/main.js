@@ -2224,7 +2224,7 @@ function create_fragment$5(ctx) {
 			t5 = text(t5_value);
 			t6 = space();
 			span = element("span");
-			t7 = text("/ $");
+			t7 = text("/ ");
 			t8 = text(t8_value);
 			t9 = space();
 			button1 = element("button");
