@@ -588,6 +588,7 @@
     flex-basis:100%;
     appearance: none;
     background-color: var(--sf2) !important;
+    color: var(--txt) !important;
 }
 
 .videoPlayer > .controls > progress::-webkit-progress-bar {
@@ -596,7 +597,7 @@
 
 .videoPlayer > .controls > progress::-moz-progress-bar,
 .videoPlayer > .controls > progress::-webkit-progress-value {
-    background-color: var(--txt);
+    background-color: var(--txt) !important;
 }
 
 body {
