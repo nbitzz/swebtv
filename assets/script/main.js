@@ -2516,7 +2516,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		if (!duration || !draggingSeekBar) return;
 		let rect = seekbar.getBoundingClientRect();
 		let ler = (e.clientX - rect.left) / rect.width;
-		$$invalidate(10, time_tmp = duration * ler);
+		$$invalidate(10, time_tmp = duration * Math.min(Math.max(ler, 0), 1));
 	}
 
 	function handleMouseActivity() {
