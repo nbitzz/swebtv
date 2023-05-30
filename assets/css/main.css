@@ -691,6 +691,10 @@
     transform: translate(-50%,-50%);
 }
 
+.videoPlayer button {
+    border:none;
+}
+
 .videoPlayer > .skipButton {
     position:absolute;
     left:100%;
