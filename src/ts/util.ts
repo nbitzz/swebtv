@@ -21,3 +21,17 @@ export function colonTime(time:number) { // ex. 5:30:02
             ) // add zeros
             .join(":"); // join
 }
+
+let seps = [ "h", "m", "s" ].reverse()
+
+export function letteredTime(time:number) { // ex. 15m32s
+    let PVs = getPVs(time);
+    return ([
+            // only include hours if specified
+            ...(PVs.hours ? [PVs.hours] : []), PVs.minutes, PVs.seconds
+        ]).reverse()
+            .map((v,x) => `${v}${seps[x]}`
+            ) // add seps
+            .reverse()
+            .join(""); // join
+}
