@@ -666,7 +666,7 @@
     height:75px;
     width:10px;
     /* lazy */
-    border-radius: 100px;
+    border-radius: 1000px;
     background-color: var(--s-top);
 
     animation-name: spinner;
