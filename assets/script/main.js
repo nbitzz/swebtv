@@ -2135,7 +2135,7 @@ function create_if_block$5(ctx) {
 }
 
 function create_fragment$5(ctx) {
-	let div2;
+	let div4;
 	let div0;
 	let t1;
 	let video;
@@ -2145,13 +2145,13 @@ function create_fragment$5(ctx) {
 	let video_updating = false;
 	let video_animationframe;
 	let t2;
-	let div1;
+	let div3;
 	let button0;
 	let img0;
 	let img0_src_value;
 	let t3;
-	let progress_1;
-	let progress_1_value_value;
+	let div2;
+	let div1;
 	let t4;
 	let button1;
 	let img1;
@@ -2177,17 +2177,18 @@ function create_fragment$5(ctx) {
 
 	return {
 		c() {
-			div2 = element("div");
+			div4 = element("div");
 			div0 = element("div");
 			div0.innerHTML = `<h1>webtv</h1>`;
 			t1 = space();
 			video = element("video");
 			t2 = space();
-			div1 = element("div");
+			div3 = element("div");
 			button0 = element("button");
 			img0 = element("img");
 			t3 = space();
-			progress_1 = element("progress");
+			div2 = element("div");
+			div1 = element("div");
 			t4 = space();
 			button1 = element("button");
 			img1 = element("img");
@@ -2207,36 +2208,39 @@ function create_fragment$5(ctx) {
 			: "/assets/icons/player/pause.svg")) attr(img0, "src", img0_src_value);
 
 			attr(img0, "alt", "Play/pause content");
-			progress_1.value = progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1;
+			attr(div1, "class", "progress");
+			set_style(div1, "width", `${(/*progress*/ ctx[2] / /*duration*/ ctx[1] || -1) * 100}%`);
+			attr(div2, "class", "seekbar");
 
 			if (!src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
 			? "/assets/icons/player/fullscreenExit.svg"
 			: "/assets/icons/player/fullscreen.svg")) attr(img1, "src", img1_src_value);
 
 			attr(img1, "alt", "Toggle fullscreen");
-			attr(div1, "class", "controls");
-			attr(div2, "class", "videoPlayer");
-			set_style(div2, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
+			attr(div3, "class", "controls");
+			attr(div4, "class", "videoPlayer");
+			set_style(div4, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 		},
 		m(target, anchor) {
-			insert(target, div2, anchor);
-			append(div2, div0);
-			append(div2, t1);
-			append(div2, video);
-			append(div2, t2);
-			append(div2, div1);
-			append(div1, button0);
+			insert(target, div4, anchor);
+			append(div4, div0);
+			append(div4, t1);
+			append(div4, video);
+			append(div4, t2);
+			append(div4, div3);
+			append(div3, button0);
 			append(button0, img0);
-			append(div1, t3);
-			append(div1, progress_1);
-			append(div1, t4);
-			append(div1, button1);
+			append(div3, t3);
+			append(div3, div2);
+			append(div2, div1);
+			append(div3, t4);
+			append(div3, button1);
 			append(button1, img1);
-			append(div1, t5);
-			append(div1, button2);
-			append(div1, t6);
-			if (if_block) if_block.m(div1, null);
-			/*div2_binding*/ ctx[15](div2);
+			append(div3, t5);
+			append(div3, button2);
+			append(div3, t6);
+			if (if_block) if_block.m(div3, null);
+			/*div4_binding*/ ctx[15](div4);
 
 			if (!mounted) {
 				dispose = [
@@ -2283,8 +2287,8 @@ function create_fragment$5(ctx) {
 				attr(img0, "src", img0_src_value);
 			}
 
-			if (dirty & /*progress, duration*/ 6 && progress_1_value_value !== (progress_1_value_value = /*progress*/ ctx[2] / /*duration*/ ctx[1] || -1)) {
-				progress_1.value = progress_1_value_value;
+			if (dirty & /*progress, duration*/ 6) {
+				set_style(div1, "width", `${(/*progress*/ ctx[2] / /*duration*/ ctx[1] || -1) * 100}%`);
 			}
 
 			if (dirty & /*vplayer*/ 16 && !src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
@@ -2297,7 +2301,7 @@ function create_fragment$5(ctx) {
 				if (if_block) ; else {
 					if_block = create_if_block$5();
 					if_block.c();
-					if_block.m(div1, null);
+					if_block.m(div3, null);
 				}
 			} else if (if_block) {
 				if_block.d(1);
@@ -2305,15 +2309,15 @@ function create_fragment$5(ctx) {
 			}
 
 			if (dirty & /*playing*/ 1) {
-				set_style(div2, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
+				set_style(div4, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 			}
 		},
 		i: noop,
 		o: noop,
 		d(detaching) {
-			if (detaching) detach(div2);
+			if (detaching) detach(div4);
 			if (if_block) if_block.d();
-			/*div2_binding*/ ctx[15](null);
+			/*div4_binding*/ ctx[15](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -2355,7 +2359,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	const click_handler = () => $$invalidate(3, isPaused = !isPaused);
 	const click_handler_1 = () => vplayer.requestFullscreen();
 
-	function div2_binding($$value) {
+	function div4_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			vplayer = $$value;
 			$$invalidate(4, vplayer);
@@ -2382,7 +2386,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		video_durationchange_handler,
 		click_handler,
 		click_handler_1,
-		div2_binding
+		div4_binding
 	];
 }
 

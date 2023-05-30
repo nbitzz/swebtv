@@ -584,20 +584,16 @@
     transform:translate(-50%,-50%);
 }
 
-.videoPlayer > .controls > progress {
+.videoPlayer > .controls > .seekbar {
     flex-basis:100%;
     appearance: none;
-    background-color: var(--sf2) !important;
-    color: var(--txt) !important;
+    background-color: var(--sf2);
+    height:5px;
+    position:relative;
 }
 
-.videoPlayer > .controls > progress::-webkit-progress-bar {
-    background-color: var(--sf2) !important;
-}
-
-.videoPlayer > .controls > progress::-moz-progress-bar,
-.videoPlayer > .controls > progress::-webkit-progress-value {
-    background-color: var(--txt) !important;
+.videoPlayer > .controls > .progress {
+    background-color: var(--txt)
 }
 
 body {
