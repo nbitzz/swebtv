@@ -2505,7 +2505,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	let lastMouseInteraction = 0;
 
 	function seekUpdate(e) {
-		if (!duration) return;
+		if (!duration || !draggingSeekBar) return;
 		let rect = seekbar.getBoundingClientRect();
 		let ler = e.clientX - rect.left / (rect.right - rect.left);
 		$$invalidate(2, progress = duration * ler);
