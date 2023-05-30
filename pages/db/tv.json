@@ -28,14 +28,12 @@
                             "main": {
                                 "best": "ons1e1mb.webm",
                                 "good": "ons1e1mg.webm",
-                                "okay": "ons1e1mo.webm",
-                                "h264compat": "ons1e1mh.webm"
+                                "okay": "ons1e1mo.webm"
                             },
                             "hardsub": {
                                 "best": "ons1e1hb.webm",
                                 "good": "ons1e1hg.webm",
-                                "okay": "ons1e1ho.webm",
-                                "h264compat": "ons1e1hh.webm"
+                                "okay": "ons1e1ho.webm"
                             }
                         },
 
@@ -76,6 +74,17 @@
         "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
         "icon": "luckystaric.png",
         "poster": "lsposter",
+
+        "seasons": []
+    },
+    {
+        "name": "My Clueless First Friend",
+        "id":"mcff",
+
+        "description": "Fifth grader Nishimura isn’t too proud of her “Grim Reaper” moniker given by her bullying schoolmates, but the new kid loves it. The once lonely target of everyone’s ridicule starts to get out of her shell with the help of her new cheerful yet airheaded friend, Takada. Together they’ll embark on a sweet and touching journey of summer fun and friendship!",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "akane_ico",
+        "poster": "mcff_poster.jpeg",
 
         "seasons": []
     }

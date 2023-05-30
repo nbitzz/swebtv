@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { fade } from "svelte/transition";
+    import { colonTime } from "../../ts/util";
     import { getBestFormat, type Video, cfg, type videoFormat, settings, type videoQuality } from "../../ts/webtv";
 
     export let playing: Video
@@ -9,25 +11,127 @@
 
     let duration: number
     let progress: number
-    let isPaused: boolean
+    let isPaused: boolean = true
 
     let vplayer: HTMLDivElement
+    let seekbar: HTMLDivElement
+    let videoReadyState: number
+
+    let draggingSeekBar = false
+
+    let lastMouseInteraction = 0
+
+    let showControls = false
+    let sCTimeout: number
+    
+    let time_tmp: number
+    let old_state = true;
+
+    let inFullscreen = false;
+
+    function seekUpdate(e:MouseEvent) {
+        if (!duration || !draggingSeekBar) return
+        let rect = seekbar.getBoundingClientRect()
+        let ler = (e.clientX-rect.left)/rect.width
+
+        time_tmp = duration*Math.min(Math.max(ler,0),1)
+    }
+
+    function handleMouseActivity() {
+        showControls = true;
+        if (sCTimeout) clearTimeout(sCTimeout);
+        sCTimeout = setTimeout(() => {
+            showControls = false;
+        },2500)
+    }
+
+    function startSeeking(e:MouseEvent) {
+        draggingSeekBar=true;
+        old_state=isPaused;
+        isPaused=true;
+        time_tmp=progress;
+        seekUpdate(e)
+    }
+
+    function stopSeeking() {
+        if (!draggingSeekBar) return;
+        draggingSeekBar=false;
+        progress=time_tmp;
+        isPaused=old_state;
+    }
 
 </script>
 
-<div class="videoPlayer" bind:this={vplayer}>
+<div class="videoPlayer" 
+    bind:this={vplayer} 
+    on:mousemove={handleMouseActivity} 
+    on:mouseleave={()=>{showControls=false;if (sCTimeout) clearTimeout(sCTimeout)}} 
+    style:aspect-ratio={playing.aspectRatio || "16 / 9"}
+    on:fullscreenchange={() => inFullscreen = document.fullscreenElement == vplayer}
+>
+
+    <div class="vbking">
+        <h1>webtv</h1>
+    </div>
 
     <!-- sorta unneeded due to the hardsub track -->
     <!-- no i am not writing an ASS implementation -->
     <!-- fuck you -->
     <!-- svelte-ignore a11y-media-has-caption -->
-    <video src={$cfg.host + playing.formats[format][quality]} bind:paused={isPaused} bind:currentTime={progress} bind:duration={duration}/>
+    <video 
+        poster={playing.thumbnail && $cfg.host + playing.thumbnail || ""} 
+        src={$cfg.host + playing.formats[format][quality]} bind:readyState={videoReadyState} 
+        bind:paused={isPaused} bind:currentTime={progress} 
+        bind:duration={duration}
 
-    <div class="controls">
-        <button on:click={() => isPaused = !isPaused }>Play/Pause</button>
-        <progress value={(progress / duration) || -1}/>
-        <button on:click={() => vplayer.requestFullscreen()}>Fullscreen</button>
-        <button>Quality & Format</button>
-    </div>
+        on:click={() => isPaused = !isPaused}
+        style:cursor={(showControls) ? "default" : "none"}
+    />
+
+    {#if videoReadyState < 2}
+        <div class="loadingOverlay" transition:fade={{duration:200}}>
+            <div class="loadingSpinner" />
+        </div>
+    {/if}
+
+    {#if showControls}
+        <!-- so that you don't need to stay within a 10 px range -->
+        <div class="controls" 
+            transition:fade={{duration: 200}}
+            on:mousemove={seekUpdate} 
+            on:mouseup={stopSeeking}
+            on:mouseleave={stopSeeking}
+        >
+
+            <button on:click={() => isPaused = !isPaused }>
+                <img src={ 
+                    isPaused
+                    ? "/assets/icons/player/play.svg" 
+                    : "/assets/icons/player/pause.svg" 
+                } alt="Play/pause content" />
+            </button>
+
+            <div class="seekbar" 
+                bind:this={seekbar} 
+                on:mousedown={startSeeking} 
+            >
+                <div class="progress" style:width={`${((draggingSeekBar ? time_tmp : (progress || 0))/duration || -1) * 100}%`} />
+            </div>
+
+            <div class="timeDenotation">
+                <p>{colonTime(draggingSeekBar ? time_tmp : (progress || 0))} <span>/ {colonTime(duration || playing.length)}</span></p>
+            </div>
+
+            <button on:click={() => {if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen() }}>
+                <img src={ 
+                    inFullscreen
+                    ? "/assets/icons/player/fullscreenExit.svg" 
+                    : "/assets/icons/player/fullscreen.svg" 
+                } alt="Toggle fullscreen" />
+            </button>
+
+            <button><img src="/assets/icons/player/options.svg" alt="More options" /></button>
+        </div>
+    {/if}
 
 </div> 

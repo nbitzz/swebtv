@@ -4,8 +4,7 @@ export namespace lists {
     export const quality = [
         "best", // 1080p
         "good", // 720p
-        "okay", // 480p
-        "h264compat" // exactly what it says on the tin
+        "okay"  // 480p
     ] as const
 
     export const formats = [
@@ -37,6 +36,8 @@ export interface Video extends Common {
             [ x in videoQuality ] : string
         }
     }
+    
+    aspectRatio?: string        // ex. 16 / 9
 
 }
 
@@ -110,7 +111,7 @@ export namespace settings {
         developerMode: false
         
     }
-    export let userSet: JSONEncodedSettings = JSON.parse(JSON.stringify(defaults))
+    export let userSet: JSONEncodedSettings = {...defaults}
     
     export interface JSONEncodedSettings {
         videoQuality: typeof lists.quality[number],
@@ -150,12 +151,12 @@ export namespace settings {
                 {
                     label: "Preferred quality",
                     targetSetting: "videoQuality",
-                    input: [ "best", "good", "okay", "h264compat" ]
+                    input: [ ...lists.quality ]
                 },
                 {
                     label: "Preferred format",
                     targetSetting: "videoFormat",
-                    input: [ "main", "hardsub", "dub" ]
+                    input: [ ...lists.formats ]
                 }
             ]
         },
