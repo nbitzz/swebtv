@@ -590,6 +590,7 @@
     background-color: var(--sf2);
     height:5px;
     position:relative;
+    transition-duration:100ms;
 }
 
 .videoPlayer > .controls > .seekbar > .progress {
@@ -598,6 +599,11 @@
     left:0px;
     top:0px;
     height:100%;
+}
+
+.videoPlayer > .controls > .seekbar:hover {
+    height:10px;
+    transition-duration:100ms;
 }
 
 body {
