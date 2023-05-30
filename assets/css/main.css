@@ -596,7 +596,7 @@
 
 .videoPlayer > .controls > progress::-moz-progress-bar,
 .videoPlayer > .controls > progress::-webkit-progress-value {
-    background-color: var(--txt) !important;
+    background-color: var(--txt);
 }
 
 body {
