@@ -647,8 +647,8 @@
 .videoPlayer > .loadingOverlay > .loadingSpinner {
     height:100px;
     width:10px;
-    border-radius: 100%;
-    color: var(--s-top);
+    border-radius: 8px;
+    background-color: var(--s-top);
 
     animation-name: spinner;
     animation-duration: 1s;
@@ -664,15 +664,15 @@
 @keyframes spinner {
     0% {
         transform: rotate(0deg);
-        color:var(--s-top);
+        background-color:var(--s-top);
     }
     50% {
         transform: rotate(180deg);
-        color:var(--s-body);
+        background-color:var(--s-body);
     }
     100% {
         transform: rotate(360deg);
-        color:var(--s-top);
+        background-color:var(--s-top);
     }
 }
 
