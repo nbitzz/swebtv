@@ -709,6 +709,14 @@
     background-color: var(--sf0);
 }
 
+.videoPlayer > .controls > .fqpicker {
+    position:absolute;
+    left:100%;
+    top:calc( 100% - 40px );
+    background-color: var(--sf1);
+    transform:translate(-100%,-100%);
+}
+
 @keyframes spinner {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
