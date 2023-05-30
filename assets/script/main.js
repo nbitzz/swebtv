@@ -2609,11 +2609,10 @@ function instance$5($$self, $$props, $$invalidate) {
 	}
 
 	function handleKeypress(e) {
-		handleActivity();
-
 		switch (e.code) {
 			case "Space":
 				$$invalidate(3, isPaused = !isPaused);
+				handleActivity();
 				e.preventDefault();
 				break;
 			case "ArrowRight":
