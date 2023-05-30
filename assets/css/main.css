@@ -635,6 +635,47 @@
     transition-duration:100ms;
 }
 
+.videoPlayer > .loadingOverlay {
+    background-color: #AAAAAA66;
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%;
+}
+
+.videoPlayer > .loadingOverlay > .loadingSpinner {
+    height:100px;
+    width:10px;
+    border-radius: 100%;
+    color: var(--s-top);
+
+    animation-name: spinner;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+        color:var(--s-top);
+    }
+    50% {
+        transform: rotate(180deg);
+        color:var(--s-body);
+    }
+    100% {
+        transform: rotate(360deg);
+        color:var(--s-top);
+    }
+}
+
 body {
     background-color: var(--bse)
 }
