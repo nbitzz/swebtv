@@ -524,8 +524,39 @@
 /* VideoPlayer */
 
 .videoPlayer > video {
+    position:absolute;
+    left:0px;
+    top:0px;
     width:100%;
     max-height:100%;
+}
+
+.videoPlayer > .vbking {
+    width: 100%;
+    background-color: var(--sf0);
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+
+.videoPlayer > .vbking > h1 {
+    width: 100%;
+    font-family: var(--sans-serif);
+    color: var(--st1);
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin: 0 0 0 0;
+    transform:translate(-50%,-50%)
+}
+
+.videoPlayer > .controls {
+    width:100%;
+    height: 40px;
+    position:absolute;
+    left:0px;
+    top:100%;
+    transform:translateY(-100%);
 }
 
 body {
