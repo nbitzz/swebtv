@@ -530,6 +530,10 @@
     font-size:14px;
 }
 
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > select {
+    appearance:none;
+}
+
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
     color: var(--st0)
 }
