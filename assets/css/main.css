@@ -665,7 +665,8 @@
 .videoPlayer > .loadingOverlay > .loadingSpinner {
     height:75px;
     width:10px;
-    border-radius: 100%;
+    /* lazy */
+    border-radius: 100px;
     background-color: var(--s-top);
 
     animation-name: spinner;
