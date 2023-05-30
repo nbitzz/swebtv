@@ -2117,8 +2117,8 @@ class FormatDownloader extends SvelteComponent {
 
 function getPVs(time) {
     return {
-        hours: Math.floor(time / 360),
-        minutes: Math.round(time % 360 / 60),
+        hours: Math.floor(time / 3600),
+        minutes: Math.floor(time % 3600 / 60),
         seconds: Math.round(time % 60)
     };
 }
