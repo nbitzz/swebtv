@@ -532,6 +532,7 @@
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > select {
     appearance:none;
+    border-radius:0px;
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
