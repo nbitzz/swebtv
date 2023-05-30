@@ -663,15 +663,15 @@
 
 @keyframes spinner {
     0% {
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(-50%, -50%);
         background-color:var(--s-top);
     }
     50% {
-        transform: rotate(180deg);
+        transform: rotate(180deg) translate(-50%, -50%);
         background-color:var(--s-body);
     }
     100% {
-        transform: rotate(360deg);
+        transform: rotate(360deg) translate(-50%, -50%);
         background-color:var(--s-top);
     }
 }
