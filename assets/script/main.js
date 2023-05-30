@@ -2124,7 +2124,10 @@ function getPVs(time) {
 }
 function colonTime(time) {
     let PVs = getPVs(time);
-    return ([PVs.hours, PVs.minutes, PVs.seconds])
+    return ([
+        // only include hours if specified
+        ...(PVs.hours ? [PVs.hours] : []), PVs.minutes, PVs.seconds
+    ])
         .map((v, x) => v < 10 && x > 0
         ? `0${v}`
         : v.toString())
