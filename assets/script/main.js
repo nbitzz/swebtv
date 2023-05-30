@@ -87,8 +87,6 @@ const globals = (typeof window !== 'undefined'
     : typeof globalThis !== 'undefined'
         ? globalThis
         : global);
-// Needs to be written like this to pass the tree-shake-test
-'WeakMap' in globals ? new WeakMap() : undefined;
 function append(target, node) {
     target.appendChild(node);
 }
@@ -732,39 +730,6 @@ function get_spread_update(levels, updates) {
     }
     return update;
 }
-
-const _boolean_attributes = [
-    'allowfullscreen',
-    'allowpaymentrequest',
-    'async',
-    'autofocus',
-    'autoplay',
-    'checked',
-    'controls',
-    'default',
-    'defer',
-    'disabled',
-    'formnovalidate',
-    'hidden',
-    'inert',
-    'ismap',
-    'loop',
-    'multiple',
-    'muted',
-    'nomodule',
-    'novalidate',
-    'open',
-    'playsinline',
-    'readonly',
-    'required',
-    'reversed',
-    'selected'
-];
-/**
- * List of HTML boolean attributes (e.g. `<input disabled>`).
- * Source: https://html.spec.whatwg.org/multipage/indices.html
- */
-new Set([..._boolean_attributes]);
 
 function bind(component, name, callback) {
     const index = component.$$.props[name];
@@ -2811,7 +2776,7 @@ function create_fragment$4(ctx) {
 
 	let t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 	? `Runtime ${letteredTime(/*targetVideo*/ ctx[0].length)}`
-	: `${letteredTime(/*targetVideo*/ ctx[0].length)}; S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
+	: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
 
 	let t4;
 	let t5;
@@ -2932,7 +2897,7 @@ function create_fragment$4(ctx) {
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t4_value !== (t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 			? `Runtime ${letteredTime(/*targetVideo*/ ctx[0].length)}`
-			: `${letteredTime(/*targetVideo*/ ctx[0].length)}; S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
+			: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t8_value !== (t8_value = (/*targetVideo*/ ctx[0].description || "No description specified") + "")) set_data(t8, t8_value);
 			if (dirty & /*targetVideo*/ 1) show_if = isMovie(/*targetVideo*/ ctx[0]) && /*targetVideo*/ ctx[0].notes;

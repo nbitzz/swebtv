@@ -533,6 +533,11 @@
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > select {
     appearance:none;
     border-radius:0px !important;
+    cursor:pointer;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > select:hover {
+    border-bottom: 1px solid var(--txt);
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
