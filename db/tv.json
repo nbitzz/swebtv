@@ -76,5 +76,16 @@
         "poster": "lsposter",
 
         "seasons": []
+    },
+    {
+        "name": "My Clueless First Friend",
+        "id":"mcff",
+
+        "description": "Fifth grader Nishimura isn’t too proud of her “Grim Reaper” moniker given by her bullying schoolmates, but the new kid loves it. The once lonely target of everyone’s ridicule starts to get out of her shell with the help of her new cheerful yet airheaded friend, Takada. Together they’ll embark on a sweet and touching journey of summer fun and friendship!",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "akane_ico",
+        "poster": "mcff_poster.jpeg",
+
+        "seasons": []
     }
 ]
