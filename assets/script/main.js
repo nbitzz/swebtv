@@ -2157,7 +2157,11 @@ function create_if_block$5(ctx) {
 	let t1;
 	let div2;
 	let p;
-	let t2_value = colonTime(/*progress*/ ctx[2] || 0) + "";
+
+	let t2_value = colonTime(/*draggingSeekBar*/ ctx[7]
+	? /*time_tmp*/ ctx[10]
+	: /*progress*/ ctx[2] || 0) + "";
+
 	let t2;
 	let t3;
 	let span;
@@ -2208,7 +2212,11 @@ function create_if_block$5(ctx) {
 
 			attr(img0, "alt", "Play/pause content");
 			attr(div0, "class", "progress");
-			set_style(div0, "width", `${(/*progress*/ ctx[2] / /*duration*/ ctx[1] || -1) * 100}%`);
+
+			set_style(div0, "width", `${((/*draggingSeekBar*/ ctx[7]
+			? /*time_tmp*/ ctx[10]
+			: /*progress*/ ctx[2] || 0) / /*duration*/ ctx[1] || -1) * 100}%`);
+
 			attr(div1, "class", "seekbar");
 			attr(div2, "class", "timeDenotation");
 
@@ -2226,7 +2234,7 @@ function create_if_block$5(ctx) {
 			append(div3, t0);
 			append(div3, div1);
 			append(div1, div0);
-			/*div1_binding*/ ctx[21](div1);
+			/*div1_binding*/ ctx[24](div1);
 			append(div3, t1);
 			append(div3, div2);
 			append(div2, p);
@@ -2246,12 +2254,12 @@ function create_if_block$5(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(button0, "click", /*click_handler_1*/ ctx[20]),
-					listen(div1, "mousedown", /*mousedown_handler*/ ctx[22]),
-					listen(button1, "click", /*click_handler_2*/ ctx[23]),
-					listen(div3, "mousemove", /*seekUpdate*/ ctx[13]),
-					listen(div3, "mouseup", /*mouseup_handler*/ ctx[24]),
-					listen(div3, "mouseleave", /*mouseleave_handler*/ ctx[25])
+					listen(button0, "click", /*click_handler_1*/ ctx[23]),
+					listen(div1, "mousedown", /*startSeeking*/ ctx[16]),
+					listen(button1, "click", /*click_handler_2*/ ctx[25]),
+					listen(div3, "mousemove", /*seekUpdate*/ ctx[14]),
+					listen(div3, "mouseup", /*stopSeeking*/ ctx[17]),
+					listen(div3, "mouseleave", /*stopSeeking*/ ctx[17])
 				];
 
 				mounted = true;
@@ -2264,11 +2272,16 @@ function create_if_block$5(ctx) {
 				attr(img0, "src", img0_src_value);
 			}
 
-			if (dirty & /*progress, duration*/ 6) {
-				set_style(div0, "width", `${(/*progress*/ ctx[2] / /*duration*/ ctx[1] || -1) * 100}%`);
+			if (dirty & /*draggingSeekBar, time_tmp, progress, duration*/ 1158) {
+				set_style(div0, "width", `${((/*draggingSeekBar*/ ctx[7]
+				? /*time_tmp*/ ctx[10]
+				: /*progress*/ ctx[2] || 0) / /*duration*/ ctx[1] || -1) * 100}%`);
 			}
 
-			if ((!current || dirty & /*progress*/ 4) && t2_value !== (t2_value = colonTime(/*progress*/ ctx[2] || 0) + "")) set_data(t2, t2_value);
+			if ((!current || dirty & /*draggingSeekBar, time_tmp, progress*/ 1156) && t2_value !== (t2_value = colonTime(/*draggingSeekBar*/ ctx[7]
+			? /*time_tmp*/ ctx[10]
+			: /*progress*/ ctx[2] || 0) + "")) set_data(t2, t2_value);
+
 			if ((!current || dirty & /*duration, playing*/ 3) && t5_value !== (t5_value = colonTime(/*duration*/ ctx[1] || /*playing*/ ctx[0].length) + "")) set_data(t5, t5_value);
 
 			if (!current || dirty & /*vplayer*/ 16 && !src_url_equal(img1.src, img1_src_value = document.fullscreenElement == /*vplayer*/ ctx[4]
@@ -2306,7 +2319,7 @@ function create_if_block$5(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div3);
-			/*div1_binding*/ ctx[21](null);
+			/*div1_binding*/ ctx[24](null);
 			if (if_block) if_block.d();
 			if (detaching && div3_transition) div3_transition.end();
 			mounted = false;
@@ -2315,7 +2328,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (92:12) {#if videoReadyState < 2}
+// (106:12) {#if videoReadyState < 2}
 function create_if_block_1$2(ctx) {
 	let p;
 
@@ -2356,7 +2369,7 @@ function create_fragment$5(ctx) {
 			video_updating = true;
 		}
 
-		/*video_timeupdate_handler*/ ctx[17].call(video);
+		/*video_timeupdate_handler*/ ctx[20].call(video);
 	}
 
 	let if_block = /*showControls*/ ctx[8] && create_if_block$5(ctx);
@@ -2371,10 +2384,10 @@ function create_fragment$5(ctx) {
 			t2 = space();
 			if (if_block) if_block.c();
 			attr(div0, "class", "vbking");
-			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[10].host + /*playing*/ ctx[0].thumbnail || "");
-			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[10].host + /*playing*/ ctx[0].formats[/*format*/ ctx[11]][/*quality*/ ctx[12]])) attr(video, "src", video_src_value);
-			if (/*videoReadyState*/ ctx[6] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15].call(video));
-			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[18].call(video));
+			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].thumbnail || "");
+			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].formats[/*format*/ ctx[12]][/*quality*/ ctx[13]])) attr(video, "src", video_src_value);
+			if (/*videoReadyState*/ ctx[6] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18].call(video));
+			if (/*duration*/ ctx[1] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[21].call(video));
 			set_style(video, "cursor", /*showControls*/ ctx[8] ? "default" : "none");
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
@@ -2391,31 +2404,31 @@ function create_fragment$5(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[15]),
-					listen(video, "play", /*video_play_pause_handler*/ ctx[16]),
-					listen(video, "pause", /*video_play_pause_handler*/ ctx[16]),
+					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[18]),
+					listen(video, "play", /*video_play_pause_handler*/ ctx[19]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[19]),
 					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[18]),
-					listen(video, "click", /*click_handler*/ ctx[19]),
-					listen(div1, "mousemove", /*handleMouseActivity*/ ctx[14]),
-					listen(div1, "mouseleave", /*mouseleave_handler_1*/ ctx[27])
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[21]),
+					listen(video, "click", /*click_handler*/ ctx[22]),
+					listen(div1, "mousemove", /*handleMouseActivity*/ ctx[15]),
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[27])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, [dirty]) {
-			if (!current || dirty & /*playing, $cfg*/ 1025 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[10].host + /*playing*/ ctx[0].thumbnail || "")) {
+			if (!current || dirty & /*playing, $cfg*/ 2049 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].thumbnail || "")) {
 				attr(video, "poster", video_poster_value);
 			}
 
-			if (!current || dirty & /*$cfg, playing*/ 1025 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[10].host + /*playing*/ ctx[0].formats[/*format*/ ctx[11]][/*quality*/ ctx[12]])) {
+			if (!current || dirty & /*$cfg, playing*/ 2049 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[11].host + /*playing*/ ctx[0].formats[/*format*/ ctx[12]][/*quality*/ ctx[13]])) {
 				attr(video, "src", video_src_value);
 			}
 
@@ -2481,7 +2494,7 @@ function create_fragment$5(ctx) {
 
 function instance$5($$self, $$props, $$invalidate) {
 	let $cfg;
-	component_subscribe($$self, cfg, $$value => $$invalidate(10, $cfg = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(11, $cfg = $$value));
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
@@ -2494,12 +2507,14 @@ function instance$5($$self, $$props, $$invalidate) {
 	let draggingSeekBar = false;
 	let showControls = false;
 	let sCTimeout;
+	let time_tmp;
+	let old_state = true;
 
 	function seekUpdate(e) {
 		if (!duration || !draggingSeekBar) return;
 		let rect = seekbar.getBoundingClientRect();
 		let ler = (e.clientX - rect.left) / rect.width;
-		$$invalidate(2, progress = duration * ler);
+		$$invalidate(10, time_tmp = duration * ler);
 	}
 
 	function handleMouseActivity() {
@@ -2512,6 +2527,20 @@ function instance$5($$self, $$props, $$invalidate) {
 			},
 			2500
 		));
+	}
+
+	function startSeeking(e) {
+		$$invalidate(7, draggingSeekBar = true);
+		old_state = isPaused;
+		$$invalidate(3, isPaused = true);
+		$$invalidate(10, time_tmp = progress);
+		seekUpdate(e);
+	}
+
+	function stopSeeking(e) {
+		$$invalidate(7, draggingSeekBar = false);
+		$$invalidate(2, progress = time_tmp);
+		$$invalidate(3, isPaused = old_state);
 	}
 
 	function video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler() {
@@ -2544,14 +2573,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		});
 	}
 
-	const mousedown_handler = e => {
-		$$invalidate(7, draggingSeekBar = true);
-		seekUpdate(e);
-	};
-
 	const click_handler_2 = () => vplayer.requestFullscreen();
-	const mouseup_handler = () => $$invalidate(7, draggingSeekBar = false);
-	const mouseleave_handler = () => $$invalidate(7, draggingSeekBar = false);
 
 	function div1_binding_1($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
@@ -2560,7 +2582,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		});
 	}
 
-	const mouseleave_handler_1 = () => {
+	const mouseleave_handler = () => {
 		$$invalidate(8, showControls = false);
 		if (sCTimeout) clearTimeout(sCTimeout);
 	};
@@ -2580,11 +2602,14 @@ function instance$5($$self, $$props, $$invalidate) {
 		draggingSeekBar,
 		showControls,
 		sCTimeout,
+		time_tmp,
 		$cfg,
 		format,
 		quality,
 		seekUpdate,
 		handleMouseActivity,
+		startSeeking,
+		stopSeeking,
 		video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler,
 		video_play_pause_handler,
 		video_timeupdate_handler,
@@ -2592,12 +2617,9 @@ function instance$5($$self, $$props, $$invalidate) {
 		click_handler,
 		click_handler_1,
 		div1_binding,
-		mousedown_handler,
 		click_handler_2,
-		mouseup_handler,
-		mouseleave_handler,
 		div1_binding_1,
-		mouseleave_handler_1
+		mouseleave_handler
 	];
 }
 
