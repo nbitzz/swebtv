@@ -524,9 +524,6 @@
 /* VideoPlayer */
 
 .videoPlayer > video {
-    position:absolute;
-    left:0px;
-    top:0px;
     width:100%;
     max-height:100%;
 }
@@ -559,6 +556,7 @@
     left:0px;
     top:100%;
     transform:translateY(-100%);
+    display:flex;
 }
 
 body {
