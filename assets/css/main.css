@@ -527,6 +527,7 @@
     font-family: var(--monospace);
     background-color: var(--IV_bse);
     color: var(--txt);
+    font-size:14px;
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
@@ -659,7 +660,7 @@
 .videoPlayer > .loadingOverlay > .loadingSpinner {
     height:75px;
     width:10px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: var(--s-top);
 
     animation-name: spinner;
