@@ -2328,7 +2328,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (108:12) {#if videoReadyState < 2}
+// (110:12) {#if videoReadyState < 2}
 function create_if_block_1$2(ctx) {
 	let p;
 
