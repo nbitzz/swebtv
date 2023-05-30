@@ -2206,7 +2206,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (107:4) {#if showControls}
+// (108:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2441,7 +2441,7 @@ function create_fragment$5(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(document_1, "keypress", /*handleKeypress*/ ctx[19]),
+					listen(document_1, "keydown", /*handleKeypress*/ ctx[19]),
 					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
 					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
 					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[20]),
@@ -2454,7 +2454,7 @@ function create_fragment$5(ctx) {
 					listen(video, "timeupdate", video_timeupdate_handler),
 					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[23]),
 					listen(video, "click", /*click_handler*/ ctx[24]),
-					listen(div1, "mousemove", /*handleMouseActivity*/ ctx[16]),
+					listen(div1, "mousemove", /*handleActivity*/ ctx[16]),
 					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[30]),
 					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[31])
 				];
@@ -2581,7 +2581,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		$$invalidate(10, time_tmp = duration * Math.min(Math.max(ler, 0), 1));
 	}
 
-	function handleMouseActivity() {
+	function handleActivity() {
 		$$invalidate(8, showControls = true);
 		if (sCTimeout) clearTimeout(sCTimeout);
 
@@ -2609,6 +2609,8 @@ function instance$5($$self, $$props, $$invalidate) {
 	}
 
 	function handleKeypress(e) {
+		handleActivity();
+
 		switch (e.code) {
 			case "Space":
 				$$invalidate(3, isPaused = !isPaused);
@@ -2696,7 +2698,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		format,
 		quality,
 		seekUpdate,
-		handleMouseActivity,
+		handleActivity,
 		startSeeking,
 		stopSeeking,
 		handleKeypress,
