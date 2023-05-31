@@ -545,7 +545,7 @@
     cursor:pointer;
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > select:hover {
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > select:hover {
     border-bottom: 1px solid var(--txt);
 }
 
@@ -560,6 +560,7 @@
     min-width: 16px;
     flex-basis:16px;
     position:relative;
+    border:none;
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .img {
