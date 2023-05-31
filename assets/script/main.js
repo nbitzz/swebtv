@@ -3122,7 +3122,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	}
 
 	function loadHandler() {
-		if (fqp.prg_hold) {
+		if (fqp.prg_hold && videoReadyState > 0) {
 			$$invalidate(5, progress = fqp.prg_hold);
 			delete fqp.prg_hold;
 		}
