@@ -2159,7 +2159,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (134:4) {#if videoReadyState < 2}
+// (140:4) {#if videoReadyState < 2}
 function create_if_block_5(ctx) {
 	let div1;
 	let div1_transition;
@@ -2213,7 +2213,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (143:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (149:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_2$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2302,7 +2302,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (144:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (150:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2351,7 +2351,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (155:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (161:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2400,7 +2400,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (166:4) {#if showControls}
+// (172:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2604,7 +2604,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (204:12) {#if showFQPicker}
+// (210:12) {#if showFQPicker}
 function create_if_block_1$2(ctx) {
 	let div;
 	let select0;
@@ -2762,7 +2762,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (207:24) {#each Object.keys(playing.formats) as fmt}
+// (213:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[44] + "";
@@ -2794,7 +2794,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (212:24) {#each Object.keys(playing.formats[format]) as qual}
+// (218:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[41] + "";
@@ -3052,7 +3052,14 @@ function instance$5($$self, $$props, $$invalidate) {
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
-	let fqp = { format, quality, prg_hold: undefined };
+
+	let fqp = {
+		format,
+		quality,
+		prg_hold: undefined,
+		WFL: undefined
+	};
+
 	let duration;
 	let progress;
 	let isPaused = true;
@@ -3100,6 +3107,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		$$invalidate(11, draggingSeekBar = false);
 		$$invalidate(5, progress = time_tmp);
 		$$invalidate(6, isPaused = old_state);
+		old_state = false;
 	}
 
 	function handleKeypress(e) {
@@ -3125,7 +3133,12 @@ function instance$5($$self, $$props, $$invalidate) {
 		if (fqp.prg_hold && videoReadyState > 0) {
 			$$invalidate(5, progress = fqp.prg_hold);
 			delete fqp.prg_hold;
+			$$invalidate(3, fqp.WFL = true, fqp);
+		}
+
+		if (fqp.WFL && videoReadyState > 1) {
 			$$invalidate(6, isPaused = old_state);
+			delete fqp.WFL;
 		}
 	}
 
