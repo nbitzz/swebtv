@@ -543,6 +543,7 @@
     appearance:none;
     border-radius:0px !important;
     cursor:pointer;
+    border: 1px solid #00000000;
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > select:hover {
@@ -555,18 +556,18 @@
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > button {
     background: var(--bse);
-    width:16px;
-    height:16px;
-    min-width: 16px;
-    flex-basis:16px;
+    width:18px;
+    height:18px;
+    min-width: 18px;
+    flex-basis:18px;
     position:relative;
     border:none;
     cursor:pointer;
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > button > img {
-    width:16px;
-    height:16px;
+    width:18px;
+    height:18px;
     position:absolute;
     top:50%;
     transform:translateY(-50%);
