@@ -2159,7 +2159,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (141:4) {#if videoReadyState < 2}
+// (142:4) {#if videoReadyState < 2}
 function create_if_block_5(ctx) {
 	let div1;
 	let div1_transition;
@@ -2213,7 +2213,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (150:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (151:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_2$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2302,7 +2302,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (151:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (152:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2351,7 +2351,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (162:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (163:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2400,7 +2400,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (173:4) {#if showControls}
+// (174:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2604,7 +2604,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (211:12) {#if showFQPicker}
+// (212:12) {#if showFQPicker}
 function create_if_block_1$2(ctx) {
 	let div;
 	let select0;
@@ -2762,7 +2762,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (214:24) {#each Object.keys(playing.formats) as fmt}
+// (215:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[44] + "";
@@ -2794,7 +2794,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (219:24) {#each Object.keys(playing.formats[format]) as qual}
+// (220:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[41] + "";
@@ -3233,6 +3233,7 @@ function instance$5($$self, $$props, $$invalidate) {
 				$$invalidate(3, fqp.prg_hold = progress, fqp);
 				old_state = isPaused;
 				$$invalidate(6, isPaused = true);
+				$$invalidate(14, time_tmp = progress);
 				$$invalidate(2, quality = fqp.quality);
 				$$invalidate(1, format = fqp.format);
 			}
