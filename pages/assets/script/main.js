@@ -1881,7 +1881,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (10:8) {#each Object.keys(target.formats) as fmt}
+// (11:12) {#each Object.keys(target.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[10] + "";
@@ -1913,7 +1913,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (16:8) {#each Object.keys(target.formats[selectedFormat]) as qual}
+// (17:12) {#each Object.keys(target.formats[selectedFormat]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[7] + "";
@@ -1946,7 +1946,8 @@ function create_each_block$1(ctx) {
 }
 
 function create_fragment$6(ctx) {
-	let div;
+	let div1;
+	let div0;
 	let select0;
 	let t0;
 	let span;
@@ -1954,7 +1955,8 @@ function create_fragment$6(ctx) {
 	let select1;
 	let t3;
 	let button;
-	let t4;
+	let img;
+	let img_src_value;
 	let mounted;
 	let dispose;
 	let each_value_1 = Object.keys(/*target*/ ctx[0].formats);
@@ -1985,7 +1987,8 @@ function create_fragment$6(ctx) {
 
 	return {
 		c() {
-			div = element("div");
+			div1 = element("div");
+			div0 = element("div");
 			select0 = element("select");
 
 			for (let i = 0; i < each_blocks_1.length; i += 1) {
@@ -2004,18 +2007,22 @@ function create_fragment$6(ctx) {
 
 			t3 = space();
 			button = element("button");
-			t4 = text("Download");
+			img = element("img");
 			attr(select0, "class", "fPicker");
 			if (/*selectedFormat*/ ctx[1] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[4].call(select0));
 			attr(span, "class", "qPicker");
 			attr(select1, "class", "qPicker");
 			if (/*quality*/ ctx[2] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[5].call(select1));
+			attr(div0, "class", "left");
+			if (!src_url_equal(img.src, img_src_value = "/assets/icons/download.svg")) attr(img, "src", img_src_value);
+			attr(img, "alt", "Download");
 			set_attributes(button, button_data);
-			attr(div, "class", "downloadPicker");
+			attr(div1, "class", "downloadPicker");
 		},
 		m(target, anchor) {
-			insert(target, div, anchor);
-			append(div, select0);
+			insert(target, div1, anchor);
+			append(div1, div0);
+			append(div0, select0);
 
 			for (let i = 0; i < each_blocks_1.length; i += 1) {
 				if (each_blocks_1[i]) {
@@ -2024,10 +2031,10 @@ function create_fragment$6(ctx) {
 			}
 
 			select_option(select0, /*selectedFormat*/ ctx[1], true);
-			append(div, t0);
-			append(div, span);
-			append(div, t2);
-			append(div, select1);
+			append(div0, t0);
+			append(div0, span);
+			append(div0, t2);
+			append(div0, select1);
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				if (each_blocks[i]) {
@@ -2036,9 +2043,9 @@ function create_fragment$6(ctx) {
 			}
 
 			select_option(select1, /*quality*/ ctx[2], true);
-			append(div, t3);
-			append(div, button);
-			append(button, t4);
+			append(div1, t3);
+			append(div1, button);
+			append(button, img);
 			if (button.autofocus) button.focus();
 
 			if (!mounted) {
@@ -2115,7 +2122,7 @@ function create_fragment$6(ctx) {
 		i: noop,
 		o: noop,
 		d(detaching) {
-			if (detaching) detach(div);
+			if (detaching) detach(div1);
 			destroy_each(each_blocks_1, detaching);
 			destroy_each(each_blocks, detaching);
 			mounted = false;
