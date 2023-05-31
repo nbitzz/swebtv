@@ -2149,13 +2149,13 @@ const { document: document_1 } = globals;
 
 function get_each_context$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[38] = list[i];
+	child_ctx[39] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[41] = list[i];
+	child_ctx[42] = list[i];
 	return child_ctx;
 }
 
@@ -2512,6 +2512,7 @@ function create_if_block$5(ctx) {
 					listen(button0, "click", /*click_handler_4*/ ctx[29]),
 					listen(div1, "mousedown", /*startSeeking*/ ctx[18]),
 					listen(button1, "click", /*click_handler_5*/ ctx[31]),
+					listen(button2, "click", /*click_handler_6*/ ctx[32]),
 					listen(div3, "mousemove", /*seekUpdate*/ ctx[16]),
 					listen(div3, "mouseup", /*stopSeeking*/ ctx[19]),
 					listen(div3, "mouseleave", /*stopSeeking*/ ctx[19])
@@ -2644,9 +2645,9 @@ function create_if_block_1$2(ctx) {
 			}
 
 			attr(select0, "class", "fPicker");
-			if (/*format*/ ctx[3] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[32].call(select0));
+			if (/*format*/ ctx[3] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[33].call(select0));
 			attr(select1, "class", "qPicker");
-			if (/*quality*/ ctx[4] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[33].call(select1));
+			if (/*quality*/ ctx[4] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[34].call(select1));
 			attr(div, "class", "fqpicker");
 		},
 		m(target, anchor) {
@@ -2674,8 +2675,8 @@ function create_if_block_1$2(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(select0, "change", /*select0_change_handler*/ ctx[32]),
-					listen(select1, "change", /*select1_change_handler*/ ctx[33])
+					listen(select0, "change", /*select0_change_handler*/ ctx[33]),
+					listen(select1, "change", /*select1_change_handler*/ ctx[34])
 				];
 
 				mounted = true;
@@ -2766,7 +2767,7 @@ function create_if_block_1$2(ctx) {
 // (189:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
-	let t_value = /*fmt*/ ctx[41] + "";
+	let t_value = /*fmt*/ ctx[42] + "";
 	let t;
 	let option_value_value;
 
@@ -2774,7 +2775,7 @@ function create_each_block_1$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*fmt*/ ctx[41];
+			option.__value = option_value_value = /*fmt*/ ctx[42];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -2782,9 +2783,9 @@ function create_each_block_1$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[41] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[42] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[41])) {
+			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[42])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -2798,7 +2799,7 @@ function create_each_block_1$1(ctx) {
 // (194:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
-	let t_value = /*qual*/ ctx[38] + "";
+	let t_value = /*qual*/ ctx[39] + "";
 	let t;
 	let option_value_value;
 
@@ -2806,7 +2807,7 @@ function create_each_block$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*qual*/ ctx[38];
+			option.__value = option_value_value = /*qual*/ ctx[39];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -2814,9 +2815,9 @@ function create_each_block$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing, format*/ 9 && t_value !== (t_value = /*qual*/ ctx[38] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing, format*/ 9 && t_value !== (t_value = /*qual*/ ctx[39] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing, format*/ 9 && option_value_value !== (option_value_value = /*qual*/ ctx[38])) {
+			if (dirty[0] & /*playing, format*/ 9 && option_value_value !== (option_value_value = /*qual*/ ctx[39])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -2896,7 +2897,7 @@ function create_fragment$5(ctx) {
 			if (if_block1) if_block1.m(div1, null);
 			append(div1, t5);
 			if (if_block2) if_block2.m(div1, null);
-			/*div1_binding_1*/ ctx[34](div1);
+			/*div1_binding_1*/ ctx[35](div1);
 			current = true;
 
 			if (!mounted) {
@@ -2915,8 +2916,8 @@ function create_fragment$5(ctx) {
 					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[24]),
 					listen(video, "click", /*click_handler*/ ctx[25]),
 					listen(div1, "mousemove", /*handleActivity*/ ctx[17]),
-					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[35]),
-					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[36])
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[36]),
+					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[37])
 				];
 
 				mounted = true;
@@ -3039,7 +3040,7 @@ function create_fragment$5(ctx) {
 			if (if_block0) if_block0.d();
 			if (if_block1) if_block1.d();
 			if (if_block2) if_block2.d();
-			/*div1_binding_1*/ ctx[34](null);
+			/*div1_binding_1*/ ctx[35](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -3165,6 +3166,8 @@ function instance$5($$self, $$props, $$invalidate) {
 		if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
 	};
 
+	const click_handler_6 = () => $$invalidate(9, showFQPicker = !showFQPicker);
+
 	function select0_change_handler() {
 		format = select_value(this);
 		$$invalidate(3, format);
@@ -3239,6 +3242,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		click_handler_4,
 		div1_binding,
 		click_handler_5,
+		click_handler_6,
 		select0_change_handler,
 		select1_change_handler,
 		div1_binding_1,
