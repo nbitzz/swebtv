@@ -2159,7 +2159,92 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (138:4) {#if videoReadyState < 2}
+// (127:4) {#key $cfg.host + playing.formats[format][quality]}
+function create_key_block$3(ctx) {
+	let video;
+	let video_poster_value;
+	let video_src_value;
+	let video_is_paused = true;
+	let video_updating = false;
+	let video_animationframe;
+	let mounted;
+	let dispose;
+
+	function video_timeupdate_handler() {
+		cancelAnimationFrame(video_animationframe);
+
+		if (!video.paused) {
+			video_animationframe = raf(video_timeupdate_handler);
+			video_updating = true;
+		}
+
+		/*video_timeupdate_handler*/ ctx[25].call(video);
+	}
+
+	return {
+		c() {
+			video = element("video");
+			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].thumbnail || "");
+			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) attr(video, "src", video_src_value);
+			if (/*videoReadyState*/ ctx[9] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23].call(video));
+			if (/*duration*/ ctx[4] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[26].call(video));
+			set_style(video, "cursor", /*showControls*/ ctx[12] ? "default" : "none");
+		},
+		m(target, anchor) {
+			insert(target, video, anchor);
+
+			if (!mounted) {
+				dispose = [
+					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
+					listen(video, "play", /*video_play_pause_handler*/ ctx[24]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[24]),
+					listen(video, "timeupdate", video_timeupdate_handler),
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[26]),
+					listen(video, "click", /*click_handler*/ ctx[27]),
+					listen(video, "loadeddata", /*loadHandler*/ ctx[22])
+				];
+
+				mounted = true;
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*playing, $cfg*/ 65537 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].thumbnail || "")) {
+				attr(video, "poster", video_poster_value);
+			}
+
+			if (dirty[0] & /*$cfg, playing, format, quality*/ 65543 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
+				attr(video, "src", video_src_value);
+			}
+
+			if (dirty[0] & /*isPaused*/ 64 && video_is_paused !== (video_is_paused = /*isPaused*/ ctx[6])) {
+				video[video_is_paused ? "pause" : "play"]();
+			}
+
+			if (!video_updating && dirty[0] & /*progress*/ 32 && !isNaN(/*progress*/ ctx[5])) {
+				video.currentTime = /*progress*/ ctx[5];
+			}
+
+			video_updating = false;
+
+			if (dirty[0] & /*showControls*/ 4096) {
+				set_style(video, "cursor", /*showControls*/ ctx[12] ? "default" : "none");
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(video);
+			mounted = false;
+			run_all(dispose);
+		}
+	};
+}
+
+// (140:4) {#if videoReadyState < 2}
 function create_if_block_5(ctx) {
 	let div1;
 	let div1_transition;
@@ -2213,7 +2298,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (147:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (149:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_2$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2302,7 +2387,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (148:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (150:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2351,7 +2436,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (159:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (161:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2400,7 +2485,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (170:4) {#if showControls}
+// (172:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2604,7 +2689,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (208:12) {#if showFQPicker}
+// (210:12) {#if showFQPicker}
 function create_if_block_1$2(ctx) {
 	let div;
 	let select0;
@@ -2762,7 +2847,7 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (211:24) {#each Object.keys(playing.formats) as fmt}
+// (213:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[44] + "";
@@ -2794,7 +2879,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (216:24) {#each Object.keys(playing.formats[format]) as qual}
+// (218:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[41] + "";
@@ -2831,12 +2916,7 @@ function create_fragment$5(ctx) {
 	let div1;
 	let div0;
 	let t2;
-	let video;
-	let video_poster_value;
-	let video_src_value;
-	let video_is_paused = true;
-	let video_updating = false;
-	let video_animationframe;
+	let previous_key = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]];
 	let t3;
 	let t4;
 	let show_if = isEpisode(/*playing*/ ctx[0]) && settings.userSet.skipbutton;
@@ -2844,18 +2924,7 @@ function create_fragment$5(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-
-	function video_timeupdate_handler() {
-		cancelAnimationFrame(video_animationframe);
-
-		if (!video.paused) {
-			video_animationframe = raf(video_timeupdate_handler);
-			video_updating = true;
-		}
-
-		/*video_timeupdate_handler*/ ctx[25].call(video);
-	}
-
+	let key_block = create_key_block$3(ctx);
 	let if_block0 = /*videoReadyState*/ ctx[9] < 2 && create_if_block_5(ctx);
 	let if_block1 = show_if && create_if_block_2$2(ctx);
 	let if_block2 = /*showControls*/ ctx[12] && create_if_block$5(ctx);
@@ -2867,7 +2936,7 @@ function create_fragment$5(ctx) {
 			div0 = element("div");
 			div0.innerHTML = `<h1>webtv</h1>`;
 			t2 = space();
-			video = element("video");
+			key_block.c();
 			t3 = space();
 			if (if_block0) if_block0.c();
 			t4 = space();
@@ -2875,11 +2944,6 @@ function create_fragment$5(ctx) {
 			t5 = space();
 			if (if_block2) if_block2.c();
 			attr(div0, "class", "vbking");
-			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].thumbnail || "");
-			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) attr(video, "src", video_src_value);
-			if (/*videoReadyState*/ ctx[9] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23].call(video));
-			if (/*duration*/ ctx[4] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[26].call(video));
-			set_style(video, "cursor", /*showControls*/ ctx[12] ? "default" : "none");
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 		},
@@ -2888,7 +2952,7 @@ function create_fragment$5(ctx) {
 			insert(target, div1, anchor);
 			append(div1, div0);
 			append(div1, t2);
-			append(div1, video);
+			key_block.m(div1, null);
 			append(div1, t3);
 			if (if_block0) if_block0.m(div1, null);
 			append(div1, t4);
@@ -2901,19 +2965,6 @@ function create_fragment$5(ctx) {
 			if (!mounted) {
 				dispose = [
 					listen(document_1, "keydown", /*handleKeypress*/ ctx[21]),
-					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[23]),
-					listen(video, "play", /*video_play_pause_handler*/ ctx[24]),
-					listen(video, "pause", /*video_play_pause_handler*/ ctx[24]),
-					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[26]),
-					listen(video, "click", /*click_handler*/ ctx[27]),
-					listen(video, "loadeddata", /*loadHandler*/ ctx[22]),
 					listen(div1, "mousemove", /*handleActivity*/ ctx[18]),
 					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[38]),
 					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[39])
@@ -2923,26 +2974,13 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (!current || dirty[0] & /*playing, $cfg*/ 65537 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].thumbnail || "")) {
-				attr(video, "poster", video_poster_value);
-			}
-
-			if (!current || dirty[0] & /*$cfg, playing, format, quality*/ 65543 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
-				attr(video, "src", video_src_value);
-			}
-
-			if (dirty[0] & /*isPaused*/ 64 && video_is_paused !== (video_is_paused = /*isPaused*/ ctx[6])) {
-				video[video_is_paused ? "pause" : "play"]();
-			}
-
-			if (!video_updating && dirty[0] & /*progress*/ 32 && !isNaN(/*progress*/ ctx[5])) {
-				video.currentTime = /*progress*/ ctx[5];
-			}
-
-			video_updating = false;
-
-			if (dirty[0] & /*showControls*/ 4096) {
-				set_style(video, "cursor", /*showControls*/ ctx[12] ? "default" : "none");
+			if (dirty[0] & /*$cfg, playing, format, quality*/ 65543 && safe_not_equal(previous_key, previous_key = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
+				key_block.d(1);
+				key_block = create_key_block$3(ctx);
+				key_block.c();
+				key_block.m(div1, t3);
+			} else {
+				key_block.p(ctx, dirty);
 			}
 
 			if (/*videoReadyState*/ ctx[9] < 2) {
@@ -3036,6 +3074,7 @@ function create_fragment$5(ctx) {
 		d(detaching) {
 			if (detaching) detach(t0);
 			if (detaching) detach(div1);
+			key_block.d(detaching);
 			if (if_block0) if_block0.d();
 			if (if_block1) if_block1.d();
 			if (if_block2) if_block2.d();
