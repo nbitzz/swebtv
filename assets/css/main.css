@@ -553,7 +553,7 @@
     color: var(--st0)
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > .button {
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > button {
     background: #00000000;
     width:16px;
     height:16px;
