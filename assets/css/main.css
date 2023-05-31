@@ -574,6 +574,10 @@
     transform:translateY(-50%);
 }
 
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > button > img:hover {
+    opacity: 0.75
+}
+
 /* VideoPlayer */
 
 .videoPlayer:fullscreen > .vbking {
