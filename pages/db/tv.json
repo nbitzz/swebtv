@@ -39,6 +39,31 @@
 
                         "intro": [ 310, 400 ],
                         "outro": [ 1325 ]
+                    },
+                    {
+                        "name": "Mahiro's Time of the Month",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e2",
+
+                        "description": "As Mahiro stumbles through his new life as a girl, he finds himself gradually beginning to get into the swing of things. Realizing this, however, prompts him to try and reclaim some of his masculinity. He tries, in futility, to engage his core and do a sit-up, but ends up with a stomachache instead. Seeing his condition worsen rapidly before her eyes, Mihari has an epiphany. She realizes that his pain may actually have something to do with fact that almost a month has passed since Mahiro turned into a girl...",
+                        "thumbnail": "on_ep2_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e2mb.webm",
+                                "good": "ons1e2mg.webm",
+                                "okay": "ons1e2mo.webm"
+                            },
+                            "hardsub": {
+                                "best": "ons1e2hb.webm",
+                                "good": "ons1e2hg.webm",
+                                "okay": "ons1e2ho.webm"
+                            }
+                        },
+
+                        "intro": [ 44.5, 134.5 ],
+                        "outro": [ 1325 ]
                     }
                 ]
             }

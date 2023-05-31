@@ -452,8 +452,8 @@
 
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > select,
-.videoView > .container select,
-.videoView > .container button {
+.videoView > .container > .btm_ctn select,
+.videoView > .container > .btm_ctn button {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
@@ -462,7 +462,7 @@
     outline:none
 }
 
-.videoView > .container button {
+.videoView > .container > .btm_ctn button {
     padding: 4px 6px;
     cursor: pointer;
 }
@@ -533,10 +533,19 @@
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > select {
     appearance:none;
     border-radius:0px !important;
+    cursor:pointer;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > select:hover {
+    border-bottom: 1px solid var(--txt);
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
     color: var(--st0)
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker:hover {
+    border-bottom: 1px solid var(--st0)
 }
 
 /* VideoPlayer */
@@ -586,7 +595,8 @@
     gap: 5px;
 }
 
-.videoPlayer > .controls > button {
+.videoPlayer > .controls > button,
+.videoPlayer > .skipButton {
     padding: 0px;
     min-height: 40px;
     min-width: 40px;
@@ -595,7 +605,8 @@
     position:relative;
 }
 
-.videoPlayer > .controls > button:hover {
+.videoPlayer > .controls > button:hover,
+.videoPlayer > .skipButton:hover {
     background-color: var(--sf1);
 }
 
@@ -678,6 +689,32 @@
     left:50%;
     top:50%;
     transform: translate(-50%,-50%);
+}
+
+.videoPlayer button {
+    border:none;
+    cursor: pointer;
+}
+
+.videoPlayer > .skipButton {
+    position:absolute;
+    left:100%;
+    top:calc( 100% - 40px );
+    text-align:center;
+    font-size: 16px;
+    color: var(--txt) !important;
+    width:120px;
+    transform: translate(-100%,-100%);
+    border-radius:0;
+    background-color: var(--sf0);
+}
+
+.videoPlayer > .controls > .fqpicker {
+    position:absolute;
+    left:100%;
+    top:calc( 100% - 40px );
+    background-color: var(--sf1);
+    transform:translate(-100%,-100%);
 }
 
 @keyframes spinner {
