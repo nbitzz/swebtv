@@ -452,8 +452,8 @@
 
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > select,
-.videoView > .container > .btm_ctn select,
-.videoView > .container > .btm_ctn button {
+.videoView > .container > .btm_ctn select/*,
+.videoView > .container > .btm_ctn button*/ {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
@@ -462,10 +462,10 @@
     outline:none
 }
 
-.videoView > .container > .btm_ctn button {
+/*.videoView > .container > .btm_ctn button {
     padding: 4px 6px;
     cursor: pointer;
-}
+}*/
 
 /* VideoView */
 
@@ -543,9 +543,10 @@
     appearance:none;
     border-radius:0px !important;
     cursor:pointer;
+    border: 1px solid #00000000;
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > select:hover {
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > select:hover {
     border-bottom: 1px solid var(--txt);
 }
 
@@ -553,21 +554,28 @@
     color: var(--st0)
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > .button {
-    background: #00000000;
-    width:16px;
-    height:16px;
-    min-width: 16px;
-    flex-basis:16px;
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > button {
+    background: var(--bse);
+    width:20px;
+    height:20px;
+    min-width: 20px;
+    flex-basis:20px;
     position:relative;
+    border:none;
+    cursor:pointer;
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > .img {
-    width:16px;
-    height:16px;
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > button > img {
+    width:20px;
+    height:20px;
     position:absolute;
     top:50%;
+    left:0px;
     transform:translateY(-50%);
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > button > img:hover {
+    opacity: 0.75
 }
 
 /* VideoPlayer */
