@@ -452,8 +452,8 @@
 
 
 #screenSettings > .content > .stUI > .settingsList > .settingsItem > select,
-.videoView > .container > .btm_ctn select,
-.videoView > .container > .btm_ctn button {
+.videoView > .container select,
+.videoView > .container button {
     background-color: var(--txt);
     color: var(--bse);
     padding: 3px;
@@ -462,7 +462,7 @@
     outline:none
 }
 
-.videoView > .container > .btm_ctn button {
+.videoView > .container button {
     padding: 4px 6px;
     cursor: pointer;
 }
@@ -521,8 +521,17 @@
     flex-basis:100%;
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > select,
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > span {
+.videoView > .container > .btm_ctn > .opts > .downloadPicker {
+    display:flex;
+    align-items: center;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left {
+    flex-basis:100%;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > select,
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > span {
     padding: 0px;
     font-family: var(--monospace);
     background-color: var(--IV_bse);
@@ -530,22 +539,30 @@
     font-size:14px;
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > select {
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > select {
     appearance:none;
     border-radius:0px !important;
-    cursor:pointer;
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > select:hover {
-    border-bottom: 1px solid var(--txt);
-}
-
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker {
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > .qPicker {
     color: var(--st0)
 }
 
-.videoView > .container > .btm_ctn > .opts > .downloadPicker > .qPicker:hover {
-    border-bottom: 1px solid var(--st0)
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .button {
+    background: #00000000;
+    width:16px;
+    height:16px;
+    min-width: 16px;
+    flex-basis:16px;
+    position:relative;
+}
+
+.videoView > .container > .btm_ctn > .opts > .downloadPicker > .img {
+    width:16px;
+    height:16px;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
 }
 
 /* VideoPlayer */
@@ -595,8 +612,7 @@
     gap: 5px;
 }
 
-.videoPlayer > .controls > button,
-.videoPlayer > .skipButton {
+.videoPlayer > .controls > button {
     padding: 0px;
     min-height: 40px;
     min-width: 40px;
@@ -605,8 +621,7 @@
     position:relative;
 }
 
-.videoPlayer > .controls > button:hover,
-.videoPlayer > .skipButton:hover {
+.videoPlayer > .controls > button:hover {
     background-color: var(--sf1);
 }
 
@@ -689,32 +704,6 @@
     left:50%;
     top:50%;
     transform: translate(-50%,-50%);
-}
-
-.videoPlayer button {
-    border:none;
-    cursor: pointer;
-}
-
-.videoPlayer > .skipButton {
-    position:absolute;
-    left:100%;
-    top:calc( 100% - 40px );
-    text-align:center;
-    font-size: 16px;
-    color: var(--txt) !important;
-    width:120px;
-    transform: translate(-100%,-100%);
-    border-radius:0;
-    background-color: var(--sf0);
-}
-
-.videoPlayer > .controls > .fqpicker {
-    position:absolute;
-    left:100%;
-    top:calc( 100% - 40px );
-    background-color: var(--sf1);
-    transform:translate(-100%,-100%);
 }
 
 @keyframes spinner {
