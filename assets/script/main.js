@@ -3206,6 +3206,7 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	const mouseleave_handler = () => {
 		$$invalidate(12, showControls = false);
+		$$invalidate(10, showFQPicker = false);
 		if (sCTimeout) clearTimeout(sCTimeout);
 	};
 
