@@ -56,7 +56,7 @@
             <img src={$cfg.host + mtdt.icon} alt={targetVideo.name + " icon"} on:load={(e) => {e.currentTarget.setAttribute("data-loaded","")}}/>
             <div class="txt">
                 <h1>{targetVideo.name}</h1>
-                <p>{mtdt.type != "UNKNOWN" && (mtdt.type == "movie" ? `Runtime ${letteredTime(targetVideo.length)}` : `${letteredTime(targetVideo.length)}; S${mtdt.season_number}E${mtdt.episode_number} — ${mtdt.show.name}`)}</p>
+                <p>{mtdt.type != "UNKNOWN" && (mtdt.type == "movie" ? `Runtime ${letteredTime(targetVideo.length)}` : `S${mtdt.season_number}E${mtdt.episode_number} — ${mtdt.show.name}`)}</p>
             </div>
         </div>
 

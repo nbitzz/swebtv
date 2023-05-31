@@ -36,7 +36,7 @@ export interface Video extends Common {
             [ x in videoQuality ] : string
         }
     }
-    
+
     aspectRatio?: string        // ex. 16 / 9
 
 }
@@ -107,7 +107,6 @@ export namespace settings {
         autoskipoutro: false,
 
         skipbutton: true,
-        embeddedSkipButton: false,
         developerMode: false
         
     }
@@ -122,7 +121,6 @@ export namespace settings {
         autoskipoutro: boolean,
 
         developerMode: boolean,
-        embeddedSkipButton: boolean,
         skipbutton: boolean,
 
         syncToken?: string // probably not secure but oh well
@@ -188,11 +186,6 @@ export namespace settings {
                 {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
-                    input: "boolean"
-                },
-                {
-                    label: "Embed skip intro/outro button into controls",
-                    targetSetting: "embeddedSkipButton",
                     input: "boolean"
                 },
                 {
