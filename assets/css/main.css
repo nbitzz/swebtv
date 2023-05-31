@@ -556,20 +556,21 @@
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > button {
     background: var(--bse);
-    width:18px;
-    height:18px;
-    min-width: 18px;
-    flex-basis:18px;
+    width:20px;
+    height:20px;
+    min-width: 20px;
+    flex-basis:20px;
     position:relative;
     border:none;
     cursor:pointer;
 }
 
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > button > img {
-    width:18px;
-    height:18px;
+    width:20px;
+    height:20px;
     position:absolute;
     top:50%;
+    left:0px;
     transform:translateY(-50%);
 }
 
