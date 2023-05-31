@@ -534,7 +534,7 @@
 .videoView > .container > .btm_ctn > .opts > .downloadPicker > .left > span {
     padding: 0px;
     font-family: var(--monospace);
-    background-color: var(--IV_bse);
+    background-color: var(--bse);
     color: var(--txt);
     font-size:14px;
 }
