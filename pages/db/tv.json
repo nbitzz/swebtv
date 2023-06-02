@@ -237,5 +237,102 @@
         "poster": "mcff_poster.jpeg",
 
         "seasons": []
+    },
+    {
+        "name": "webtv testbench",
+        "id":"wtvtb",
+
+        "description": "\"Show\" used for internal testing.",
+        "icon": "testground",
+        "poster": "testground",
+
+        "seasons": [
+            {
+                "name": "Test season",
+                "parent": "wtvtb",
+                "id": "wtvtb.main",
+
+                "episodes": [
+                    {
+                        "name": "S1 ep 1 test",
+                        "parent": "wtvtb.main",
+                        "id": "wtvtb.1.1",
+
+                        "description": "S2E1 test",
+                        "notes": "Notes on episodes",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    },
+                    {
+                        "name": "S1 ep 2 test",
+                        "parent": "wtvtb.main",
+                        "id": "wtvtb.1.2",
+
+                        "description": "S1E2 test",
+                        "notes": "Notes on episodes",
+                        "thumbnail": "testground",
+                        "length": 20,
+
+                        "formats": {
+                            "main": {
+                                "best": "freerobux.mp4",
+                                "good": "freerobux.mp4",
+                                "okay": "freerobux.mp4"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.2",
+
+                "episodes": [
+                    {
+                        "name": "S2 ep 1 test",
+                        "parent": "wtvtb.2",
+                        "id": "wtvtb.2.1",
+
+                        "description": "S2E1 test",
+                        "notes": "Notes on episodes",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    },
+                    {
+                        "name": "S2 ep 2 test",
+                        "parent": "wtvtb.2",
+                        "id": "wtvtb.2.2",
+
+                        "description": "S2E2 test",
+                        "thumbnail": "testground",
+                        "length": 5624,
+
+                        "formats": {
+                            "main": {
+                                "best": "tpib",
+                                "good": "tpib",
+                                "okay": "tpib"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
     }
 ]
