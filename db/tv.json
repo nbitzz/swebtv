@@ -164,6 +164,31 @@
 
                         "intro": [ 36.5, 126.5 ],
                         "outro": [ 1377.5, 1407.5 ]
+                    },
+                    {
+                        "name": "Mahiro's Role-Playing Game",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e7",
+
+                        "description": "Just when Mahiro is beginning to get used to middle school life again, finals are upon them. Despite his initial blasé attitude, Mahiro finds himself reluctantly handing in a 80% blank answer sheet after having slept through the entire first exam.",
+                        "thumbnail": "on_ep7_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e7mb.webm",
+                                "good": "ons1e7mg.webm",
+                                "okay": "ons1e7mo.webm"
+                            },
+                            "hardsub": {
+                                "best": "ons1e7hb.webm",
+                                "good": "ons1e7hg.webm",
+                                "okay": "ons1e7ho.webm"
+                            }
+                        },
+
+                        "intro": [ 36.5, 126.5 ],
+                        "outro": [ 1377.5, 1407.5 ]
                     }
                 ]
             }
