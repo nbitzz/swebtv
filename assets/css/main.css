@@ -586,11 +586,12 @@
 .videoView > .container > .btm_ctn > .opts > .nextUp > h2 {
     font-size: 16px;
     margin: 0 0 5px 0;
+    color:var(--txt)
 }
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail {
     position:relative;
-    width:100%;
+    width:150px;
     height:auto;
     color: var(--sf0)
 }
@@ -604,7 +605,7 @@
 }
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img[data-loaded] {
-    opacity:0;
+    opacity:1;
     transition-duration:250ms;
 }
 
@@ -613,7 +614,7 @@
     color: var(--st0)
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > .vtitle {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > .vTitle {
     font-weight:600;
     color: var(--txt)
 }
