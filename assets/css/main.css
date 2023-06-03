@@ -516,6 +516,7 @@
 
 .videoView > .container > .btm_ctn > .opts {
     min-width: 200px;
+    max-width: 200px;
 }
 
 .videoView > .container > .btm_ctn > .longAbout > div {
