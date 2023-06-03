@@ -591,7 +591,7 @@
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail {
     position:relative;
-    width:150px;
+    width:100%;
     height:auto;
     background-color: var(--sf0);
 }
