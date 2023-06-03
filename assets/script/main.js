@@ -87,8 +87,6 @@ const globals = (typeof window !== 'undefined'
     : typeof globalThis !== 'undefined'
         ? globalThis
         : global);
-// Needs to be written like this to pass the tree-shake-test
-'WeakMap' in globals ? new WeakMap() : undefined;
 function append(target, node) {
     target.appendChild(node);
 }
@@ -732,39 +730,6 @@ function get_spread_update(levels, updates) {
     }
     return update;
 }
-
-const _boolean_attributes = [
-    'allowfullscreen',
-    'allowpaymentrequest',
-    'async',
-    'autofocus',
-    'autoplay',
-    'checked',
-    'controls',
-    'default',
-    'defer',
-    'disabled',
-    'formnovalidate',
-    'hidden',
-    'inert',
-    'ismap',
-    'loop',
-    'multiple',
-    'muted',
-    'nomodule',
-    'novalidate',
-    'open',
-    'playsinline',
-    'readonly',
-    'required',
-    'reversed',
-    'selected'
-];
-/**
- * List of HTML boolean attributes (e.g. `<input disabled>`).
- * Source: https://html.spec.whatwg.org/multipage/indices.html
- */
-new Set([..._boolean_attributes]);
 
 function bind(component, name, callback) {
     const index = component.$$.props[name];

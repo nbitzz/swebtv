@@ -273,6 +273,7 @@
     height:100%;
     left:100%;
     transform:translateX(-100%);
+    max-width:100%;
     /* overflow:hidden; */
 }
 

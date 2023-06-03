@@ -354,7 +354,8 @@
                                 "good": "tpib",
                                 "okay": "tpib"
                             }
-                        }
+                        },
+                        "aspectRatio": "21 / 9"
                     }
                 ]
             }
