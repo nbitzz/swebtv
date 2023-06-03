@@ -593,7 +593,7 @@
     position:relative;
     width:150px;
     height:auto;
-    color: var(--sf0)
+    background-color: var(--sf0)
 }
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img {
