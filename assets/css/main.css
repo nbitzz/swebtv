@@ -609,6 +609,10 @@
     transition-duration:250ms;
 }
 
+.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData {
+    margin: 5px 0 0 0;
+}
+
 .videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > p {
     margin: 0 0 0 0;
     color: var(--st0);
