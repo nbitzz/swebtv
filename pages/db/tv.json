@@ -189,6 +189,31 @@
 
                         "intro": [ 36.5, 126.5 ],
                         "outro": [ 1377.5, 1407.5 ]
+                    },
+                    {
+                        "name": "Mahiro's First Girls Sleepover",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e8",
+
+                        "description": "It's finally winter break and Mahiro is excited to get into his Winter Vacation Mode. Unbeknownst to him, however, Mihari invites Momiji and the others over for a sleepover. She hopes this will prevent a potential relapse into his old, shut-in ways.",
+                        "thumbnail": "on_ep8_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e8mb.webm",
+                                "good": "ons1e8mg.webm",
+                                "okay": "ons1e8mo.webm"
+                            },
+                            "hardsub": {
+                                "best": "ons1e8hb.webm",
+                                "good": "ons1e8hg.webm",
+                                "okay": "ons1e8ho.webm"
+                            }
+                        },
+
+                        "intro": [ 36.5, 126.5 ],
+                        "outro": [ 1377.5, 1407.5 ]
                     }
                 ]
             }
