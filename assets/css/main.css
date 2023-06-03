@@ -593,11 +593,11 @@
     position:relative;
     width:150px;
     height:auto;
-    background-color: var(--sf0)
+    background-color: var(--sf0);
 }
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img {
-    position:relative;
+    position:absolute;
     width:100%;
     height:auto;
     opacity:0;
@@ -611,7 +611,8 @@
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > p {
     margin: 0 0 0 0;
-    color: var(--st0)
+    color: var(--st0);
+    font-size: 14px;
 }
 
 .videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > .vTitle {
