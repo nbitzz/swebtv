@@ -2378,7 +2378,6 @@ function create_if_block_5(ctx) {
 function create_if_block_2$2(ctx) {
 	let t;
 	let if_block1_anchor;
-	let current;
 	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[5] < /*playing*/ ctx[0].intro[1] && create_if_block_4$2(ctx);
 	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[5] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[4]) && create_if_block_3$2(ctx);
 
@@ -2394,7 +2393,6 @@ function create_if_block_2$2(ctx) {
 			insert(target, t, anchor);
 			if (if_block1) if_block1.m(target, anchor);
 			insert(target, if_block1_anchor, anchor);
-			current = true;
 		},
 		p(ctx, dirty) {
 			if (/*playing*/ ctx[0].intro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[5] < /*playing*/ ctx[0].intro[1]) {
@@ -2443,17 +2441,6 @@ function create_if_block_2$2(ctx) {
 				check_outros();
 			}
 		},
-		i(local) {
-			if (current) return;
-			transition_in(if_block0);
-			transition_in(if_block1);
-			current = true;
-		},
-		o(local) {
-			transition_out(if_block0);
-			transition_out(if_block1);
-			current = false;
-		},
 		d(detaching) {
 			if (if_block0) if_block0.d(detaching);
 			if (detaching) detach(t);
@@ -2490,17 +2477,22 @@ function create_if_block_4$2(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, true);
-				button_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, true);
+					button_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, false);
-			button_transition.run(0);
+			if (local) {
+				if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, false);
+				button_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
@@ -2539,17 +2531,22 @@ function create_if_block_3$2(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, true);
-				button_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, true);
+					button_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, false);
-			button_transition.run(0);
+			if (local) {
+				if (!button_transition) button_transition = create_bidirectional_transition(button, fade, { duration: 200 }, false);
+				button_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
@@ -2899,17 +2896,22 @@ function create_if_block_1$3(ctx) {
 		i(local) {
 			if (current) return;
 
-			add_render_callback(() => {
-				if (!current) return;
-				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, true);
-				div_transition.run(1);
-			});
+			if (local) {
+				add_render_callback(() => {
+					if (!current) return;
+					if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, true);
+					div_transition.run(1);
+				});
+			}
 
 			current = true;
 		},
 		o(local) {
-			if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, false);
-			div_transition.run(0);
+			if (local) {
+				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, false);
+				div_transition.run(0);
+			}
+
 			current = false;
 		},
 		d(detaching) {
@@ -3002,7 +3004,6 @@ function create_fragment$5(ctx) {
 	let t4;
 	let show_if = isEpisode(/*playing*/ ctx[0]) && settings.userSet.skipbutton;
 	let t5;
-	let current;
 	let mounted;
 	let dispose;
 
@@ -3057,7 +3058,6 @@ function create_fragment$5(ctx) {
 			append(div1, t5);
 			if (if_block2) if_block2.m(div1, null);
 			/*div1_binding_1*/ ctx[37](div1);
-			current = true;
 
 			if (!mounted) {
 				dispose = [
@@ -3084,11 +3084,11 @@ function create_fragment$5(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (!current || dirty[0] & /*playing, $cfg*/ 65537 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].thumbnail || "")) {
+			if (dirty[0] & /*playing, $cfg*/ 65537 && video_poster_value !== (video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].thumbnail || "")) {
 				attr(video, "poster", video_poster_value);
 			}
 
-			if (!current || dirty[0] & /*$cfg, playing, format, quality*/ 65543 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
+			if (dirty[0] & /*$cfg, playing, format, quality*/ 65543 && !src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[16].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) {
 				attr(video, "src", video_src_value);
 			}
 
@@ -3134,24 +3134,14 @@ function create_fragment$5(ctx) {
 			if (show_if) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
-
-					if (dirty[0] & /*playing*/ 1) {
-						transition_in(if_block1, 1);
-					}
 				} else {
 					if_block1 = create_if_block_2$2(ctx);
 					if_block1.c();
-					transition_in(if_block1, 1);
 					if_block1.m(div1, t5);
 				}
 			} else if (if_block1) {
-				group_outros();
-
-				transition_out(if_block1, 1, 1, () => {
-					if_block1 = null;
-				});
-
-				check_outros();
+				if_block1.d(1);
+				if_block1 = null;
 			}
 
 			if (/*showControls*/ ctx[12]) {
@@ -3182,17 +3172,12 @@ function create_fragment$5(ctx) {
 			}
 		},
 		i(local) {
-			if (current) return;
 			transition_in(if_block0);
-			transition_in(if_block1);
 			transition_in(if_block2);
-			current = true;
 		},
 		o(local) {
 			transition_out(if_block0);
-			transition_out(if_block1);
 			transition_out(if_block2);
-			current = false;
 		},
 		d(detaching) {
 			if (detaching) detach(t0);
