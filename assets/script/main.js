@@ -3371,15 +3371,15 @@ function instance$5($$self, $$props, $$invalidate) {
 					$$invalidate(5, progress = playing.intro[1]); // doesn't work if i don't pause and unpause soo
 
 					if (!isPaused) {
-						$$invalidate(6, isPaused = false);
 						$$invalidate(6, isPaused = true);
+						$$invalidate(6, isPaused = false);
 					}
 				} else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) {
 					$$invalidate(5, progress = playing.outro[1] || duration);
 
 					if (!isPaused) {
-						$$invalidate(6, isPaused = false);
 						$$invalidate(6, isPaused = true);
+						$$invalidate(6, isPaused = false);
 					}
 				}
 			}
