@@ -2320,7 +2320,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (138:4) {#if videoReadyState < 2}
+// (149:4) {#if videoReadyState < 2}
 function create_if_block_5(ctx) {
 	let div1;
 	let div1_transition;
@@ -2374,7 +2374,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (147:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (158:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_2$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2450,7 +2450,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (148:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (159:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2504,7 +2504,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (159:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (170:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2558,7 +2558,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (170:4) {#if showControls}
+// (181:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2762,7 +2762,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (208:12) {#if showFQPicker}
+// (219:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div;
 	let select0;
@@ -2925,7 +2925,7 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (211:24) {#each Object.keys(playing.formats) as fmt}
+// (222:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[44] + "";
@@ -2957,7 +2957,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (216:24) {#each Object.keys(playing.formats[format]) as qual}
+// (227:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[41] + "";
@@ -3291,12 +3291,12 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	function video_play_pause_handler() {
 		isPaused = this.paused;
-		(((((($$invalidate(6, isPaused), $$invalidate(3, fqp)), $$invalidate(2, quality)), $$invalidate(1, format)), $$invalidate(5, progress)), $$invalidate(0, playing)), $$invalidate(4, duration));
+		(((((($$invalidate(6, isPaused), $$invalidate(0, playing)), $$invalidate(5, progress)), $$invalidate(4, duration)), $$invalidate(3, fqp)), $$invalidate(2, quality)), $$invalidate(1, format));
 	}
 
 	function video_timeupdate_handler() {
 		progress = this.currentTime;
-		(($$invalidate(5, progress), $$invalidate(0, playing)), $$invalidate(4, duration));
+		(((((($$invalidate(5, progress), $$invalidate(0, playing)), $$invalidate(6, isPaused)), $$invalidate(4, duration)), $$invalidate(3, fqp)), $$invalidate(2, quality)), $$invalidate(1, format));
 	}
 
 	function video_durationchange_handler() {
@@ -3363,11 +3363,25 @@ function instance$5($$self, $$props, $$invalidate) {
 	};
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty[0] & /*playing, progress, duration*/ 49) {
+		if ($$self.$$.dirty[0] & /*playing, progress, isPaused, duration*/ 113) {
 			// this is probably horrible for performance. Too bad!
 			// if anyone knows how to make this better pls lmk
 			if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
-				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) $$invalidate(5, progress = playing.intro[1]); else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) $$invalidate(5, progress = playing.outro[1] || duration);
+				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) {
+					$$invalidate(5, progress = playing.intro[1]); // doesn't work if i don't pause and unpause soo
+
+					if (!isPaused) {
+						$$invalidate(6, isPaused = false);
+						$$invalidate(6, isPaused = true);
+					}
+				} else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) {
+					$$invalidate(5, progress = playing.outro[1] || duration);
+
+					if (!isPaused) {
+						$$invalidate(6, isPaused = false);
+						$$invalidate(6, isPaused = true);
+					}
+				}
 			}
 		}
 
