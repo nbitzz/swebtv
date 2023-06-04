@@ -2310,17 +2310,17 @@ const { document: document_1 } = globals;
 
 function get_each_context$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[41] = list[i];
+	child_ctx[42] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[44] = list[i];
+	child_ctx[45] = list[i];
 	return child_ctx;
 }
 
-// (145:4) {#if videoReadyState < 2}
+// (143:4) {#if videoReadyState < 2}
 function create_if_block_5(ctx) {
 	let div1;
 	let div1_transition;
@@ -2374,7 +2374,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (154:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (152:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_2$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2450,7 +2450,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (155:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (153:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2504,7 +2504,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (166:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (164:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_3$2(ctx) {
 	let button;
 	let button_transition;
@@ -2558,7 +2558,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (177:4) {#if showControls}
+// (175:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let div3;
 	let button0;
@@ -2762,7 +2762,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (215:12) {#if showFQPicker}
+// (213:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div;
 	let select0;
@@ -2925,10 +2925,10 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (218:24) {#each Object.keys(playing.formats) as fmt}
+// (216:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
-	let t_value = /*fmt*/ ctx[44] + "";
+	let t_value = /*fmt*/ ctx[45] + "";
 	let t;
 	let option_value_value;
 
@@ -2936,7 +2936,7 @@ function create_each_block_1$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*fmt*/ ctx[44];
+			option.__value = option_value_value = /*fmt*/ ctx[45];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -2944,9 +2944,9 @@ function create_each_block_1$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[44] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[45] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[44])) {
+			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[45])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -2957,10 +2957,10 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (223:24) {#each Object.keys(playing.formats[format]) as qual}
+// (221:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
-	let t_value = /*qual*/ ctx[41] + "";
+	let t_value = /*qual*/ ctx[42] + "";
 	let t;
 	let option_value_value;
 
@@ -2968,7 +2968,7 @@ function create_each_block$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*qual*/ ctx[41];
+			option.__value = option_value_value = /*qual*/ ctx[42];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -2976,9 +2976,9 @@ function create_each_block$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing, format*/ 3 && t_value !== (t_value = /*qual*/ ctx[41] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing, format*/ 3 && t_value !== (t_value = /*qual*/ ctx[42] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing, format*/ 3 && option_value_value !== (option_value_value = /*qual*/ ctx[41])) {
+			if (dirty[0] & /*playing, format*/ 3 && option_value_value !== (option_value_value = /*qual*/ ctx[42])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3275,6 +3275,11 @@ function instance$5($$self, $$props, $$invalidate) {
 		}
 	}
 
+	// workaround for what i assume to be a bug
+	function updateProgress(prog) {
+		$$invalidate(5, progress = prog);
+	}
+
 	// this is nightmarish please help
 	function loadHandler() {
 		if (fqp.prg_hold && videoReadyState > 0) {
@@ -3291,12 +3296,12 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	function video_play_pause_handler() {
 		isPaused = this.paused;
-		(((((($$invalidate(6, isPaused), $$invalidate(0, playing)), $$invalidate(5, progress)), $$invalidate(4, duration)), $$invalidate(3, fqp)), $$invalidate(2, quality)), $$invalidate(1, format));
+		(((($$invalidate(6, isPaused), $$invalidate(3, fqp)), $$invalidate(2, quality)), $$invalidate(1, format)), $$invalidate(5, progress));
 	}
 
 	function video_timeupdate_handler() {
 		progress = this.currentTime;
-		(((((($$invalidate(5, progress), $$invalidate(0, playing)), $$invalidate(6, isPaused)), $$invalidate(4, duration)), $$invalidate(3, fqp)), $$invalidate(2, quality)), $$invalidate(1, format));
+		$$invalidate(5, progress);
 	}
 
 	function video_durationchange_handler() {
@@ -3333,13 +3338,13 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	function select0_change_handler() {
 		fqp.format = select_value(this);
-		(((((($$invalidate(3, fqp), $$invalidate(2, quality)), $$invalidate(1, format)), $$invalidate(5, progress)), $$invalidate(6, isPaused)), $$invalidate(0, playing)), $$invalidate(4, duration));
+		(((($$invalidate(3, fqp), $$invalidate(2, quality)), $$invalidate(1, format)), $$invalidate(5, progress)), $$invalidate(6, isPaused));
 		$$invalidate(0, playing);
 	}
 
 	function select1_change_handler() {
 		fqp.quality = select_value(this);
-		(((((($$invalidate(3, fqp), $$invalidate(2, quality)), $$invalidate(1, format)), $$invalidate(5, progress)), $$invalidate(6, isPaused)), $$invalidate(0, playing)), $$invalidate(4, duration));
+		(((($$invalidate(3, fqp), $$invalidate(2, quality)), $$invalidate(1, format)), $$invalidate(5, progress)), $$invalidate(6, isPaused));
 		$$invalidate(0, playing);
 	}
 
@@ -3363,19 +3368,11 @@ function instance$5($$self, $$props, $$invalidate) {
 	};
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty[0] & /*playing, progress, isPaused, duration*/ 113) {
+		if ($$self.$$.dirty[0] & /*playing, progress, duration*/ 49) {
 			// this is probably horrible for performance. Too bad!
 			// if anyone knows how to make this better pls lmk
 			if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
-				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) {
-					$$invalidate(6, isPaused = !isPaused); // doesn't work if i don't pause and unpause soo
-					$$invalidate(5, progress = playing.intro[1]);
-					$$invalidate(6, isPaused = !isPaused);
-				} else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) {
-					$$invalidate(6, isPaused = !isPaused);
-					$$invalidate(5, progress = playing.outro[1] || duration);
-					$$invalidate(6, isPaused = !isPaused);
-				}
+				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) updateProgress(playing.intro[1]); else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) updateProgress(playing.outro[1] || duration); // doesn't work if i don't pause and unpause soo
 			}
 		}
 
