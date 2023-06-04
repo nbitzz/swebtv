@@ -298,7 +298,38 @@
                 "parent": "mcff",
                 "id": "mcff.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "The Grim Reaper and the Transfer Student",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e1",
+
+                        "description": "Nishimura Akane is always alone, teased by her classmates as the \"Grim Reaper\". But Takada Taiyou, a new transfer student, quickly takes an interest in her and her rumored deadly curse. Now it's up to the new kid to shake things up in the class!",
+                        "thumbnail": "mcff_ep1_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e1mb",
+                                "good": "mcffs1e1mg",
+                                "okay": "mcffs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e1hb",
+                                "good": "mcffs1e1mg",
+                                "okay": "mcffs1e1mo"
+                            },
+                            "dub": {
+                                "best": "mcffs1e1db",
+                                "good": "mcffs1e1dg",
+                                "okay": "mcffs1e1do"
+                            }
+                        },
+
+                        "intro": [ 22.25, 112.25 ],
+                        "outro": [ 1324.5, 1414.5 ]
+                    }
+                ]
             }
         ]
     },
