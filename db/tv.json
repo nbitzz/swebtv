@@ -101,13 +101,13 @@
 
                         "formats": {
                             "main": {
-                                "best": "ons1e4hb.webm",
-                                "good": "ons1e4hg.webm",
+                                "best": "ons1e4mb.webm",
+                                "good": "ons1e4mg.webm",
                                 "okay": "ons1e4ho.webm"
                             },
                             "hardsub": {
-                                "best": "ons1e4mb.webm",
-                                "good": "ons1e4mg.webm",
+                                "best": "ons1e4hb.webm",
+                                "good": "ons1e4hg.webm",
                                 "okay": "ons1e4mo.webm"
                             }
                         },
