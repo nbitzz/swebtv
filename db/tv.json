@@ -228,7 +228,15 @@
         "icon": "bocchi_ic.webp",
         "poster": "bcposter",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "BOCCHI THE ROCK!",
+                "parent": "bocchi",
+                "id": "bocchi.s1",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "DON'T TOY WITH ME, MISS NAGATORO",
@@ -239,7 +247,22 @@
         "icon": "nagatoroic.png",
         "poster": "ngposter",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "DON'T TOY WITH ME, MISS NAGATORO",
+                "parent": "nagatoro",
+                "id": "nagatoro.s1",
+
+                "episodes": []
+            },
+            {
+                "name": "DON'T TOY WITH ME, MISS NAGATORO: 2nd Attack",
+                "parent": "nagatoro",
+                "id": "nagatoro.s2",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "Lucky Star",
@@ -250,7 +273,15 @@
         "icon": "luckystaric.png",
         "poster": "lsposter",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "Lucky Star",
+                "parent": "luckystar",
+                "id": "luckystar.s1",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "My Clueless First Friend",
@@ -261,7 +292,15 @@
         "icon": "akane_ico",
         "poster": "mcff_poster.jpeg",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "My Clueless First Friend",
+                "parent": "mcff",
+                "id": "mcff.s1",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "webtv testbench",
