@@ -58,6 +58,25 @@
     transition-duration:150ms;
 }
 
+.sidebar::-webkit-scrollbar {
+    width: 0px;
+    transition-duration: 150ms;
+}
+.sidebar::-webkit-scrollbar-track {
+    background-color: var(--level);
+}
+*::-webkit-scrollbar-thumb {
+    background-color: var(--ol0);
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ol1);
+}
+
+.sidebar:hover::-webkit-scrollbar {
+    width:5px;
+    transition-duration: 150ms;
+}
+
 #menu > .sidebar {
     left: 3px;
     position:relative;
@@ -813,4 +832,17 @@
 
 body {
     background-color: var(--bse)
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+*::-webkit-scrollbar-track {
+    background-color: var(--cst);
+}
+*::-webkit-scrollbar-thumb {
+    background-color: var(--mtl);
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--bse);
 }
