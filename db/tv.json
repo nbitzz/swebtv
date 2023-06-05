@@ -316,8 +316,8 @@
                             },
                             "hardsub": {
                                 "best": "mcffs1e1hb",
-                                "good": "mcffs1e1mg",
-                                "okay": "mcffs1e1mo"
+                                "good": "mcffs1e1hg",
+                                "okay": "mcffs1e1ho"
                             },
                             "dub": {
                                 "best": "mcffs1e1db",
@@ -326,8 +326,8 @@
                             }
                         },
 
-                        "intro": [ 22.25, 112.25 ],
-                        "outro": [ 1324.5, 1414.5 ]
+                        "intro": [ 71.75, 161.75 ],
+                        "outro": [ 1278, 1368 ]
                     }
                 ]
             }
