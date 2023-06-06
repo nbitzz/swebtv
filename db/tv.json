@@ -326,7 +326,67 @@
                             }
                         },
 
-                        "intro": [ 71.75, 161.75 ],
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ]
+                    },
+                    {
+                        "name": "Lunch Duty and Ghost Photographs and Love Letters",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e2",
+
+                        "description": "Be it serving up school lunches, trying to photograph ghosts, or writing love letters, Taiyou just can't get enough of hanging out with Akane. And with his big sister, Yukiko, thrown into the mix, Akane's in for double the affection!",
+                        "thumbnail": "mcff_ep2_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e2mb",
+                                "good": "mcffs1e2mg",
+                                "okay": "mcffs1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e2hb",
+                                "good": "mcffs1e2hg",
+                                "okay": "mcffs1e2ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e2db",
+                                "good": "mcffs1e2dg",
+                                "okay": "mcffs1e2do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ]
+                    },
+                    {
+                        "name": "Summer Vacation Begins",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e3",
+
+                        "description": "As everyone in class begins to make plans for the upcoming break, Akane finds that she's the only one with a wide open schedule. Luckily, Taiyou's here to make sure that both of them have a fun summer vacation packed to the brim!",
+                        "thumbnail": "mcff_ep3_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e3mb",
+                                "good": "mcffs1e3mg",
+                                "okay": "mcffs1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e3hb",
+                                "good": "mcffs1e3hg",
+                                "okay": "mcffs1e3ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e3db",
+                                "good": "mcffs1e3dg",
+                                "okay": "mcffs1e3do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
                         "outro": [ 1278, 1368 ]
                     }
                 ]
