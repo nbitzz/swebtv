@@ -1,3 +1,8 @@
+import type { Episode } from "./webtv";
+import { isShow } from "./webtv";
+import { isSeason } from "./webtv";
+import { IDIndex } from "./webtv";
+
 export function getPVs(time:number) {
 
     return {
@@ -34,4 +39,21 @@ export function letteredTime(time:number) { // ex. 15m32s
             ) // add seps
             .reverse()
             .join(""); // join
+}
+
+export function getEpisodeAfter(episode:Episode) {
+    // get parent show and season
+    let season = IDIndex.get(episode.parent)
+    if (!season || !isSeason(season)) return;
+    let show = IDIndex.get(season.parent)
+    if (!show || !isShow(show)) return;
+
+    // return episode which follows
+    let epIdx = season.episodes.indexOf(episode);
+    let seIdx = show.seasons.indexOf(season);
+
+    return season.episodes[epIdx + 1]
+        || show.seasons[
+            seIdx+1
+        ]?.episodes?.[0]
 }

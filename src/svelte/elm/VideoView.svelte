@@ -1,7 +1,8 @@
 <script lang="ts">
-    import { letteredTime } from "../../ts/util";
+    import { getEpisodeAfter, letteredTime } from "../../ts/util";
     import { IDIndex, isEpisode, isMovie, isShow, type Video, cfg, isSeason, type Show, type Season } from "../../ts/webtv";
     import FormatDownloader from "./FormatDownloader.svelte";
+    import NextEpDisplay from "./NextEpDisplay.svelte";
     import VideoPlayer from "./VideoPlayer.svelte";
 
     export let targetVideo: Video
@@ -75,6 +76,10 @@
             </div>
 
             <div class="opts">
+                {#if isEpisode(targetVideo) && getEpisodeAfter(targetVideo)}
+                                                                        <!-- so that svelte doesn't get pissed -->
+                    <NextEpDisplay target={getEpisodeAfter(targetVideo) || targetVideo} />
+                {/if}
                 <FormatDownloader target={targetVideo} />
             </div>
         </div>

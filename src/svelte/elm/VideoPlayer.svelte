@@ -88,6 +88,12 @@
         }
     }
 
+
+    // workaround for what i assume to be a bug
+    function updateProgress(prog:number) {
+        progress = prog;
+    }
+
     // this is probably horrible for performance. Too bad!
     // if anyone knows how to make this better pls lmk
     $: if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
@@ -95,14 +101,14 @@
             playing.intro 
             && progress > playing.intro[0] 
             && progress < playing.intro[1]
-            && settings.userSet.autoskipintro
-        ) progress = playing.intro[1]
+            && settings.userSet.autoskipintro // doesn't work if i don't pause and unpause soo
+        ) updateProgress(playing.intro[1])
         else if (
             playing.outro 
             && progress > playing.outro[0] 
             && progress < (playing.outro[1]||duration)
             && settings.userSet.autoskipoutro
-        ) progress = playing.outro[1]||duration
+        ) updateProgress(playing.outro[1]||duration)
     }
 
     // this is nightmarish please help
@@ -169,7 +175,7 @@
         {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
             <!-- have yto do this cause svelte -->
             <button 
-                transition:fade={{duration:200}} 
+                transition:fade|local={{duration:200}} 
                 class="skipButton" 
                 on:click={() => progress = (isEpisode(playing) && playing.intro ? playing.intro : [0,0])[1]}
             >
@@ -179,7 +185,7 @@
 
         {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
             <button 
-                transition:fade={{duration:200}} 
+                transition:fade|local={{duration:200}} 
                 class="skipButton" 
                 on:click={() => progress = (isEpisode(playing) && playing.outro ? playing.outro : [])[1] || duration}
             >
@@ -227,7 +233,7 @@
             <button on:click={() => showFQPicker = !showFQPicker}><img src="/assets/icons/player/options.svg" alt="More options" /></button>
 
             {#if showFQPicker}
-                <div class="fqpicker" transition:fade={{duration: 200}}>
+                <div class="fqpicker" transition:fade|local={{duration: 200}}>
                     <select bind:value={fqp.format}>
                         {#each Object.keys(playing.formats) as fmt}
                             <option>{fmt}</option>

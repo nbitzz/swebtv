@@ -58,6 +58,25 @@
     transition-duration:150ms;
 }
 
+.sidebar::-webkit-scrollbar {
+    width: 0px;
+    transition-duration: 150ms;
+}
+.sidebar::-webkit-scrollbar-track {
+    background-color: var(--level);
+}
+*::-webkit-scrollbar-thumb {
+    background-color: var(--ol0);
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ol1);
+}
+
+.sidebar:hover::-webkit-scrollbar {
+    width:5px;
+    transition-duration: 150ms;
+}
+
 #menu > .sidebar {
     left: 3px;
     position:relative;
@@ -273,6 +292,7 @@
     height:100%;
     left:100%;
     transform:translateX(-100%);
+    max-width:100%;
     /* overflow:hidden; */
 }
 
@@ -514,7 +534,8 @@
 }
 
 .videoView > .container > .btm_ctn > .opts {
-    min-width: 150px;
+    min-width: 200px;
+    max-width: 200px;
 }
 
 .videoView > .container > .btm_ctn > .longAbout > div {
@@ -578,6 +599,51 @@
     opacity: 0.75
 }
 
+.videoView > .container > .btm_ctn > .opts > .nextUp {
+    width:100%;
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > h2 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    color:var(--txt)
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail {
+    position:relative;
+    width:100%;
+    height:auto;
+    background-color: var(--sf0);
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img {
+    position:absolute;
+    width:100%;
+    height:auto;
+    opacity:0;
+    transition-duration:250ms;
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img[data-loaded] {
+    opacity:1;
+    transition-duration:250ms;
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData {
+    margin: 5px 0 0 0;
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > p {
+    margin: 0 0 0 0;
+    color: var(--st0);
+    font-size: 14px;
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > .vTitle {
+    font-weight:600;
+    color: var(--txt)
+}
+
 /* VideoPlayer */
 
 .videoPlayer:fullscreen > .vbking {
@@ -589,6 +655,8 @@
     max-height:100%;
     display:block;
     position:relative;
+    top:50%;
+    transform: translateY(-50%); /* center video when aspect ratio greater than screen it is on */
 }
 
 .videoPlayer > .vbking {
@@ -764,4 +832,17 @@
 
 body {
     background-color: var(--bse)
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+*::-webkit-scrollbar-track {
+    background-color: var(--cst);
+}
+*::-webkit-scrollbar-thumb {
+    background-color: var(--mtl);
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--bse);
 }
