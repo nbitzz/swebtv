@@ -38,7 +38,7 @@
                         },
 
                         "intro": [ 310, 400 ],
-                        "outro": [ 1325 ]
+                        "outro": [ 1324.5 ]
                     },
                     {
                         "name": "Mahiro's Time of the Month",
@@ -62,7 +62,7 @@
                             }
                         },
 
-                        "intro": [ 44.5, 134.5 ],
+                        "intro": [ 44.06, 134.06 ],
                         "outro": [ 1325 ]
                     },
                     {
@@ -87,8 +87,8 @@
                             }
                         },
 
-                        "intro": [ 36.5, 126.5 ],
-                        "outro": [ 1377.5, 1407.5 ]
+                        "intro": [ 37.044, 127.044 ],
+                        "outro": [ 1317.5, 1407.5 ]
                     },
                     {
                         "name": "Mahiro's New Friend",
@@ -103,17 +103,17 @@
                             "main": {
                                 "best": "ons1e4mb.webm",
                                 "good": "ons1e4mg.webm",
-                                "okay": "ons1e4mo.webm"
+                                "okay": "ons1e4ho.webm"
                             },
                             "hardsub": {
                                 "best": "ons1e4hb.webm",
                                 "good": "ons1e4hg.webm",
-                                "okay": "ons1e4ho.webm"
+                                "okay": "ons1e4mo.webm"
                             }
                         },
 
-                        "intro": [ 36.5, 126.5 ],
-                        "outro": [ 1377.5, 1407.5 ]
+                        "intro": [ 80.5, 170.5 ],
+                        "outro": [ 1303.75, 1393.75 ]
                     },
                     {
                         "name": "Mahiro Discovers Adventure and Social Gatherings",
@@ -137,8 +137,8 @@
                             }
                         },
 
-                        "intro": [ 36.5, 126.5 ],
-                        "outro": [ 1377.5, 1407.5 ]
+                        "intro": [ 40.5, 131.5 ],
+                        "outro": [ 1324.5, 1414.5 ]
                     },
                     {
                         "name": "Mahiro Goes Back to Middle School",
@@ -162,8 +162,8 @@
                             }
                         },
 
-                        "intro": [ 36.5, 126.5 ],
-                        "outro": [ 1377.5, 1407.5 ]
+                        "intro": [ 46.5, 136.5 ],
+                        "outro": [ 1324.75, 1414.75 ]
                     },
                     {
                         "name": "Mahiro's Role-Playing Game",
@@ -187,8 +187,8 @@
                             }
                         },
 
-                        "intro": [ 36.5, 126.5 ],
-                        "outro": [ 1377.5, 1407.5 ]
+                        "intro": [ 82.5, 172.5 ],
+                        "outro": [ 1324.5, 1414.5 ]
                     },
                     {
                         "name": "Mahiro's First Girls Sleepover",
@@ -212,8 +212,8 @@
                             }
                         },
 
-                        "intro": [ 36.5, 126.5 ],
-                        "outro": [ 1377.5, 1407.5 ]
+                        "intro": [ 22.25, 112.25 ],
+                        "outro": [ 1324.5, 1414.5 ]
                     }
                 ]
             }
@@ -228,7 +228,15 @@
         "icon": "bocchi_ic.webp",
         "poster": "bcposter",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "BOCCHI THE ROCK!",
+                "parent": "bocchi",
+                "id": "bocchi.s1",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "DON'T TOY WITH ME, MISS NAGATORO",
@@ -239,7 +247,22 @@
         "icon": "nagatoroic.png",
         "poster": "ngposter",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "DON'T TOY WITH ME, MISS NAGATORO",
+                "parent": "nagatoro",
+                "id": "nagatoro.s1",
+
+                "episodes": []
+            },
+            {
+                "name": "DON'T TOY WITH ME, MISS NAGATORO: 2nd Attack",
+                "parent": "nagatoro",
+                "id": "nagatoro.s2",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "Lucky Star",
@@ -250,7 +273,15 @@
         "icon": "luckystaric.png",
         "poster": "lsposter",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "Lucky Star",
+                "parent": "luckystar",
+                "id": "luckystar.s1",
+
+                "episodes": []
+            }
+        ]
     },
     {
         "name": "My Clueless First Friend",
@@ -261,7 +292,106 @@
         "icon": "akane_ico",
         "poster": "mcff_poster.jpeg",
 
-        "seasons": []
+        "seasons": [
+            {
+                "name": "My Clueless First Friend",
+                "parent": "mcff",
+                "id": "mcff.s1",
+
+                "episodes": [
+                    {
+                        "name": "The Grim Reaper and the Transfer Student",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e1",
+
+                        "description": "Nishimura Akane is always alone, teased by her classmates as the \"Grim Reaper\". But Takada Taiyou, a new transfer student, quickly takes an interest in her and her rumored deadly curse. Now it's up to the new kid to shake things up in the class!",
+                        "thumbnail": "mcff_ep1_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e1mb",
+                                "good": "mcffs1e1mg",
+                                "okay": "mcffs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e1hb",
+                                "good": "mcffs1e1hg",
+                                "okay": "mcffs1e1ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e1db",
+                                "good": "mcffs1e1dg",
+                                "okay": "mcffs1e1do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ]
+                    },
+                    {
+                        "name": "Lunch Duty and Ghost Photographs and Love Letters",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e2",
+
+                        "description": "Be it serving up school lunches, trying to photograph ghosts, or writing love letters, Taiyou just can't get enough of hanging out with Akane. And with his big sister, Yukiko, thrown into the mix, Akane's in for double the affection!",
+                        "thumbnail": "mcff_ep2_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e2mb",
+                                "good": "mcffs1e2mg",
+                                "okay": "mcffs1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e2hb",
+                                "good": "mcffs1e2hg",
+                                "okay": "mcffs1e2ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e2db",
+                                "good": "mcffs1e2dg",
+                                "okay": "mcffs1e2do"
+                            }
+                        },
+
+                        "intro": [ 93.5, 183.5 ],
+                        "outro": [ 1278, 1368 ]
+                    },
+                    {
+                        "name": "Summer Vacation Begins",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e3",
+
+                        "description": "As everyone in class begins to make plans for the upcoming break, Akane finds that she's the only one with a wide open schedule. Luckily, Taiyou's here to make sure that both of them have a fun summer vacation packed to the brim!",
+                        "thumbnail": "mcff_ep3_thmb.jpeg",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e3mb",
+                                "good": "mcffs1e3mg",
+                                "okay": "mcffs1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e3hb",
+                                "good": "mcffs1e3hg",
+                                "okay": "mcffs1e3ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e3db",
+                                "good": "mcffs1e3dg",
+                                "okay": "mcffs1e3do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ]
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "webtv testbench",
@@ -354,7 +484,8 @@
                                 "good": "tpib",
                                 "okay": "tpib"
                             }
-                        }
+                        },
+                        "aspectRatio": "2.39 / 1"
                     }
                 ]
             }
