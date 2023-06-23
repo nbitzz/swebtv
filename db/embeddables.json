@@ -31,11 +31,11 @@
             },
             {
                 "url": "https://coolviruses.download/bocchiplus",
-                "description": "higher quality ver"
+                "description": "higher quality ver (CURRENTLY DISABLED)"
             },
             {
                 "url": "https://pls.can-i.win/bocchiplus",
-                "description": "higher quality ver"
+                "description": "higher quality ver (CURRENTLY DISABLED)"
             }
         ]
     },
@@ -59,6 +59,16 @@
             },
             {
                 "url": "https://coolviruses.download/nagatoro",
+                "description": "low quality ver"
+            }
+        ]
+    },
+    {
+        "name": "KONOSUBA: An Explosion On This Wonderful World!",
+        "icon": "ksbic",
+        "urls": [
+            {
+                "url": "https://pls.can-i.win/konosuba",
                 "description": "low quality ver"
             }
         ]
