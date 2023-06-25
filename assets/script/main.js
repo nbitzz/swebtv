@@ -3486,7 +3486,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		}
 
 		if ($$self.$$.dirty[0] & /*fqp, quality, format, progress, isPaused*/ 110) {
-			if (fqp.quality != quality || fqp.format != format) {
+			if ((fqp.quality != quality || fqp.format != format) && !fqp.prg_hold) {
 				$$invalidate(3, fqp.prg_hold = progress, fqp);
 				$$invalidate(3, fqp.WFL = isPaused, fqp);
 				$$invalidate(6, isPaused = true);

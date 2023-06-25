@@ -212,7 +212,107 @@
                             }
                         },
 
-                        "intro": [ 22.25, 112.25 ],
+                        "intro": [ 23, 113 ],
+                        "outro": [ 1324.5, 1414.5 ]
+                    },
+                    {
+                        "name": "Mahiro Rings in the New Year",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e9",
+
+                        "description": "It's Christmas and Mahiro is shocked to hear his own little sister has a date. Unable to shake his unease, he follows her through the festive hustle and bustle in secret, with Momiji as his escort in tow. Who could Mihari possibly be meeting with?",
+                        "thumbnail": "on_ep9_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e9mb",
+                                "good": "ons1e9mg",
+                                "okay": "ons1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "ons1e9hb",
+                                "good": "ons1e9hg",
+                                "okay": "ons1e9ho"
+                            }
+                        },
+
+                        "intro": [ 23, 113 ],
+                        "outro": [ 1324.5, 1414.5 ]
+                    },
+                    {
+                        "name": "Mahiro Ponders Boobs and Identity",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e10",
+
+                        "description": "It's the start of the third semester and winter uniforms are now in effect. For Mahiro and the girls at school, this means braving the cold winter air in mandatory skirts. Who knows how Miyo will react when he and Momiji show up in matching scarves, too.",
+                        "thumbnail": "on_ep10_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e10mb",
+                                "good": "ons1e10mg",
+                                "okay": "ons1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "ons1e10hb",
+                                "good": "ons1e10hg",
+                                "okay": "ons1e10ho"
+                            }
+                        },
+
+                        "intro": [ 23, 113 ],
+                        "outro": [ 1324.5, 1414.5 ]
+                    },
+                    {
+                        "name": "Mahiro Pretties Up",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e11",
+
+                        "description": "Horoscopes are all the rage at school right now, and Mahiro is curious to see what all the fuss about. According to his forecast, an important occasion is on the horizon and he may be in for a surprise or two. But what occasion could it be alluding to?",
+                        "thumbnail": "on_ep11_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e11mb",
+                                "good": "ons1e11mg",
+                                "okay": "ons1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "ons1e11hb",
+                                "good": "ons1e11hg",
+                                "okay": "ons1e11ho"
+                            }
+                        },
+
+                        "intro": [ 23, 113 ],
+                        "outro": [ 1324.5, 1414.5 ]
+                    },
+                    {
+                        "name": "Mahiro's Future as a Sister",
+                        "parent": "onimai.s1",
+                        "id": "onimai.s1.e12",
+
+                        "description": "Mahiro and the girls take a trip to a Japanese inn over spring break. First they hit the town in their yukata, before heading to the open-air bath to detox. However, things go south when Mahiro begins to feel a familar tingling sensation between his legs.",
+                        "thumbnail": "on_ep12_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "ons1e12mb",
+                                "good": "ons1e12mg",
+                                "okay": "ons1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "ons1e12hb",
+                                "good": "ons1e12hg",
+                                "okay": "ons1e12ho"
+                            }
+                        },
+
+                        "intro": [ 23, 113 ],
                         "outro": [ 1324.5, 1414.5 ]
                     }
                 ]
