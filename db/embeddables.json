@@ -64,12 +64,30 @@
         ]
     },
     {
-        "name": "KONOSUBA: An Explosion On This Wonderful World!",
+        "name": "KONOSUBA -An Explosion On This Wonderful World!",
         "icon": "ksbic",
         "urls": [
             {
                 "url": "https://pls.can-i.win/konosuba",
                 "description": "low quality ver"
+            }
+        ]
+    },
+    {
+        "name": "Miss Kobayashi's Dragon Maid",
+        "icon": "mkdm",
+        "urls": [
+            {
+                "url": "https://pls.can-i.win/kobayashi",
+                "description": "full anime"
+            },
+            {
+                "url": "https://pls.can-i.win/kobayashi/1",
+                "description": "season 1"
+            },
+            {
+                "url": "https://pls.can-i.win/kobayashi/2",
+                "description": "season 2"
             }
         ]
     },
