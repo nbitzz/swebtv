@@ -3411,10 +3411,10 @@ function instance$5($$self, $$props, $$invalidate) {
 				e.preventDefault();
 				break;
 			case "ArrowRight":
-				$$invalidate(5, progress = Math.min(Math.max(progress + parseInt(settings.userSet.keyboardSeek, 10), 0), duration));
+				$$invalidate(5, progress = Math.min(Math.max(progress + parseFloat(settings.userSet.keyboardSeek), 0), duration));
 				break;
 			case "ArrowLeft":
-				$$invalidate(5, progress = Math.min(Math.max(progress - parseInt(settings.userSet.keyboardSeek, 10), 0), duration));
+				$$invalidate(5, progress = Math.min(Math.max(progress - parseFloat(settings.userSet.keyboardSeek), 0), duration));
 				break;
 			case "KeyF":
 				if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
