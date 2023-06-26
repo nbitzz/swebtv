@@ -585,6 +585,25 @@
                             }
                         },
                         "aspectRatio": "2.39 / 1"
+                    },
+                    {
+                        "name": "lock test",
+                        "parent": "wtvtb.2",
+                        "id": "wtvtb.2.3",
+
+                        "description": "test for dm locking",
+                        "thumbnail": "testground",
+                        "length": 5624,
+
+                        "formats": {
+                            "main": {
+                                "best": "tpib",
+                                "good": "tpib",
+                                "okay": "tpib"
+                            }
+                        },
+                        "aspectRatio": "2.39 / 1",
+                        "unfinished":true
                     }
                 ]
             }
