@@ -4303,7 +4303,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (137:12) {:else}
+// (134:12) {:else}
 function create_else_block_1(ctx) {
 	let div;
 	let h1;
@@ -4533,100 +4533,8 @@ function create_if_block$2(ctx) {
 	};
 }
 
-// (117:20) {:else}
+// (128:20) {:else}
 function create_else_block(ctx) {
-	let div2;
-	let img;
-	let img_src_value;
-	let img_alt_value;
-	let t0;
-	let div0;
-	let t1;
-	let div1;
-	let t2;
-	let div3;
-	let h1;
-	let t3;
-	let span;
-	let br;
-	let t4;
-	let t5_value = /*selectedEpisode_obj*/ ctx[3].name + "";
-	let t5;
-	let t6;
-	let mounted;
-	let dispose;
-
-	return {
-		c() {
-			div2 = element("div");
-			img = element("img");
-			t0 = space();
-			div0 = element("div");
-			t1 = space();
-			div1 = element("div");
-			t2 = space();
-			div3 = element("div");
-			h1 = element("h1");
-			t3 = text("Sorry!\n                                ");
-			span = element("span");
-			br = element("br");
-			t4 = text("\"");
-			t5 = text(t5_value);
-			t6 = text("\" is still a work in progress. Enable developer mode to bypass this screen.");
-			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) attr(img, "src", img_src_value);
-			attr(img, "alt", img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name);
-			attr(div0, "class", "posterOverlay");
-			attr(div1, "class", "poBlendFix");
-			attr(div2, "class", "poster");
-			attr(div3, "class", "nothingSelected");
-		},
-		m(target, anchor) {
-			insert(target, div2, anchor);
-			append(div2, img);
-			append(div2, t0);
-			append(div2, div0);
-			append(div2, t1);
-			append(div2, div1);
-			insert(target, t2, anchor);
-			insert(target, div3, anchor);
-			append(div3, h1);
-			append(h1, t3);
-			append(h1, span);
-			append(span, br);
-			append(span, t4);
-			append(span, t5);
-			append(span, t6);
-
-			if (!mounted) {
-				dispose = listen(img, "load", load_handler_2);
-				mounted = true;
-			}
-		},
-		p(ctx, dirty) {
-			if (dirty & /*$cfg, selectedEpisode_obj*/ 72 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) {
-				attr(img, "src", img_src_value);
-			}
-
-			if (dirty & /*selectedEpisode_obj*/ 8 && img_alt_value !== (img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name)) {
-				attr(img, "alt", img_alt_value);
-			}
-
-			if (dirty & /*selectedEpisode_obj*/ 8 && t5_value !== (t5_value = /*selectedEpisode_obj*/ ctx[3].name + "")) set_data(t5, t5_value);
-		},
-		i: noop,
-		o: noop,
-		d(detaching) {
-			if (detaching) detach(div2);
-			if (detaching) detach(t2);
-			if (detaching) detach(div3);
-			mounted = false;
-			dispose();
-		}
-	};
-}
-
-// (115:20) {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
-function create_if_block_4$1(ctx) {
 	let videoview;
 	let current;
 
@@ -4660,6 +4568,84 @@ function create_if_block_4$1(ctx) {
 		},
 		d(detaching) {
 			destroy_component(videoview, detaching);
+		}
+	};
+}
+
+// (115:20) {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
+function create_if_block_4$1(ctx) {
+	let div0;
+	let img;
+	let img_src_value;
+	let img_alt_value;
+	let t0;
+	let div1;
+	let h1;
+	let t1;
+	let span;
+	let br;
+	let t2;
+	let t3_value = /*selectedEpisode_obj*/ ctx[3].name + "";
+	let t3;
+	let t4;
+	let mounted;
+	let dispose;
+
+	return {
+		c() {
+			div0 = element("div");
+			img = element("img");
+			t0 = space();
+			div1 = element("div");
+			h1 = element("h1");
+			t1 = text("Sorry!\n                                ");
+			span = element("span");
+			br = element("br");
+			t2 = text("\"");
+			t3 = text(t3_value);
+			t4 = text("\" is still a work in progress. Enable developer mode to bypass this screen.");
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name);
+			attr(div0, "class", "thumbnailBackground");
+			attr(div1, "class", "nothingSelected");
+		},
+		m(target, anchor) {
+			insert(target, div0, anchor);
+			append(div0, img);
+			insert(target, t0, anchor);
+			insert(target, div1, anchor);
+			append(div1, h1);
+			append(h1, t1);
+			append(h1, span);
+			append(span, br);
+			append(span, t2);
+			append(span, t3);
+			append(span, t4);
+
+			if (!mounted) {
+				dispose = listen(img, "load", load_handler_2);
+				mounted = true;
+			}
+		},
+		p(ctx, dirty) {
+			if (dirty & /*$cfg, selectedEpisode_obj*/ 72 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) {
+				attr(img, "src", img_src_value);
+			}
+
+			if (dirty & /*selectedEpisode_obj*/ 8 && img_alt_value !== (img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name)) {
+				attr(img, "alt", img_alt_value);
+			}
+
+			if (dirty & /*selectedEpisode_obj*/ 8 && t3_value !== (t3_value = /*selectedEpisode_obj*/ ctx[3].name + "")) set_data(t3, t3_value);
+		},
+		i: noop,
+		o: noop,
+		d(detaching) {
+			if (detaching) detach(div0);
+			if (detaching) detach(t0);
+			if (detaching) detach(div1);
+			mounted = false;
+			dispose();
 		}
 	};
 }

@@ -414,6 +414,32 @@
     color: var(--txt);
 }
 
+#screenShow > .content > .thumbnailBackground {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+#screenShow > .content > .thumbnailBackground > img {
+    position:absolute;
+    left:-40px; /* attempting to hide the edges caused by filter:blur() */
+    top:-40px;
+    width:calc( 100% + 80px );
+    height:calc( 100% + 80px );
+    object-fit:cover;
+    filter:blur(20px);
+    opacity: 0;
+    transition-duration: 250ms;
+}
+
+#screenShow > .content > .thumbnailBackground > img[data-loaded] {
+    opacity:0.5;
+    transition-duration: 250ms;
+}
+
 /* Screen: Settings */
 
 #screenSettings {
