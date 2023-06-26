@@ -430,7 +430,7 @@
     width:calc( 100% + 80px );
     height:calc( 100% + 80px );
     object-fit:cover;
-    filter:blur(20px);
+    filter: blur(5px);
     opacity: 0;
     transition-duration: 250ms;
 }
@@ -438,6 +438,25 @@
 #screenShow > .content > .thumbnailBackground > img[data-loaded] {
     opacity:0.5;
     transition-duration: 250ms;
+}
+
+#screenShow > .content > .backedByThumbnailBkg > h1,
+#screenShow > .content > .backedByThumbnailBkg > h1 > * 
+{
+    color: var(--ol2);
+    text-shadow:var(--sf0) 0px 0px 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+    #screenShow > .content > .thumbnailBackground > img[data-loaded] {
+        opacity: 0.20; /* "darken" for dark mode users */
+        filter: blur(5px) brightness(0.5);
+    }
+    #screenShow > .content > .backedByThumbnailBkg > h1,
+    #screenShow > .content > .backedByThumbnailBkg > h1 > *
+    {
+        color: var(--sf2);
+    }
 }
 
 /* Screen: Settings */

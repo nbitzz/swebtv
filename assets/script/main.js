@@ -4607,7 +4607,7 @@ function create_if_block_4$1(ctx) {
 			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name);
 			attr(div0, "class", "thumbnailBackground");
-			attr(div1, "class", "nothingSelected");
+			attr(div1, "class", "nothingSelected backedByThumbnailBkg");
 		},
 		m(target, anchor) {
 			insert(target, div0, anchor);
