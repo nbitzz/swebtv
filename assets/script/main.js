@@ -5774,7 +5774,7 @@ function create_if_block(ctx) {
 	}
 
 	let sidebar_props = {
-		width: 275,
+		width: 250,
 		level: 2,
 		items: /*sbItems*/ ctx[3]
 	};
