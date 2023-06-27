@@ -382,8 +382,7 @@
                         },
 
                         "intro": [ 33.75, 123.75 ],
-                        "outro": [ 1324.75, 1414.75 ],
-                        "unfinished": true
+                        "outro": [ 1324.75, 1414.75 ]
                     },
                     {
                         "name": "Be Right There",
