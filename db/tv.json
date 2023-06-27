@@ -381,7 +381,7 @@
                             }
                         },
 
-                        "intro": [ 33.75, 123.75 ],
+                        "intro": [ 33.85, 123.85 ],
                         "outro": [ 1324.75, 1414.75 ]
                     },
                     {
@@ -645,6 +645,89 @@
                         "unfinished": true
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Miss Kobayashi's Dragon Maid",
+        "id":"mkdm",
+
+        "description": "Miss Kobayashi is your average office worker who lives a boring life, alone in her small apartment–until she saves the life of a female dragon in distress. The dragon, named Tohru, has the ability to magically transform into an adorable human girl (albeit with horns and a long tail!), who will do anything to pay off her debt of gratitude, whether Miss Kobayashi likes it or not. With a very persistent and amorous dragon as a roommate, nothing comes easy, and Miss Kobayashi’s normal life is about to go off the deep end!",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "mkdmic",
+        "poster": "mkdmposter",
+
+        "seasons": [
+            {
+                "name": "Miss Kobayashi's Dragon Maid",
+                "parent": "mkdm",
+                "id": "mkdm.s1",
+
+                "episodes": []
+            },
+            {
+                "name": "Miss Kobayashi's Dragon Maid S",
+                "parent": "mkdm",
+                "id": "mkdm.s2",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
+        "name": "BLEND-S",
+        "id":"blends",
+
+        "description": "Tsundere, Imouto (little sister type), etc. are only a few of the personas that the café waitresses play out here. And the new hire Maika, is asked by the store manager to play none other than the super sadist!?\nAs she becomes devoted to her work, her super sadist persona blooms unexpectedly…\nEverything is a treat - even being stomped on - in this outrageous working comedy.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "blendsic",
+        "poster": "bsposter",
+
+        "seasons": [
+            {
+                "name": "BLEND-S",
+                "parent": "blends",
+                "id": "blends.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
+        "name": "Chainsaw Man",
+        "id":"csm",
+
+        "description": "Denji is a young boy who works as a Devil Hunter with the “Chainsaw Devil” Pochita.\nOne day, as he was living his miserable life trying to pay off the debt he inherited from his parents, he got betrayed and killed. As he was losing his consciousness, he made a deal with Pochita, and got resurrected as the “Chainsaw Man”: the owner of the Devil’s heart.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "csmic",
+        "poster": "csmposter",
+
+        "seasons": [
+            {
+                "name": "Chainsaw Man",
+                "parent": "csm",
+                "id": "csm.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
+        "name": "SPY x FAMILY",
+        "id":"sxf",
+
+        "description": "World peace is at stake and secret agent Twilight must undergo his most difficult mission yet—pretend to be a family man. Posing as a loving husband and father, he’ll infiltrate an elite school to get close to a high-profile politician. He has the perfect cover, except his wife’s a deadly assassin and neither knows each other’s identity. But someone does, his adopted daughter who’s a telepath!",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "sxfic",
+        "poster": "sxfposter",
+
+        "seasons": [
+            {
+                "name": "SPY x FAMILY",
+                "parent": "sxf",
+                "id": "sxf.s1",
+
+                "episodes": []
             }
         ]
     },
