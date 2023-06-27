@@ -333,7 +333,86 @@
                 "parent": "bocchi",
                 "id": "bocchi.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "Lonely Rolling Bocchi",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e1",
+
+                        "description": "Introverted Bocchi takes up the guitar in hopes of meeting friends, but her social anxiety is not so easily conquered...",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "intro": [ 173.8, 263.8 ],
+                        "outro": [ 1325.5, 1415.5 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "See You Tomorrow",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e2",
+
+                        "description": "Nijika proposes that the band save up money for their next gig by doing part-time work at Starry.",
+                        "thumbnail": "bc_ep2_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e2mb",
+                                "good": "bcs1e2mg",
+                                "okay": "bcs1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e2hb",
+                                "good": "bcs1e2hg",
+                                "okay": "bcs1e2ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Be Right There",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e3",
+
+                        "description": "Bocchi decides to try to pursue a new vocalist for the band: a classmate named Kita.",
+                        "thumbnail": "bc_ep3_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e3mb",
+                                "good": "bcs1e3mg",
+                                "okay": "bcs1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e3hb",
+                                "good": "bcs1e3hg",
+                                "okay": "bcs1e3ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    }
+                ]
             }
         ]
     },
