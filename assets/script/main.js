@@ -4940,7 +4940,7 @@ function create_fragment$2(ctx) {
 		/*sidebar_items_binding*/ ctx[11](value);
 	}
 
-	let sidebar_props = { level: 1, width: 250 };
+	let sidebar_props = { level: 1, width: 275 };
 
 	if (/*selectedSeason*/ ctx[0] !== void 0) {
 		sidebar_props.active = /*selectedSeason*/ ctx[0];
@@ -5774,7 +5774,7 @@ function create_if_block(ctx) {
 	}
 
 	let sidebar_props = {
-		width: 250,
+		width: 275,
 		level: 2,
 		items: /*sbItems*/ ctx[3]
 	};
