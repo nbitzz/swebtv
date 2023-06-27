@@ -1473,8 +1473,6 @@ var settings;
     }
     settings.set = set;
 })(settings || (settings = {}));
-// typeguards
-let isCommon = (obj) => !!(obj.id && obj.name);
 let isMovie = (video) => { return !!video.icon; };
 let isShow = (obj) => !!obj.seasons;
 let isSeason = (obj) => !!obj.episodes;
@@ -1495,7 +1493,7 @@ function getBestFormat(video, requested) {
 function getSeasonLabel(season) {
     var _a;
     let show = IDIndex.get(season.parent);
-    if (!isCommon(show) || !isShow(show))
+    if (!show || !isShow(show))
         return "❔";
     // this is a mess LOL
     // oh well
@@ -1505,7 +1503,7 @@ function getSeasonLabel(season) {
 }
 function getEpisodeLabel(episode) {
     let season = IDIndex.get(episode.parent);
-    if (!isCommon(season) || !isSeason(season))
+    if (!season || !isSeason(season))
         return "❔";
     let slabel = getSeasonLabel(season);
     return `${slabel}${!season.type ? "E" : ""}${season.episodes.indexOf(episode) + 1}`;
