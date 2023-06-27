@@ -4249,7 +4249,7 @@ function create_if_block_5(ctx) {
 		/*sidebar_items_binding_1*/ ctx[13](value);
 	}
 
-	let sidebar_props = { level: 0, width: 250 };
+	let sidebar_props = { level: 0, width: 275 };
 
 	if (/*selectedEpisode*/ ctx[2] !== void 0) {
 		sidebar_props.active = /*selectedEpisode*/ ctx[2];
