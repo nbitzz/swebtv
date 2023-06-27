@@ -1493,13 +1493,14 @@ function getBestFormat(video, requested) {
     return "main";
 }
 function getSeasonLabel(season) {
+    var _a;
     let show = IDIndex.get(season.parent);
     if (!isCommon(show) || !isShow(show))
         return "❔";
     // this is a mess LOL
     // oh well
     return season.type
-        ? lists.seasonTypeLT[season.type].icons[(show === null || show === void 0 ? void 0 : show.seasons.filter(e => e.type == season.type).indexOf(season)) || lists.seasonTypeLT[season.type].icons.length - 1] || lists.seasonTypeLT[season.type].icons[lists.seasonTypeLT[season.type].icons.length - 1]
+        ? lists.seasonTypeLT[season.type].icons[(_a = show === null || show === void 0 ? void 0 : show.seasons.filter(e => e.type == season.type).indexOf(season)) !== null && _a !== void 0 ? _a : lists.seasonTypeLT[season.type].icons.length - 1] || lists.seasonTypeLT[season.type].icons[lists.seasonTypeLT[season.type].icons.length - 1]
         : `S${show.seasons.indexOf(season) + 1}`;
 }
 function getEpisodeLabel(episode) {
