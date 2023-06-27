@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getEpisodeAfter, letteredTime } from "../../ts/util";
-    import { IDIndex, isEpisode, isMovie, isShow, type Video, cfg, isSeason, type Show, type Season } from "../../ts/webtv";
+    import { IDIndex, isEpisode, isMovie, isShow, type Video, cfg, isSeason, type Show, type Season, settings } from "../../ts/webtv";
     import FormatDownloader from "./FormatDownloader.svelte";
     import NextEpDisplay from "./NextEpDisplay.svelte";
     import VideoPlayer from "./VideoPlayer.svelte";
@@ -47,9 +47,8 @@
 </script>
 
 <div class="videoView">
-    
+
     <div class="container">
-        
         <VideoPlayer playing={targetVideo} />
 
         <div class="shortAbout">
@@ -83,7 +82,6 @@
                 <FormatDownloader target={targetVideo} />
             </div>
         </div>
-
-    </div>
+    </div>    
 
 </div> 

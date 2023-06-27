@@ -18,6 +18,7 @@
     let progress: number
     let isPaused: boolean = true
 
+    let VPE: HTMLVideoElement
     let vplayer: HTMLDivElement
     let seekbar: HTMLDivElement
     let videoReadyState: number
@@ -76,10 +77,10 @@
                 e.preventDefault();
                 break
             case "ArrowRight":
-                progress = Math.min(Math.max(progress+5,0),duration)
+                progress = Math.min(Math.max(progress+parseFloat(settings.userSet.keyboardSeek),0),duration)
                 break;
             case "ArrowLeft":
-                progress = Math.min(Math.max(progress-5,0),duration)
+                progress = Math.min(Math.max(progress-parseFloat(settings.userSet.keyboardSeek),0),duration)
                 break;
             case "KeyF":
                 if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); 
@@ -118,16 +119,18 @@
             progress = fqp.prg_hold
             isPaused = fqp.WFL
             delete fqp.prg_hold;
+            VPE.play()
         }
     }
 
-    $: if (fqp.quality != quality || fqp.format != format) {
+    $: if ((fqp.quality != quality || fqp.format != format)&&!fqp.prg_hold) {
 
         fqp.prg_hold = progress;
         fqp.WFL = isPaused;
         isPaused = true;
         quality = fqp.quality;
         format = fqp.format;
+        videoReadyState = 0; // assume the worst (pls work)
 
     }
 
@@ -150,22 +153,27 @@
     <!-- sorta unneeded due to the hardsub track -->
     <!-- no i am not writing an ASS implementation -->
     <!-- fuck you -->
+    {#key $cfg.host + playing.formats[format][quality]}
     <!-- svelte-ignore a11y-media-has-caption -->
     <video 
         poster={playing.thumbnail && $cfg.host + playing.thumbnail || ""} 
         src={$cfg.host + playing.formats[format][quality]} bind:readyState={videoReadyState} 
         bind:paused={isPaused} bind:currentTime={progress} 
-        bind:duration={duration}
+        bind:duration={duration} bind:this={VPE}
 
         on:click={() => { isPaused = !isPaused; showFQPicker = false; }}
         on:loadeddata={loadHandler}
         style:cursor={(showControls) ? "default" : "none"}
     />
+    {/key}
 
     {#if videoReadyState < 2}
         <!-- makes it possible to click to pause/unpause while buffering... i think -->
         <!-- svelte-ignore a11y-click-events-have-key-events --> 
         <div class="loadingOverlay" transition:fade|local={{duration:200}} on:click={() => isPaused = !isPaused}>
+            {#if settings.userSet.developerMode}
+                <p class="monospaceText">videoReadyState {videoReadyState}<br />realProgress {progress}<br />duration {duration}</p>
+            {/if}
             <div class="loadingSpinner" />
         </div>
     {/if}
@@ -195,6 +203,11 @@
     {/if}
 
     {#if showControls}
+        {#if settings.userSet.developerMode}
+            <!-- i know you're not supposed to use inline styles but this is a devmode thing so -->
+            <p class="monospaceText" style="position:absolute;width:100%;text-align:center;left:0px;top:0px;opacity:0.5;">{progress}</p>
+        {/if}
+
         <!-- so that you don't need to stay within a 10 px range -->
         <div class="controls" 
             transition:fade|local={{duration: 200}}

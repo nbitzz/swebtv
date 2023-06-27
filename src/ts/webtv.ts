@@ -37,7 +37,8 @@ export interface Video extends Common {
         }
     }
 
-    aspectRatio?: string        // ex. 16 / 9
+    aspectRatio?: string,        // ex. 16 / 9
+    unfinished?: boolean
 
 }
 
@@ -105,6 +106,7 @@ export namespace settings {
         autoplay: true,
         autoskipintro: false,
         autoskipoutro: false,
+        keyboardSeek: "5",
 
         skipbutton: true,
         developerMode: false
@@ -119,6 +121,7 @@ export namespace settings {
         autoplay: boolean,
         autoskipintro: boolean,
         autoskipoutro: boolean,
+        keyboardSeek: "0.01" | "0.1" | "1" | "5" | "10", // lazy
 
         developerMode: boolean,
         skipbutton: boolean,
@@ -176,6 +179,11 @@ export namespace settings {
                     label: "Automatically skip outro",
                     targetSetting: "autoskipoutro",
                     input: "boolean"
+                },
+                {
+                    label: "Arrow key skip duration",
+                    targetSetting: "keyboardSeek",
+                    input: [ "0.01", "0.1", "1", "5", "10" ]
                 }
             ]
         },

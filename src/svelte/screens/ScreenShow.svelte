@@ -76,7 +76,7 @@
     <Sidebar level={1} width={250} bind:active={selectedSeason} bind:items={seasonList} />
 
     {#if selectedSeason != "showAbout"}
-        <Sidebar level={0} width={250} bind:active={selectedEpisode} bind:items={episodeList} />
+        <Sidebar level={0} width={275} bind:active={selectedEpisode} bind:items={episodeList} />
     {/if}
 
     <div class="content">
@@ -119,7 +119,24 @@
             {#if selectedEpisode && selectedEpisode_obj}
 
                 {#key selectedEpisode_obj}
-                    <VideoView targetVideo={selectedEpisode_obj} />
+
+                    {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
+                        <div class="thumbnailBackground">
+                            <img src={$cfg.host + selectedEpisode_obj?.thumbnail} alt={selectedEpisode_obj?.name} on:load={e => e.currentTarget.setAttribute("data-loaded","")}>
+                        </div>
+            
+                        <div class="nothingSelected backedByThumbnailBkg">
+                            <h1>
+                                Sorry!
+                                <span>
+                                    <br>"{selectedEpisode_obj.name}" is still a work in progress. Enable developer mode to bypass this screen.
+                                </span>
+                            </h1>
+                        </div>
+                    {:else}
+                        <VideoView targetVideo={selectedEpisode_obj} />
+                    {/if}
+                
                 {/key}
 
             {:else}
