@@ -1373,7 +1373,7 @@ var lists;
         "special" // ★; if there is a second special, ☆. use for seasons containing shorts, etc
     ];
     lists.episodetypes = [
-        "extra",
+        //"extra", // + Extra
         "special" // ★ Special
     ];
     lists.seasonTypeLT = {
@@ -4426,7 +4426,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (134:12) {:else}
+// (135:12) {:else}
 function create_else_block_1(ctx) {
 	let div;
 	let h1;
@@ -4477,7 +4477,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (111:12) {#if selectedEpisode && selectedEpisode_obj}
+// (112:12) {#if selectedEpisode && selectedEpisode_obj}
 function create_if_block_3$1(ctx) {
 	let previous_key = /*selectedEpisode_obj*/ ctx[3];
 	let key_block_anchor;
@@ -4523,7 +4523,7 @@ function create_if_block_3$1(ctx) {
 	};
 }
 
-// (75:8) {#if selectedSeason == "showAbout"}
+// (76:8) {#if selectedSeason == "showAbout"}
 function create_if_block$2(ctx) {
 	let t0;
 	let div5;
@@ -4656,7 +4656,7 @@ function create_if_block$2(ctx) {
 	};
 }
 
-// (128:20) {:else}
+// (129:20) {:else}
 function create_else_block(ctx) {
 	let videoview;
 	let current;
@@ -4695,7 +4695,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (115:20) {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
+// (116:20) {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
 function create_if_block_4$1(ctx) {
 	let div0;
 	let img;
@@ -4773,7 +4773,7 @@ function create_if_block_4$1(ctx) {
 	};
 }
 
-// (113:16) {#key selectedEpisode_obj}
+// (114:16) {#key selectedEpisode_obj}
 function create_key_block$1(ctx) {
 	let current_block_type_index;
 	let if_block;
@@ -4843,7 +4843,7 @@ function create_key_block$1(ctx) {
 	};
 }
 
-// (77:8) {#if show?.poster}
+// (78:8) {#if show?.poster}
 function create_if_block_2$1(ctx) {
 	let div2;
 	let img;
@@ -4895,7 +4895,7 @@ function create_if_block_2$1(ctx) {
 	};
 }
 
-// (92:27) {#if settings.userSet.developerMode}
+// (93:27) {#if settings.userSet.developerMode}
 function create_if_block_1$1(ctx) {
 	let span;
 	let t1;
@@ -5165,7 +5165,8 @@ function instance$2($$self, $$props, $$invalidate) {
 								icon: {
 									type: "text",
 									content: `${(x + 1).toString().length < 2 ? "0" : ""}${x + 1}`
-								}
+								},
+								title: v.type ? lists.episodeTypeLT[v.type] : undefined
 							};
 						}));
 					}
