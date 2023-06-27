@@ -789,6 +789,26 @@
                                 "okay": "freerobux.mp4"
                             }
                         }
+                    },
+                    {
+                        "name": "S1 ep 3 test",
+                        "parent": "wtvtb.main",
+                        "id": "wtvtb.1.3",
+
+                        "description": "S1E3 test",
+                        "notes": "Notes on episodes, again",
+                        "thumbnail": "testground",
+                        "length": 20,
+
+                        "formats": {
+                            "main": {
+                                "best": "freerobux.mp4",
+                                "good": "freerobux.mp4",
+                                "okay": "freerobux.mp4"
+                            }
+                        },
+
+                        "type": "special"
                     }
                 ]
             },
@@ -853,6 +873,87 @@
                         "unfinished":true
                     }
                 ]
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.special",
+
+                "episodes": [
+                    {
+                        "name": "special test",
+                        "parent": "wtvtb.special",
+                        "id": "wtvtb.special.1",
+
+                        "description": "SP1E1 test",
+                        "notes": "Notes on episodes? Do these work?",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    }
+                ],
+                
+                "type": "special"
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.special2",
+
+                "episodes": [
+                    {
+                        "name": "special test 2",
+                        "parent": "wtvtb.special2",
+                        "id": "wtvtb.special2.1",
+
+                        "description": "SP2E1 test",
+                        "notes": "Notes on episodes? Do these work?",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    }
+                ],
+                
+                "type": "special"
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.extra",
+
+                "episodes": [
+                    {
+                        "name": "extras test",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.1",
+
+                        "description": "EXE1 test",
+                        "notes": "Notes on episodes? Do these work?",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    }
+                ],
+                
+                "type": "special"
             }
         ]
     }
