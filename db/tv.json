@@ -382,8 +382,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
+                        "intro": [ 33.75, 123.75 ],
+                        "outro": [ 1324.75, 1414.75 ],
                         "unfinished": true
                     },
                     {
@@ -405,6 +405,84 @@
                                 "best": "bcs1e3hb",
                                 "good": "bcs1e3hg",
                                 "okay": "bcs1e3ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Jumping Girl(s)",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e4",
+
+                        "description": "While Bocchi struggles to write the lyrics to the band's first song, Nijika arranges a special band outing.",
+                        "thumbnail": "bc_ep4_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e4mb",
+                                "good": "bcs1e4mg",
+                                "okay": "bcs1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e4hb",
+                                "good": "bcs1e4hg",
+                                "okay": "bcs1e4ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Flightless Fish",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e5",
+
+                        "description": "Kessoku Band has their first song and they're ready to play their next concert, but Seika isn't so easily convinced.",
+                        "thumbnail": "bc_ep5_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e5mb",
+                                "good": "bcs1e5mg",
+                                "okay": "bcs1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e5hb",
+                                "good": "bcs1e5hg",
+                                "okay": "bcs1e5ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e6",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep6_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e6mb",
+                                "good": "bcs1e6mg",
+                                "okay": "bcs1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e6hb",
+                                "good": "bcs1e6hg",
+                                "okay": "bcs1e6ho"
                             }
                         },
 
