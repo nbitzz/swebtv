@@ -165,6 +165,11 @@
 .sidebar > .listItem > .icon[data-circular=true] > .icontainer {
     border-radius: 100%;
     background-color:var(--txt);
+
+    animation-name: load_flash;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 .sidebar > .listItem > .icon[data-circular=true] > .icontainer > img {
@@ -872,6 +877,18 @@
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
         background-color:var(--s-top);
+    }
+}
+
+@keyframes load_flash {
+    0% {
+        background-color:var(--txt);
+    }
+    50% {
+        background-color:var(--st1);
+    }
+    100% {
+        background-color:var(--txt);
     }
 }
 
