@@ -671,6 +671,14 @@
                 "id": "mkdm.s2",
 
                 "episodes": []
+            },
+            {
+                "name": "Miss Kobayashi's Dragon Maid S Short Animation Series",
+                "parent": "mkdm",
+                "id": "mkdm.special",
+
+                "episodes": [],
+                "type": "special"
             }
         ]
     },

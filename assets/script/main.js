@@ -883,7 +883,7 @@ function get_each_context$4(ctx, list, i) {
 }
 
 // (23:51) 
-function create_if_block_2$3(ctx) {
+function create_if_block_4$3(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
 	let html_anchor;
@@ -909,7 +909,7 @@ function create_if_block_2$3(ctx) {
 }
 
 // (21:51) 
-function create_if_block_1$4(ctx) {
+function create_if_block_3$3(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
 	let t;
@@ -933,7 +933,7 @@ function create_if_block_1$4(ctx) {
 }
 
 // (17:16) {#if item.icon.type == "image"}
-function create_if_block$7(ctx) {
+function create_if_block_2$3(ctx) {
 	let div;
 	let img;
 	let img_src_value;
@@ -975,6 +975,56 @@ function create_if_block$7(ctx) {
 	};
 }
 
+// (28:16) {#if item.title}
+function create_if_block_1$4(ctx) {
+	let p;
+	let t_value = /*item*/ ctx[6].title + "";
+	let t;
+
+	return {
+		c() {
+			p = element("p");
+			t = text(t_value);
+			attr(p, "class", "note");
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, t);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[6].title + "")) set_data(t, t_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+// (34:16) {#if item.note}
+function create_if_block$7(ctx) {
+	let p;
+	let t_value = /*item*/ ctx[6].note + "";
+	let t;
+
+	return {
+		c() {
+			p = element("p");
+			t = text(t_value);
+			attr(p, "class", "note");
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, t);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[6].note + "")) set_data(t, t_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
 // (13:4) {#each items as item (item.id)}
 function create_each_block$4(key_1, ctx) {
 	let div2;
@@ -982,24 +1032,28 @@ function create_each_block$4(key_1, ctx) {
 	let div0_data_circular_value;
 	let t0;
 	let div1;
-	let p;
-	let t1_value = /*item*/ ctx[6].text + "";
 	let t1;
+	let p;
+	let t2_value = /*item*/ ctx[6].text + "";
 	let t2;
-	let button;
 	let t3;
+	let t4;
+	let button;
+	let t5;
 	let div2_data_active_value;
 	let mounted;
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[6].icon.type == "image") return create_if_block$7;
-		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_1$4;
-		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2$3;
+		if (/*item*/ ctx[6].icon.type == "image") return create_if_block_2$3;
+		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_3$3;
+		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_4$3;
 	}
 
 	let current_block_type = select_block_type(ctx);
-	let if_block = current_block_type && current_block_type(ctx);
+	let if_block0 = current_block_type && current_block_type(ctx);
+	let if_block1 = /*item*/ ctx[6].title && create_if_block_1$4(ctx);
+	let if_block2 = /*item*/ ctx[6].note && create_if_block$7(ctx);
 
 	function click_handler() {
 		return /*click_handler*/ ctx[5](/*item*/ ctx[6]);
@@ -1011,14 +1065,18 @@ function create_each_block$4(key_1, ctx) {
 		c() {
 			div2 = element("div");
 			div0 = element("div");
-			if (if_block) if_block.c();
+			if (if_block0) if_block0.c();
 			t0 = space();
 			div1 = element("div");
+			if (if_block1) if_block1.c();
+			t1 = space();
 			p = element("p");
-			t1 = text(t1_value);
-			t2 = space();
-			button = element("button");
+			t2 = text(t2_value);
 			t3 = space();
+			if (if_block2) if_block2.c();
+			t4 = space();
+			button = element("button");
+			t5 = space();
 			attr(div0, "class", "icon");
 			attr(div0, "data-circular", div0_data_circular_value = /*item*/ ctx[6].icon.circular);
 			attr(div1, "class", "content");
@@ -1034,14 +1092,18 @@ function create_each_block$4(key_1, ctx) {
 		m(target, anchor) {
 			insert(target, div2, anchor);
 			append(div2, div0);
-			if (if_block) if_block.m(div0, null);
+			if (if_block0) if_block0.m(div0, null);
 			append(div2, t0);
 			append(div2, div1);
+			if (if_block1) if_block1.m(div1, null);
+			append(div1, t1);
 			append(div1, p);
-			append(p, t1);
-			append(div2, t2);
+			append(p, t2);
+			append(div1, t3);
+			if (if_block2) if_block2.m(div1, null);
+			append(div2, t4);
 			append(div2, button);
-			append(div2, t3);
+			append(div2, t5);
 
 			if (!mounted) {
 				dispose = listen(button, "click", click_handler);
@@ -1051,15 +1113,15 @@ function create_each_block$4(key_1, ctx) {
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 
-			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-				if_block.p(ctx, dirty);
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
+				if_block0.p(ctx, dirty);
 			} else {
-				if (if_block) if_block.d(1);
-				if_block = current_block_type && current_block_type(ctx);
+				if (if_block0) if_block0.d(1);
+				if_block0 = current_block_type && current_block_type(ctx);
 
-				if (if_block) {
-					if_block.c();
-					if_block.m(div0, null);
+				if (if_block0) {
+					if_block0.c();
+					if_block0.m(div0, null);
 				}
 			}
 
@@ -1067,7 +1129,33 @@ function create_each_block$4(key_1, ctx) {
 				attr(div0, "data-circular", div0_data_circular_value);
 			}
 
-			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
+			if (/*item*/ ctx[6].title) {
+				if (if_block1) {
+					if_block1.p(ctx, dirty);
+				} else {
+					if_block1 = create_if_block_1$4(ctx);
+					if_block1.c();
+					if_block1.m(div1, t1);
+				}
+			} else if (if_block1) {
+				if_block1.d(1);
+				if_block1 = null;
+			}
+
+			if (dirty & /*items*/ 2 && t2_value !== (t2_value = /*item*/ ctx[6].text + "")) set_data(t2, t2_value);
+
+			if (/*item*/ ctx[6].note) {
+				if (if_block2) {
+					if_block2.p(ctx, dirty);
+				} else {
+					if_block2 = create_if_block$7(ctx);
+					if_block2.c();
+					if_block2.m(div1, null);
+				}
+			} else if (if_block2) {
+				if_block2.d(1);
+				if_block2 = null;
+			}
 
 			if (dirty & /*items, active*/ 3 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*active*/ ctx[0]
 			? "true"
@@ -1078,10 +1166,12 @@ function create_each_block$4(key_1, ctx) {
 		d(detaching) {
 			if (detaching) detach(div2);
 
-			if (if_block) {
-				if_block.d();
+			if (if_block0) {
+				if_block0.d();
 			}
 
+			if (if_block1) if_block1.d();
+			if (if_block2) if_block2.d();
 			mounted = false;
 			dispose();
 		}
@@ -1278,6 +1368,28 @@ var lists;
         "hardsub",
         "dub"
     ];
+    lists.seasontypes = [
+        "extras",
+        "special" // ★; if there is a second special, ☆. use for seasons containing shorts, etc
+    ];
+    lists.episodetypes = [
+        "extra",
+        "special" // ★ Special
+    ];
+    lists.seasonTypeLT = {
+        extras: {
+            icons: ["+"],
+            placeholder: "Extras"
+        },
+        special: {
+            icons: ["★", "☆"],
+            placeholder: "Special season"
+        }
+    };
+    // open ended lke this cause it's possible that more could be added later
+    lists.episodeTypeLT = {
+        special: "★ Special"
+    };
 })(lists || (lists = {}));
 // settings
 var settings;
@@ -1361,6 +1473,8 @@ var settings;
     }
     settings.set = set;
 })(settings || (settings = {}));
+// typeguards
+let isCommon = (obj) => !!(obj.id && obj.name);
 let isMovie = (video) => { return !!video.icon; };
 let isShow = (obj) => !!obj.seasons;
 let isSeason = (obj) => !!obj.episodes;
@@ -1377,6 +1491,23 @@ function getBestFormat(video, requested) {
             return lists.formats[i];
     }
     return "main";
+}
+function getSeasonLabel(season) {
+    let show = IDIndex.get(season.parent);
+    if (!isCommon(show) || !isShow(show))
+        return "❔";
+    // this is a mess LOL
+    // oh well
+    return season.type
+        ? lists.seasonTypeLT[season.type].icons[(show === null || show === void 0 ? void 0 : show.seasons.filter(e => e.type == season.type).indexOf(season)) || lists.seasonTypeLT[season.type].icons.length - 1] || lists.seasonTypeLT[season.type].icons[lists.seasonTypeLT[season.type].icons.length - 1]
+        : `S${show.seasons.indexOf(season) + 1}`;
+}
+function getEpisodeLabel(episode) {
+    let season = IDIndex.get(episode.parent);
+    if (!isCommon(season) || !isSeason(season))
+        return "❔";
+    let slabel = getSeasonLabel(season);
+    return `${slabel}${!season.type ? "E" : ""}${season.episodes.indexOf(episode) + 1}`;
 }
 /*
 export function getNearestQuality(video: Video, format: videoFormat, requested: videoQuality) : videoQuality {
@@ -2178,15 +2309,11 @@ function create_fragment$6(ctx) {
 	let t3;
 	let t4;
 	let p1;
+	let t5_value = getEpisodeLabel(/*target*/ ctx[0]) + "";
 	let t5;
-	let t6_value = /*show*/ ctx[2].seasons.indexOf(/*season*/ ctx[1]) + 1 + "";
 	let t6;
+	let t7_value = letteredTime(/*target*/ ctx[0].length) + "";
 	let t7;
-	let t8_value = /*season*/ ctx[1].episodes.indexOf(/*target*/ ctx[0]) + 1 + "";
-	let t8;
-	let t9;
-	let t10_value = letteredTime(/*target*/ ctx[0].length) + "";
-	let t10;
 	let mounted;
 	let dispose;
 
@@ -2204,13 +2331,10 @@ function create_fragment$6(ctx) {
 			t3 = text(t3_value);
 			t4 = space();
 			p1 = element("p");
-			t5 = text("S");
-			t6 = text(t6_value);
-			t7 = text("E");
-			t8 = text(t8_value);
-			t9 = text(" — ");
-			t10 = text(t10_value);
-			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[3].host + /*target*/ ctx[0].thumbnail)) attr(img, "src", img_src_value);
+			t5 = text(t5_value);
+			t6 = text(" — ");
+			t7 = text(t7_value);
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[1].host + /*target*/ ctx[0].thumbnail)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = "Thumbnail for " + /*target*/ ctx[0].name);
 			attr(div0, "class", "thumbnail");
 			set_style(div0, "aspect-ratio", /*target*/ ctx[0].aspectRatio || "16 / 9");
@@ -2233,9 +2357,6 @@ function create_fragment$6(ctx) {
 			append(p1, t5);
 			append(p1, t6);
 			append(p1, t7);
-			append(p1, t8);
-			append(p1, t9);
-			append(p1, t10);
 
 			if (!mounted) {
 				dispose = listen(img, "load", load_handler$2);
@@ -2243,7 +2364,7 @@ function create_fragment$6(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*$cfg, target*/ 9 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[3].host + /*target*/ ctx[0].thumbnail)) {
+			if (dirty & /*$cfg, target*/ 3 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[1].host + /*target*/ ctx[0].thumbnail)) {
 				attr(img, "src", img_src_value);
 			}
 
@@ -2256,9 +2377,8 @@ function create_fragment$6(ctx) {
 			}
 
 			if (dirty & /*target*/ 1 && t3_value !== (t3_value = /*target*/ ctx[0].name + "")) set_data(t3, t3_value);
-			if (dirty & /*show, season*/ 6 && t6_value !== (t6_value = /*show*/ ctx[2].seasons.indexOf(/*season*/ ctx[1]) + 1 + "")) set_data(t6, t6_value);
-			if (dirty & /*season, target*/ 3 && t8_value !== (t8_value = /*season*/ ctx[1].episodes.indexOf(/*target*/ ctx[0]) + 1 + "")) set_data(t8, t8_value);
-			if (dirty & /*target*/ 1 && t10_value !== (t10_value = letteredTime(/*target*/ ctx[0].length) + "")) set_data(t10, t10_value);
+			if (dirty & /*target*/ 1 && t5_value !== (t5_value = getEpisodeLabel(/*target*/ ctx[0]) + "")) set_data(t5, t5_value);
+			if (dirty & /*target*/ 1 && t7_value !== (t7_value = letteredTime(/*target*/ ctx[0].length) + "")) set_data(t7, t7_value);
 		},
 		i: noop,
 		o: noop,
@@ -2274,23 +2394,22 @@ const load_handler$2 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$6($$self, $$props, $$invalidate) {
 	let $cfg;
-	component_subscribe($$self, cfg, $$value => $$invalidate(3, $cfg = $$value));
+	component_subscribe($$self, cfg, $$value => $$invalidate(1, $cfg = $$value));
 	let { target } = $$props;
 	let season;
-	let show;
 	let season_tmp = IDIndex.get(target.parent);
 
 	if (season_tmp && isSeason(season_tmp)) {
 		season = season_tmp;
 		let tmp = IDIndex.get(season.parent);
-		if (tmp && isShow(tmp)) show = tmp;
+		if (tmp && isShow(tmp)) ;
 	}
 
 	$$self.$$set = $$props => {
 		if ('target' in $$props) $$invalidate(0, target = $$props.target);
 	};
 
-	return [target, season, show, $cfg];
+	return [target, $cfg];
 }
 
 class NextEpDisplay extends SvelteComponent {
@@ -3689,7 +3808,9 @@ function create_fragment$4(ctx) {
 
 	let t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 	? `Runtime ${letteredTime(/*targetVideo*/ ctx[0].length)}`
-	: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
+	: `${isEpisode(/*targetVideo*/ ctx[0])
+		? getEpisodeLabel(/*targetVideo*/ ctx[0])
+		: "❔"} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
 
 	let t4;
 	let t5;
@@ -3817,7 +3938,9 @@ function create_fragment$4(ctx) {
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t4_value !== (t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 			? `Runtime ${letteredTime(/*targetVideo*/ ctx[0].length)}`
-			: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
+			: `${isEpisode(/*targetVideo*/ ctx[0])
+				? getEpisodeLabel(/*targetVideo*/ ctx[0])
+				: "❔"} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t8_value !== (t8_value = (/*targetVideo*/ ctx[0].description || "No description specified") + "")) set_data(t8, t8_value);
 			if (dirty & /*targetVideo*/ 1) show_if_1 = isMovie(/*targetVideo*/ ctx[0]) && /*targetVideo*/ ctx[0].notes;
@@ -5017,9 +5140,11 @@ function instance$2($$self, $$props, $$invalidate) {
 						},
 						...show.seasons.map((v, x) => {
 							return {
-								text: v.name || `Season ${x + 1}`,
+								text: v.name || (v.type
+								? lists.seasonTypeLT[v.type].placeholder
+								: `Season ${x + 1}`),
 								id: v.id,
-								icon: { type: "text", content: `S${x + 1}` }
+								icon: { type: "text", content: getSeasonLabel(v) }
 							};
 						})
 					]);

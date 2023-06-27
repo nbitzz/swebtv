@@ -140,6 +140,8 @@
 .sidebar > .listItem > .content {
     left:50px;
     width:calc( var(--wdth) - 50px );
+    display:flex;
+    justify-content: center;
 }
 
 /* sidebar util */
@@ -188,16 +190,24 @@
 }
 
 .sidebar > .listItem > .content > p {
-    position:absolute;
+    /* position:absolute; */
     margin: 0 10px 0 0;
-    top:50%; /* probably just me being stupid but
-                couldnt get margin auto 0 auto  0 towork
-             */
+    /*
+    top:50%; // probably just me being stupid but
+             // couldnt get margin auto 0 auto  0 towork
+             
     transform:translateY(-50%);
+    */
     color: var(--st1);
     font-family: var(--sans-serif);
     font-size:16px;
 }
+
+.sidebar > .listItem > .content > .note {
+    color: var(--st0);
+    font-size:12px;
+}
+
 
 
 /* Content */
