@@ -456,6 +456,7 @@
     #screenShow > .content > .backedByThumbnailBkg > h1 > *
     {
         color: var(--sf2);
+        width:calc( 100% - 20px );
     }
 }
 
