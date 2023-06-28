@@ -4540,12 +4540,12 @@ function create_if_block$2(ctx) {
 	let h1;
 	let t3;
 	let p0;
-	let t4_value = /*show*/ ctx[7]?.seasons?.length + "";
+	let t4_value = /*show*/ ctx[7]?.seasons.filter(func$1).length + "";
 	let t4;
 	let t5;
 
-	let t6_value = ((/*show*/ ctx[7]?.seasons?.length ?? 0) >= 1
-	? /*show*/ ctx[7]?.seasons?.map(func$1).reduce(func_1)
+	let t6_value = ((/*show*/ ctx[7]?.seasons?.filter(func_1).length ?? 0) >= 1
+	? /*show*/ ctx[7]?.seasons?.filter(func_2).map(func_3).reduce(func_4)
 	: 0) + "";
 
 	let t6;
@@ -5083,8 +5083,11 @@ function create_fragment$2(ctx) {
 
 const load_handler = e => e.currentTarget.setAttribute("data-loaded", "");
 const load_handler_1 = e => e.currentTarget.setAttribute("data-loaded", "");
-const func$1 = e => e.episodes.length;
-const func_1 = (pv, cv) => pv + cv;
+const func$1 = e => e.type !== "extras";
+const func_1 = e => e.type !== "extras";
+const func_2 = e => e.type !== "extras";
+const func_3 = e => e.episodes.length;
+const func_4 = (pv, cv) => pv + cv;
 const load_handler_2 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$2($$self, $$props, $$invalidate) {
