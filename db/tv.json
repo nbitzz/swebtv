@@ -491,7 +491,7 @@
                 ]
             },
             {
-                "name": "BOCCHI THE ROCK!",
+                "name": "Extras",
                 "parent": "bocchi",
                 "id": "bocchi.extras",
 
@@ -624,7 +624,9 @@
                         "type": "ending",
                         "author": "Kessoku Band"
                     }
-                ]
+                ],
+
+                "type": "extras"
             }
         ]
     },
