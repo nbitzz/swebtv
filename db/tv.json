@@ -406,8 +406,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
+                        "intro": [ 221.04, 311.04 ],
+                        "outro": [ 1325, 1415 ],
                         "unfinished": true
                     },
                     {
@@ -432,9 +432,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 105.07, 195.07 ],
+                        "outro": [ 1324.9, 1414.9 ]
                     },
                     {
                         "name": "Flightless Fish",
@@ -597,7 +596,8 @@
                         },
 
                         "type": "ending",
-                        "author": "Kessoku Band"
+                        "author": "Kessoku Band",
+                        "unfinished":true
                     },
                     {
                         "name": "\"Rockn' Roll, Morning Light Falls on You\"",
@@ -622,7 +622,8 @@
                         },
 
                         "type": "ending",
-                        "author": "Kessoku Band"
+                        "author": "Kessoku Band",
+                        "unfinished":true
                     }
                 ],
 
