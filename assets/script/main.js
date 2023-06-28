@@ -1393,8 +1393,8 @@ var lists;
     lists.episodeTypeLT = {
         special: "★ Special",
         music: "♫ Music",
-        opening: "▶ Opening",
-        ending: "■ Ending"
+        opening: "Opening",
+        ending: "Ending"
     };
 })(lists || (lists = {}));
 // settings
