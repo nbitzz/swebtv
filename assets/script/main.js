@@ -1374,7 +1374,10 @@ var lists;
     ];
     lists.episodetypes = [
         //"extra", // + Extra
-        "special" // ★ Special
+        "special",
+        "music",
+        "opening",
+        "ending"
     ];
     lists.seasonTypeLT = {
         extras: {
@@ -1388,7 +1391,10 @@ var lists;
     };
     // open ended lke this cause it's possible that more could be added later
     lists.episodeTypeLT = {
-        special: "★ Special"
+        special: "★ Special",
+        music: "♫ Music",
+        opening: "▶ Opening",
+        ending: "■ Ending"
     };
 })(lists || (lists = {}));
 // settings
