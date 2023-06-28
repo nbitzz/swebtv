@@ -1078,13 +1078,53 @@
 
                         "description": "Premiered Jun 23, 2023 at https://www.youtube.com/watch?v=o14pj9CsNVY",
                         "thumbnail": "__ktathmb",
-                        "length": 600,
+                        "length": 178,
 
                         "formats": {
                             "main": {
                                 "best": "__ktabest",
                                 "good": "__ktagood",
                                 "okay": "__ktaokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "inabakumori"
+                    },
+                    {
+                        "name": "\"Lost Umbrella\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.lost_umbrella",
+
+                        "description": "Lost Umbrella by inabakumori",
+                        "thumbnail": "__luthmb",
+                        "length": 202,
+
+                        "formats": {
+                            "main": {
+                                "best": "__lubest",
+                                "good": "__lugood",
+                                "okay": "__luokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "inabakumori"
+                    },
+                    {
+                        "name": "\"Lagtrain\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.lagtrain",
+
+                        "description": "Lagtrain by inabakumori",
+                        "thumbnail": "__ltthmb",
+                        "length": 251,
+
+                        "formats": {
+                            "main": {
+                                "best": "__ltbest",
+                                "good": "__ltgood",
+                                "okay": "__ltokay"
                             }
                         },
 
