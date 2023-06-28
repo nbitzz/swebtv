@@ -934,22 +934,23 @@
 
                 "episodes": [
                     {
-                        "name": "extras test",
+                        "name": "inabakumori - Kitai Avenue (Vo. Otomachi Una)",
                         "parent": "wtvtb.extra",
-                        "id": "wtvtb.extra.1",
+                        "id": "wtvtb.extra.kitai_avenue",
 
-                        "description": "EXE1 test",
-                        "notes": "Notes on episodes? Do these work?",
-                        "thumbnail": "testground",
+                        "description": "Premiered Jun 23, 2023 at https://www.youtube.com/watch?v=o14pj9CsNVY",
+                        "thumbnail": "__ktathmb",
                         "length": 600,
 
                         "formats": {
                             "main": {
-                                "best": "wiiubkg",
-                                "good": "wiiubkg",
-                                "okay": "wiiubkg"
+                                "best": "__ktabest",
+                                "good": "__ktagood",
+                                "okay": "__ktaokay"
                             }
-                        }
+                        },
+
+                        "type": "music"
                     }
                 ],
                 
