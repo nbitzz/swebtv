@@ -489,6 +489,142 @@
                         "unfinished": true
                     }
                 ]
+            },
+            {
+                "name": "BOCCHI THE ROCK!",
+                "parent": "bocchi",
+                "id": "bocchi.extras",
+
+                "episodes": [
+                    {
+                        "name": "\"Seishun Complex\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.op",
+
+                        "description": "The opening to BOCCHI THE ROCK, \"Seishun Complex\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "opening",
+                        "author": "Kessoku Band",
+                        "unfinished": true
+                    },
+                    {
+                        "name": "\"Distortion!!\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed1",
+
+                        "description": "The first ED to BOCCHI THE ROCK, \"Distortion!!\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band",
+                        "unfinished": true
+                    },
+                    {
+                        "name": "\"Karakara\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed2",
+
+                        "description": "The second ED to BOCCHI THE ROCK, \"Karakara\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band",
+                        "unfinished": true
+                    },
+                    {
+                        "name": "\"What is wrong with\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed3",
+
+                        "description": "The third ED to BOCCHI THE ROCK, \"What is wrong with\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band"
+                    },
+                    {
+                        "name": "\"Rockn' Roll, Morning Light Falls on You\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed4",
+
+                        "description": "The fourth and final ED to BOCCHI THE ROCK, \"Rockn' Roll, Morning Light Falls on You\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band"
+                    }
+                ]
             }
         ]
     },
@@ -934,7 +1070,7 @@
 
                 "episodes": [
                     {
-                        "name": "inabakumori - Kitai Avenue (Vo. Otomachi Una)",
+                        "name": "\"Kitai Avenue\"",
                         "parent": "wtvtb.extra",
                         "id": "wtvtb.extra.kitai_avenue",
 
@@ -950,7 +1086,8 @@
                             }
                         },
 
-                        "type": "music"
+                        "type": "music",
+                        "author": "inabakumori"
                     }
                 ],
                 
