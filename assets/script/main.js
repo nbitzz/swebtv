@@ -3522,7 +3522,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	let time_tmp;
 	let old_state = true;
 	let inFullscreen = false;
-	let videoVolume;
+	let videoVolume = 1;
 
 	function seekUpdate(e) {
 		if (!duration || !draggingSeekBar) return;
