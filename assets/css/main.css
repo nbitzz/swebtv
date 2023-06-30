@@ -28,6 +28,8 @@
 
 #menu {
     flex-basis: auto;
+    min-width:53px; /* fix 3px of it being cropped; can't believe it took me months to find this */
+                    /* only a quick fix rn, it's 23:46 */
 }
 
 #clgrad {
