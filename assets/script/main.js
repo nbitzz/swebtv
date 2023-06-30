@@ -1145,7 +1145,7 @@ function get_each_context$4(ctx, list, i) {
 }
 
 // (24:51) 
-function create_if_block_5$2(ctx) {
+function create_if_block_4$3(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
 	let html_anchor;
@@ -1171,7 +1171,7 @@ function create_if_block_5$2(ctx) {
 }
 
 // (22:51) 
-function create_if_block_4$3(ctx) {
+function create_if_block_3$3(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
 	let t;
@@ -1195,7 +1195,7 @@ function create_if_block_4$3(ctx) {
 }
 
 // (18:16) {#if item.icon.type == "image"}
-function create_if_block_3$3(ctx) {
+function create_if_block_2$3(ctx) {
 	let div;
 	let img;
 	let img_src_value;
@@ -1238,7 +1238,7 @@ function create_if_block_3$3(ctx) {
 }
 
 // (29:16) {#if item.title}
-function create_if_block_2$3(ctx) {
+function create_if_block_1$4(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].title + "";
 	let t;
@@ -1262,49 +1262,43 @@ function create_if_block_2$3(ctx) {
 	};
 }
 
-// (35:16) {#if item.note}
-function create_if_block_1$4(ctx) {
+// (36:16) {#if item.note||settings.userSet.developerMode}
+function create_if_block$7(ctx) {
 	let p;
-	let t_value = /*item*/ ctx[6].note + "";
-	let t;
+	let t0_value = (/*item*/ ctx[6].note || "") + "";
+	let t0;
+	let html_tag;
+
+	let raw_value = (/*item*/ ctx[6].note && settings.userSet.developerMode
+	? "<br>"
+	: "") + "";
+
+	let t1_value = (settings.userSet.developerMode && /*item*/ ctx[6].id) + "";
+	let t1;
 
 	return {
 		c() {
 			p = element("p");
-			t = text(t_value);
+			t0 = text(t0_value);
+			html_tag = new HtmlTag(false);
+			t1 = text(t1_value);
+			html_tag.a = t1;
 			attr(p, "class", "note");
 		},
 		m(target, anchor) {
 			insert(target, p, anchor);
-			append(p, t);
+			append(p, t0);
+			html_tag.m(raw_value, p);
+			append(p, t1);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[6].note + "")) set_data(t, t_value);
-		},
-		d(detaching) {
-			if (detaching) detach(p);
-		}
-	};
-}
+			if (dirty & /*items*/ 2 && t0_value !== (t0_value = (/*item*/ ctx[6].note || "") + "")) set_data(t0, t0_value);
 
-// (39:16) {#if settings.userSet.developerMode}
-function create_if_block$7(ctx) {
-	let p;
-	let t_value = /*item*/ ctx[6].id + "";
-	let t;
+			if (dirty & /*items*/ 2 && raw_value !== (raw_value = (/*item*/ ctx[6].note && settings.userSet.developerMode
+			? "<br>"
+			: "") + "")) html_tag.p(raw_value);
 
-	return {
-		c() {
-			p = element("p");
-			t = text(t_value);
-			attr(p, "class", "note monospaceText");
-		},
-		m(target, anchor) {
-			insert(target, p, anchor);
-			append(p, t);
-		},
-		p(ctx, dirty) {
-			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[6].id + "")) set_data(t, t_value);
+			if (dirty & /*items*/ 2 && t1_value !== (t1_value = (settings.userSet.developerMode && /*item*/ ctx[6].id) + "")) set_data(t1, t1_value);
 		},
 		d(detaching) {
 			if (detaching) detach(p);
@@ -1325,24 +1319,22 @@ function create_each_block$4(key_1, ctx) {
 	let t2;
 	let t3;
 	let t4;
-	let t5;
 	let button;
-	let t6;
+	let t5;
 	let div2_data_active_value;
 	let mounted;
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[6].icon.type == "image") return create_if_block_3$3;
-		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_4$3;
-		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_5$2;
+		if (/*item*/ ctx[6].icon.type == "image") return create_if_block_2$3;
+		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_3$3;
+		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_4$3;
 	}
 
 	let current_block_type = select_block_type(ctx);
 	let if_block0 = current_block_type && current_block_type(ctx);
-	let if_block1 = /*item*/ ctx[6].title && create_if_block_2$3(ctx);
-	let if_block2 = /*item*/ ctx[6].note && create_if_block_1$4(ctx);
-	let if_block3 = settings.userSet.developerMode && create_if_block$7(ctx);
+	let if_block1 = /*item*/ ctx[6].title && create_if_block_1$4(ctx);
+	let if_block2 = (/*item*/ ctx[6].note || settings.userSet.developerMode) && create_if_block$7(ctx);
 
 	function click_handler() {
 		return /*click_handler*/ ctx[5](/*item*/ ctx[6]);
@@ -1364,10 +1356,8 @@ function create_each_block$4(key_1, ctx) {
 			t3 = space();
 			if (if_block2) if_block2.c();
 			t4 = space();
-			if (if_block3) if_block3.c();
-			t5 = space();
 			button = element("button");
-			t6 = space();
+			t5 = space();
 			attr(div0, "class", "icon");
 			attr(div0, "data-circular", div0_data_circular_value = /*item*/ ctx[6].icon.circular);
 			attr(div1, "class", "content");
@@ -1392,11 +1382,9 @@ function create_each_block$4(key_1, ctx) {
 			append(p, t2);
 			append(div1, t3);
 			if (if_block2) if_block2.m(div1, null);
-			append(div1, t4);
-			if (if_block3) if_block3.m(div1, null);
-			append(div2, t5);
+			append(div2, t4);
 			append(div2, button);
-			append(div2, t6);
+			append(div2, t5);
 
 			if (!mounted) {
 				dispose = listen(button, "click", click_handler);
@@ -1426,7 +1414,7 @@ function create_each_block$4(key_1, ctx) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
-					if_block1 = create_if_block_2$3(ctx);
+					if_block1 = create_if_block_1$4(ctx);
 					if_block1.c();
 					if_block1.m(div1, t1);
 				}
@@ -1437,20 +1425,18 @@ function create_each_block$4(key_1, ctx) {
 
 			if (dirty & /*items*/ 2 && t2_value !== (t2_value = /*item*/ ctx[6].text + "")) set_data(t2, t2_value);
 
-			if (/*item*/ ctx[6].note) {
+			if (/*item*/ ctx[6].note || settings.userSet.developerMode) {
 				if (if_block2) {
 					if_block2.p(ctx, dirty);
 				} else {
-					if_block2 = create_if_block_1$4(ctx);
+					if_block2 = create_if_block$7(ctx);
 					if_block2.c();
-					if_block2.m(div1, t4);
+					if_block2.m(div1, null);
 				}
 			} else if (if_block2) {
 				if_block2.d(1);
 				if_block2 = null;
 			}
-
-			if (settings.userSet.developerMode) if_block3.p(ctx, dirty);
 
 			if (dirty & /*items, active*/ 3 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*active*/ ctx[0]
 			? "true"
@@ -1467,7 +1453,6 @@ function create_each_block$4(key_1, ctx) {
 
 			if (if_block1) if_block1.d();
 			if (if_block2) if_block2.d();
-			if (if_block3) if_block3.d();
 			mounted = false;
 			dispose();
 		}
