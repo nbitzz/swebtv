@@ -28,14 +28,10 @@
 
 #menu {
     flex-basis: auto;
-    min-width:53px; /* fix 3px of it being cropped; can't believe it took me months to find this */
-                    /* only a quick fix rn, it's 23:46 */
+    display:flex;
 }
 
 #clgrad {
-    position:absolute;
-    left:0px;
-    top:0px;
     width:3px;
     height:100%;
     background: linear-gradient(to bottom,#7A2259,#FB405A);
@@ -80,7 +76,6 @@
 }
 
 #menu > .sidebar {
-    left: 3px;
     position:relative;
 }
 
