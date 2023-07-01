@@ -3651,7 +3651,7 @@ function instance$5($$self, $$props, $$invalidate) {
 			__PTAN = false;
 		}
 
-		if (fqp.prg_hold && videoReadyState > 0) {
+		if (fqp.prg_hold != undefined && videoReadyState > 0) {
 			$$invalidate(5, progress = fqp.prg_hold);
 			$$invalidate(6, isPaused = fqp.WFL);
 			delete fqp.prg_hold;
