@@ -3569,7 +3569,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	let isPaused = true;
 
 	if ($playerTemp_autoplayNext) {
-		isPaused = true;
+		isPaused = false;
 		set_store_value(playerTemp_autoplayNext, $playerTemp_autoplayNext = false, $playerTemp_autoplayNext);
 	}
 
