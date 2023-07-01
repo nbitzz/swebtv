@@ -565,6 +565,12 @@
     overflow:visible;
 }
 
+.videoView[data-theatreMode=enabled] > .container {
+    height: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
 .videoView > .container > .videoPlayer {
     
     position: relative;
@@ -572,6 +578,12 @@
     left:0px;
     top:0px;
     
+}
+
+.videoView[data-theatreMode=enabled] > .container > .videoPlayer {
+    width:calc( 100% + 20px );
+    left:-10px;
+    height:80%;
 }
 
 .videoView > .container > .shortAbout {
@@ -715,7 +727,8 @@
 
 /* VideoPlayer */
 
-.videoPlayer:fullscreen > .vbking {
+.videoPlayer:fullscreen > .vbking,
+.videoView[data-theatreMode=enabled] > .container > .videoPlayer > .vbking {
     background-color: black !important;
 }
 

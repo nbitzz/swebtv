@@ -973,6 +973,8 @@ var settings;
         autoskipintro: false,
         autoskipoutro: false,
         keyboardSeek: "5",
+        theatre: false,
+        theatreFill: "80%",
         skipbutton: true,
         developerMode: false
     };
@@ -1025,6 +1027,16 @@ var settings;
             name: "Interface",
             icon: "/assets/icons/window.svg",
             children: [
+                {
+                    label: "Theatre mode",
+                    targetSetting: "theatre",
+                    input: "boolean"
+                },
+                {
+                    label: "Theatre mode fill percentage",
+                    targetSetting: "theatreFill",
+                    input: ["80%", "100%"]
+                },
                 {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
@@ -2498,7 +2510,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (149:4) {#key $cfg.host + playing.formats[format][quality]}
+// (151:4) {#key $cfg.host + playing.formats[format][quality]}
 function create_key_block$3(ctx) {
 	let video;
 	let video_poster_value;
@@ -2594,7 +2606,7 @@ function create_key_block$3(ctx) {
 	};
 }
 
-// (163:4) {#if videoReadyState < 2}
+// (165:4) {#if videoReadyState < 2}
 function create_if_block_6(ctx) {
 	let div1;
 	let t;
@@ -2660,7 +2672,7 @@ function create_if_block_6(ctx) {
 	};
 }
 
-// (167:12) {#if settings.userSet.developerMode}
+// (169:12) {#if settings.userSet.developerMode}
 function create_if_block_7(ctx) {
 	let p;
 	let t0;
@@ -2707,7 +2719,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (175:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (177:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_3$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2783,7 +2795,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (176:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (178:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
@@ -2837,7 +2849,7 @@ function create_if_block_5$1(ctx) {
 	};
 }
 
-// (187:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (189:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2891,7 +2903,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (198:4) {#if showControls}
+// (200:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let t0;
 	let div3;
@@ -3128,7 +3140,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (199:8) {#if settings.userSet.developerMode}
+// (201:8) {#if settings.userSet.developerMode}
 function create_if_block_2$2(ctx) {
 	let p;
 	let t;
@@ -3158,7 +3170,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (249:12) {#if showFQPicker}
+// (251:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div;
 	let select0;
@@ -3321,7 +3333,7 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (252:24) {#each Object.keys(playing.formats) as fmt}
+// (254:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[55] + "";
@@ -3353,7 +3365,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (257:24) {#each Object.keys(playing.formats[format]) as qual}
+// (259:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[52] + "";
@@ -3419,6 +3431,10 @@ function create_fragment$5(ctx) {
 			attr(div0, "class", "vbking");
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
+
+			set_style(div1, "height", settings.userSet.theatre
+			? settings.userSet.theatreFill
+			: "");
 		},
 		m(target, anchor) {
 			insert(target, t0, anchor);
@@ -4007,6 +4023,7 @@ function create_fragment$4(ctx) {
 			attr(div5, "class", "btm_ctn");
 			attr(div6, "class", "container");
 			attr(div7, "class", "videoView");
+			attr(div7, "data-theatremode", settings.userSet.theatre ? "enabled" : "");
 		},
 		m(target, anchor) {
 			insert(target, div7, anchor);
