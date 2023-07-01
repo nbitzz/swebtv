@@ -2510,7 +2510,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (151:4) {#key $cfg.host + playing.formats[format][quality]}
+// (153:4) {#key $cfg.host + playing.formats[format][quality]}
 function create_key_block$3(ctx) {
 	let video;
 	let video_poster_value;
@@ -2537,6 +2537,7 @@ function create_key_block$3(ctx) {
 			video = element("video");
 			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[17].host + /*playing*/ ctx[0].thumbnail || "");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[17].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) attr(video, "src", video_src_value);
+			attr(video, "id", "videoElement");
 			if (/*videoReadyState*/ ctx[10] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25].call(video));
 			if (/*duration*/ ctx[4] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[28].call(video));
 			set_style(video, "cursor", /*showControls*/ ctx[13] ? "default" : "none");
@@ -2606,7 +2607,7 @@ function create_key_block$3(ctx) {
 	};
 }
 
-// (165:4) {#if videoReadyState < 2}
+// (169:4) {#if videoReadyState < 2}
 function create_if_block_6(ctx) {
 	let div1;
 	let t;
@@ -2672,7 +2673,7 @@ function create_if_block_6(ctx) {
 	};
 }
 
-// (169:12) {#if settings.userSet.developerMode}
+// (173:12) {#if settings.userSet.developerMode}
 function create_if_block_7(ctx) {
 	let p;
 	let t0;
@@ -2719,7 +2720,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (177:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (181:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_3$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2795,7 +2796,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (178:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (182:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
@@ -2849,7 +2850,7 @@ function create_if_block_5$1(ctx) {
 	};
 }
 
-// (189:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (193:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2903,7 +2904,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (200:4) {#if showControls}
+// (204:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let t0;
 	let div3;
@@ -3140,7 +3141,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (201:8) {#if settings.userSet.developerMode}
+// (205:8) {#if settings.userSet.developerMode}
 function create_if_block_2$2(ctx) {
 	let p;
 	let t;
@@ -3170,7 +3171,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (251:12) {#if showFQPicker}
+// (255:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div;
 	let select0;
@@ -3333,7 +3334,7 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (254:24) {#each Object.keys(playing.formats) as fmt}
+// (258:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[55] + "";
@@ -3365,7 +3366,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (259:24) {#each Object.keys(playing.formats[format]) as qual}
+// (263:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[52] + "";
@@ -3577,7 +3578,8 @@ function instance$5($$self, $$props, $$invalidate) {
 		format,
 		quality,
 		prg_hold: undefined,
-		WFL: false
+		WFL: false,
+		readyPip: false
 	};
 
 	let duration;
@@ -3670,6 +3672,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		if (fqp.prg_hold != undefined && videoReadyState > 0) {
 			$$invalidate(5, progress = fqp.prg_hold);
 			$$invalidate(6, isPaused = fqp.WFL);
+			$$invalidate(3, fqp.readyPip = false, fqp);
 			delete fqp.prg_hold;
 			VPE.play();
 		}
