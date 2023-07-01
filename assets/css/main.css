@@ -664,6 +664,10 @@
     color:var(--txt)
 }
 
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont {
+    position: relative;
+}
+
 .videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .thumbnail {
     position:relative;
     width:100%;
