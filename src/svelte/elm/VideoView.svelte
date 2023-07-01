@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getEpisodeAfter, letteredTime } from "../../ts/util";
-    import { IDIndex, isEpisode, isMovie, isShow, type Video, cfg, isSeason, type Show, type Season, settings } from "../../ts/webtv";
+    import { IDIndex, isEpisode, isMovie, isShow, type Video, cfg, isSeason, type Show, type Season, settings, getEpisodeLabel } from "../../ts/webtv";
     import FormatDownloader from "./FormatDownloader.svelte";
     import NextEpDisplay from "./NextEpDisplay.svelte";
     import VideoPlayer from "./VideoPlayer.svelte";
@@ -46,7 +46,7 @@
 
 </script>
 
-<div class="videoView">
+<div class="videoView" data-theatreMode={settings.userSet.theatre ? "enabled" : ""}>
 
     <div class="container">
         <VideoPlayer playing={targetVideo} />
@@ -56,7 +56,7 @@
             <img src={$cfg.host + mtdt.icon} alt={targetVideo.name + " icon"} on:load={(e) => {e.currentTarget.setAttribute("data-loaded","")}}/>
             <div class="txt">
                 <h1>{targetVideo.name}</h1>
-                <p>{mtdt.type != "UNKNOWN" && (mtdt.type == "movie" ? `Runtime ${letteredTime(targetVideo.length)}` : `S${mtdt.season_number}E${mtdt.episode_number} — ${mtdt.show.name}`)}</p>
+                <p>{mtdt.type != "UNKNOWN" && (mtdt.type == "movie" ? `Runtime ${letteredTime(targetVideo.length)}` : `${isEpisode(targetVideo) ? getEpisodeLabel(targetVideo) : "❔"} — ${mtdt.show.name}`)}</p>
             </div>
         </div>
 

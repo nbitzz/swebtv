@@ -874,6 +874,280 @@ class SvelteComponent {
     }
 }
 
+const subscriber_queue = [];
+/**
+ * Create a `Writable` store that allows both updating and reading by subscription.
+ * @param {*=}value initial value
+ * @param {StartStopNotifier=} start
+ */
+function writable(value, start = noop) {
+    let stop;
+    const subscribers = new Set();
+    function set(new_value) {
+        if (safe_not_equal(value, new_value)) {
+            value = new_value;
+            if (stop) { // store is ready
+                const run_queue = !subscriber_queue.length;
+                for (const subscriber of subscribers) {
+                    subscriber[1]();
+                    subscriber_queue.push(subscriber, value);
+                }
+                if (run_queue) {
+                    for (let i = 0; i < subscriber_queue.length; i += 2) {
+                        subscriber_queue[i][0](subscriber_queue[i + 1]);
+                    }
+                    subscriber_queue.length = 0;
+                }
+            }
+        }
+    }
+    function update(fn) {
+        set(fn(value));
+    }
+    function subscribe(run, invalidate = noop) {
+        const subscriber = [run, invalidate];
+        subscribers.add(subscriber);
+        if (subscribers.size === 1) {
+            stop = start(set) || noop;
+        }
+        run(value);
+        return () => {
+            subscribers.delete(subscriber);
+            if (subscribers.size === 0 && stop) {
+                stop();
+                stop = null;
+            }
+        };
+    }
+    return { set, update, subscribe };
+}
+
+var lists;
+(function (lists) {
+    lists.quality = [
+        "best",
+        "good",
+        "okay" // 480p
+    ];
+    lists.formats = [
+        "main",
+        "hardsub",
+        "dub"
+    ];
+    lists.seasontypes = [
+        "extras",
+        "special" // ★; if there is a second special, ☆. use for seasons containing shorts, etc
+    ];
+    lists.episodetypes = [
+        //"extra", // + Extra
+        "special",
+        "music",
+        "opening",
+        "ending"
+    ];
+    lists.seasonTypeLT = {
+        extras: {
+            icons: ["+"],
+            placeholder: "Extras"
+        },
+        special: {
+            icons: ["★", "☆"],
+            placeholder: "Special season"
+        }
+    };
+    // open ended lke this cause it's possible that more could be added later
+    lists.episodeTypeLT = {
+        special: "★ Special",
+        music: "♫ Music",
+        opening: "Opening",
+        ending: "Ending"
+    };
+})(lists || (lists = {}));
+// settings
+var settings;
+(function (settings) {
+    settings.defaults = {
+        videoQuality: "good",
+        videoFormat: "hardsub",
+        autoplay: true,
+        autoskipintro: false,
+        autoskipoutro: false,
+        keyboardSeek: "5",
+        theatre: false,
+        theatreFill: "80%",
+        skipbutton: true,
+        developerMode: false
+    };
+    settings.userSet = Object.assign({}, settings.defaults);
+    // controls ui elements in the settings menu
+    settings.suiLinks = [
+        {
+            name: "Video",
+            icon: "/assets/icons/video.svg",
+            children: [
+                {
+                    label: "Preferred quality",
+                    targetSetting: "videoQuality",
+                    input: [...lists.quality]
+                },
+                {
+                    label: "Preferred format",
+                    targetSetting: "videoFormat",
+                    input: [...lists.formats]
+                }
+            ]
+        },
+        {
+            name: "Player",
+            icon: "/assets/icons/player.svg",
+            children: [
+                {
+                    label: "Autoplay",
+                    targetSetting: "autoplay",
+                    input: "boolean"
+                },
+                {
+                    label: "Automatically skip intro",
+                    targetSetting: "autoskipintro",
+                    input: "boolean"
+                },
+                {
+                    label: "Automatically skip outro",
+                    targetSetting: "autoskipoutro",
+                    input: "boolean"
+                },
+                {
+                    label: "Arrow key skip duration",
+                    targetSetting: "keyboardSeek",
+                    input: ["0.01", "0.1", "1", "5", "10"]
+                }
+            ]
+        },
+        {
+            name: "Interface",
+            icon: "/assets/icons/window.svg",
+            children: [
+                {
+                    label: "Theatre mode",
+                    targetSetting: "theatre",
+                    input: "boolean"
+                },
+                {
+                    label: "Theatre mode fill percentage",
+                    targetSetting: "theatreFill",
+                    input: ["80%", "100%"]
+                },
+                {
+                    label: "Show skip intro/outro buttons",
+                    targetSetting: "skipbutton",
+                    input: "boolean"
+                },
+                {
+                    label: "Developer mode",
+                    targetSetting: "developerMode",
+                    input: "boolean"
+                }
+            ]
+        }
+    ];
+    // ok this is just painful i gave up here
+    function set(setting, value) {
+        //@ts-ignore
+        settings.userSet[setting] = value;
+    }
+    settings.set = set;
+})(settings || (settings = {}));
+let isMovie = (video) => { return !!video.icon; };
+let isShow = (obj) => !!obj.seasons;
+let isSeason = (obj) => !!obj.episodes;
+let isEpisode = (video) => { return !!video.parent; };
+// utility functions
+// these are very redundant; but i guess it means "futureproofing"
+function getBestFormat(video, requested) {
+    let availableFormats = Object.keys(video.formats);
+    if (video.formats[requested])
+        return requested;
+    let idxOf = lists.formats.indexOf(requested);
+    for (let i = idxOf - 1; i > 0; i--) {
+        if (lists.formats[i] && availableFormats.includes(lists.formats[i]))
+            return lists.formats[i];
+    }
+    return "main";
+}
+function getSeasonLabel(season) {
+    var _a;
+    let show = IDIndex.get(season.parent);
+    if (!show || !isShow(show))
+        return "❔";
+    // this is a mess LOL
+    // oh well
+    return season.type
+        ? lists.seasonTypeLT[season.type].icons[(_a = show === null || show === void 0 ? void 0 : show.seasons.filter(e => e.type == season.type).indexOf(season)) !== null && _a !== void 0 ? _a : lists.seasonTypeLT[season.type].icons.length - 1] || lists.seasonTypeLT[season.type].icons[lists.seasonTypeLT[season.type].icons.length - 1]
+        : `S${show.seasons.indexOf(season) + 1}`;
+}
+function getEpisodeLabel(episode) {
+    let season = IDIndex.get(episode.parent);
+    if (!season || !isSeason(season))
+        return "❔";
+    let slabel = getSeasonLabel(season);
+    return `${slabel}${!season.type ? "E" : ""}${season.episodes.indexOf(episode) + 1}`;
+}
+/*
+export function getNearestQuality(video: Video, format: videoFormat, requested: videoQuality) : videoQuality {
+    let availableQualities = video.formats[format]
+
+
+    if (video.formats[format][requested]) return requested
+    
+    let idxOf = lists.quality.indexOf(requested)
+
+    
+
+    return "okay"
+}
+*/
+// set up svt stores
+let cfg = writable();
+let tv = writable();
+let movies = writable();
+let embeddables = writable();
+let ready = writable(false);
+let IDIndex = new Map();
+// fetch cfg; tv; movies
+// might DRY up this code later
+fetch("/db/webtv.json", { cache: "no-store" }).then(res => {
+    if (res.status == 200)
+        res.json().then(e => cfg.set(e));
+})
+    .then(() => fetch("/db/tv.json", { cache: "no-store" }).then(res => {
+    if (res.status == 200)
+        res.json().then((e) => {
+            tv.set(e);
+            e.forEach(v => {
+                IDIndex.set(v.id, v);
+                v.seasons.forEach(a => {
+                    IDIndex.set(a.id, a);
+                    a.episodes.forEach(b => IDIndex.set(b.id, b));
+                });
+            });
+        });
+}))
+    .then(() => fetch("/db/movie.json", { cache: "no-store" }).then(res => {
+    if (res.status == 200)
+        res.json().then((e) => {
+            movies.set(e);
+            e.forEach(v => {
+                IDIndex.set("movie." + v.id, v);
+            });
+        });
+}))
+    .then(() => fetch("/db/embeddables.json", { cache: "no-store" }).then(res => {
+    if (res.status == 200)
+        res.json().then(e => embeddables.set(e));
+})).then(() => {
+    ready.set(true);
+});
+
 /* src/svelte/elm/Sidebar.svelte generated by Svelte v3.59.1 */
 
 function get_each_context$4(ctx, list, i) {
@@ -882,8 +1156,8 @@ function get_each_context$4(ctx, list, i) {
 	return child_ctx;
 }
 
-// (23:51) 
-function create_if_block_2$3(ctx) {
+// (24:51) 
+function create_if_block_4$3(ctx) {
 	let html_tag;
 	let raw_value = /*item*/ ctx[6].icon.content + "";
 	let html_anchor;
@@ -908,8 +1182,8 @@ function create_if_block_2$3(ctx) {
 	};
 }
 
-// (21:51) 
-function create_if_block_1$4(ctx) {
+// (22:51) 
+function create_if_block_3$3(ctx) {
 	let p;
 	let t_value = /*item*/ ctx[6].icon.content + "";
 	let t;
@@ -932,8 +1206,8 @@ function create_if_block_1$4(ctx) {
 	};
 }
 
-// (17:16) {#if item.icon.type == "image"}
-function create_if_block$7(ctx) {
+// (18:16) {#if item.icon.type == "image"}
+function create_if_block_2$3(ctx) {
 	let div;
 	let img;
 	let img_src_value;
@@ -975,31 +1249,104 @@ function create_if_block$7(ctx) {
 	};
 }
 
-// (13:4) {#each items as item (item.id)}
+// (29:16) {#if item.title}
+function create_if_block_1$4(ctx) {
+	let p;
+	let t_value = /*item*/ ctx[6].title + "";
+	let t;
+
+	return {
+		c() {
+			p = element("p");
+			t = text(t_value);
+			attr(p, "class", "note");
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, t);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && t_value !== (t_value = /*item*/ ctx[6].title + "")) set_data(t, t_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+// (36:16) {#if item.note||settings.userSet.developerMode}
+function create_if_block$7(ctx) {
+	let p;
+	let t0_value = (/*item*/ ctx[6].note || "") + "";
+	let t0;
+	let html_tag;
+
+	let raw_value = (/*item*/ ctx[6].note && settings.userSet.developerMode
+	? "<br>"
+	: "") + "";
+
+	let t1_value = (settings.userSet.developerMode ? /*item*/ ctx[6].id : "") + "";
+	let t1;
+
+	return {
+		c() {
+			p = element("p");
+			t0 = text(t0_value);
+			html_tag = new HtmlTag(false);
+			t1 = text(t1_value);
+			html_tag.a = t1;
+			attr(p, "class", "note");
+		},
+		m(target, anchor) {
+			insert(target, p, anchor);
+			append(p, t0);
+			html_tag.m(raw_value, p);
+			append(p, t1);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*items*/ 2 && t0_value !== (t0_value = (/*item*/ ctx[6].note || "") + "")) set_data(t0, t0_value);
+
+			if (dirty & /*items*/ 2 && raw_value !== (raw_value = (/*item*/ ctx[6].note && settings.userSet.developerMode
+			? "<br>"
+			: "") + "")) html_tag.p(raw_value);
+
+			if (dirty & /*items*/ 2 && t1_value !== (t1_value = (settings.userSet.developerMode ? /*item*/ ctx[6].id : "") + "")) set_data(t1, t1_value);
+		},
+		d(detaching) {
+			if (detaching) detach(p);
+		}
+	};
+}
+
+// (14:4) {#each items as item (item.id)}
 function create_each_block$4(key_1, ctx) {
 	let div2;
 	let div0;
 	let div0_data_circular_value;
 	let t0;
 	let div1;
-	let p;
-	let t1_value = /*item*/ ctx[6].text + "";
 	let t1;
+	let p;
+	let t2_value = /*item*/ ctx[6].text + "";
 	let t2;
-	let button;
 	let t3;
+	let t4;
+	let button;
+	let t5;
 	let div2_data_active_value;
 	let mounted;
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[6].icon.type == "image") return create_if_block$7;
-		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_1$4;
-		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_2$3;
+		if (/*item*/ ctx[6].icon.type == "image") return create_if_block_2$3;
+		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_3$3;
+		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_4$3;
 	}
 
 	let current_block_type = select_block_type(ctx);
-	let if_block = current_block_type && current_block_type(ctx);
+	let if_block0 = current_block_type && current_block_type(ctx);
+	let if_block1 = /*item*/ ctx[6].title && create_if_block_1$4(ctx);
+	let if_block2 = (/*item*/ ctx[6].note || settings.userSet.developerMode) && create_if_block$7(ctx);
 
 	function click_handler() {
 		return /*click_handler*/ ctx[5](/*item*/ ctx[6]);
@@ -1011,14 +1358,18 @@ function create_each_block$4(key_1, ctx) {
 		c() {
 			div2 = element("div");
 			div0 = element("div");
-			if (if_block) if_block.c();
+			if (if_block0) if_block0.c();
 			t0 = space();
 			div1 = element("div");
+			if (if_block1) if_block1.c();
+			t1 = space();
 			p = element("p");
-			t1 = text(t1_value);
-			t2 = space();
-			button = element("button");
+			t2 = text(t2_value);
 			t3 = space();
+			if (if_block2) if_block2.c();
+			t4 = space();
+			button = element("button");
+			t5 = space();
 			attr(div0, "class", "icon");
 			attr(div0, "data-circular", div0_data_circular_value = /*item*/ ctx[6].icon.circular);
 			attr(div1, "class", "content");
@@ -1034,14 +1385,18 @@ function create_each_block$4(key_1, ctx) {
 		m(target, anchor) {
 			insert(target, div2, anchor);
 			append(div2, div0);
-			if (if_block) if_block.m(div0, null);
+			if (if_block0) if_block0.m(div0, null);
 			append(div2, t0);
 			append(div2, div1);
+			if (if_block1) if_block1.m(div1, null);
+			append(div1, t1);
 			append(div1, p);
-			append(p, t1);
-			append(div2, t2);
+			append(p, t2);
+			append(div1, t3);
+			if (if_block2) if_block2.m(div1, null);
+			append(div2, t4);
 			append(div2, button);
-			append(div2, t3);
+			append(div2, t5);
 
 			if (!mounted) {
 				dispose = listen(button, "click", click_handler);
@@ -1051,15 +1406,15 @@ function create_each_block$4(key_1, ctx) {
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 
-			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-				if_block.p(ctx, dirty);
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
+				if_block0.p(ctx, dirty);
 			} else {
-				if (if_block) if_block.d(1);
-				if_block = current_block_type && current_block_type(ctx);
+				if (if_block0) if_block0.d(1);
+				if_block0 = current_block_type && current_block_type(ctx);
 
-				if (if_block) {
-					if_block.c();
-					if_block.m(div0, null);
+				if (if_block0) {
+					if_block0.c();
+					if_block0.m(div0, null);
 				}
 			}
 
@@ -1067,7 +1422,33 @@ function create_each_block$4(key_1, ctx) {
 				attr(div0, "data-circular", div0_data_circular_value);
 			}
 
-			if (dirty & /*items*/ 2 && t1_value !== (t1_value = /*item*/ ctx[6].text + "")) set_data(t1, t1_value);
+			if (/*item*/ ctx[6].title) {
+				if (if_block1) {
+					if_block1.p(ctx, dirty);
+				} else {
+					if_block1 = create_if_block_1$4(ctx);
+					if_block1.c();
+					if_block1.m(div1, t1);
+				}
+			} else if (if_block1) {
+				if_block1.d(1);
+				if_block1 = null;
+			}
+
+			if (dirty & /*items*/ 2 && t2_value !== (t2_value = /*item*/ ctx[6].text + "")) set_data(t2, t2_value);
+
+			if (/*item*/ ctx[6].note || settings.userSet.developerMode) {
+				if (if_block2) {
+					if_block2.p(ctx, dirty);
+				} else {
+					if_block2 = create_if_block$7(ctx);
+					if_block2.c();
+					if_block2.m(div1, null);
+				}
+			} else if (if_block2) {
+				if_block2.d(1);
+				if_block2 = null;
+			}
 
 			if (dirty & /*items, active*/ 3 && div2_data_active_value !== (div2_data_active_value = /*item*/ ctx[6].id == /*active*/ ctx[0]
 			? "true"
@@ -1078,10 +1459,12 @@ function create_each_block$4(key_1, ctx) {
 		d(detaching) {
 			if (detaching) detach(div2);
 
-			if (if_block) {
-				if_block.d();
+			if (if_block0) {
+				if_block0.d();
 			}
 
+			if (if_block1) if_block1.d();
+			if (if_block2) if_block2.d();
 			mounted = false;
 			dispose();
 		}
@@ -1124,7 +1507,7 @@ function create_fragment$a(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*items, active*/ 3) {
+			if (dirty & /*items, active, settings*/ 3) {
 				each_value = /*items*/ ctx[1];
 				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, div, destroy_block, create_each_block$4, null, get_each_context$4);
 			}
@@ -1217,222 +1600,6 @@ class ScreenHome extends SvelteComponent {
 		init(this, options, null, create_fragment$9, safe_not_equal, {});
 	}
 }
-
-const subscriber_queue = [];
-/**
- * Create a `Writable` store that allows both updating and reading by subscription.
- * @param {*=}value initial value
- * @param {StartStopNotifier=} start
- */
-function writable(value, start = noop) {
-    let stop;
-    const subscribers = new Set();
-    function set(new_value) {
-        if (safe_not_equal(value, new_value)) {
-            value = new_value;
-            if (stop) { // store is ready
-                const run_queue = !subscriber_queue.length;
-                for (const subscriber of subscribers) {
-                    subscriber[1]();
-                    subscriber_queue.push(subscriber, value);
-                }
-                if (run_queue) {
-                    for (let i = 0; i < subscriber_queue.length; i += 2) {
-                        subscriber_queue[i][0](subscriber_queue[i + 1]);
-                    }
-                    subscriber_queue.length = 0;
-                }
-            }
-        }
-    }
-    function update(fn) {
-        set(fn(value));
-    }
-    function subscribe(run, invalidate = noop) {
-        const subscriber = [run, invalidate];
-        subscribers.add(subscriber);
-        if (subscribers.size === 1) {
-            stop = start(set) || noop;
-        }
-        run(value);
-        return () => {
-            subscribers.delete(subscriber);
-            if (subscribers.size === 0 && stop) {
-                stop();
-                stop = null;
-            }
-        };
-    }
-    return { set, update, subscribe };
-}
-
-var lists;
-(function (lists) {
-    lists.quality = [
-        "best",
-        "good",
-        "okay" // 480p
-    ];
-    lists.formats = [
-        "main",
-        "hardsub",
-        "dub"
-    ];
-})(lists || (lists = {}));
-// settings
-var settings;
-(function (settings) {
-    settings.defaults = {
-        videoQuality: "good",
-        videoFormat: "hardsub",
-        autoplay: true,
-        autoskipintro: false,
-        autoskipoutro: false,
-        keyboardSeek: "5",
-        skipbutton: true,
-        developerMode: false
-    };
-    settings.userSet = Object.assign({}, settings.defaults);
-    // controls ui elements in the settings menu
-    settings.suiLinks = [
-        {
-            name: "Video",
-            icon: "/assets/icons/video.svg",
-            children: [
-                {
-                    label: "Preferred quality",
-                    targetSetting: "videoQuality",
-                    input: [...lists.quality]
-                },
-                {
-                    label: "Preferred format",
-                    targetSetting: "videoFormat",
-                    input: [...lists.formats]
-                }
-            ]
-        },
-        {
-            name: "Player",
-            icon: "/assets/icons/player.svg",
-            children: [
-                {
-                    label: "Autoplay",
-                    targetSetting: "autoplay",
-                    input: "boolean"
-                },
-                {
-                    label: "Automatically skip intro",
-                    targetSetting: "autoskipintro",
-                    input: "boolean"
-                },
-                {
-                    label: "Automatically skip outro",
-                    targetSetting: "autoskipoutro",
-                    input: "boolean"
-                },
-                {
-                    label: "Arrow key skip duration",
-                    targetSetting: "keyboardSeek",
-                    input: ["0.01", "0.1", "1", "5", "10"]
-                }
-            ]
-        },
-        {
-            name: "Interface",
-            icon: "/assets/icons/window.svg",
-            children: [
-                {
-                    label: "Show skip intro/outro buttons",
-                    targetSetting: "skipbutton",
-                    input: "boolean"
-                },
-                {
-                    label: "Developer mode",
-                    targetSetting: "developerMode",
-                    input: "boolean"
-                }
-            ]
-        }
-    ];
-    // ok this is just painful i gave up here
-    function set(setting, value) {
-        //@ts-ignore
-        settings.userSet[setting] = value;
-    }
-    settings.set = set;
-})(settings || (settings = {}));
-let isMovie = (video) => { return !!video.icon; };
-let isShow = (obj) => !!obj.seasons;
-let isSeason = (obj) => !!obj.episodes;
-let isEpisode = (video) => { return !!video.parent; };
-// utility functions
-// these are very redundant; but i guess it means "futureproofing"
-function getBestFormat(video, requested) {
-    let availableFormats = Object.keys(video.formats);
-    if (video.formats[requested])
-        return requested;
-    let idxOf = lists.formats.indexOf(requested);
-    for (let i = idxOf - 1; i > 0; i--) {
-        if (lists.formats[i] && availableFormats.includes(lists.formats[i]))
-            return lists.formats[i];
-    }
-    return "main";
-}
-/*
-export function getNearestQuality(video: Video, format: videoFormat, requested: videoQuality) : videoQuality {
-    let availableQualities = video.formats[format]
-
-
-    if (video.formats[format][requested]) return requested
-    
-    let idxOf = lists.quality.indexOf(requested)
-
-    
-
-    return "okay"
-}
-*/
-// set up svt stores
-let cfg = writable();
-let tv = writable();
-let movies = writable();
-let embeddables = writable();
-let ready = writable(false);
-let IDIndex = new Map();
-// fetch cfg; tv; movies
-// might DRY up this code later
-fetch("/db/webtv.json", { cache: "no-store" }).then(res => {
-    if (res.status == 200)
-        res.json().then(e => cfg.set(e));
-})
-    .then(() => fetch("/db/tv.json", { cache: "no-store" }).then(res => {
-    if (res.status == 200)
-        res.json().then((e) => {
-            tv.set(e);
-            e.forEach(v => {
-                IDIndex.set(v.id, v);
-                v.seasons.forEach(a => {
-                    IDIndex.set(a.id, a);
-                    a.episodes.forEach(b => IDIndex.set(b.id, b));
-                });
-            });
-        });
-}))
-    .then(() => fetch("/db/movie.json", { cache: "no-store" }).then(res => {
-    if (res.status == 200)
-        res.json().then((e) => {
-            movies.set(e);
-            e.forEach(v => {
-                IDIndex.set("movie." + v.id, v);
-            });
-        });
-}))
-    .then(() => fetch("/db/embeddables.json", { cache: "no-store" }).then(res => {
-    if (res.status == 200)
-        res.json().then(e => embeddables.set(e));
-})).then(() => {
-    ready.set(true);
-});
 
 /* src/svelte/screens/ScreenEmbeddables.svelte generated by Svelte v3.59.1 */
 
@@ -1801,6 +1968,11 @@ class ScreenEmbeddables extends SvelteComponent {
 }
 
 let selected = writable();
+// I'm lazy, fight me
+let watchPage_season = writable("showAbout");
+let watchPage_episode = writable();
+let playerVolume = writable(1);
+let playerTemp_autoplayNext = writable(false);
 
 function getPVs(time) {
     return {
@@ -2164,9 +2336,10 @@ class FormatDownloader extends SvelteComponent {
 /* src/svelte/elm/NextEpDisplay.svelte generated by Svelte v3.59.1 */
 
 function create_fragment$6(ctx) {
-	let div2;
+	let div3;
 	let h2;
 	let t1;
+	let div2;
 	let div0;
 	let img;
 	let img_src_value;
@@ -2178,24 +2351,23 @@ function create_fragment$6(ctx) {
 	let t3;
 	let t4;
 	let p1;
+	let t5_value = getEpisodeLabel(/*target*/ ctx[0]) + "";
 	let t5;
-	let t6_value = /*show*/ ctx[2].seasons.indexOf(/*season*/ ctx[1]) + 1 + "";
 	let t6;
+	let t7_value = letteredTime(/*target*/ ctx[0].length) + "";
 	let t7;
-	let t8_value = /*season*/ ctx[1].episodes.indexOf(/*target*/ ctx[0]) + 1 + "";
 	let t8;
-	let t9;
-	let t10_value = letteredTime(/*target*/ ctx[0].length) + "";
-	let t10;
+	let button;
 	let mounted;
 	let dispose;
 
 	return {
 		c() {
-			div2 = element("div");
+			div3 = element("div");
 			h2 = element("h2");
 			h2.textContent = "Next episode";
 			t1 = space();
+			div2 = element("div");
 			div0 = element("div");
 			img = element("img");
 			t2 = space();
@@ -2204,24 +2376,26 @@ function create_fragment$6(ctx) {
 			t3 = text(t3_value);
 			t4 = space();
 			p1 = element("p");
-			t5 = text("S");
-			t6 = text(t6_value);
-			t7 = text("E");
-			t8 = text(t8_value);
-			t9 = text(" — ");
-			t10 = text(t10_value);
-			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[3].host + /*target*/ ctx[0].thumbnail)) attr(img, "src", img_src_value);
+			t5 = text(t5_value);
+			t6 = text(" — ");
+			t7 = text(t7_value);
+			t8 = space();
+			button = element("button");
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[2].host + /*target*/ ctx[0].thumbnail)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = "Thumbnail for " + /*target*/ ctx[0].name);
 			attr(div0, "class", "thumbnail");
 			set_style(div0, "aspect-ratio", /*target*/ ctx[0].aspectRatio || "16 / 9");
 			attr(p0, "class", "vTitle");
 			attr(div1, "class", "videoData");
-			attr(div2, "class", "nextUp");
+			attr(button, "class", "hitbox");
+			attr(div2, "class", "nuCont");
+			attr(div3, "class", "nextUp");
 		},
 		m(target, anchor) {
-			insert(target, div2, anchor);
-			append(div2, h2);
-			append(div2, t1);
+			insert(target, div3, anchor);
+			append(div3, h2);
+			append(div3, t1);
+			append(div3, div2);
 			append(div2, div0);
 			append(div0, img);
 			append(div2, t2);
@@ -2233,17 +2407,20 @@ function create_fragment$6(ctx) {
 			append(p1, t5);
 			append(p1, t6);
 			append(p1, t7);
-			append(p1, t8);
-			append(p1, t9);
-			append(p1, t10);
+			append(div2, t8);
+			append(div2, button);
 
 			if (!mounted) {
-				dispose = listen(img, "load", load_handler$2);
+				dispose = [
+					listen(img, "load", load_handler$2),
+					listen(button, "click", /*click_handler*/ ctx[5])
+				];
+
 				mounted = true;
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*$cfg, target*/ 9 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[3].host + /*target*/ ctx[0].thumbnail)) {
+			if (dirty & /*$cfg, target*/ 5 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[2].host + /*target*/ ctx[0].thumbnail)) {
 				attr(img, "src", img_src_value);
 			}
 
@@ -2256,16 +2433,15 @@ function create_fragment$6(ctx) {
 			}
 
 			if (dirty & /*target*/ 1 && t3_value !== (t3_value = /*target*/ ctx[0].name + "")) set_data(t3, t3_value);
-			if (dirty & /*show, season*/ 6 && t6_value !== (t6_value = /*show*/ ctx[2].seasons.indexOf(/*season*/ ctx[1]) + 1 + "")) set_data(t6, t6_value);
-			if (dirty & /*season, target*/ 3 && t8_value !== (t8_value = /*season*/ ctx[1].episodes.indexOf(/*target*/ ctx[0]) + 1 + "")) set_data(t8, t8_value);
-			if (dirty & /*target*/ 1 && t10_value !== (t10_value = letteredTime(/*target*/ ctx[0].length) + "")) set_data(t10, t10_value);
+			if (dirty & /*target*/ 1 && t5_value !== (t5_value = getEpisodeLabel(/*target*/ ctx[0]) + "")) set_data(t5, t5_value);
+			if (dirty & /*target*/ 1 && t7_value !== (t7_value = letteredTime(/*target*/ ctx[0].length) + "")) set_data(t7, t7_value);
 		},
 		i: noop,
 		o: noop,
 		d(detaching) {
-			if (detaching) detach(div2);
+			if (detaching) detach(div3);
 			mounted = false;
-			dispose();
+			run_all(dispose);
 		}
 	};
 }
@@ -2274,23 +2450,31 @@ const load_handler$2 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$6($$self, $$props, $$invalidate) {
 	let $cfg;
-	component_subscribe($$self, cfg, $$value => $$invalidate(3, $cfg = $$value));
+	let $watchPage_episode;
+	let $watchPage_season;
+	component_subscribe($$self, cfg, $$value => $$invalidate(2, $cfg = $$value));
+	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(3, $watchPage_episode = $$value));
+	component_subscribe($$self, watchPage_season, $$value => $$invalidate(4, $watchPage_season = $$value));
 	let { target } = $$props;
 	let season;
-	let show;
 	let season_tmp = IDIndex.get(target.parent);
 
 	if (season_tmp && isSeason(season_tmp)) {
 		season = season_tmp;
 		let tmp = IDIndex.get(season.parent);
-		if (tmp && isShow(tmp)) show = tmp;
+		if (tmp && isShow(tmp)) ;
 	}
+
+	const click_handler = () => {
+		set_store_value(watchPage_episode, $watchPage_episode = target.id, $watchPage_episode);
+		set_store_value(watchPage_season, $watchPage_season = season.id, $watchPage_season);
+	};
 
 	$$self.$$set = $$props => {
 		if ('target' in $$props) $$invalidate(0, target = $$props.target);
 	};
 
-	return [target, season, show, $cfg];
+	return [target, season, $cfg, $watchPage_episode, $watchPage_season, click_handler];
 }
 
 class NextEpDisplay extends SvelteComponent {
@@ -2316,17 +2500,17 @@ const { document: document_1 } = globals;
 
 function get_each_context$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[44] = list[i];
+	child_ctx[52] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[47] = list[i];
+	child_ctx[55] = list[i];
 	return child_ctx;
 }
 
-// (134:4) {#key $cfg.host + playing.formats[format][quality]}
+// (153:4) {#key $cfg.host + playing.formats[format][quality]}
 function create_key_block$3(ctx) {
 	let video;
 	let video_poster_value;
@@ -2345,7 +2529,7 @@ function create_key_block$3(ctx) {
 			video_updating = true;
 		}
 
-		/*video_timeupdate_handler*/ ctx[26].call(video);
+		/*video_timeupdate_handler*/ ctx[27].call(video);
 	}
 
 	return {
@@ -2353,29 +2537,35 @@ function create_key_block$3(ctx) {
 			video = element("video");
 			attr(video, "poster", video_poster_value = /*playing*/ ctx[0].thumbnail && /*$cfg*/ ctx[17].host + /*playing*/ ctx[0].thumbnail || "");
 			if (!src_url_equal(video.src, video_src_value = /*$cfg*/ ctx[17].host + /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]])) attr(video, "src", video_src_value);
-			if (/*videoReadyState*/ ctx[10] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24].call(video));
-			if (/*duration*/ ctx[4] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[27].call(video));
+			attr(video, "id", "videoElement");
+			if (/*videoReadyState*/ ctx[10] === void 0) add_render_callback(() => /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25].call(video));
+			if (/*duration*/ ctx[4] === void 0) add_render_callback(() => /*video_durationchange_handler*/ ctx[28].call(video));
 			set_style(video, "cursor", /*showControls*/ ctx[13] ? "default" : "none");
 		},
 		m(target, anchor) {
 			insert(target, video, anchor);
-			/*video_binding*/ ctx[28](video);
+			/*video_binding*/ ctx[29](video);
+
+			if (!isNaN(/*$playerVolume*/ ctx[18])) {
+				video.volume = /*$playerVolume*/ ctx[18];
+			}
 
 			if (!mounted) {
 				dispose = [
-					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[24]),
-					listen(video, "play", /*video_play_pause_handler*/ ctx[25]),
-					listen(video, "pause", /*video_play_pause_handler*/ ctx[25]),
+					listen(video, "loadedmetadata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "loadeddata", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "canplay", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "canplaythrough", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "playing", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "waiting", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "emptied", /*video_loadedmetadata_loadeddata_canplay_canplaythrough_playing_waiting_emptied_handler*/ ctx[25]),
+					listen(video, "play", /*video_play_pause_handler*/ ctx[26]),
+					listen(video, "pause", /*video_play_pause_handler*/ ctx[26]),
 					listen(video, "timeupdate", video_timeupdate_handler),
-					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[27]),
-					listen(video, "click", /*click_handler*/ ctx[29]),
-					listen(video, "loadeddata", /*loadHandler*/ ctx[23])
+					listen(video, "durationchange", /*video_durationchange_handler*/ ctx[28]),
+					listen(video, "volumechange", /*video_volumechange_handler*/ ctx[30]),
+					listen(video, "click", /*click_handler*/ ctx[31]),
+					listen(video, "loadeddata", /*loadHandler*/ ctx[24])
 				];
 
 				mounted = true;
@@ -2400,20 +2590,24 @@ function create_key_block$3(ctx) {
 
 			video_updating = false;
 
+			if (dirty[0] & /*$playerVolume*/ 262144 && !isNaN(/*$playerVolume*/ ctx[18])) {
+				video.volume = /*$playerVolume*/ ctx[18];
+			}
+
 			if (dirty[0] & /*showControls*/ 8192) {
 				set_style(video, "cursor", /*showControls*/ ctx[13] ? "default" : "none");
 			}
 		},
 		d(detaching) {
 			if (detaching) detach(video);
-			/*video_binding*/ ctx[28](null);
+			/*video_binding*/ ctx[29](null);
 			mounted = false;
 			run_all(dispose);
 		}
 	};
 }
 
-// (148:4) {#if videoReadyState < 2}
+// (169:4) {#if videoReadyState < 2}
 function create_if_block_6(ctx) {
 	let div1;
 	let t;
@@ -2441,7 +2635,7 @@ function create_if_block_6(ctx) {
 			current = true;
 
 			if (!mounted) {
-				dispose = listen(div1, "click", /*click_handler_1*/ ctx[30]);
+				dispose = listen(div1, "click", /*click_handler_1*/ ctx[32]);
 				mounted = true;
 			}
 		},
@@ -2479,7 +2673,7 @@ function create_if_block_6(ctx) {
 	};
 }
 
-// (152:12) {#if settings.userSet.developerMode}
+// (173:12) {#if settings.userSet.developerMode}
 function create_if_block_7(ctx) {
 	let p;
 	let t0;
@@ -2526,7 +2720,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (160:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (181:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_3$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2602,7 +2796,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (161:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (182:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
@@ -2621,7 +2815,7 @@ function create_if_block_5$1(ctx) {
 			current = true;
 
 			if (!mounted) {
-				dispose = listen(button, "click", /*click_handler_2*/ ctx[31]);
+				dispose = listen(button, "click", /*click_handler_2*/ ctx[33]);
 				mounted = true;
 			}
 		},
@@ -2656,7 +2850,7 @@ function create_if_block_5$1(ctx) {
 	};
 }
 
-// (172:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (193:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2675,7 +2869,7 @@ function create_if_block_4$2(ctx) {
 			current = true;
 
 			if (!mounted) {
-				dispose = listen(button, "click", /*click_handler_3*/ ctx[32]);
+				dispose = listen(button, "click", /*click_handler_3*/ ctx[34]);
 				mounted = true;
 			}
 		},
@@ -2710,7 +2904,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (183:4) {#if showControls}
+// (204:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let t0;
 	let div3;
@@ -2740,7 +2934,11 @@ function create_if_block$5(ctx) {
 	let img1_src_value;
 	let t8;
 	let button2;
+	let img2;
+	let img2_src_value;
 	let t9;
+	let button3;
+	let t10;
 	let div3_transition;
 	let current;
 	let mounted;
@@ -2771,8 +2969,11 @@ function create_if_block$5(ctx) {
 			img1 = element("img");
 			t8 = space();
 			button2 = element("button");
-			button2.innerHTML = `<img src="/assets/icons/player/options.svg" alt="More options"/>`;
+			img2 = element("img");
 			t9 = space();
+			button3 = element("button");
+			button3.innerHTML = `<img src="/assets/icons/player/options.svg" alt="More options"/>`;
+			t10 = space();
 			if (if_block1) if_block1.c();
 
 			if (!src_url_equal(img0.src, img0_src_value = /*isPaused*/ ctx[6]
@@ -2789,11 +2990,17 @@ function create_if_block$5(ctx) {
 			attr(div1, "class", "seekbar");
 			attr(div2, "class", "timeDenotation");
 
-			if (!src_url_equal(img1.src, img1_src_value = /*inFullscreen*/ ctx[16]
-			? "/assets/icons/player/fullscreenExit.svg"
-			: "/assets/icons/player/fullscreen.svg")) attr(img1, "src", img1_src_value);
+			if (!src_url_equal(img1.src, img1_src_value = /*$playerVolume*/ ctx[18]
+			? "/assets/icons/player/volume.svg"
+			: "/assets/icons/player/muted.svg")) attr(img1, "src", img1_src_value);
 
-			attr(img1, "alt", "Toggle fullscreen");
+			attr(img1, "alt", "Volume");
+
+			if (!src_url_equal(img2.src, img2_src_value = /*inFullscreen*/ ctx[16]
+			? "/assets/icons/player/fullscreenExit.svg"
+			: "/assets/icons/player/fullscreen.svg")) attr(img2, "src", img2_src_value);
+
+			attr(img2, "alt", "Toggle fullscreen");
 			attr(div3, "class", "controls");
 		},
 		m(target, anchor) {
@@ -2805,7 +3012,7 @@ function create_if_block$5(ctx) {
 			append(div3, t1);
 			append(div3, div1);
 			append(div1, div0);
-			/*div1_binding*/ ctx[34](div1);
+			/*div1_binding*/ ctx[36](div1);
 			append(div3, t2);
 			append(div3, div2);
 			append(div2, p);
@@ -2819,19 +3026,23 @@ function create_if_block$5(ctx) {
 			append(button1, img1);
 			append(div3, t8);
 			append(div3, button2);
+			append(button2, img2);
 			append(div3, t9);
+			append(div3, button3);
+			append(div3, t10);
 			if (if_block1) if_block1.m(div3, null);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen(button0, "click", /*click_handler_4*/ ctx[33]),
-					listen(div1, "mousedown", /*startSeeking*/ ctx[20]),
-					listen(button1, "click", /*click_handler_5*/ ctx[35]),
-					listen(button2, "click", /*click_handler_6*/ ctx[36]),
-					listen(div3, "mousemove", /*seekUpdate*/ ctx[18]),
-					listen(div3, "mouseup", /*stopSeeking*/ ctx[21]),
-					listen(div3, "mouseleave", /*stopSeeking*/ ctx[21])
+					listen(button0, "click", /*click_handler_4*/ ctx[35]),
+					listen(div1, "mousedown", /*startSeeking*/ ctx[21]),
+					listen(button1, "click", /*click_handler_5*/ ctx[37]),
+					listen(button2, "click", /*click_handler_6*/ ctx[38]),
+					listen(button3, "click", /*click_handler_7*/ ctx[39]),
+					listen(div3, "mousemove", /*seekUpdate*/ ctx[19]),
+					listen(div3, "mouseup", /*stopSeeking*/ ctx[22]),
+					listen(div3, "mouseleave", /*stopSeeking*/ ctx[22])
 				];
 
 				mounted = true;
@@ -2858,10 +3069,16 @@ function create_if_block$5(ctx) {
 
 			if ((!current || dirty[0] & /*duration, playing*/ 17) && t6_value !== (t6_value = colonTime(/*duration*/ ctx[4] || /*playing*/ ctx[0].length) + "")) set_data(t6, t6_value);
 
-			if (!current || dirty[0] & /*inFullscreen*/ 65536 && !src_url_equal(img1.src, img1_src_value = /*inFullscreen*/ ctx[16]
+			if (!current || dirty[0] & /*$playerVolume*/ 262144 && !src_url_equal(img1.src, img1_src_value = /*$playerVolume*/ ctx[18]
+			? "/assets/icons/player/volume.svg"
+			: "/assets/icons/player/muted.svg")) {
+				attr(img1, "src", img1_src_value);
+			}
+
+			if (!current || dirty[0] & /*inFullscreen*/ 65536 && !src_url_equal(img2.src, img2_src_value = /*inFullscreen*/ ctx[16]
 			? "/assets/icons/player/fullscreenExit.svg"
 			: "/assets/icons/player/fullscreen.svg")) {
-				attr(img1, "src", img1_src_value);
+				attr(img2, "src", img2_src_value);
 			}
 
 			if (/*showFQPicker*/ ctx[11]) {
@@ -2915,7 +3132,7 @@ function create_if_block$5(ctx) {
 			if (if_block0) if_block0.d(detaching);
 			if (detaching) detach(t0);
 			if (detaching) detach(div3);
-			/*div1_binding*/ ctx[34](null);
+			/*div1_binding*/ ctx[36](null);
 			if (if_block1) if_block1.d();
 			if (detaching && div3_transition) div3_transition.end();
 			mounted = false;
@@ -2924,7 +3141,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (184:8) {#if settings.userSet.developerMode}
+// (205:8) {#if settings.userSet.developerMode}
 function create_if_block_2$2(ctx) {
 	let p;
 	let t;
@@ -2954,7 +3171,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (226:12) {#if showFQPicker}
+// (255:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div;
 	let select0;
@@ -2994,8 +3211,8 @@ function create_if_block_1$3(ctx) {
 				each_blocks[i].c();
 			}
 
-			if (/*fqp*/ ctx[3].format === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[37].call(select0));
-			if (/*fqp*/ ctx[3].quality === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[38].call(select1));
+			if (/*fqp*/ ctx[3].format === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[40].call(select0));
+			if (/*fqp*/ ctx[3].quality === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[41].call(select1));
 			attr(div, "class", "fqpicker");
 		},
 		m(target, anchor) {
@@ -3023,8 +3240,8 @@ function create_if_block_1$3(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(select0, "change", /*select0_change_handler*/ ctx[37]),
-					listen(select1, "change", /*select1_change_handler*/ ctx[38])
+					listen(select0, "change", /*select0_change_handler*/ ctx[40]),
+					listen(select1, "change", /*select1_change_handler*/ ctx[41])
 				];
 
 				mounted = true;
@@ -3117,10 +3334,10 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (229:24) {#each Object.keys(playing.formats) as fmt}
+// (258:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
-	let t_value = /*fmt*/ ctx[47] + "";
+	let t_value = /*fmt*/ ctx[55] + "";
 	let t;
 	let option_value_value;
 
@@ -3128,7 +3345,7 @@ function create_each_block_1$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*fmt*/ ctx[47];
+			option.__value = option_value_value = /*fmt*/ ctx[55];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3136,9 +3353,9 @@ function create_each_block_1$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[47] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[55] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[47])) {
+			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[55])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3149,10 +3366,10 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (234:24) {#each Object.keys(playing.formats[format]) as qual}
+// (263:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
-	let t_value = /*qual*/ ctx[44] + "";
+	let t_value = /*qual*/ ctx[52] + "";
 	let t;
 	let option_value_value;
 
@@ -3160,7 +3377,7 @@ function create_each_block$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*qual*/ ctx[44];
+			option.__value = option_value_value = /*qual*/ ctx[52];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3168,9 +3385,9 @@ function create_each_block$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing, format*/ 3 && t_value !== (t_value = /*qual*/ ctx[44] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing, format*/ 3 && t_value !== (t_value = /*qual*/ ctx[52] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing, format*/ 3 && option_value_value !== (option_value_value = /*qual*/ ctx[44])) {
+			if (dirty[0] & /*playing, format*/ 3 && option_value_value !== (option_value_value = /*qual*/ ctx[52])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3215,6 +3432,10 @@ function create_fragment$5(ctx) {
 			attr(div0, "class", "vbking");
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
+
+			set_style(div1, "height", settings.userSet.theatre
+			? settings.userSet.theatreFill
+			: "");
 		},
 		m(target, anchor) {
 			insert(target, t0, anchor);
@@ -3228,14 +3449,14 @@ function create_fragment$5(ctx) {
 			if (if_block1) if_block1.m(div1, null);
 			append(div1, t5);
 			if (if_block2) if_block2.m(div1, null);
-			/*div1_binding_1*/ ctx[39](div1);
+			/*div1_binding_1*/ ctx[42](div1);
 
 			if (!mounted) {
 				dispose = [
-					listen(document_1, "keydown", /*handleKeypress*/ ctx[22]),
-					listen(div1, "mousemove", /*handleActivity*/ ctx[19]),
-					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[40]),
-					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[41])
+					listen(document_1, "keydown", /*handleKeypress*/ ctx[23]),
+					listen(div1, "mousemove", /*handleActivity*/ ctx[20]),
+					listen(div1, "mouseleave", /*mouseleave_handler*/ ctx[43]),
+					listen(div1, "fullscreenchange", /*fullscreenchange_handler*/ ctx[44])
 				];
 
 				mounted = true;
@@ -3331,7 +3552,7 @@ function create_fragment$5(ctx) {
 			if (if_block0) if_block0.d();
 			if (if_block1) if_block1.d();
 			if (if_block2) if_block2.d();
-			/*div1_binding_1*/ ctx[39](null);
+			/*div1_binding_1*/ ctx[42](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -3339,8 +3560,16 @@ function create_fragment$5(ctx) {
 }
 
 function instance$5($$self, $$props, $$invalidate) {
+	let $watchPage_season;
+	let $watchPage_episode;
+	let $playerTemp_autoplayNext;
 	let $cfg;
+	let $playerVolume;
+	component_subscribe($$self, watchPage_season, $$value => $$invalidate(47, $watchPage_season = $$value));
+	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(48, $watchPage_episode = $$value));
+	component_subscribe($$self, playerTemp_autoplayNext, $$value => $$invalidate(49, $playerTemp_autoplayNext = $$value));
 	component_subscribe($$self, cfg, $$value => $$invalidate(17, $cfg = $$value));
+	component_subscribe($$self, playerVolume, $$value => $$invalidate(18, $playerVolume = $$value));
 	let { playing } = $$props;
 	let format = getBestFormat(playing, settings.userSet.videoFormat);
 	let quality = settings.userSet.videoQuality;
@@ -3349,12 +3578,15 @@ function instance$5($$self, $$props, $$invalidate) {
 		format,
 		quality,
 		prg_hold: undefined,
-		WFL: false
+		WFL: false,
+		readyPip: false
 	};
 
 	let duration;
 	let progress;
 	let isPaused = true;
+	let __PTAN = $playerTemp_autoplayNext;
+	set_store_value(playerTemp_autoplayNext, $playerTemp_autoplayNext = false, $playerTemp_autoplayNext);
 	let VPE;
 	let vplayer;
 	let seekbar;
@@ -3366,6 +3598,7 @@ function instance$5($$self, $$props, $$invalidate) {
 	let time_tmp;
 	let old_state = true;
 	let inFullscreen = false;
+	let nextEpisode = isEpisode(playing) && getEpisodeAfter(playing);
 
 	function seekUpdate(e) {
 		if (!duration || !draggingSeekBar) return;
@@ -3429,9 +3662,17 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	// this is nightmarish please help
 	function loadHandler() {
-		if (fqp.prg_hold && videoReadyState > 0) {
+		// autoplay
+		if (__PTAN) {
+			$$invalidate(3, fqp.prg_hold = 0, fqp);
+			$$invalidate(3, fqp.WFL = false, fqp);
+			__PTAN = false;
+		}
+
+		if (fqp.prg_hold != undefined && videoReadyState > 0) {
 			$$invalidate(5, progress = fqp.prg_hold);
 			$$invalidate(6, isPaused = fqp.WFL);
+			$$invalidate(3, fqp.readyPip = false, fqp);
 			delete fqp.prg_hold;
 			VPE.play();
 		}
@@ -3464,6 +3705,11 @@ function instance$5($$self, $$props, $$invalidate) {
 		});
 	}
 
+	function video_volumechange_handler() {
+		$playerVolume = this.volume;
+		playerVolume.set($playerVolume);
+	}
+
 	const click_handler = () => {
 		$$invalidate(6, isPaused = !isPaused);
 		$$invalidate(11, showFQPicker = false);
@@ -3486,10 +3732,14 @@ function instance$5($$self, $$props, $$invalidate) {
 	}
 
 	const click_handler_5 = () => {
+		if ($playerVolume > 0) set_store_value(playerVolume, $playerVolume = 0, $playerVolume); else set_store_value(playerVolume, $playerVolume = 1, $playerVolume);
+	};
+
+	const click_handler_6 = () => {
 		if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
 	};
 
-	const click_handler_6 = () => $$invalidate(11, showFQPicker = !showFQPicker);
+	const click_handler_7 = () => $$invalidate(11, showFQPicker = !showFQPicker);
 
 	function select0_change_handler() {
 		fqp.format = select_value(this);
@@ -3541,6 +3791,14 @@ function instance$5($$self, $$props, $$invalidate) {
 				$$invalidate(10, videoReadyState = 0); // assume the worst (pls work)
 			}
 		}
+
+		if ($$self.$$.dirty[0] & /*duration, progress, VPE*/ 176) {
+			if (duration && progress == duration && settings.userSet.autoplay && nextEpisode && !VPE.loop) {
+				set_store_value(playerTemp_autoplayNext, $playerTemp_autoplayNext = true, $playerTemp_autoplayNext);
+				set_store_value(watchPage_episode, $watchPage_episode = nextEpisode.id, $watchPage_episode);
+				set_store_value(watchPage_season, $watchPage_season = nextEpisode.parent, $watchPage_season);
+			}
+		}
 	};
 
 	return [
@@ -3562,6 +3820,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		time_tmp,
 		inFullscreen,
 		$cfg,
+		$playerVolume,
 		seekUpdate,
 		handleActivity,
 		startSeeking,
@@ -3573,6 +3832,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		video_timeupdate_handler,
 		video_durationchange_handler,
 		video_binding,
+		video_volumechange_handler,
 		click_handler,
 		click_handler_1,
 		click_handler_2,
@@ -3581,6 +3841,7 @@ function instance$5($$self, $$props, $$invalidate) {
 		div1_binding,
 		click_handler_5,
 		click_handler_6,
+		click_handler_7,
 		select0_change_handler,
 		select1_change_handler,
 		div1_binding_1,
@@ -3689,7 +3950,9 @@ function create_fragment$4(ctx) {
 
 	let t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 	? `Runtime ${letteredTime(/*targetVideo*/ ctx[0].length)}`
-	: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
+	: `${isEpisode(/*targetVideo*/ ctx[0])
+		? getEpisodeLabel(/*targetVideo*/ ctx[0])
+		: "❔"} — ${/*mtdt*/ ctx[2].show.name}`)) + "";
 
 	let t4;
 	let t5;
@@ -3763,6 +4026,7 @@ function create_fragment$4(ctx) {
 			attr(div5, "class", "btm_ctn");
 			attr(div6, "class", "container");
 			attr(div7, "class", "videoView");
+			attr(div7, "data-theatremode", settings.userSet.theatre ? "enabled" : "");
 		},
 		m(target, anchor) {
 			insert(target, div7, anchor);
@@ -3817,7 +4081,9 @@ function create_fragment$4(ctx) {
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t4_value !== (t4_value = (/*mtdt*/ ctx[2].type != "UNKNOWN" && (/*mtdt*/ ctx[2].type == "movie"
 			? `Runtime ${letteredTime(/*targetVideo*/ ctx[0].length)}`
-			: `S${/*mtdt*/ ctx[2].season_number}E${/*mtdt*/ ctx[2].episode_number} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
+			: `${isEpisode(/*targetVideo*/ ctx[0])
+				? getEpisodeLabel(/*targetVideo*/ ctx[0])
+				: "❔"} — ${/*mtdt*/ ctx[2].show.name}`)) + "")) set_data(t4, t4_value);
 
 			if ((!current || dirty & /*targetVideo*/ 1) && t8_value !== (t8_value = (/*targetVideo*/ ctx[0].description || "No description specified") + "")) set_data(t8, t8_value);
 			if (dirty & /*targetVideo*/ 1) show_if_1 = isMovie(/*targetVideo*/ ctx[0]) && /*targetVideo*/ ctx[0].notes;
@@ -4249,10 +4515,10 @@ function create_if_block_5(ctx) {
 		/*sidebar_items_binding_1*/ ctx[13](value);
 	}
 
-	let sidebar_props = { level: 0, width: 250 };
+	let sidebar_props = { level: 0, width: 275 };
 
-	if (/*selectedEpisode*/ ctx[2] !== void 0) {
-		sidebar_props.active = /*selectedEpisode*/ ctx[2];
+	if (/*$watchPage_episode*/ ctx[1] !== void 0) {
+		sidebar_props.active = /*$watchPage_episode*/ ctx[1];
 	}
 
 	if (/*episodeList*/ ctx[5] !== void 0) {
@@ -4274,9 +4540,9 @@ function create_if_block_5(ctx) {
 		p(ctx, dirty) {
 			const sidebar_changes = {};
 
-			if (!updating_active && dirty & /*selectedEpisode*/ 4) {
+			if (!updating_active && dirty & /*$watchPage_episode*/ 2) {
 				updating_active = true;
-				sidebar_changes.active = /*selectedEpisode*/ ctx[2];
+				sidebar_changes.active = /*$watchPage_episode*/ ctx[1];
 				add_flush_callback(() => updating_active = false);
 			}
 
@@ -4303,11 +4569,11 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (134:12) {:else}
+// (138:12) {:else}
 function create_else_block_1(ctx) {
 	let div;
 	let h1;
-	let t0_value = (/*selectedSeason_obj*/ ctx[1]?.name || "[ ... ]") + "";
+	let t0_value = (/*selectedSeason_obj*/ ctx[0]?.name || "[ ... ]") + "";
 	let t0;
 	let t1;
 	let span;
@@ -4315,7 +4581,7 @@ function create_else_block_1(ctx) {
 	let html_tag;
 
 	let raw_value = (settings.userSet.developerMode
-	? `sidebar: <span class="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
+	? `sidebar: <span class="monospaceText">${/*$watchPage_season*/ ctx[2]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[0]?.id}</span>`
 	: "select an episode") + "";
 
 	return {
@@ -4340,10 +4606,10 @@ function create_else_block_1(ctx) {
 			html_tag.m(raw_value, span);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*selectedSeason_obj*/ 2 && t0_value !== (t0_value = (/*selectedSeason_obj*/ ctx[1]?.name || "[ ... ]") + "")) set_data(t0, t0_value);
+			if (dirty & /*selectedSeason_obj*/ 1 && t0_value !== (t0_value = (/*selectedSeason_obj*/ ctx[0]?.name || "[ ... ]") + "")) set_data(t0, t0_value);
 
-			if (dirty & /*selectedSeason, selectedSeason_obj*/ 3 && raw_value !== (raw_value = (settings.userSet.developerMode
-			? `sidebar: <span class="monospaceText">${/*selectedSeason*/ ctx[0]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[1]?.id}</span>`
+			if (dirty & /*$watchPage_season, selectedSeason_obj*/ 5 && raw_value !== (raw_value = (settings.userSet.developerMode
+			? `sidebar: <span class="monospaceText">${/*$watchPage_season*/ ctx[2]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[0]?.id}</span>`
 			: "select an episode") + "")) html_tag.p(raw_value);
 		},
 		i: noop,
@@ -4354,7 +4620,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (111:12) {#if selectedEpisode && selectedEpisode_obj}
+// (115:12) {#if $watchPage_episode && selectedEpisode_obj}
 function create_if_block_3$1(ctx) {
 	let previous_key = /*selectedEpisode_obj*/ ctx[3];
 	let key_block_anchor;
@@ -4400,7 +4666,7 @@ function create_if_block_3$1(ctx) {
 	};
 }
 
-// (75:8) {#if selectedSeason == "showAbout"}
+// (79:8) {#if $watchPage_season == "showAbout"}
 function create_if_block$2(ctx) {
 	let t0;
 	let div5;
@@ -4412,12 +4678,12 @@ function create_if_block$2(ctx) {
 	let h1;
 	let t3;
 	let p0;
-	let t4_value = /*show*/ ctx[7]?.seasons?.length + "";
+	let t4_value = /*show*/ ctx[7]?.seasons.filter(func$1).length + "";
 	let t4;
 	let t5;
 
-	let t6_value = ((/*show*/ ctx[7]?.seasons?.length ?? 0) >= 1
-	? /*show*/ ctx[7]?.seasons?.map(func$1).reduce(func_1)
+	let t6_value = ((/*show*/ ctx[7]?.seasons?.filter(func_1).length ?? 0) >= 1
+	? /*show*/ ctx[7]?.seasons?.filter(func_2).map(func_3).reduce(func_4)
 	: 0) + "";
 
 	let t6;
@@ -4533,7 +4799,7 @@ function create_if_block$2(ctx) {
 	};
 }
 
-// (128:20) {:else}
+// (132:20) {:else}
 function create_else_block(ctx) {
 	let videoview;
 	let current;
@@ -4572,7 +4838,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (115:20) {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
+// (119:20) {#if selectedEpisode_obj.unfinished && !settings.userSet.developerMode}
 function create_if_block_4$1(ctx) {
 	let div0;
 	let img;
@@ -4650,7 +4916,7 @@ function create_if_block_4$1(ctx) {
 	};
 }
 
-// (113:16) {#key selectedEpisode_obj}
+// (117:16) {#key selectedEpisode_obj}
 function create_key_block$1(ctx) {
 	let current_block_type_index;
 	let if_block;
@@ -4720,7 +4986,7 @@ function create_key_block$1(ctx) {
 	};
 }
 
-// (77:8) {#if show?.poster}
+// (81:8) {#if show?.poster}
 function create_if_block_2$1(ctx) {
 	let div2;
 	let img;
@@ -4772,7 +5038,7 @@ function create_if_block_2$1(ctx) {
 	};
 }
 
-// (92:27) {#if settings.userSet.developerMode}
+// (96:27) {#if settings.userSet.developerMode}
 function create_if_block_1$1(ctx) {
 	let span;
 	let t1;
@@ -4816,10 +5082,10 @@ function create_fragment$2(ctx) {
 		/*sidebar_items_binding*/ ctx[11](value);
 	}
 
-	let sidebar_props = { level: 1, width: 250 };
+	let sidebar_props = { level: 1, width: 275 };
 
-	if (/*selectedSeason*/ ctx[0] !== void 0) {
-		sidebar_props.active = /*selectedSeason*/ ctx[0];
+	if (/*$watchPage_season*/ ctx[2] !== void 0) {
+		sidebar_props.active = /*$watchPage_season*/ ctx[2];
 	}
 
 	if (/*seasonList*/ ctx[4] !== void 0) {
@@ -4829,13 +5095,13 @@ function create_fragment$2(ctx) {
 	sidebar = new Sidebar({ props: sidebar_props });
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
 	binding_callbacks.push(() => bind(sidebar, 'items', sidebar_items_binding));
-	let if_block0 = /*selectedSeason*/ ctx[0] != "showAbout" && create_if_block_5(ctx);
+	let if_block0 = /*$watchPage_season*/ ctx[2] != "showAbout" && create_if_block_5(ctx);
 	const if_block_creators = [create_if_block$2, create_if_block_3$1, create_else_block_1];
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
-		if (/*selectedSeason*/ ctx[0] == "showAbout") return 0;
-		if (/*selectedEpisode*/ ctx[2] && /*selectedEpisode_obj*/ ctx[3]) return 1;
+		if (/*$watchPage_season*/ ctx[2] == "showAbout") return 0;
+		if (/*$watchPage_episode*/ ctx[1] && /*selectedEpisode_obj*/ ctx[3]) return 1;
 		return 2;
 	}
 
@@ -4868,9 +5134,9 @@ function create_fragment$2(ctx) {
 		p(ctx, [dirty]) {
 			const sidebar_changes = {};
 
-			if (!updating_active && dirty & /*selectedSeason*/ 1) {
+			if (!updating_active && dirty & /*$watchPage_season*/ 4) {
 				updating_active = true;
-				sidebar_changes.active = /*selectedSeason*/ ctx[0];
+				sidebar_changes.active = /*$watchPage_season*/ ctx[2];
 				add_flush_callback(() => updating_active = false);
 			}
 
@@ -4882,11 +5148,11 @@ function create_fragment$2(ctx) {
 
 			sidebar.$set(sidebar_changes);
 
-			if (/*selectedSeason*/ ctx[0] != "showAbout") {
+			if (/*$watchPage_season*/ ctx[2] != "showAbout") {
 				if (if_block0) {
 					if_block0.p(ctx, dirty);
 
-					if (dirty & /*selectedSeason*/ 1) {
+					if (dirty & /*$watchPage_season*/ 4) {
 						transition_in(if_block0, 1);
 					}
 				} else {
@@ -4955,23 +5221,36 @@ function create_fragment$2(ctx) {
 
 const load_handler = e => e.currentTarget.setAttribute("data-loaded", "");
 const load_handler_1 = e => e.currentTarget.setAttribute("data-loaded", "");
-const func$1 = e => e.episodes.length;
-const func_1 = (pv, cv) => pv + cv;
+const func$1 = e => e.type !== "extras";
+const func_1 = e => e.type !== "extras";
+const func_2 = e => e.type !== "extras";
+const func_3 = e => e.episodes.length;
+const func_4 = (pv, cv) => pv + cv;
 const load_handler_2 = e => e.currentTarget.setAttribute("data-loaded", "");
 
 function instance$2($$self, $$props, $$invalidate) {
+	let $watchPage_episode;
 	let $ready;
+	let $watchPage_season;
 	let $tv;
 	let $selected;
 	let $cfg;
+	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(1, $watchPage_episode = $$value));
 	component_subscribe($$self, ready, $$value => $$invalidate(9, $ready = $$value));
+	component_subscribe($$self, watchPage_season, $$value => $$invalidate(2, $watchPage_season = $$value));
 	component_subscribe($$self, tv, $$value => $$invalidate(14, $tv = $$value));
 	component_subscribe($$self, selected, $$value => $$invalidate(15, $selected = $$value));
 	component_subscribe($$self, cfg, $$value => $$invalidate(6, $cfg = $$value));
 	let pSS = "showAbout";
-	let selectedSeason = "showAbout";
+
+	//let selectedSeason: string = "showAbout";
+	set_store_value(watchPage_season, $watchPage_season = "showAbout", $watchPage_season);
+
 	let selectedSeason_obj;
-	let selectedEpisode = "";
+
+	//let selectedEpisode: string | undefined = "";
+	set_store_value(watchPage_episode, $watchPage_episode = "", $watchPage_episode);
+
 	let selectedEpisode_obj;
 	let seasonList = [];
 	let episodeList = [];
@@ -4983,8 +5262,8 @@ function instance$2($$self, $$props, $$invalidate) {
 	let show = $tv.find(e => e.id == showId);
 
 	function sidebar_active_binding(value) {
-		selectedSeason = value;
-		$$invalidate(0, selectedSeason);
+		$watchPage_season = value;
+		watchPage_season.set($watchPage_season);
 	}
 
 	function sidebar_items_binding(value) {
@@ -4993,13 +5272,13 @@ function instance$2($$self, $$props, $$invalidate) {
 	}
 
 	function sidebar_active_binding_1(value) {
-		selectedEpisode = value;
-		(($$invalidate(2, selectedEpisode), $$invalidate(8, pSS)), $$invalidate(0, selectedSeason));
+		$watchPage_episode = value;
+		watchPage_episode.set($watchPage_episode);
 	}
 
 	function sidebar_items_binding_1(value) {
 		episodeList = value;
-		(((($$invalidate(5, episodeList), $$invalidate(9, $ready)), $$invalidate(7, show)), $$invalidate(0, selectedSeason)), $$invalidate(1, selectedSeason_obj));
+		(((($$invalidate(5, episodeList), $$invalidate(9, $ready)), $$invalidate(7, show)), $$invalidate(2, $watchPage_season)), $$invalidate(0, selectedSeason_obj));
 	}
 
 	$$self.$$.update = () => {
@@ -5017,9 +5296,11 @@ function instance$2($$self, $$props, $$invalidate) {
 						},
 						...show.seasons.map((v, x) => {
 							return {
-								text: v.name || `Season ${x + 1}`,
+								text: v.name || (v.type
+								? lists.seasonTypeLT[v.type].placeholder
+								: `Season ${x + 1}`),
 								id: v.id,
-								icon: { type: "text", content: `S${x + 1}` }
+								icon: { type: "text", content: getSeasonLabel(v) }
 							};
 						})
 					]);
@@ -5027,10 +5308,10 @@ function instance$2($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*$ready, selectedSeason, selectedSeason_obj*/ 515) {
+		if ($$self.$$.dirty & /*$ready, $watchPage_season, selectedSeason_obj*/ 517) {
 			{
-				if ($ready && show && selectedSeason != "showAbout") {
-					$$invalidate(1, selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason));
+				if ($ready && show && $watchPage_season != "showAbout") {
+					$$invalidate(0, selectedSeason_obj = show.seasons.find(e => e.id == $watchPage_season));
 
 					if (selectedSeason_obj) {
 						$$invalidate(5, episodeList = selectedSeason_obj.episodes.map((v, x) => {
@@ -5040,35 +5321,37 @@ function instance$2($$self, $$props, $$invalidate) {
 								icon: {
 									type: "text",
 									content: `${(x + 1).toString().length < 2 ? "0" : ""}${x + 1}`
-								}
+								},
+								title: v.type ? lists.episodeTypeLT[v.type] : undefined,
+								note: v.author
 							};
 						}));
 					}
 				} else {
-					$$invalidate(1, selectedSeason_obj = undefined);
+					$$invalidate(0, selectedSeason_obj = undefined);
 					$$invalidate(5, episodeList = []);
 				}
 			}
 		}
 
-		if ($$self.$$.dirty & /*pSS, selectedSeason*/ 257) {
-			if (pSS != selectedSeason) {
-				$$invalidate(8, pSS = selectedSeason);
-				$$invalidate(2, selectedEpisode = undefined);
+		if ($$self.$$.dirty & /*pSS, $watchPage_season*/ 260) {
+			if (pSS != $watchPage_season) {
+				$$invalidate(8, pSS = $watchPage_season);
+				set_store_value(watchPage_episode, $watchPage_episode = undefined, $watchPage_episode);
 			}
 		}
 
-		if ($$self.$$.dirty & /*$ready, selectedSeason_obj, selectedEpisode*/ 518) {
+		if ($$self.$$.dirty & /*$ready, selectedSeason_obj, $watchPage_episode*/ 515) {
 			if ($ready && selectedSeason_obj) {
-				$$invalidate(3, selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == selectedEpisode));
+				$$invalidate(3, selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == $watchPage_episode));
 			}
 		}
 	};
 
 	return [
-		selectedSeason,
 		selectedSeason_obj,
-		selectedEpisode,
+		$watchPage_episode,
+		$watchPage_season,
 		selectedEpisode_obj,
 		seasonList,
 		episodeList,

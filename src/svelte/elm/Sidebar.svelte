@@ -9,9 +9,13 @@
         id: string,
         text: string,
         icon: SidebarItemIcon,
+        title?: string
+        note?: string
     }
 </script>
 <script lang="ts">
+
+    import { settings } from "../../ts/webtv";
 
     export let items: SidebarItem[] = [];
 
@@ -41,7 +45,16 @@
                 {/if}
             </div>
             <div class="content">
+                {#if item.title} 
+                    <p class="note">{item.title}</p>
+                {/if}
+
                 <p>{item.text}</p>
+
+                <!-- have to do this otherwise svt errors; just a workaround for a bug -->
+                {#if item.note||settings.userSet.developerMode} 
+                    <p class="note">{item.note||""}{@html item.note && settings.userSet.developerMode ? "<br>" : ""}{settings.userSet.developerMode ? item.id : ""}</p>
+                {/if}
             </div>
             <button class="hitbox" on:click={() => active = item.id}></button>
         </div>

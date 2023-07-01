@@ -28,12 +28,10 @@
 
 #menu {
     flex-basis: auto;
+    display:flex;
 }
 
 #clgrad {
-    position:absolute;
-    left:0px;
-    top:0px;
     width:3px;
     height:100%;
     background: linear-gradient(to bottom,#7A2259,#FB405A);
@@ -78,18 +76,19 @@
 }
 
 #menu > .sidebar {
-    left: 3px;
     position:relative;
 }
 
 .sidebar > .listItem {
+    display:flex;
     width:var(--wdth);
-    height:50px;
+    min-height:50px;
     transition-duration:50ms;
     border-left: 0px solid var(--sky);
     overflow:hidden;
     position:relative;
     cursor:pointer;
+    align-items:center;
 }
 
 .sidebar > .listItem > * {
@@ -107,15 +106,13 @@
 }
 
 .sidebar > .listItem[data-active=true]:not(:hover) > .content {
-    left: 47px;
+    left: -3px;
     transition-duration:50ms;
 }
 
 .sidebar > .listItem > .icon, .sidebar > .listItem > .content {
-    position:absolute;
-    top:0px;
-    width:50px;
-    height:50px;
+    position:relative;
+    min-height:50px;
     overflow:hidden;
     transition-duration:50ms;
 }
@@ -135,11 +132,15 @@
 .sidebar > .listItem > .icon {
     left:0px;
     width:50px;
+    min-width:50px;
+    height:100%;
 }
 
 .sidebar > .listItem > .content {
-    left:50px;
     width:calc( var(--wdth) - 50px );
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* sidebar util */
@@ -188,16 +189,24 @@
 }
 
 .sidebar > .listItem > .content > p {
-    position:absolute;
+    /* position:absolute; */
     margin: 0 10px 0 0;
-    top:50%; /* probably just me being stupid but
-                couldnt get margin auto 0 auto  0 towork
-             */
+    /*
+    top:50%; // probably just me being stupid but
+             // couldnt get margin auto 0 auto  0 towork
+             
     transform:translateY(-50%);
+    */
     color: var(--st1);
     font-family: var(--sans-serif);
     font-size:16px;
 }
+
+.sidebar > .listItem > .content > .note {
+    color: var(--st0);
+    font-size:10px;
+}
+
 
 
 /* Content */
@@ -430,20 +439,20 @@
     width:calc( 100% + 80px );
     height:calc( 100% + 80px );
     object-fit:cover;
-    filter: blur(5px);
+    filter: blur(10px);
     opacity: 0;
     transition-duration: 250ms;
 }
 
 #screenShow > .content > .thumbnailBackground > img[data-loaded] {
-    opacity:0.5;
+    opacity:0.4;
     transition-duration: 250ms;
 }
 
 #screenShow > .content > .backedByThumbnailBkg > h1,
 #screenShow > .content > .backedByThumbnailBkg > h1 > * 
 {
-    color: var(--ol2);
+    color: var(--st0);
     text-shadow:var(--sf0) 0px 0px 10px;
 }
 
@@ -456,6 +465,7 @@
     #screenShow > .content > .backedByThumbnailBkg > h1 > *
     {
         color: var(--sf2);
+        width:calc( 100% - 20px );
     }
 }
 
@@ -555,6 +565,12 @@
     overflow:visible;
 }
 
+.videoView[data-theatreMode=enabled] > .container {
+    height: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
 .videoView > .container > .videoPlayer {
     
     position: relative;
@@ -562,6 +578,12 @@
     left:0px;
     top:0px;
     
+}
+
+.videoView[data-theatreMode=enabled] > .container > .videoPlayer {
+    width:calc( 100% + 20px );
+    left:-10px;
+    height:80%;
 }
 
 .videoView > .container > .shortAbout {
@@ -654,14 +676,18 @@
     color:var(--txt)
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont {
+    position: relative;
+}
+
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .thumbnail {
     position:relative;
     width:100%;
     height:auto;
     background-color: var(--sf0);
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .thumbnail > img {
     position:absolute;
     width:100%;
     height:auto;
@@ -669,29 +695,40 @@
     transition-duration:250ms;
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .thumbnail > img[data-loaded] {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .thumbnail > img[data-loaded] {
     opacity:1;
     transition-duration:250ms;
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .videoData {
     margin: 5px 0 0 0;
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > p {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .videoData > p {
     margin: 0 0 0 0;
     color: var(--st0);
     font-size: 14px;
 }
 
-.videoView > .container > .btm_ctn > .opts > .nextUp > .videoData > .vTitle {
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .videoData > .vTitle {
     font-weight:600;
     color: var(--txt)
 }
 
+.videoView > .container > .btm_ctn > .opts > .nextUp > .nuCont > .hitbox {
+    width:100%;
+    height:100%;
+    left:0px;
+    top:0px;
+    position:absolute;
+    cursor:pointer;
+    opacity:0;
+}
+
 /* VideoPlayer */
 
-.videoPlayer:fullscreen > .vbking {
+.videoPlayer:fullscreen > .vbking,
+.videoView[data-theatreMode=enabled] > .container > .videoPlayer > .vbking {
     background-color: black !important;
 }
 
@@ -875,6 +912,19 @@
     }
 }
 
+/*
+@keyframes load_flash {
+    0% {
+        background-color:var(--txt);
+    }
+    50% {
+        background-color:var(--st1);
+    }
+    100% {
+        background-color:var(--txt);
+    }
+}
+*/
 body {
     background-color: var(--bse)
 }

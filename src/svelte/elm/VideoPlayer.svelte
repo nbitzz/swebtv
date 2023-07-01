@@ -1,22 +1,27 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
-    import { colonTime } from "../../ts/util";
+    import { colonTime, getEpisodeAfter } from "../../ts/util";
     import { getBestFormat, type Video, cfg, type videoFormat, settings, type videoQuality, isVideo, isEpisode } from "../../ts/webtv";
+    import { playerVolume, playerTemp_autoplayNext, watchPage_episode, watchPage_season } from "../../ts/stores";
 
     export let playing: Video
     
     let format: videoFormat = getBestFormat( playing, settings.userSet.videoFormat )
     let quality: videoQuality = settings.userSet.videoQuality
 
-    let fqp: {format: videoFormat, quality: videoQuality, prg_hold: number|undefined, WFL: boolean} = { // use for the format/quality picker - holds tmp stuf
+    let fqp: {format: videoFormat, quality: videoQuality, prg_hold: number|undefined, WFL: boolean, readyPip: boolean} = { // use for the format/quality picker - holds tmp stuf
         format, quality,
         prg_hold : undefined,
-        WFL: false
+        WFL: false,
+        readyPip: false
     }
 
     let duration: number
     let progress: number
     let isPaused: boolean = true
+
+    let __PTAN = $playerTemp_autoplayNext
+    $playerTemp_autoplayNext = false
 
     let VPE: HTMLVideoElement
     let vplayer: HTMLDivElement
@@ -35,6 +40,8 @@
     let old_state = true;
 
     let inFullscreen = false;
+
+    let nextEpisode = isEpisode(playing) && getEpisodeAfter(playing)
 
     function seekUpdate(e:MouseEvent) {
         if (!duration || !draggingSeekBar) return
@@ -115,9 +122,17 @@
     // this is nightmarish please help
 
     function loadHandler() {
-        if (fqp.prg_hold && videoReadyState > 0) {
+        // autoplay
+        if (__PTAN) {
+            fqp.prg_hold = 0;
+            fqp.WFL = false;
+            __PTAN = false
+        }
+
+        if (fqp.prg_hold != undefined && videoReadyState > 0) {
             progress = fqp.prg_hold
             isPaused = fqp.WFL
+            fqp.readyPip = false
             delete fqp.prg_hold;
             VPE.play()
         }
@@ -134,6 +149,12 @@
 
     }
 
+    $: if (duration && progress == duration && settings.userSet.autoplay && nextEpisode && !VPE.loop) {
+        $playerTemp_autoplayNext = true;
+        $watchPage_episode = nextEpisode.id;
+        $watchPage_season = nextEpisode.parent;
+    }
+
 </script>
 
 <svelte:document on:keydown={handleKeypress} />
@@ -144,6 +165,8 @@
     on:mouseleave={()=>{showControls=false; showFQPicker = false;if (sCTimeout) clearTimeout(sCTimeout)}} 
     style:aspect-ratio={playing.aspectRatio || "16 / 9"}
     on:fullscreenchange={() => inFullscreen = document.fullscreenElement == vplayer}
+
+    style:height={settings.userSet.theatre ? settings.userSet.theatreFill : ""}
 >
 
     <div class="vbking">
@@ -159,11 +182,13 @@
         poster={playing.thumbnail && $cfg.host + playing.thumbnail || ""} 
         src={$cfg.host + playing.formats[format][quality]} bind:readyState={videoReadyState} 
         bind:paused={isPaused} bind:currentTime={progress} 
-        bind:duration={duration} bind:this={VPE}
+        bind:duration={duration} bind:this={VPE} bind:volume={$playerVolume}
 
         on:click={() => { isPaused = !isPaused; showFQPicker = false; }}
         on:loadeddata={loadHandler}
         style:cursor={(showControls) ? "default" : "none"}
+
+        id="videoElement"
     />
     {/key}
 
@@ -234,6 +259,14 @@
             <div class="timeDenotation">
                 <p>{colonTime(draggingSeekBar ? time_tmp : (progress || fqp.prg_hold || 0))} <span>/ {colonTime(duration || playing.length)}</span></p>
             </div>
+
+            <button on:click={() => {if ($playerVolume > 0) $playerVolume = 0; else $playerVolume = 1 }}>
+                <img src={ 
+                    $playerVolume
+                    ? "/assets/icons/player/volume.svg" 
+                    : "/assets/icons/player/muted.svg" 
+                } alt="Volume" />
+            </button>
 
             <button on:click={() => {if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen() }}>
                 <img src={ 

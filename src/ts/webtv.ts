@@ -12,12 +12,46 @@ export namespace lists {
         "hardsub",
         "dub"
     ] as const
+
+    export const seasontypes = [
+        "extras", // +, use for extra videos/etc
+        "special" // ★; if there is a second special, ☆. use for seasons containing shorts, etc
+    ] as const
+    
+    export const episodetypes = [
+        //"extra", // + Extra
+        "special",
+        "music",
+        "opening",
+        "ending" 
+    ] as const
+
+    export const seasonTypeLT: { [x in seasonType]: { icons: string[], placeholder: string } } = {
+        extras: {
+            icons: ["+"],
+            placeholder: "Extras"
+        },
+        special: {
+            icons: ["★","☆"],
+            placeholder: "Special season"
+        }
+    }
+
+    // open ended lke this cause it's possible that more could be added later
+    export const episodeTypeLT: { [x in episodeType]: string } = {
+        special: "★ Special",
+        music: "♫ Music",
+        opening: "Opening",
+        ending: "Ending"
+    }
 }
 
 // Types
 
 export type videoQuality = typeof lists.quality[number]
 export type videoFormat = typeof lists.formats[number]
+export type seasonType = typeof lists.seasontypes[number]
+export type episodeType = typeof lists.episodetypes[number]
 
 export interface Common {
     name: string,
@@ -45,6 +79,9 @@ export interface Video extends Common {
 export interface Episode extends Video {
     parent: string // should be a Season's id
 
+    type: episodeType
+    author: string // use for opening, etc?
+
     intro?: [ number, number ] // range for when the intro is playing;
                                // allows for skip intro button
 
@@ -58,7 +95,9 @@ export interface Season extends Common {
 
     parent: string // should be a Show's id
 
-    episodes: Episode[]
+    episodes: Episode[],
+
+    type?: seasonType
     
 }
 
@@ -108,6 +147,8 @@ export namespace settings {
         autoskipoutro: false,
         keyboardSeek: "5",
 
+        theatre: false,
+        theatreFill: "80%",
         skipbutton: true,
         developerMode: false
         
@@ -123,6 +164,8 @@ export namespace settings {
         autoskipoutro: boolean,
         keyboardSeek: "0.01" | "0.1" | "1" | "5" | "10", // lazy
 
+        theatre: boolean,
+        theatreFill: "80%" | "100%",
         developerMode: boolean,
         skipbutton: boolean,
 
@@ -192,6 +235,16 @@ export namespace settings {
             icon: "/assets/icons/window.svg",
             children: [
                 {
+                    label: "Theatre mode",
+                    targetSetting: "theatre",
+                    input: "boolean"
+                },
+                {
+                    label: "Theatre mode fill percentage",
+                    targetSetting: "theatreFill",
+                    input: [ "80%", "100%" ]
+                },
+                {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
                     input: "boolean"
@@ -236,6 +289,28 @@ export function getBestFormat(video: Video, requested: videoFormat) : videoForma
         if (lists.formats[i] && availableFormats.includes(lists.formats[i])) return lists.formats[i] 
     }
     return "main"
+}
+
+export function getSeasonLabel(season: Season) : string {
+    let show = IDIndex.get(season.parent);
+    if (!show || !isShow(show)) return "❔"
+
+    // this is a mess LOL
+    // oh well
+
+    return season.type
+    ? lists.seasonTypeLT[season.type].icons[
+        show?.seasons.filter(e => e.type==season.type).indexOf(season) ?? lists.seasonTypeLT[season.type].icons.length-1
+      ] || lists.seasonTypeLT[season.type].icons[lists.seasonTypeLT[season.type].icons.length-1]
+    : `S${show.seasons.indexOf(season)+1}`
+}
+
+export function getEpisodeLabel(episode: Episode) : string {
+    let season = IDIndex.get(episode.parent)
+    if (!season || !isSeason(season)) return "❔"
+    
+    let slabel = getSeasonLabel(season)
+    return `${slabel}${!season.type ? "E" : ""}${season.episodes.indexOf(episode)+1}`
 }
 /*
 export function getNearestQuality(video: Video, format: videoFormat, requested: videoQuality) : videoQuality {

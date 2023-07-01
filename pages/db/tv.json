@@ -333,7 +333,300 @@
                 "parent": "bocchi",
                 "id": "bocchi.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "Lonely Rolling Bocchi",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e1",
+
+                        "description": "Introverted Bocchi takes up the guitar in hopes of meeting friends, but her social anxiety is not so easily conquered...",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "intro": [ 173.8, 263.8 ],
+                        "outro": [ 1325.5, 1415.5 ]
+                    },
+                    {
+                        "name": "See You Tomorrow",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e2",
+
+                        "description": "Nijika proposes that the band save up money for their next gig by doing part-time work at Starry.",
+                        "thumbnail": "bc_ep2_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e2mb",
+                                "good": "bcs1e2mg",
+                                "okay": "bcs1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e2hb",
+                                "good": "bcs1e2hg",
+                                "okay": "bcs1e2ho"
+                            }
+                        },
+
+                        "intro": [ 33.85, 123.85 ],
+                        "outro": [ 1324.75, 1414.75 ]
+                    },
+                    {
+                        "name": "Be Right There",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e3",
+
+                        "description": "Bocchi decides to try to pursue a new vocalist for the band: a classmate named Kita.",
+                        "thumbnail": "bc_ep3_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e3mb",
+                                "good": "bcs1e3mg",
+                                "okay": "bcs1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e3hb",
+                                "good": "bcs1e3hg",
+                                "okay": "bcs1e3ho"
+                            }
+                        },
+
+                        "intro": [ 221.04, 311.04 ],
+                        "outro": [ 1325, 1415 ]
+                    },
+                    {
+                        "name": "Jumping Girl(s)",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e4",
+
+                        "description": "While Bocchi struggles to write the lyrics to the band's first song, Nijika arranges a special band outing.",
+                        "thumbnail": "bc_ep4_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e4mb",
+                                "good": "bcs1e4mg",
+                                "okay": "bcs1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e4hb",
+                                "good": "bcs1e4hg",
+                                "okay": "bcs1e4ho"
+                            }
+                        },
+
+                        "intro": [ 105.07, 195.07 ],
+                        "outro": [ 1324.9, 1414.9 ]
+                    },
+                    {
+                        "name": "Flightless Fish",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e5",
+
+                        "description": "Kessoku Band has their first song and they're ready to play their next concert, but Seika isn't so easily convinced.",
+                        "thumbnail": "bc_ep5_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e5mb",
+                                "good": "bcs1e5mg",
+                                "okay": "bcs1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e5hb",
+                                "good": "bcs1e5hg",
+                                "okay": "bcs1e5ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e6",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep6_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e6mb",
+                                "good": "bcs1e6mg",
+                                "okay": "bcs1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e6hb",
+                                "good": "bcs1e6hg",
+                                "okay": "bcs1e6ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    }
+                ]
+            },
+            {
+                "name": "Extras",
+                "parent": "bocchi",
+                "id": "bocchi.extras",
+
+                "episodes": [
+                    {
+                        "name": "\"Seishun Complex\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.op",
+
+                        "description": "The opening to BOCCHI THE ROCK, \"Seishun Complex\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "opening",
+                        "author": "Kessoku Band",
+                        "unfinished": true
+                    },
+                    {
+                        "name": "\"Distortion!!\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed1",
+
+                        "description": "The first ED to BOCCHI THE ROCK, \"Distortion!!\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band",
+                        "unfinished": true
+                    },
+                    {
+                        "name": "\"Karakara\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed2",
+
+                        "description": "The second ED to BOCCHI THE ROCK, \"Karakara\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band",
+                        "unfinished": true
+                    },
+                    {
+                        "name": "\"What is wrong with\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed3",
+
+                        "description": "The third ED to BOCCHI THE ROCK, \"What is wrong with\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band",
+                        "unfinished":true
+                    },
+                    {
+                        "name": "\"Rockn' Roll, Morning Light Falls on You\"",
+                        "parent": "bocchi.extras",
+                        "id": "bocchi.extras.ed4",
+
+                        "description": "The fourth and final ED to BOCCHI THE ROCK, \"Rockn' Roll, Morning Light Falls on You\" by Kessoku Band.",
+                        "thumbnail": "bc_ep1_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e1mb",
+                                "good": "bcs1e1mg",
+                                "okay": "bcs1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e1hb",
+                                "good": "bcs1e1hg",
+                                "okay": "bcs1e1ho"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "Kessoku Band",
+                        "unfinished":true
+                    }
+                ],
+
+                "type": "extras"
             }
         ]
     },
@@ -494,6 +787,116 @@
         ]
     },
     {
+        "name": "Miss Kobayashi's Dragon Maid",
+        "id":"mkdm",
+
+        "description": "Miss Kobayashi is your average office worker who lives a boring life, alone in her small apartment–until she saves the life of a female dragon in distress. The dragon, named Tohru, has the ability to magically transform into an adorable human girl (albeit with horns and a long tail!), who will do anything to pay off her debt of gratitude, whether Miss Kobayashi likes it or not. With a very persistent and amorous dragon as a roommate, nothing comes easy, and Miss Kobayashi’s normal life is about to go off the deep end!",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "mkdmic",
+        "poster": "mkdmposter",
+
+        "seasons": [
+            {
+                "name": "Miss Kobayashi's Dragon Maid",
+                "parent": "mkdm",
+                "id": "mkdm.s1",
+
+                "episodes": []
+            },
+            {
+                "name": "Miss Kobayashi's Dragon Maid S",
+                "parent": "mkdm",
+                "id": "mkdm.s2",
+
+                "episodes": []
+            },
+            {
+                "name": "Miss Kobayashi's Dragon Maid S Short Animation Series",
+                "parent": "mkdm",
+                "id": "mkdm.special",
+
+                "episodes": [],
+                "type": "special"
+            }
+        ]
+    },
+    {
+        "name": "BLEND-S",
+        "id":"blends",
+
+        "description": "Tsundere, Imouto (little sister type), etc. are only a few of the personas that the café waitresses play out here. And the new hire Maika, is asked by the store manager to play none other than the super sadist!?\nAs she becomes devoted to her work, her super sadist persona blooms unexpectedly…\nEverything is a treat - even being stomped on - in this outrageous working comedy.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "blendsic",
+        "poster": "bsposter",
+
+        "seasons": [
+            {
+                "name": "BLEND-S",
+                "parent": "blends",
+                "id": "blends.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
+        "name": "Chainsaw Man",
+        "id":"csm",
+
+        "description": "Denji is a young boy who works as a Devil Hunter with the “Chainsaw Devil” Pochita.\nOne day, as he was living his miserable life trying to pay off the debt he inherited from his parents, he got betrayed and killed. As he was losing his consciousness, he made a deal with Pochita, and got resurrected as the “Chainsaw Man”: the owner of the Devil’s heart.",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "csmic",
+        "poster": "csmposter",
+
+        "seasons": [
+            {
+                "name": "Chainsaw Man",
+                "parent": "csm",
+                "id": "csm.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
+        "name": "SPY x FAMILY",
+        "id":"sxf",
+
+        "description": "World peace is at stake and secret agent Twilight must undergo his most difficult mission yet—pretend to be a family man. Posing as a loving husband and father, he’ll infiltrate an elite school to get close to a high-profile politician. He has the perfect cover, except his wife’s a deadly assassin and neither knows each other’s identity. But someone does, his adopted daughter who’s a telepath!",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "sxfic",
+        "poster": "sxfposter",
+
+        "seasons": [
+            {
+                "name": "SPY x FAMILY",
+                "parent": "sxf",
+                "id": "sxf.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
+        "name": "Gabriel DropOut!",
+        "id":"gdo",
+
+        "description": "An angel at the top of an angel school has descended to the human world! However, she has already acclimated to the life of the human world so much that she ends up leading a self-indulgent life, skipping school all the time and being absorbed in online games. Gabriel soon forgets about her original goal to make human beings happy and has turned into a lazy and hopeless angel, or a “sloppy angel” in short. Amazingly, she swears to continue to fully enjoy the pleasure of various entertainments of the human world",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.\n\nOh also that description was cut off by Crunchyroll, not me lol",
+        "icon": "gdoic",
+        "poster": "gdoposter",
+
+        "seasons": [
+            {
+                "name": "Gabriel DropOut!",
+                "parent": "gdo",
+                "id": "gdo.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
         "name": "webtv testbench",
         "id":"wtvtb",
 
@@ -543,6 +946,26 @@
                                 "okay": "freerobux.mp4"
                             }
                         }
+                    },
+                    {
+                        "name": "S1 ep 3 test",
+                        "parent": "wtvtb.main",
+                        "id": "wtvtb.1.3",
+
+                        "description": "S1E3 test",
+                        "notes": "Notes on episodes, again",
+                        "thumbnail": "testground",
+                        "length": 20,
+
+                        "formats": {
+                            "main": {
+                                "best": "freerobux.mp4",
+                                "good": "freerobux.mp4",
+                                "okay": "freerobux.mp4"
+                            }
+                        },
+
+                        "type": "special"
                     }
                 ]
             },
@@ -607,6 +1030,129 @@
                         "unfinished":true
                     }
                 ]
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.special",
+
+                "episodes": [
+                    {
+                        "name": "special test",
+                        "parent": "wtvtb.special",
+                        "id": "wtvtb.special.1",
+
+                        "description": "SP1E1 test",
+                        "notes": "Notes on episodes? Do these work?",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    }
+                ],
+                
+                "type": "special"
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.special2",
+
+                "episodes": [
+                    {
+                        "name": "special test 2",
+                        "parent": "wtvtb.special2",
+                        "id": "wtvtb.special2.1",
+
+                        "description": "SP2E1 test",
+                        "notes": "Notes on episodes? Do these work?",
+                        "thumbnail": "testground",
+                        "length": 600,
+
+                        "formats": {
+                            "main": {
+                                "best": "wiiubkg",
+                                "good": "wiiubkg",
+                                "okay": "wiiubkg"
+                            }
+                        }
+                    }
+                ],
+                
+                "type": "special"
+            },
+            {
+                "parent": "wtvtb",
+                "id": "wtvtb.extra",
+
+                "episodes": [
+                    {
+                        "name": "\"Kitai Avenue\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.kitai_avenue",
+
+                        "description": "Premiered Jun 23, 2023 at https://www.youtube.com/watch?v=o14pj9CsNVY",
+                        "thumbnail": "__ktathmb",
+                        "length": 178,
+
+                        "formats": {
+                            "main": {
+                                "best": "__ktabest",
+                                "good": "__ktagood",
+                                "okay": "__ktaokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "inabakumori"
+                    },
+                    {
+                        "name": "\"Lost Umbrella\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.lost_umbrella",
+
+                        "description": "Lost Umbrella by inabakumori",
+                        "thumbnail": "__luthmb",
+                        "length": 202,
+
+                        "formats": {
+                            "main": {
+                                "best": "__lubest",
+                                "good": "__lugood",
+                                "okay": "__luokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "inabakumori"
+                    },
+                    {
+                        "name": "\"Lagtrain\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.lagtrain",
+
+                        "description": "Lagtrain by inabakumori",
+                        "thumbnail": "__ltthmb",
+                        "length": 251,
+
+                        "formats": {
+                            "main": {
+                                "best": "__ltbest",
+                                "good": "__ltgood",
+                                "okay": "__ltokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "inabakumori"
+                    }
+                ],
+                
+                "type": "extras"
             }
         ]
     }

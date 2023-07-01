@@ -1,14 +1,16 @@
 <script lang="ts">
     import Sidebar, { type SidebarItem } from "../elm/Sidebar.svelte";
-    import { cfg, ready, tv, type Season, type Show, type Episode, settings } from "../../ts/webtv";
-    import { selected } from "../../ts/stores";
+    import { cfg, ready, tv, type Season, type Show, type Episode, settings, lists, getSeasonLabel, getEpisodeLabel } from "../../ts/webtv";
+    import { selected, watchPage_episode, watchPage_season } from "../../ts/stores";
     import VideoView from "../elm/VideoView.svelte";
 
     let pSS: string = "showAbout"
-    let selectedSeason: string = "showAbout";
+    //let selectedSeason: string = "showAbout";
+    $watchPage_season = "showAbout"
     let selectedSeason_obj: Season | undefined
 
-    let selectedEpisode: string | undefined = "";
+    //let selectedEpisode: string | undefined = "";
+    $watchPage_episode = ""
     let selectedEpisode_obj: Episode | undefined;
     let seasonList:SidebarItem[] = []
     let episodeList: SidebarItem[] = []
@@ -30,11 +32,11 @@
                 },
                 ...show.seasons.map((v,x):SidebarItem => {
                     return {
-                        text: (v.name || `Season ${x+1}`),
+                        text: (v.name || (v.type ? lists.seasonTypeLT[v.type].placeholder : `Season ${x+1}`)),
                         id: v.id,
                         icon: {
                             type: "text",
-                            content: `S${x+1}`
+                            content: getSeasonLabel(v)
                         }
                     }
                 })
@@ -44,8 +46,8 @@
     }
 
     $: {
-        if ($ready && show && selectedSeason != "showAbout") {
-            selectedSeason_obj = show.seasons.find(e => e.id == selectedSeason)
+        if ($ready && show && $watchPage_season != "showAbout") {
+            selectedSeason_obj = show.seasons.find(e => e.id == $watchPage_season)
 
             if (selectedSeason_obj) {
                 episodeList = selectedSeason_obj.episodes.map((v,x):SidebarItem => {
@@ -55,32 +57,34 @@
                         icon: {
                             type: "text",
                             content: `${(x+1).toString().length < 2 ? "0" : ""}${x+1}`
-                        }
+                        },
+                        title: v.type ? lists.episodeTypeLT[v.type] : undefined,
+                        note: v.author
                     }
                 })
             }
         } else { selectedSeason_obj = undefined; episodeList = []; }
     }
 
-    $: if (pSS != selectedSeason) {
-            pSS = selectedSeason;
-            selectedEpisode = undefined;
+    $: if (pSS != $watchPage_season) {
+            pSS = $watchPage_season;
+            $watchPage_episode = undefined;
     }
 
-    $: if ($ready && selectedSeason_obj) {
-        selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == selectedEpisode)
+    $: if ($ready && selectedSeason_obj) {                                                     
+        selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == $watchPage_episode)
     }
 
 </script>
 <div class="screen" id="screenShow">
-    <Sidebar level={1} width={250} bind:active={selectedSeason} bind:items={seasonList} />
+    <Sidebar level={1} width={275} bind:active={$watchPage_season} bind:items={seasonList} />
 
-    {#if selectedSeason != "showAbout"}
-        <Sidebar level={0} width={275} bind:active={selectedEpisode} bind:items={episodeList} />
+    {#if $watchPage_season != "showAbout"}
+        <Sidebar level={0} width={275} bind:active={$watchPage_episode} bind:items={episodeList} />
     {/if}
 
     <div class="content">
-        {#if selectedSeason == "showAbout"}
+        {#if $watchPage_season == "showAbout"}
             
         {#if show?.poster}
             <div class="poster">
@@ -97,7 +101,7 @@
                     <img src={$cfg.host + show?.icon} alt={show?.name} on:load={e => e.currentTarget.setAttribute("data-loaded","")} />
                     <div class="txt">
                         <h1>{show?.name}</h1>
-                        <p>{#if settings.userSet.developerMode} <span class="monospaceText">{show?.id}</span> | {/if}{show?.seasons?.length} season(s), {(show?.seasons?.length??0) >= 1 ? show?.seasons?.map(e => e.episodes.length).reduce((pv, cv) => pv+cv) : 0} episode(s)</p>
+                        <p>{#if settings.userSet.developerMode} <span class="monospaceText">{show?.id}</span> | {/if}{show?.seasons.filter(e => e.type !== "extras").length} season(s), {(show?.seasons?.filter(e => e.type !== "extras").length??0) >= 1 ? show?.seasons?.filter(e => e.type !== "extras").map(e => e.episodes.length).reduce((pv, cv) => pv+cv) : 0} episode(s)</p>
                     </div>
                 </div>
 
@@ -116,7 +120,7 @@
 
         {:else}
             
-            {#if selectedEpisode && selectedEpisode_obj}
+            {#if $watchPage_episode && selectedEpisode_obj}
 
                 {#key selectedEpisode_obj}
 
@@ -145,7 +149,7 @@
                     <h1>
                         {selectedSeason_obj?.name || "[ ... ]"}
                         <span>
-                            <br>{@html settings.userSet.developerMode ? `sidebar: <span class="monospaceText">${selectedSeason}</span>; obj: <span class="monospaceText">${selectedSeason_obj?.id}</span>` : "select an episode" }
+                            <br>{@html settings.userSet.developerMode ? `sidebar: <span class="monospaceText">${$watchPage_season}</span>; obj: <span class="monospaceText">${selectedSeason_obj?.id}</span>` : "select an episode" }
                         </span>
                     </h1>
                 </div>
