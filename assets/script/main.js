@@ -4472,8 +4472,8 @@ function create_if_block_5(ctx) {
 
 	let sidebar_props = { level: 0, width: 275 };
 
-	if (/*$watchPage_episode*/ ctx[2] !== void 0) {
-		sidebar_props.active = /*$watchPage_episode*/ ctx[2];
+	if (/*$watchPage_episode*/ ctx[1] !== void 0) {
+		sidebar_props.active = /*$watchPage_episode*/ ctx[1];
 	}
 
 	if (/*episodeList*/ ctx[5] !== void 0) {
@@ -4495,9 +4495,9 @@ function create_if_block_5(ctx) {
 		p(ctx, dirty) {
 			const sidebar_changes = {};
 
-			if (!updating_active && dirty & /*$watchPage_episode*/ 4) {
+			if (!updating_active && dirty & /*$watchPage_episode*/ 2) {
 				updating_active = true;
-				sidebar_changes.active = /*$watchPage_episode*/ ctx[2];
+				sidebar_changes.active = /*$watchPage_episode*/ ctx[1];
 				add_flush_callback(() => updating_active = false);
 			}
 
@@ -4536,7 +4536,7 @@ function create_else_block_1(ctx) {
 	let html_tag;
 
 	let raw_value = (settings.userSet.developerMode
-	? `sidebar: <span class="monospaceText">${/*$watchPage_season*/ ctx[3]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[0]?.id}</span>`
+	? `sidebar: <span class="monospaceText">${/*$watchPage_season*/ ctx[2]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[0]?.id}</span>`
 	: "select an episode") + "";
 
 	return {
@@ -4563,8 +4563,8 @@ function create_else_block_1(ctx) {
 		p(ctx, dirty) {
 			if (dirty & /*selectedSeason_obj*/ 1 && t0_value !== (t0_value = (/*selectedSeason_obj*/ ctx[0]?.name || "[ ... ]") + "")) set_data(t0, t0_value);
 
-			if (dirty & /*$watchPage_season, selectedSeason_obj*/ 9 && raw_value !== (raw_value = (settings.userSet.developerMode
-			? `sidebar: <span class="monospaceText">${/*$watchPage_season*/ ctx[3]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[0]?.id}</span>`
+			if (dirty & /*$watchPage_season, selectedSeason_obj*/ 5 && raw_value !== (raw_value = (settings.userSet.developerMode
+			? `sidebar: <span class="monospaceText">${/*$watchPage_season*/ ctx[2]}</span>; obj: <span class="monospaceText">${/*selectedSeason_obj*/ ctx[0]?.id}</span>`
 			: "select an episode") + "")) html_tag.p(raw_value);
 		},
 		i: noop,
@@ -4577,7 +4577,7 @@ function create_else_block_1(ctx) {
 
 // (115:12) {#if $watchPage_episode && selectedEpisode_obj}
 function create_if_block_3$1(ctx) {
-	let previous_key = /*selectedEpisode_obj*/ ctx[1];
+	let previous_key = /*selectedEpisode_obj*/ ctx[3];
 	let key_block_anchor;
 	let current;
 	let key_block = create_key_block$1(ctx);
@@ -4593,7 +4593,7 @@ function create_if_block_3$1(ctx) {
 			current = true;
 		},
 		p(ctx, dirty) {
-			if (dirty & /*selectedEpisode_obj*/ 2 && safe_not_equal(previous_key, previous_key = /*selectedEpisode_obj*/ ctx[1])) {
+			if (dirty & /*selectedEpisode_obj*/ 8 && safe_not_equal(previous_key, previous_key = /*selectedEpisode_obj*/ ctx[3])) {
 				group_outros();
 				transition_out(key_block, 1, 1, noop);
 				check_outros();
@@ -4761,7 +4761,7 @@ function create_else_block(ctx) {
 
 	videoview = new VideoView({
 			props: {
-				targetVideo: /*selectedEpisode_obj*/ ctx[1]
+				targetVideo: /*selectedEpisode_obj*/ ctx[3]
 			}
 		});
 
@@ -4775,7 +4775,7 @@ function create_else_block(ctx) {
 		},
 		p(ctx, dirty) {
 			const videoview_changes = {};
-			if (dirty & /*selectedEpisode_obj*/ 2) videoview_changes.targetVideo = /*selectedEpisode_obj*/ ctx[1];
+			if (dirty & /*selectedEpisode_obj*/ 8) videoview_changes.targetVideo = /*selectedEpisode_obj*/ ctx[3];
 			videoview.$set(videoview_changes);
 		},
 		i(local) {
@@ -4806,7 +4806,7 @@ function create_if_block_4$1(ctx) {
 	let span;
 	let br;
 	let t2;
-	let t3_value = /*selectedEpisode_obj*/ ctx[1].name + "";
+	let t3_value = /*selectedEpisode_obj*/ ctx[3].name + "";
 	let t3;
 	let t4;
 	let mounted;
@@ -4825,8 +4825,8 @@ function create_if_block_4$1(ctx) {
 			t2 = text("\"");
 			t3 = text(t3_value);
 			t4 = text("\" is still a work in progress. Enable developer mode to bypass this screen.");
-			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[1]?.thumbnail)) attr(img, "src", img_src_value);
-			attr(img, "alt", img_alt_value = /*selectedEpisode_obj*/ ctx[1]?.name);
+			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name);
 			attr(div0, "class", "thumbnailBackground");
 			attr(div1, "class", "nothingSelected backedByThumbnailBkg");
 		},
@@ -4849,15 +4849,15 @@ function create_if_block_4$1(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty & /*$cfg, selectedEpisode_obj*/ 66 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[1]?.thumbnail)) {
+			if (dirty & /*$cfg, selectedEpisode_obj*/ 72 && !src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[6].host + /*selectedEpisode_obj*/ ctx[3]?.thumbnail)) {
 				attr(img, "src", img_src_value);
 			}
 
-			if (dirty & /*selectedEpisode_obj*/ 2 && img_alt_value !== (img_alt_value = /*selectedEpisode_obj*/ ctx[1]?.name)) {
+			if (dirty & /*selectedEpisode_obj*/ 8 && img_alt_value !== (img_alt_value = /*selectedEpisode_obj*/ ctx[3]?.name)) {
 				attr(img, "alt", img_alt_value);
 			}
 
-			if (dirty & /*selectedEpisode_obj*/ 2 && t3_value !== (t3_value = /*selectedEpisode_obj*/ ctx[1].name + "")) set_data(t3, t3_value);
+			if (dirty & /*selectedEpisode_obj*/ 8 && t3_value !== (t3_value = /*selectedEpisode_obj*/ ctx[3].name + "")) set_data(t3, t3_value);
 		},
 		i: noop,
 		o: noop,
@@ -4881,7 +4881,7 @@ function create_key_block$1(ctx) {
 	const if_blocks = [];
 
 	function select_block_type_1(ctx, dirty) {
-		if (/*selectedEpisode_obj*/ ctx[1].unfinished && !settings.userSet.developerMode) return 0;
+		if (/*selectedEpisode_obj*/ ctx[3].unfinished && !settings.userSet.developerMode) return 0;
 		return 1;
 	}
 
@@ -5039,8 +5039,8 @@ function create_fragment$2(ctx) {
 
 	let sidebar_props = { level: 1, width: 275 };
 
-	if (/*$watchPage_season*/ ctx[3] !== void 0) {
-		sidebar_props.active = /*$watchPage_season*/ ctx[3];
+	if (/*$watchPage_season*/ ctx[2] !== void 0) {
+		sidebar_props.active = /*$watchPage_season*/ ctx[2];
 	}
 
 	if (/*seasonList*/ ctx[4] !== void 0) {
@@ -5050,13 +5050,13 @@ function create_fragment$2(ctx) {
 	sidebar = new Sidebar({ props: sidebar_props });
 	binding_callbacks.push(() => bind(sidebar, 'active', sidebar_active_binding));
 	binding_callbacks.push(() => bind(sidebar, 'items', sidebar_items_binding));
-	let if_block0 = /*$watchPage_season*/ ctx[3] != "showAbout" && create_if_block_5(ctx);
+	let if_block0 = /*$watchPage_season*/ ctx[2] != "showAbout" && create_if_block_5(ctx);
 	const if_block_creators = [create_if_block$2, create_if_block_3$1, create_else_block_1];
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
-		if (/*$watchPage_season*/ ctx[3] == "showAbout") return 0;
-		if (/*$watchPage_episode*/ ctx[2] && /*selectedEpisode_obj*/ ctx[1]) return 1;
+		if (/*$watchPage_season*/ ctx[2] == "showAbout") return 0;
+		if (/*$watchPage_episode*/ ctx[1] && /*selectedEpisode_obj*/ ctx[3]) return 1;
 		return 2;
 	}
 
@@ -5089,9 +5089,9 @@ function create_fragment$2(ctx) {
 		p(ctx, [dirty]) {
 			const sidebar_changes = {};
 
-			if (!updating_active && dirty & /*$watchPage_season*/ 8) {
+			if (!updating_active && dirty & /*$watchPage_season*/ 4) {
 				updating_active = true;
-				sidebar_changes.active = /*$watchPage_season*/ ctx[3];
+				sidebar_changes.active = /*$watchPage_season*/ ctx[2];
 				add_flush_callback(() => updating_active = false);
 			}
 
@@ -5103,11 +5103,11 @@ function create_fragment$2(ctx) {
 
 			sidebar.$set(sidebar_changes);
 
-			if (/*$watchPage_season*/ ctx[3] != "showAbout") {
+			if (/*$watchPage_season*/ ctx[2] != "showAbout") {
 				if (if_block0) {
 					if_block0.p(ctx, dirty);
 
-					if (dirty & /*$watchPage_season*/ 8) {
+					if (dirty & /*$watchPage_season*/ 4) {
 						transition_in(if_block0, 1);
 					}
 				} else {
@@ -5190,9 +5190,9 @@ function instance$2($$self, $$props, $$invalidate) {
 	let $tv;
 	let $selected;
 	let $cfg;
-	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(2, $watchPage_episode = $$value));
+	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(1, $watchPage_episode = $$value));
 	component_subscribe($$self, ready, $$value => $$invalidate(9, $ready = $$value));
-	component_subscribe($$self, watchPage_season, $$value => $$invalidate(3, $watchPage_season = $$value));
+	component_subscribe($$self, watchPage_season, $$value => $$invalidate(2, $watchPage_season = $$value));
 	component_subscribe($$self, tv, $$value => $$invalidate(14, $tv = $$value));
 	component_subscribe($$self, selected, $$value => $$invalidate(15, $selected = $$value));
 	component_subscribe($$self, cfg, $$value => $$invalidate(6, $cfg = $$value));
@@ -5233,7 +5233,7 @@ function instance$2($$self, $$props, $$invalidate) {
 
 	function sidebar_items_binding_1(value) {
 		episodeList = value;
-		(((($$invalidate(5, episodeList), $$invalidate(9, $ready)), $$invalidate(7, show)), $$invalidate(3, $watchPage_season)), $$invalidate(0, selectedSeason_obj));
+		(((($$invalidate(5, episodeList), $$invalidate(9, $ready)), $$invalidate(7, show)), $$invalidate(2, $watchPage_season)), $$invalidate(0, selectedSeason_obj));
 	}
 
 	$$self.$$.update = () => {
@@ -5263,7 +5263,7 @@ function instance$2($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*$ready, $watchPage_season, selectedSeason_obj*/ 521) {
+		if ($$self.$$.dirty & /*$ready, $watchPage_season, selectedSeason_obj*/ 517) {
 			{
 				if ($ready && show && $watchPage_season != "showAbout") {
 					$$invalidate(0, selectedSeason_obj = show.seasons.find(e => e.id == $watchPage_season));
@@ -5289,26 +5289,25 @@ function instance$2($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty & /*pSS, $watchPage_season*/ 264) {
+		if ($$self.$$.dirty & /*pSS, $watchPage_season*/ 260) {
 			if (pSS != $watchPage_season) {
 				$$invalidate(8, pSS = $watchPage_season);
 				set_store_value(watchPage_episode, $watchPage_episode = undefined, $watchPage_episode);
 			}
 		}
 
-		if ($$self.$$.dirty & /*$ready, selectedSeason_obj, $watchPage_episode, selectedEpisode_obj*/ 519) {
+		if ($$self.$$.dirty & /*$ready, selectedSeason_obj, $watchPage_episode*/ 515) {
 			if ($ready && selectedSeason_obj) {
-				// lets autoplay cross seasons
-				$$invalidate(1, selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == $watchPage_episode) || selectedEpisode_obj);
+				$$invalidate(3, selectedEpisode_obj = selectedSeason_obj.episodes.find(e => e.id == $watchPage_episode));
 			}
 		}
 	};
 
 	return [
 		selectedSeason_obj,
-		selectedEpisode_obj,
 		$watchPage_episode,
 		$watchPage_season,
+		selectedEpisode_obj,
 		seasonList,
 		episodeList,
 		$cfg,
