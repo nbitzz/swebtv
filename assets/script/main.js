@@ -2488,17 +2488,17 @@ const { document: document_1 } = globals;
 
 function get_each_context$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[51] = list[i];
+	child_ctx[52] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[54] = list[i];
+	child_ctx[55] = list[i];
 	return child_ctx;
 }
 
-// (145:4) {#key $cfg.host + playing.formats[format][quality]}
+// (149:4) {#key $cfg.host + playing.formats[format][quality]}
 function create_key_block$3(ctx) {
 	let video;
 	let video_poster_value;
@@ -2594,7 +2594,7 @@ function create_key_block$3(ctx) {
 	};
 }
 
-// (159:4) {#if videoReadyState < 2}
+// (163:4) {#if videoReadyState < 2}
 function create_if_block_6(ctx) {
 	let div1;
 	let t;
@@ -2660,7 +2660,7 @@ function create_if_block_6(ctx) {
 	};
 }
 
-// (163:12) {#if settings.userSet.developerMode}
+// (167:12) {#if settings.userSet.developerMode}
 function create_if_block_7(ctx) {
 	let p;
 	let t0;
@@ -2707,7 +2707,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (171:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (175:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_3$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2783,7 +2783,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (172:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (176:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
@@ -2837,7 +2837,7 @@ function create_if_block_5$1(ctx) {
 	};
 }
 
-// (183:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (187:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2891,7 +2891,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (194:4) {#if showControls}
+// (198:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let t0;
 	let div3;
@@ -3128,7 +3128,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (195:8) {#if settings.userSet.developerMode}
+// (199:8) {#if settings.userSet.developerMode}
 function create_if_block_2$2(ctx) {
 	let p;
 	let t;
@@ -3158,7 +3158,7 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (245:12) {#if showFQPicker}
+// (249:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div;
 	let select0;
@@ -3321,10 +3321,10 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (248:24) {#each Object.keys(playing.formats) as fmt}
+// (252:24) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
-	let t_value = /*fmt*/ ctx[54] + "";
+	let t_value = /*fmt*/ ctx[55] + "";
 	let t;
 	let option_value_value;
 
@@ -3332,7 +3332,7 @@ function create_each_block_1$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*fmt*/ ctx[54];
+			option.__value = option_value_value = /*fmt*/ ctx[55];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3340,9 +3340,9 @@ function create_each_block_1$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[54] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing*/ 1 && t_value !== (t_value = /*fmt*/ ctx[55] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[54])) {
+			if (dirty[0] & /*playing*/ 1 && option_value_value !== (option_value_value = /*fmt*/ ctx[55])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3353,10 +3353,10 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (253:24) {#each Object.keys(playing.formats[format]) as qual}
+// (257:24) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
-	let t_value = /*qual*/ ctx[51] + "";
+	let t_value = /*qual*/ ctx[52] + "";
 	let t;
 	let option_value_value;
 
@@ -3364,7 +3364,7 @@ function create_each_block$1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*qual*/ ctx[51];
+			option.__value = option_value_value = /*qual*/ ctx[52];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3372,9 +3372,9 @@ function create_each_block$1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*playing, format*/ 3 && t_value !== (t_value = /*qual*/ ctx[51] + "")) set_data(t, t_value);
+			if (dirty[0] & /*playing, format*/ 3 && t_value !== (t_value = /*qual*/ ctx[52] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*playing, format*/ 3 && option_value_value !== (option_value_value = /*qual*/ ctx[51])) {
+			if (dirty[0] & /*playing, format*/ 3 && option_value_value !== (option_value_value = /*qual*/ ctx[52])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3548,9 +3548,9 @@ function instance$5($$self, $$props, $$invalidate) {
 	let $playerTemp_autoplayNext;
 	let $cfg;
 	let $playerVolume;
-	component_subscribe($$self, watchPage_season, $$value => $$invalidate(46, $watchPage_season = $$value));
-	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(47, $watchPage_episode = $$value));
-	component_subscribe($$self, playerTemp_autoplayNext, $$value => $$invalidate(48, $playerTemp_autoplayNext = $$value));
+	component_subscribe($$self, watchPage_season, $$value => $$invalidate(47, $watchPage_season = $$value));
+	component_subscribe($$self, watchPage_episode, $$value => $$invalidate(48, $watchPage_episode = $$value));
+	component_subscribe($$self, playerTemp_autoplayNext, $$value => $$invalidate(49, $playerTemp_autoplayNext = $$value));
 	component_subscribe($$self, cfg, $$value => $$invalidate(17, $cfg = $$value));
 	component_subscribe($$self, playerVolume, $$value => $$invalidate(18, $playerVolume = $$value));
 	let { playing } = $$props;
@@ -3567,12 +3567,8 @@ function instance$5($$self, $$props, $$invalidate) {
 	let duration;
 	let progress;
 	let isPaused = true;
-
-	if ($playerTemp_autoplayNext) {
-		isPaused = false;
-		set_store_value(playerTemp_autoplayNext, $playerTemp_autoplayNext = false, $playerTemp_autoplayNext);
-	}
-
+	let __PTAN = $playerTemp_autoplayNext;
+	set_store_value(playerTemp_autoplayNext, $playerTemp_autoplayNext = false, $playerTemp_autoplayNext);
 	let VPE;
 	let vplayer;
 	let seekbar;
@@ -3648,6 +3644,13 @@ function instance$5($$self, $$props, $$invalidate) {
 
 	// this is nightmarish please help
 	function loadHandler() {
+		// autoplay
+		if (__PTAN) {
+			$$invalidate(3, fqp.prg_hold = 0, fqp);
+			$$invalidate(3, fqp.WFL = false, fqp);
+			__PTAN = false;
+		}
+
 		if (fqp.prg_hold && videoReadyState > 0) {
 			$$invalidate(5, progress = fqp.prg_hold);
 			$$invalidate(6, isPaused = fqp.WFL);
