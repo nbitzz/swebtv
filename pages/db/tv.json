@@ -854,7 +854,405 @@
                 "parent": "csm",
                 "id": "csm.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "DOG & CHAINSAW",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e1",
+
+                        "description": "Denji is a teenager who lives his life as a Devil Hunter.\n\nAiming to pay off the debt he inherited from his father, he starts hunting devils for the yakuza with his buddy Pochita, a \"Chainsaw Devil\", while living a tragically poor life.\n\nJust when things seem like they couldn't get any worse, Denji gets betrayed and killed by the yakuza. As Denji starts passing out, he hears someone calling from inside his head...",
+                        "thumbnail": "csms1e1thmb",
+                        "length": 1525,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e1mb",
+                                "good": "csms1e1mg",
+                                "okay": "csms1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e1hb",
+                                "good": "csms1e1hg",
+                                "okay": "csms1e1ho"
+                            },
+                            "dub": {
+                                "best": "csms1e1db",
+                                "good": "csms1e1dg",
+                                "okay": "csms1e1do"
+                            }
+                        },
+
+                        "intro": [ 135, 225 ],
+                        "outro": [ 1435 ]
+                    },
+                    {
+                        "name": "ARRIVAL IN TOKYO",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e2",
+
+                        "description": "After being taken into custody by Makima, one of the Public Safety Devil Hunters, Denji finds himself head over heels in love with her thanks to her suggestive insinuations.\n\nWishing to team up with Makima, Denji arrives at the Devil Hunters Headquarters in Tokyo, and gets introduced to Aki Hayakawa, a senior hunter that he was supposed to partner with. But then Hayakawa beats Denji up, and demands that he “quit this job”...",
+                        "thumbnail": "csms1e2thmb",
+                        "length": 1435,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e2mb",
+                                "good": "csms1e2mg",
+                                "okay": "csms1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e2hb",
+                                "good": "csms1e2hg",
+                                "okay": "csms1e2ho"
+                            },
+                            "dub": {
+                                "best": "csms1e2db",
+                                "good": "csms1e2dg",
+                                "okay": "csms1e2do"
+                            }
+                        },
+
+                        "intro": [ 111.04, 201.04 ],
+                        "outro": [ 1345 ]
+                    },
+                    {
+                        "name": "MEOWY'S WHEREABOUTS",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e3",
+
+                        "description": "Denji decides that his new dream is \"to fondle some boobs.\"\n\nHis partner, Power the Blood Fiend, offers to let him feel her boobs only if he rescues her old pet cat Meowy from a devil.\n\nWith his dream in sight, Denji is all fired up and ready to go, until...",
+                        "thumbnail": "csms1e3thmb",
+                        "length": 1435,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e3mb",
+                                "good": "csms1e3mg",
+                                "okay": "csms1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e3hb",
+                                "good": "csms1e3hg",
+                                "okay": "csms1e3ho"
+                            },
+                            "dub": {
+                                "best": "csms1e3db",
+                                "good": "csms1e3dg",
+                                "okay": "csms1e3do"
+                            }
+                        },
+
+                        "intro": [ 276.06, 366.06 ],
+                        "outro": [ 1344 ]
+                    },
+                    {
+                        "name": "RESCUE",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e4",
+
+                        "description": "After a fierce battle, Denji defeats the “Bat Devil” and rescues Power even after she had trapped him.\n\n\nHe says it is all for the sake of “touching Power’s boobs”.\n\nPower mocks his ridiculous motivation saying “that’s a pretty dumb reason”, but still agrees to let him fondle her boobs.\n\nAs Denji gets thrilled with the idea, he faces a sudden attack from out of nowhere...",
+                        "thumbnail": "csms1e4thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e4mb",
+                                "good": "csms1e4mg",
+                                "okay": "csms1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e4hb",
+                                "good": "csms1e4hg",
+                                "okay": "csms1e4ho"
+                            },
+                            "dub": {
+                                "best": "csms1e4db",
+                                "good": "csms1e4dg",
+                                "okay": "csms1e4do"
+                            }
+                        },
+
+                        "intro": [ 200, 290 ],
+                        "outro": [ 1345 ]
+                    },
+                    {
+                        "name": "GUN DEVIL",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e5",
+
+                        "description": "Aki Hayakawa, Denji, and Power start living together.\n\nDenji finally fulfills his dream of touching Power’s boobs, but is shocked when things do not turn out the way he expected.\n\nAs Denji realizes that chasing his dream was more fun than achieving it, Makima approaches him and says, \"If you can kill the Gun Devil, I’ll grant you one wish.\"",
+                        "thumbnail": "csms1e5thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e5mb",
+                                "good": "csms1e5mg",
+                                "okay": "csms1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e5hb",
+                                "good": "csms1e5hg",
+                                "okay": "csms1e5ho"
+                            },
+                            "dub": {
+                                "best": "csms1e5db",
+                                "good": "csms1e5dg",
+                                "okay": "csms1e5do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "KILL DENJI",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e6",
+
+                        "description": "Denji and Tokyo Special Division 4 members enter a hotel to collect a piece of the Gun Devil. However, they end up being trapped on the 8th floor due to the devil’s extraordinary power.\n\nWith the members being cornered on the endless 8th floor with seemingly no way to escape, the devil makes them an offer: “If you let me eat Denji, I will let all of the other devil hunters leave in one piece.”",
+                        "thumbnail": "csms1e6thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e6mb",
+                                "good": "csms1e6mg",
+                                "okay": "csms1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e6hb",
+                                "good": "csms1e6hg",
+                                "okay": "csms1e6ho"
+                            },
+                            "dub": {
+                                "best": "csms1e6db",
+                                "good": "csms1e6dg",
+                                "okay": "csms1e6do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "THE TASTE OF A KISS",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e7",
+
+                        "description": "Aki gets stabbed by Kobeni while protecting Denji. Seeing this, Denji jumps inside the “Eternity Devil” and starts attacking it. He fails to kill the “Eternity Devil” and his chainsaw power ends up fading after losing too much blood. But then, he manages to restore his power after eating the devil’s flesh and drinking its blood, and begins to fight back.\n\nAs Himeno watches Denji, she remembers the saying, “The Devil Hunters that devils fear are the ones with a few screws loose...”",
+                        "thumbnail": "csms1e7thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e7mb",
+                                "good": "csms1e7mg",
+                                "okay": "csms1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e7hb",
+                                "good": "csms1e7hg",
+                                "okay": "csms1e7ho"
+                            },
+                            "dub": {
+                                "best": "csms1e7db",
+                                "good": "csms1e7dg",
+                                "okay": "csms1e7do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "GUNFIRE",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e8",
+
+                        "description": "Denji experiences his first, yet devastating, kiss.\n\nAn intoxicated Denji is taken to Himeno's house, where she starts seducing him.  Feeling torn between Makima, whom he admires, and Himeno, who is standing in front of him, he decides to fall into temptation. However, Denji then finds something in his pocket: The Chupa Chups lollipop that Makima gave him.",
+                        "thumbnail": "csms1e8thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e8mb",
+                                "good": "csms1e8mg",
+                                "okay": "csms1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e8hb",
+                                "good": "csms1e8hg",
+                                "okay": "csms1e8ho"
+                            },
+                            "dub": {
+                                "best": "csms1e8db",
+                                "good": "csms1e8dg",
+                                "okay": "csms1e8do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "FROM KYOTO",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e9",
+
+                        "description": "A fierce battle unfolds between Denji and the menacing Samurai Sword. But even after Denji takes one of Samurai Sword's companions hostage, Samurai Sword slashes through them both until Denji is captured. Meanwhile, after seemingly being killed, Makima turns out to be alive. She sets out to rescue Denji with the help of Public Safety Devil Hunters from Kyoto, Kurose and Tendo.",
+                        "thumbnail": "csms1e9thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e9mb",
+                                "good": "csms1e9mg",
+                                "okay": "csms1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e9hb",
+                                "good": "csms1e9hg",
+                                "okay": "csms1e9ho"
+                            },
+                            "dub": {
+                                "best": "csms1e9db",
+                                "good": "csms1e9dg",
+                                "okay": "csms1e9do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "BRUISED & BATTERED",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e10",
+
+                        "description": "Samurai Sword's vicious attack resulted in many lost personnel for Public Safety Devil Extermination Division 4.\n\nAki Hayakawa wakes up in a hospital bed, unable to accept the reality of losing Himeno. Kurose and Tendo then appear in front of Hayakawa, letting him know that they are now in charge of coaching him.\n\nMeanwhile, Makima introduces Denji and Power to a member of Public Safety who will act as their mentor in order to strengthen Division 4.",
+                        "thumbnail": "csms1e10thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e10mb",
+                                "good": "csms1e10mg",
+                                "okay": "csms1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e10hb",
+                                "good": "csms1e10hg",
+                                "okay": "csms1e10ho"
+                            },
+                            "dub": {
+                                "best": "csms1e10db",
+                                "good": "csms1e10dg",
+                                "okay": "csms1e10do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "MISSION START",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e11",
+
+                        "description": "Denji and Power complete their training with Kishibe, while Aki Hayakawa makes a new contract with the \"Future Devil\" through Kurose and Tendo.\n\nMeanwhile, Makima threatens the yakuza boss into revealing the names of all those who have made contracts with the \"Gun Devil,\" along with the location of Samurai Sword's hideout.\n\nThe time has finally come for Public Safety to begin their counterattack against Samurai Sword and his companions.",
+                        "thumbnail": "csms1e11thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e11mb",
+                                "good": "csms1e11mg",
+                                "okay": "csms1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e11hb",
+                                "good": "csms1e11hg",
+                                "okay": "csms1e11ho"
+                            },
+                            "dub": {
+                                "best": "csms1e11db",
+                                "good": "csms1e11dg",
+                                "okay": "csms1e11do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "KATANA VS. CHAINSAW",
+                        "parent": "csm.s1",
+                        "id": "csm.s1.e12",
+
+                        "description": "Sawatari sends the \"Ghost Devil\" after Hayakawa, and he's nearly killed before the \"Ghost Devil\" stops and hands him a cigarette with a message from Himeno. The words inside give Hayakawa the strength to kill the “Ghost Devil” and capture Sawatari.\n\nMeanwhile, Denji heads into his rematch with Samurai Sword. With a pull of the starter on his chest, he transforms into Chainsaw Man.\n\nAnd now, the last battle between Chainsaw Man and Samurai Sword has finally begun...",
+                        "thumbnail": "csms1e12thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csms1e12mb",
+                                "good": "csms1e12mg",
+                                "okay": "csms1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "csms1e12hb",
+                                "good": "csms1e12hg",
+                                "okay": "csms1e12ho"
+                            },
+                            "dub": {
+                                "best": "csms1e12db",
+                                "good": "csms1e12dg",
+                                "okay": "csms1e12do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    }
+                ]
+            },
+            {
+                "name": "Extras",
+                "parent": "csm",
+                "id": "csm.extras",
+
+                "episodes": [
+                    {
+                        "name": "Placeholder",
+                        "parent": "csm.extras.",
+                        "id": "csm.extras.",
+
+                        "description": "",
+                        "thumbnail": "csmdft",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.best",
+                                "good": "csm.extras.good",
+                                "okay": "mcffs1e3mo"
+                            }
+                        },
+
+                        "unfinished": true
+                    }
+                ],
+
+                "type":"extras"
             }
         ]
     },

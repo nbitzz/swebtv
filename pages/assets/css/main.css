@@ -895,6 +895,36 @@
     top:calc( 100% - 40px );
     background-color: var(--sf1);
     transform:translate(-100%,-100%);
+    width:200px;
+    padding: 0 3px 0 3px;
+}
+
+.videoPlayer > .controls > .fqpicker > div {
+    height:20px;
+    width:calc( 100% - 10px );
+    padding:5px;
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.videoPlayer > .controls > .fqpicker > div > p {
+    flex-basis:100%;
+    color:var(--st0);
+    font-size:14px;
+}
+
+.videoPlayer > .controls > .fqpicker > div > select {
+    color:var(--txt);
+    appearance:none;
+    padding-left:10px;
+    border-left: 1px solid var(--txt);
+    border-right:none;
+    border-top:none;
+    border-bottom:none;
+    background-color: var(--IV_bse);
+    height:100%;
+    font-size:14px;
 }
 
 @keyframes spinner {

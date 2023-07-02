@@ -138,10 +138,12 @@
         }
     }
 
-    $: if ((fqp.quality != quality || fqp.format != format)&&!fqp.prg_hold) {
+    $: if ((fqp.quality != quality || fqp.format != format)) {
 
-        fqp.prg_hold = progress;
-        fqp.WFL = isPaused;
+        if (fqp.prg_hold == undefined) {
+            fqp.prg_hold = progress;
+            fqp.WFL = isPaused;
+        }
         isPaused = true;
         quality = fqp.quality;
         format = fqp.format;
@@ -280,16 +282,22 @@
 
             {#if showFQPicker}
                 <div class="fqpicker" transition:fade|local={{duration: 200}}>
-                    <select bind:value={fqp.format}>
-                        {#each Object.keys(playing.formats) as fmt}
-                            <option>{fmt}</option>
-                        {/each}
-                    </select>
-                    <select bind:value={fqp.quality}>
-                        {#each Object.keys(playing.formats[format]) as qual}
-                            <option>{qual}</option>
-                        {/each}
-                    </select>
+                    <div>
+                        <p>Format</p>
+                        <select bind:value={fqp.format}>
+                            {#each Object.keys(playing.formats) as fmt}
+                                <option>{fmt}</option>
+                            {/each}
+                        </select>
+                    </div>
+                    <div>
+                        <p>Quality</p>
+                        <select bind:value={fqp.quality}>
+                            {#each Object.keys(playing.formats[format]) as qual}
+                                <option>{qual}</option>
+                            {/each}
+                        </select>
+                    </div>
                 </div>
             {/if}
         </div>
