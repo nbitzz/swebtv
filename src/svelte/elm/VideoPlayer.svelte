@@ -168,7 +168,7 @@
     style:aspect-ratio={playing.aspectRatio || "16 / 9"}
     on:fullscreenchange={() => inFullscreen = document.fullscreenElement == vplayer}
 
-    style:height={settings.userSet.theatre ? settings.userSet.theatreFill : ""}
+    style:max-height={settings.userSet.theatre ? settings.userSet.theatreFill : ""}
 >
 
     <div class="vbking">

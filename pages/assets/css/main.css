@@ -583,7 +583,7 @@
 .videoView[data-theatreMode=enabled] > .container > .videoPlayer {
     width:calc( 100% + 20px );
     left:-10px;
-    height:80%;
+    max-height:80%;
 }
 
 .videoView > .container > .shortAbout {
@@ -922,7 +922,7 @@
     border-right:none;
     border-top:none;
     border-bottom:none;
-    background-color: var(--IV_bse);
+    background-color: var(--sf1);
     height:100%;
     font-size:14px;
 }
