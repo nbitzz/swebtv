@@ -2510,7 +2510,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (153:4) {#key $cfg.host + playing.formats[format][quality]}
+// (155:4) {#key $cfg.host + playing.formats[format][quality]}
 function create_key_block$3(ctx) {
 	let video;
 	let video_poster_value;
@@ -2607,7 +2607,7 @@ function create_key_block$3(ctx) {
 	};
 }
 
-// (169:4) {#if videoReadyState < 2}
+// (171:4) {#if videoReadyState < 2}
 function create_if_block_6(ctx) {
 	let div1;
 	let t;
@@ -2673,7 +2673,7 @@ function create_if_block_6(ctx) {
 	};
 }
 
-// (173:12) {#if settings.userSet.developerMode}
+// (175:12) {#if settings.userSet.developerMode}
 function create_if_block_7(ctx) {
 	let p;
 	let t0;
@@ -2720,7 +2720,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (181:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (183:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_3$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2796,7 +2796,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (182:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (184:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
@@ -2850,7 +2850,7 @@ function create_if_block_5$1(ctx) {
 	};
 }
 
-// (193:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (195:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_4$2(ctx) {
 	let button;
 	let button_transition;
@@ -2904,7 +2904,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (204:4) {#if showControls}
+// (206:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let t0;
 	let div3;
@@ -3141,7 +3141,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (205:8) {#if settings.userSet.developerMode}
+// (207:8) {#if settings.userSet.developerMode}
 function create_if_block_2$2(ctx) {
 	let p;
 	let t;
@@ -3171,13 +3171,19 @@ function create_if_block_2$2(ctx) {
 	};
 }
 
-// (255:12) {#if showFQPicker}
+// (257:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
-	let div;
+	let div2;
+	let div0;
+	let p0;
+	let t1;
 	let select0;
-	let t;
+	let t2;
+	let div1;
+	let p1;
+	let t4;
 	let select1;
-	let div_transition;
+	let div2_transition;
 	let current;
 	let mounted;
 	let dispose;
@@ -3197,14 +3203,22 @@ function create_if_block_1$3(ctx) {
 
 	return {
 		c() {
-			div = element("div");
+			div2 = element("div");
+			div0 = element("div");
+			p0 = element("p");
+			p0.textContent = "Format";
+			t1 = space();
 			select0 = element("select");
 
 			for (let i = 0; i < each_blocks_1.length; i += 1) {
 				each_blocks_1[i].c();
 			}
 
-			t = space();
+			t2 = space();
+			div1 = element("div");
+			p1 = element("p");
+			p1.textContent = "Quality";
+			t4 = space();
 			select1 = element("select");
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -3213,11 +3227,14 @@ function create_if_block_1$3(ctx) {
 
 			if (/*fqp*/ ctx[3].format === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[40].call(select0));
 			if (/*fqp*/ ctx[3].quality === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[41].call(select1));
-			attr(div, "class", "fqpicker");
+			attr(div2, "class", "fqpicker");
 		},
 		m(target, anchor) {
-			insert(target, div, anchor);
-			append(div, select0);
+			insert(target, div2, anchor);
+			append(div2, div0);
+			append(div0, p0);
+			append(div0, t1);
+			append(div0, select0);
 
 			for (let i = 0; i < each_blocks_1.length; i += 1) {
 				if (each_blocks_1[i]) {
@@ -3226,8 +3243,11 @@ function create_if_block_1$3(ctx) {
 			}
 
 			select_option(select0, /*fqp*/ ctx[3].format, true);
-			append(div, t);
-			append(div, select1);
+			append(div2, t2);
+			append(div2, div1);
+			append(div1, p1);
+			append(div1, t4);
+			append(div1, select1);
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				if (each_blocks[i]) {
@@ -3308,8 +3328,8 @@ function create_if_block_1$3(ctx) {
 			if (local) {
 				add_render_callback(() => {
 					if (!current) return;
-					if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, true);
-					div_transition.run(1);
+					if (!div2_transition) div2_transition = create_bidirectional_transition(div2, fade, { duration: 200 }, true);
+					div2_transition.run(1);
 				});
 			}
 
@@ -3317,24 +3337,24 @@ function create_if_block_1$3(ctx) {
 		},
 		o(local) {
 			if (local) {
-				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 200 }, false);
-				div_transition.run(0);
+				if (!div2_transition) div2_transition = create_bidirectional_transition(div2, fade, { duration: 200 }, false);
+				div2_transition.run(0);
 			}
 
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div);
+			if (detaching) detach(div2);
 			destroy_each(each_blocks_1, detaching);
 			destroy_each(each_blocks, detaching);
-			if (detaching && div_transition) div_transition.end();
+			if (detaching && div2_transition) div2_transition.end();
 			mounted = false;
 			run_all(dispose);
 		}
 	};
 }
 
-// (258:24) {#each Object.keys(playing.formats) as fmt}
+// (262:28) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[55] + "";
@@ -3366,7 +3386,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (263:24) {#each Object.keys(playing.formats[format]) as qual}
+// (270:28) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[52] + "";
@@ -3782,9 +3802,12 @@ function instance$5($$self, $$props, $$invalidate) {
 		}
 
 		if ($$self.$$.dirty[0] & /*fqp, quality, format, progress, isPaused*/ 110) {
-			if ((fqp.quality != quality || fqp.format != format) && !fqp.prg_hold) {
-				$$invalidate(3, fqp.prg_hold = progress, fqp);
-				$$invalidate(3, fqp.WFL = isPaused, fqp);
+			if (fqp.quality != quality || fqp.format != format) {
+				if (fqp.prg_hold == undefined) {
+					$$invalidate(3, fqp.prg_hold = progress, fqp);
+					$$invalidate(3, fqp.WFL = isPaused, fqp);
+				}
+
 				$$invalidate(6, isPaused = true);
 				$$invalidate(2, quality = fqp.quality);
 				$$invalidate(1, format = fqp.format);
