@@ -485,6 +485,162 @@
                         "intro": [ 71.85, 161.85 ],
                         "outro": [ 1278, 1368 ],
                         "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e7",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep7_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e7mb",
+                                "good": "bcs1e7mg",
+                                "okay": "bcs1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e7hb",
+                                "good": "bcs1e7hg",
+                                "okay": "bcs1e7ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e8",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep8_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e8mb",
+                                "good": "bcs1e8mg",
+                                "okay": "bcs1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e8hb",
+                                "good": "bcs1e8hg",
+                                "okay": "bcs1e8ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e9",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep9_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e9mb",
+                                "good": "bcs1e9mg",
+                                "okay": "bcs1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e9hb",
+                                "good": "bcs1e9hg",
+                                "okay": "bcs1e9ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e10",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep10_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e10mb",
+                                "good": "bcs1e10mg",
+                                "okay": "bcs1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e10hb",
+                                "good": "bcs1e10hg",
+                                "okay": "bcs1e10ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e11",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep11_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e11mb",
+                                "good": "bcs1e11mg",
+                                "okay": "bcs1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e11hb",
+                                "good": "bcs1e11hg",
+                                "okay": "bcs1e11ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Eight Views",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e12",
+
+                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "thumbnail": "bc_ep12_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e12mb",
+                                "good": "bcs1e12mg",
+                                "okay": "bcs1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e12hb",
+                                "good": "bcs1e12hg",
+                                "okay": "bcs1e12ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
                     }
                 ]
             },

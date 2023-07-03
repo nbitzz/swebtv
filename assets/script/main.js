@@ -3934,7 +3934,7 @@ function create_if_block_1$2(ctx) {
 			p = element("p");
 			t2 = text(t2_value);
 			attr(p, "class", "monospaceText");
-			set_style(p, "whitespace", `pre`);
+			set_style(p, "white-space", `pre`);
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
