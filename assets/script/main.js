@@ -3935,6 +3935,7 @@ function create_if_block_1$2(ctx) {
 			t2 = text(t2_value);
 			attr(p, "class", "monospaceText");
 			set_style(p, "white-space", `pre`);
+			set_style(p, "overflow-x", `auto`);
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
