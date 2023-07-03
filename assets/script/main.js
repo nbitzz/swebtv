@@ -3453,7 +3453,7 @@ function create_fragment$5(ctx) {
 			attr(div1, "class", "videoPlayer");
 			set_style(div1, "aspect-ratio", /*playing*/ ctx[0].aspectRatio || "16 / 9");
 
-			set_style(div1, "height", settings.userSet.theatre
+			set_style(div1, "max-height", settings.userSet.theatre
 			? settings.userSet.theatreFill
 			: "");
 		},
