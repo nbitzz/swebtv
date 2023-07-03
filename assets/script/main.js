@@ -2608,7 +2608,7 @@ function create_key_block$3(ctx) {
 }
 
 // (171:4) {#if videoReadyState < 2}
-function create_if_block_6(ctx) {
+function create_if_block_7(ctx) {
 	let div1;
 	let t;
 	let div0;
@@ -2616,7 +2616,7 @@ function create_if_block_6(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	let if_block = settings.userSet.developerMode && create_if_block_7(ctx);
+	let if_block = settings.userSet.developerMode && create_if_block_8(ctx);
 
 	return {
 		c() {
@@ -2674,7 +2674,7 @@ function create_if_block_6(ctx) {
 }
 
 // (175:12) {#if settings.userSet.developerMode}
-function create_if_block_7(ctx) {
+function create_if_block_8(ctx) {
 	let p;
 	let t0;
 	let t1;
@@ -2721,11 +2721,11 @@ function create_if_block_7(ctx) {
 }
 
 // (183:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
-function create_if_block_3$2(ctx) {
+function create_if_block_4$2(ctx) {
 	let t;
 	let if_block1_anchor;
-	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[5] < /*playing*/ ctx[0].intro[1] && create_if_block_5$1(ctx);
-	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[5] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[4]) && create_if_block_4$2(ctx);
+	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[5] < /*playing*/ ctx[0].intro[1] && create_if_block_6(ctx);
+	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[5] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[4]) && create_if_block_5$1(ctx);
 
 	return {
 		c() {
@@ -2749,7 +2749,7 @@ function create_if_block_3$2(ctx) {
 						transition_in(if_block0, 1);
 					}
 				} else {
-					if_block0 = create_if_block_5$1(ctx);
+					if_block0 = create_if_block_6(ctx);
 					if_block0.c();
 					transition_in(if_block0, 1);
 					if_block0.m(t.parentNode, t);
@@ -2772,7 +2772,7 @@ function create_if_block_3$2(ctx) {
 						transition_in(if_block1, 1);
 					}
 				} else {
-					if_block1 = create_if_block_4$2(ctx);
+					if_block1 = create_if_block_5$1(ctx);
 					if_block1.c();
 					transition_in(if_block1, 1);
 					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -2797,7 +2797,7 @@ function create_if_block_3$2(ctx) {
 }
 
 // (184:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
-function create_if_block_5$1(ctx) {
+function create_if_block_6(ctx) {
 	let button;
 	let button_transition;
 	let current;
@@ -2851,7 +2851,7 @@ function create_if_block_5$1(ctx) {
 }
 
 // (195:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
-function create_if_block_4$2(ctx) {
+function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
 	let current;
@@ -2943,7 +2943,7 @@ function create_if_block$5(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	let if_block0 = settings.userSet.developerMode && create_if_block_2$3(ctx);
+	let if_block0 = settings.userSet.developerMode && create_if_block_3$2(ctx);
 	let if_block1 = /*showFQPicker*/ ctx[11] && create_if_block_1$3(ctx);
 
 	return {
@@ -3142,7 +3142,7 @@ function create_if_block$5(ctx) {
 }
 
 // (207:8) {#if settings.userSet.developerMode}
-function create_if_block_2$3(ctx) {
+function create_if_block_3$2(ctx) {
 	let p;
 	let t;
 
@@ -3184,6 +3184,7 @@ function create_if_block_1$3(ctx) {
 	let p1;
 	let t4;
 	let select1;
+	let t5;
 	let div2_transition;
 	let current;
 	let mounted;
@@ -3201,6 +3202,8 @@ function create_if_block_1$3(ctx) {
 	for (let i = 0; i < each_value.length; i += 1) {
 		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
 	}
+
+	let if_block = settings.userSet.developerMode && create_if_block_2$3(ctx);
 
 	return {
 		c() {
@@ -3226,6 +3229,8 @@ function create_if_block_1$3(ctx) {
 				each_blocks[i].c();
 			}
 
+			t5 = space();
+			if (if_block) if_block.c();
 			if (/*fqp*/ ctx[3].format === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[40].call(select0));
 			if (/*fqp*/ ctx[3].quality === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[41].call(select1));
 			attr(div2, "class", "fqpicker");
@@ -3257,6 +3262,8 @@ function create_if_block_1$3(ctx) {
 			}
 
 			select_option(select1, /*fqp*/ ctx[3].quality, true);
+			append(div2, t5);
+			if (if_block) if_block.m(div2, null);
 			current = true;
 
 			if (!mounted) {
@@ -3322,6 +3329,8 @@ function create_if_block_1$3(ctx) {
 			if (dirty[0] & /*fqp, playing*/ 9) {
 				select_option(select1, /*fqp*/ ctx[3].quality);
 			}
+
+			if (settings.userSet.developerMode) if_block.p(ctx, dirty);
 		},
 		i(local) {
 			if (current) return;
@@ -3348,6 +3357,7 @@ function create_if_block_1$3(ctx) {
 			if (detaching) detach(div2);
 			destroy_each(each_blocks_1, detaching);
 			destroy_each(each_blocks, detaching);
+			if (if_block) if_block.d();
 			if (detaching && div2_transition) div2_transition.end();
 			mounted = false;
 			run_all(dispose);
@@ -3419,6 +3429,40 @@ function create_each_block$1(ctx) {
 	};
 }
 
+// (275:20) {#if settings.userSet.developerMode}
+function create_if_block_2$3(ctx) {
+	let div;
+	let p;
+	let t0;
+	let span;
+	let t1_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]] + "";
+	let t1;
+
+	return {
+		c() {
+			div = element("div");
+			p = element("p");
+			t0 = text("Serving ");
+			span = element("span");
+			t1 = text(t1_value);
+			attr(span, "class", "monospaceText");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+			append(div, p);
+			append(p, t0);
+			append(p, span);
+			append(span, t1);
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*playing, format, quality*/ 7 && t1_value !== (t1_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]] + "")) set_data(t1, t1_value);
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
 function create_fragment$5(ctx) {
 	let t0;
 	let div1;
@@ -3432,8 +3476,8 @@ function create_fragment$5(ctx) {
 	let mounted;
 	let dispose;
 	let key_block = create_key_block$3(ctx);
-	let if_block0 = /*videoReadyState*/ ctx[10] < 2 && create_if_block_6(ctx);
-	let if_block1 = show_if && create_if_block_3$2(ctx);
+	let if_block0 = /*videoReadyState*/ ctx[10] < 2 && create_if_block_7(ctx);
+	let if_block1 = show_if && create_if_block_4$2(ctx);
 	let if_block2 = /*showControls*/ ctx[13] && create_if_block$5(ctx);
 
 	return {
@@ -3501,7 +3545,7 @@ function create_fragment$5(ctx) {
 						transition_in(if_block0, 1);
 					}
 				} else {
-					if_block0 = create_if_block_6(ctx);
+					if_block0 = create_if_block_7(ctx);
 					if_block0.c();
 					transition_in(if_block0, 1);
 					if_block0.m(div1, t4);
@@ -3522,7 +3566,7 @@ function create_fragment$5(ctx) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
-					if_block1 = create_if_block_3$2(ctx);
+					if_block1 = create_if_block_4$2(ctx);
 					if_block1.c();
 					if_block1.m(div1, t5);
 				}
