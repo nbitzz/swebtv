@@ -778,9 +778,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 145, 235 ],
+                        "outro": [ 1213.05, 1303.05 ]
                     },
                     {
                         "name": "Grandma's House",
@@ -809,9 +808,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 24.04, 114.04 ],
+                        "outro": [ 1325.08, 1415.08 ]
                     },
                     {
                         "name": "Call Me the Grim Reaper",
@@ -840,9 +838,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 36.05, 126.05 ],
+                        "outro": [ 1211, 1301 ]
                     },
                     {
                         "name": "Changing Desks, Class Reps, and New Friends",

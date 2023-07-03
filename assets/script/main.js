@@ -3157,6 +3157,7 @@ function create_if_block_2$2(ctx) {
 			set_style(p, "left", "0px");
 			set_style(p, "top", "0px");
 			set_style(p, "opacity", "0.5");
+			set_style(p, "text-shadow", "white 0px 0px 10px");
 		},
 		m(target, anchor) {
 			insert(target, p, anchor);
