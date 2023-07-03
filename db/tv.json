@@ -487,11 +487,11 @@
                         "unfinished": true
                     },
                     {
-                        "name": "Eight Views",
+                        "name": "To Your House",
                         "parent": "bocchi.s1",
                         "id": "bocchi.s1.e7",
 
-                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "description": "It's a party at Bocchi's house when the girls come by to make T-shirt designs! But can she handle her first real friend visit?!",
                         "thumbnail": "bc_ep7_thmb",
                         "length": 1420,
 
@@ -513,11 +513,11 @@
                         "unfinished": true
                     },
                     {
-                        "name": "Eight Views",
+                        "name": "Bocchi the Rock",
                         "parent": "bocchi.s1",
                         "id": "bocchi.s1.e8",
 
-                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "description": "The weather threatens to put a kibosh on enthusiasm for Kessoku Band's latest performance.",
                         "thumbnail": "bc_ep8_thmb",
                         "length": 1420,
 
@@ -539,11 +539,11 @@
                         "unfinished": true
                     },
                     {
-                        "name": "Eight Views",
+                        "name": "Enoshima Escar",
                         "parent": "bocchi.s1",
                         "id": "bocchi.s1.e9",
 
-                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "description": "The girls take Bocchi out for one last blast before school resumes. Destination: Enoshima!",
                         "thumbnail": "bc_ep9_thmb",
                         "length": 1420,
 
@@ -565,11 +565,11 @@
                         "unfinished": true
                     },
                     {
-                        "name": "Eight Views",
+                        "name": "After Dark",
                         "parent": "bocchi.s1",
                         "id": "bocchi.s1.e10",
 
-                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "description": "When Bocchi struggles with the decision of whether or not to perform at her school's culture festival, Kikuri arrives to offer inspiration.",
                         "thumbnail": "bc_ep10_thmb",
                         "length": 1420,
 
@@ -591,11 +591,11 @@
                         "unfinished": true
                     },
                     {
-                        "name": "Eight Views",
+                        "name": "Duodecimal Sunset",
                         "parent": "bocchi.s1",
                         "id": "bocchi.s1.e11",
 
-                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "description": "The culture festival's rolled around, and the Kessoku Band girls want to enjoy it with Bocchi... if they can even find her first!",
                         "thumbnail": "bc_ep11_thmb",
                         "length": 1420,
 
@@ -617,11 +617,11 @@
                         "unfinished": true
                     },
                     {
-                        "name": "Eight Views",
+                        "name": "Morning Light Falls on You",
                         "parent": "bocchi.s1",
                         "id": "bocchi.s1.e12",
 
-                        "description": "When Bocchi struggles with her need to sell concert tickets, a chance meeting with an eccentric character may be just what she needs.",
+                        "description": "Kessoku Band's performance at the culture festival is on. Can the band make it through without disaster?",
                         "thumbnail": "bc_ep12_thmb",
                         "length": 1420,
 
@@ -1024,9 +1024,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 150.05, 240.05 ],
+                        "outro": [ 1151.08, 1241.08 ]
                     },
                     {
                         "name": "Field Trips and the Magic of Marinated Eggs",
