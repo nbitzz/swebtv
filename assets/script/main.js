@@ -3922,7 +3922,7 @@ function create_if_block_1$2(ctx) {
 	let h2;
 	let t1;
 	let p;
-	let t2_value = JSON.stringify(/*targetVideo*/ ctx[0]) + "";
+	let t2_value = JSON.stringify(/*targetVideo*/ ctx[0], null, 3) + "";
 	let t2;
 
 	return {
@@ -3945,7 +3945,7 @@ function create_if_block_1$2(ctx) {
 			append(p, t2);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*targetVideo*/ 1 && t2_value !== (t2_value = JSON.stringify(/*targetVideo*/ ctx[0]) + "")) set_data(t2, t2_value);
+			if (dirty & /*targetVideo*/ 1 && t2_value !== (t2_value = JSON.stringify(/*targetVideo*/ ctx[0], null, 3) + "")) set_data(t2, t2_value);
 		},
 		d(detaching) {
 			if (detaching) detach(div);
