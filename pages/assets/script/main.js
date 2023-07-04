@@ -1207,7 +1207,7 @@ function create_if_block_3$3(ctx) {
 }
 
 // (18:16) {#if item.icon.type == "image"}
-function create_if_block_2$3(ctx) {
+function create_if_block_2$4(ctx) {
 	let div;
 	let img;
 	let img_src_value;
@@ -1338,7 +1338,7 @@ function create_each_block$4(key_1, ctx) {
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*item*/ ctx[6].icon.type == "image") return create_if_block_2$3;
+		if (/*item*/ ctx[6].icon.type == "image") return create_if_block_2$4;
 		if (/*item*/ ctx[6].icon.type == "text") return create_if_block_3$3;
 		if (/*item*/ ctx[6].icon.type == "html") return create_if_block_4$3;
 	}
@@ -2608,7 +2608,7 @@ function create_key_block$3(ctx) {
 }
 
 // (171:4) {#if videoReadyState < 2}
-function create_if_block_6(ctx) {
+function create_if_block_7(ctx) {
 	let div1;
 	let t;
 	let div0;
@@ -2616,7 +2616,7 @@ function create_if_block_6(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	let if_block = settings.userSet.developerMode && create_if_block_7(ctx);
+	let if_block = settings.userSet.developerMode && create_if_block_8(ctx);
 
 	return {
 		c() {
@@ -2674,7 +2674,7 @@ function create_if_block_6(ctx) {
 }
 
 // (175:12) {#if settings.userSet.developerMode}
-function create_if_block_7(ctx) {
+function create_if_block_8(ctx) {
 	let p;
 	let t0;
 	let t1;
@@ -2721,11 +2721,11 @@ function create_if_block_7(ctx) {
 }
 
 // (183:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
-function create_if_block_3$2(ctx) {
+function create_if_block_4$2(ctx) {
 	let t;
 	let if_block1_anchor;
-	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[5] < /*playing*/ ctx[0].intro[1] && create_if_block_5$1(ctx);
-	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[5] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[4]) && create_if_block_4$2(ctx);
+	let if_block0 = /*playing*/ ctx[0].intro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].intro[0] && /*progress*/ ctx[5] < /*playing*/ ctx[0].intro[1] && create_if_block_6(ctx);
+	let if_block1 = /*playing*/ ctx[0].outro && /*progress*/ ctx[5] >= /*playing*/ ctx[0].outro[0] && /*progress*/ ctx[5] < (/*playing*/ ctx[0].outro[1] || /*duration*/ ctx[4]) && create_if_block_5$1(ctx);
 
 	return {
 		c() {
@@ -2749,7 +2749,7 @@ function create_if_block_3$2(ctx) {
 						transition_in(if_block0, 1);
 					}
 				} else {
-					if_block0 = create_if_block_5$1(ctx);
+					if_block0 = create_if_block_6(ctx);
 					if_block0.c();
 					transition_in(if_block0, 1);
 					if_block0.m(t.parentNode, t);
@@ -2772,7 +2772,7 @@ function create_if_block_3$2(ctx) {
 						transition_in(if_block1, 1);
 					}
 				} else {
-					if_block1 = create_if_block_4$2(ctx);
+					if_block1 = create_if_block_5$1(ctx);
 					if_block1.c();
 					transition_in(if_block1, 1);
 					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -2797,7 +2797,7 @@ function create_if_block_3$2(ctx) {
 }
 
 // (184:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
-function create_if_block_5$1(ctx) {
+function create_if_block_6(ctx) {
 	let button;
 	let button_transition;
 	let current;
@@ -2851,7 +2851,7 @@ function create_if_block_5$1(ctx) {
 }
 
 // (195:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
-function create_if_block_4$2(ctx) {
+function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
 	let current;
@@ -2943,7 +2943,7 @@ function create_if_block$5(ctx) {
 	let current;
 	let mounted;
 	let dispose;
-	let if_block0 = settings.userSet.developerMode && create_if_block_2$2(ctx);
+	let if_block0 = settings.userSet.developerMode && create_if_block_3$2(ctx);
 	let if_block1 = /*showFQPicker*/ ctx[11] && create_if_block_1$3(ctx);
 
 	return {
@@ -3142,7 +3142,7 @@ function create_if_block$5(ctx) {
 }
 
 // (207:8) {#if settings.userSet.developerMode}
-function create_if_block_2$2(ctx) {
+function create_if_block_3$2(ctx) {
 	let p;
 	let t;
 
@@ -3157,6 +3157,7 @@ function create_if_block_2$2(ctx) {
 			set_style(p, "left", "0px");
 			set_style(p, "top", "0px");
 			set_style(p, "opacity", "0.5");
+			set_style(p, "text-shadow", "white 0px 0px 10px");
 		},
 		m(target, anchor) {
 			insert(target, p, anchor);
@@ -3183,6 +3184,7 @@ function create_if_block_1$3(ctx) {
 	let p1;
 	let t4;
 	let select1;
+	let t5;
 	let div2_transition;
 	let current;
 	let mounted;
@@ -3200,6 +3202,8 @@ function create_if_block_1$3(ctx) {
 	for (let i = 0; i < each_value.length; i += 1) {
 		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
 	}
+
+	let if_block = settings.userSet.developerMode && create_if_block_2$3(ctx);
 
 	return {
 		c() {
@@ -3225,6 +3229,8 @@ function create_if_block_1$3(ctx) {
 				each_blocks[i].c();
 			}
 
+			t5 = space();
+			if (if_block) if_block.c();
 			if (/*fqp*/ ctx[3].format === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[40].call(select0));
 			if (/*fqp*/ ctx[3].quality === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[41].call(select1));
 			attr(div2, "class", "fqpicker");
@@ -3256,6 +3262,8 @@ function create_if_block_1$3(ctx) {
 			}
 
 			select_option(select1, /*fqp*/ ctx[3].quality, true);
+			append(div2, t5);
+			if (if_block) if_block.m(div2, null);
 			current = true;
 
 			if (!mounted) {
@@ -3321,6 +3329,8 @@ function create_if_block_1$3(ctx) {
 			if (dirty[0] & /*fqp, playing*/ 9) {
 				select_option(select1, /*fqp*/ ctx[3].quality);
 			}
+
+			if (settings.userSet.developerMode) if_block.p(ctx, dirty);
 		},
 		i(local) {
 			if (current) return;
@@ -3347,6 +3357,7 @@ function create_if_block_1$3(ctx) {
 			if (detaching) detach(div2);
 			destroy_each(each_blocks_1, detaching);
 			destroy_each(each_blocks, detaching);
+			if (if_block) if_block.d();
 			if (detaching && div2_transition) div2_transition.end();
 			mounted = false;
 			run_all(dispose);
@@ -3418,6 +3429,40 @@ function create_each_block$1(ctx) {
 	};
 }
 
+// (275:20) {#if settings.userSet.developerMode}
+function create_if_block_2$3(ctx) {
+	let div;
+	let p;
+	let t0;
+	let span;
+	let t1_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]] + "";
+	let t1;
+
+	return {
+		c() {
+			div = element("div");
+			p = element("p");
+			t0 = text("Serving ");
+			span = element("span");
+			t1 = text(t1_value);
+			attr(span, "class", "monospaceText");
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+			append(div, p);
+			append(p, t0);
+			append(p, span);
+			append(span, t1);
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*playing, format, quality*/ 7 && t1_value !== (t1_value = /*playing*/ ctx[0].formats[/*format*/ ctx[1]][/*quality*/ ctx[2]] + "")) set_data(t1, t1_value);
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
 function create_fragment$5(ctx) {
 	let t0;
 	let div1;
@@ -3431,8 +3476,8 @@ function create_fragment$5(ctx) {
 	let mounted;
 	let dispose;
 	let key_block = create_key_block$3(ctx);
-	let if_block0 = /*videoReadyState*/ ctx[10] < 2 && create_if_block_6(ctx);
-	let if_block1 = show_if && create_if_block_3$2(ctx);
+	let if_block0 = /*videoReadyState*/ ctx[10] < 2 && create_if_block_7(ctx);
+	let if_block1 = show_if && create_if_block_4$2(ctx);
 	let if_block2 = /*showControls*/ ctx[13] && create_if_block$5(ctx);
 
 	return {
@@ -3500,7 +3545,7 @@ function create_fragment$5(ctx) {
 						transition_in(if_block0, 1);
 					}
 				} else {
-					if_block0 = create_if_block_6(ctx);
+					if_block0 = create_if_block_7(ctx);
 					if_block0.c();
 					transition_in(if_block0, 1);
 					if_block0.m(div1, t4);
@@ -3521,7 +3566,7 @@ function create_fragment$5(ctx) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
-					if_block1 = create_if_block_3$2(ctx);
+					if_block1 = create_if_block_4$2(ctx);
 					if_block1.c();
 					if_block1.m(div1, t5);
 				}
@@ -3882,7 +3927,7 @@ class VideoPlayer extends SvelteComponent {
 
 /* src/svelte/elm/VideoView.svelte generated by Svelte v3.59.1 */
 
-function create_if_block_1$2(ctx) {
+function create_if_block_2$2(ctx) {
 	let div;
 	let h2;
 	let t1;
@@ -3915,7 +3960,44 @@ function create_if_block_1$2(ctx) {
 	};
 }
 
-// (59:16) {#if isEpisode(targetVideo) && getEpisodeAfter(targetVideo)}
+// (56:16) {#if settings.userSet.developerMode}
+function create_if_block_1$2(ctx) {
+	let div;
+	let h2;
+	let t1;
+	let p;
+	let t2_value = JSON.stringify(/*targetVideo*/ ctx[0], null, 3) + "";
+	let t2;
+
+	return {
+		c() {
+			div = element("div");
+			h2 = element("h2");
+			h2.textContent = "Video";
+			t1 = space();
+			p = element("p");
+			t2 = text(t2_value);
+			attr(p, "class", "monospaceText");
+			set_style(p, "white-space", `pre-wrap`);
+			set_style(p, "overflow-x", `auto`);
+		},
+		m(target, anchor) {
+			insert(target, div, anchor);
+			append(div, h2);
+			append(div, t1);
+			append(div, p);
+			append(p, t2);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*targetVideo*/ 1 && t2_value !== (t2_value = JSON.stringify(/*targetVideo*/ ctx[0], null, 3) + "")) set_data(t2, t2_value);
+		},
+		d(detaching) {
+			if (detaching) detach(div);
+		}
+	};
+}
+
+// (65:16) {#if isEpisode(targetVideo) && getEpisodeAfter(targetVideo)}
 function create_if_block$4(ctx) {
 	let nextepdisplay;
 	let current;
@@ -3990,9 +4072,10 @@ function create_fragment$4(ctx) {
 	let t9;
 	let show_if_1 = isMovie(/*targetVideo*/ ctx[0]) && /*targetVideo*/ ctx[0].notes;
 	let t10;
+	let t11;
 	let div4;
 	let show_if = isEpisode(/*targetVideo*/ ctx[0]) && getEpisodeAfter(/*targetVideo*/ ctx[0]);
-	let t11;
+	let t12;
 	let formatdownloader;
 	let current;
 	let mounted;
@@ -4002,8 +4085,9 @@ function create_fragment$4(ctx) {
 			props: { playing: /*targetVideo*/ ctx[0] }
 		});
 
-	let if_block0 = show_if_1 && create_if_block_1$2(ctx);
-	let if_block1 = show_if && create_if_block$4(ctx);
+	let if_block0 = show_if_1 && create_if_block_2$2(ctx);
+	let if_block1 = settings.userSet.developerMode && create_if_block_1$2(ctx);
+	let if_block2 = show_if && create_if_block$4(ctx);
 
 	formatdownloader = new FormatDownloader({
 			props: { target: /*targetVideo*/ ctx[0] }
@@ -4036,9 +4120,11 @@ function create_fragment$4(ctx) {
 			t9 = space();
 			if (if_block0) if_block0.c();
 			t10 = space();
-			div4 = element("div");
 			if (if_block1) if_block1.c();
 			t11 = space();
+			div4 = element("div");
+			if (if_block2) if_block2.c();
+			t12 = space();
 			create_component(formatdownloader.$$.fragment);
 			if (!src_url_equal(img.src, img_src_value = /*$cfg*/ ctx[1].host + /*mtdt*/ ctx[2].icon)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*targetVideo*/ ctx[0].name + " icon");
@@ -4075,10 +4161,12 @@ function create_fragment$4(ctx) {
 			append(p1, t8);
 			append(div3, t9);
 			if (if_block0) if_block0.m(div3, null);
-			append(div5, t10);
+			append(div3, t10);
+			if (if_block1) if_block1.m(div3, null);
+			append(div5, t11);
 			append(div5, div4);
-			if (if_block1) if_block1.m(div4, null);
-			append(div4, t11);
+			if (if_block2) if_block2.m(div4, null);
+			append(div4, t12);
 			mount_component(formatdownloader, div4, null);
 			current = true;
 
@@ -4115,35 +4203,36 @@ function create_fragment$4(ctx) {
 				if (if_block0) {
 					if_block0.p(ctx, dirty);
 				} else {
-					if_block0 = create_if_block_1$2(ctx);
+					if_block0 = create_if_block_2$2(ctx);
 					if_block0.c();
-					if_block0.m(div3, null);
+					if_block0.m(div3, t10);
 				}
 			} else if (if_block0) {
 				if_block0.d(1);
 				if_block0 = null;
 			}
 
+			if (settings.userSet.developerMode) if_block1.p(ctx, dirty);
 			if (dirty & /*targetVideo*/ 1) show_if = isEpisode(/*targetVideo*/ ctx[0]) && getEpisodeAfter(/*targetVideo*/ ctx[0]);
 
 			if (show_if) {
-				if (if_block1) {
-					if_block1.p(ctx, dirty);
+				if (if_block2) {
+					if_block2.p(ctx, dirty);
 
 					if (dirty & /*targetVideo*/ 1) {
-						transition_in(if_block1, 1);
+						transition_in(if_block2, 1);
 					}
 				} else {
-					if_block1 = create_if_block$4(ctx);
-					if_block1.c();
-					transition_in(if_block1, 1);
-					if_block1.m(div4, t11);
+					if_block2 = create_if_block$4(ctx);
+					if_block2.c();
+					transition_in(if_block2, 1);
+					if_block2.m(div4, t12);
 				}
-			} else if (if_block1) {
+			} else if (if_block2) {
 				group_outros();
 
-				transition_out(if_block1, 1, 1, () => {
-					if_block1 = null;
+				transition_out(if_block2, 1, 1, () => {
+					if_block2 = null;
 				});
 
 				check_outros();
@@ -4156,13 +4245,13 @@ function create_fragment$4(ctx) {
 		i(local) {
 			if (current) return;
 			transition_in(videoplayer.$$.fragment, local);
-			transition_in(if_block1);
+			transition_in(if_block2);
 			transition_in(formatdownloader.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
 			transition_out(videoplayer.$$.fragment, local);
-			transition_out(if_block1);
+			transition_out(if_block2);
 			transition_out(formatdownloader.$$.fragment, local);
 			current = false;
 		},
@@ -4171,6 +4260,7 @@ function create_fragment$4(ctx) {
 			destroy_component(videoplayer);
 			if (if_block0) if_block0.d();
 			if (if_block1) if_block1.d();
+			if (if_block2) if_block2.d();
 			destroy_component(formatdownloader);
 			mounted = false;
 			dispose();

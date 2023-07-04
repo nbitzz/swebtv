@@ -232,7 +232,7 @@
     {#if showControls}
         {#if settings.userSet.developerMode}
             <!-- i know you're not supposed to use inline styles but this is a devmode thing so -->
-            <p class="monospaceText" style="position:absolute;width:100%;text-align:center;left:0px;top:0px;opacity:0.5;">{progress}</p>
+            <p class="monospaceText" style="position:absolute;width:100%;text-align:center;left:0px;top:0px;opacity:0.5;text-shadow: white 0px 0px 10px;">{progress}</p>
         {/if}
 
         <!-- so that you don't need to stay within a 10 px range -->
@@ -298,6 +298,11 @@
                             {/each}
                         </select>
                     </div>
+                    {#if settings.userSet.developerMode}
+                        <div>
+                            <p>Serving <span class="monospaceText">{playing.formats[format][quality]}</span></p>
+                        </div>
+                    {/if}
                 </div>
             {/if}
         </div>

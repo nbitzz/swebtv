@@ -485,6 +485,162 @@
                         "intro": [ 71.85, 161.85 ],
                         "outro": [ 1278, 1368 ],
                         "unfinished": true
+                    },
+                    {
+                        "name": "To Your House",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e7",
+
+                        "description": "It's a party at Bocchi's house when the girls come by to make T-shirt designs! But can she handle her first real friend visit?!",
+                        "thumbnail": "bc_ep7_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e7mb",
+                                "good": "bcs1e7mg",
+                                "okay": "bcs1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e7hb",
+                                "good": "bcs1e7hg",
+                                "okay": "bcs1e7ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Bocchi the Rock",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e8",
+
+                        "description": "The weather threatens to put a kibosh on enthusiasm for Kessoku Band's latest performance.",
+                        "thumbnail": "bc_ep8_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e8mb",
+                                "good": "bcs1e8mg",
+                                "okay": "bcs1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e8hb",
+                                "good": "bcs1e8hg",
+                                "okay": "bcs1e8ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Enoshima Escar",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e9",
+
+                        "description": "The girls take Bocchi out for one last blast before school resumes. Destination: Enoshima!",
+                        "thumbnail": "bc_ep9_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e9mb",
+                                "good": "bcs1e9mg",
+                                "okay": "bcs1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e9hb",
+                                "good": "bcs1e9hg",
+                                "okay": "bcs1e9ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "After Dark",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e10",
+
+                        "description": "When Bocchi struggles with the decision of whether or not to perform at her school's culture festival, Kikuri arrives to offer inspiration.",
+                        "thumbnail": "bc_ep10_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e10mb",
+                                "good": "bcs1e10mg",
+                                "okay": "bcs1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e10hb",
+                                "good": "bcs1e10hg",
+                                "okay": "bcs1e10ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Duodecimal Sunset",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e11",
+
+                        "description": "The culture festival's rolled around, and the Kessoku Band girls want to enjoy it with Bocchi... if they can even find her first!",
+                        "thumbnail": "bc_ep11_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e11mb",
+                                "good": "bcs1e11mg",
+                                "okay": "bcs1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e11hb",
+                                "good": "bcs1e11hg",
+                                "okay": "bcs1e11ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Morning Light Falls on You",
+                        "parent": "bocchi.s1",
+                        "id": "bocchi.s1.e12",
+
+                        "description": "Kessoku Band's performance at the culture festival is on. Can the band make it through without disaster?",
+                        "thumbnail": "bc_ep12_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "bcs1e12mb",
+                                "good": "bcs1e12mg",
+                                "okay": "bcs1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "bcs1e12hb",
+                                "good": "bcs1e12hg",
+                                "okay": "bcs1e12ho"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
                     }
                 ]
             },
@@ -775,6 +931,312 @@
                                 "best": "mcffs1e3db",
                                 "good": "mcffs1e3dg",
                                 "okay": "mcffs1e3do"
+                            }
+                        },
+
+                        "intro": [ 145, 235 ],
+                        "outro": [ 1213.05, 1303.05 ]
+                    },
+                    {
+                        "name": "Grandma's House",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e4",
+
+                        "description": "In the middle of summer vacation, Akane visits her grandma in the countryside. But just as Akane's settling in to relax, her cat, Kuro, breaks out of his cage and runs off! Just then, an unexpected visitor comes knocking...",
+                        "thumbnail": "mcff_ep4_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e4mb",
+                                "good": "mcffs1e4mg",
+                                "okay": "mcffs1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e4hb",
+                                "good": "mcffs1e4hg",
+                                "okay": "mcffs1e4ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e4db",
+                                "good": "mcffs1e4dg",
+                                "okay": "mcffs1e4do"
+                            }
+                        },
+
+                        "intro": [ 24.04, 114.04 ],
+                        "outro": [ 1325.08, 1415.08 ]
+                    },
+                    {
+                        "name": "Call Me the Grim Reaper",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e5",
+
+                        "description": "After finding out about Akane's late mother, Taiyou is ridden with guilt from calling her the \"Grim Reaper\" and has been keeping his distance ever since. As the end of summer vacation looms ever closer, can they ever make up again?",
+                        "thumbnail": "mcff_ep5_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e5mb",
+                                "good": "mcffs1e5mg",
+                                "okay": "mcffs1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e5hb",
+                                "good": "mcffs1e5hg",
+                                "okay": "mcffs1e5ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e5db",
+                                "good": "mcffs1e5dg",
+                                "okay": "mcffs1e5do"
+                            }
+                        },
+
+                        "intro": [ 36.05, 126.05 ],
+                        "outro": [ 1211, 1301 ]
+                    },
+                    {
+                        "name": "Changing Desks, Class Reps, and New Friends",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e6",
+
+                        "description": "With the start of September comes a new school semester, and Akane finds herself seated next to Taiyou. As the class decides on new class reps, Akane finds herself being volunteered for the job, much to the chagrin of an unexpected rival...",
+                        "thumbnail": "mcff_ep6_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e6mb",
+                                "good": "mcffs1e6mg",
+                                "okay": "mcffs1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e6hb",
+                                "good": "mcffs1e6hg",
+                                "okay": "mcffs1e6ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e6db",
+                                "good": "mcffs1e6dg",
+                                "okay": "mcffs1e6do"
+                            }
+                        },
+
+                        "intro": [ 150.05, 240.05 ],
+                        "outro": [ 1151.08, 1241.08 ]
+                    },
+                    {
+                        "name": "Field Trips and the Magic of Marinated Eggs",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e7",
+
+                        "description": "The class field trip to the space museum is approaching, but Akane is worried about Taiyou's sudden standoffish behavior. Will Akane be able to enjoy her first school trip with Taiyou? And what secrets lie within Akane's lunch box?",
+                        "thumbnail": "mcff_ep7_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e7mb",
+                                "good": "mcffs1e7mg",
+                                "okay": "mcffs1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e7hb",
+                                "good": "mcffs1e7hg",
+                                "okay": "mcffs1e7ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e7db",
+                                "good": "mcffs1e7dg",
+                                "okay": "mcffs1e7do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Yukata, Jungle Gyms, and Orthopedic Casts",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e8",
+
+                        "description": "Akane accepts Yukiko's invite to her middle school cultural festival, unaware that a yukata date with Taiyou awaits! And as the school field day approaches, nothing can dampen Taiyou's excitement, or so you would think...",
+                        "thumbnail": "mcff_ep8_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e8mb",
+                                "good": "mcffs1e8mg",
+                                "okay": "mcffs1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e8hb",
+                                "good": "mcffs1e8hg",
+                                "okay": "mcffs1e8ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e8db",
+                                "good": "mcffs1e8dg",
+                                "okay": "mcffs1e8do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Run! Shout! Field Day",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e9",
+
+                        "description": "With field day almost here, and Taiyou unable to take part in practice, Akane is determined to make the team relay race a success. But in order to make that happen, she'll have to ask for help from an unexpected ally...",
+                        "thumbnail": "mcff_ep9_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e9mb",
+                                "good": "mcffs1e9mg",
+                                "okay": "mcffs1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e9hb",
+                                "good": "mcffs1e9hg",
+                                "okay": "mcffs1e9ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e9db",
+                                "good": "mcffs1e9dg",
+                                "okay": "mcffs1e9do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "My First Time Having Guests Over",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e10",
+
+                        "description": "Umi, Taiyou, and Daichi decide to go to Akane's house to see her cat. Akane can't hide her excitement as she gets ready at home, as she's never had friends come visit before. But unforeseen trouble is just around the corner...",
+                        "thumbnail": "mcff_ep10_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e10mb",
+                                "good": "mcffs1e10mg",
+                                "okay": "mcffs1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e10hb",
+                                "good": "mcffs1e10hg",
+                                "okay": "mcffs1e10ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e10db",
+                                "good": "mcffs1e10dg",
+                                "okay": "mcffs1e10do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The Swift Reaper Alliance, the Cursed Song, and Christmas",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e11",
+
+                        "description": "Akane and Sumire seem to have gotten closer, and Taiyou can't help but feel a little jealous. Akane, Taiyou, and Hino go on a trip to the zoo. And Christmas is just around the corner, which means festivities and romantic dates!",
+                        "thumbnail": "mcff_ep11_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e11mb",
+                                "good": "mcffs1e11mg",
+                                "okay": "mcffs1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e11hb",
+                                "good": "mcffs1e11hg",
+                                "okay": "mcffs1e11ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e11db",
+                                "good": "mcffs1e11dg",
+                                "okay": "mcffs1e11do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The Christmas Party Confession",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e12",
+
+                        "description": "It's Christmas Eve, and the party at Taiyou's house is about to begin. But even with tasty food and presents waiting, Akane and Taiyou can't even look each other in the eye! Is there anyone or anything that can clear up this awkward mood?!",
+                        "thumbnail": "mcff_ep12_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e12mb",
+                                "good": "mcffs1e12mg",
+                                "okay": "mcffs1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e12hb",
+                                "good": "mcffs1e12hg",
+                                "okay": "mcffs1e12ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e12db",
+                                "good": "mcffs1e12dg",
+                                "okay": "mcffs1e12do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "10 Years Later, the Same as Today",
+                        "parent": "mcff.s1",
+                        "id": "mcff.s1.e13",
+
+                        "description": "Retrieve the ticking time bomb planted in classroom 5-1 at once! Taiyou finds himself suddenly entrusted with this top secret mission. The fate of his classmates is in Taiyou's hands! The bomb's location is... inside Akane's locker?!",
+                        "thumbnail": "mcff_ep13_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e13mb",
+                                "good": "mcffs1e13mg",
+                                "okay": "mcffs1e13mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e13hb",
+                                "good": "mcffs1e13hg",
+                                "okay": "mcffs1e13ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e13db",
+                                "good": "mcffs1e13dg",
+                                "okay": "mcffs1e13do"
                             }
                         },
 

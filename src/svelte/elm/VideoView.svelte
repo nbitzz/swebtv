@@ -72,6 +72,12 @@
                         <p>{targetVideo.notes}</p>
                     </div>
                 {/if}
+                {#if settings.userSet.developerMode}
+                    <div>
+                        <h2>Video</h2>
+                        <p class="monospaceText" style:white-space="pre-wrap" style:overflow-x="auto">{JSON.stringify(targetVideo,null,3)}</p>
+                    </div>
+                {/if}
             </div>
 
             <div class="opts">

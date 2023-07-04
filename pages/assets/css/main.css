@@ -924,6 +924,7 @@
     border-bottom:none;
     background-color: var(--sf1);
     height:100%;
+    text-align:right;
     font-size:14px;
 }
 
