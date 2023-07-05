@@ -1757,6 +1757,25 @@
         ]
     },
     {
+        "name": "Oshi no Ko",
+        "id":"onk",
+
+        "description": "Dr. Goro is reborn as the son of the young starlet Ai Hoshino after her delusional stalker murders him. Now, he wants to help his new mother rise to the top, but what can a child do about the dark underbelly of the entertainment industry?",
+        "notes": "Ripped from HIDIVE. As such, censorship and translation errors may be present.\n\nAlso, you may have a generally worse experience; HIDIVE's raws are concerningly 5x smaller than Crunchyroll, and webtv wasn't designed with vtt support in mind.. oh well!",
+        "icon": "onkic",
+        "poster": "onkposter",
+
+        "seasons": [
+            {
+                "name": "Oshi no Ko",
+                "parent": "onk",
+                "id": "onk.s1",
+
+                "episodes": []
+            }
+        ]
+    },
+    {
         "name": "webtv testbench",
         "id":"wtvtb",
 
