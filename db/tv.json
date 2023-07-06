@@ -1752,7 +1752,320 @@
                 "parent": "gdo",
                 "id": "gdo.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "The Day I Knew I Could Never Go Back",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e1",
+
+                        "description": "Gabriel is a model angel at the top of her class in angel school. After her graduation, she descends to the human world in order to learn about humans firsthand and become a full-fledged angel. Each day, she cleans the park of litter and weeds, plays with children, and does good deeds, all while attending a human high school... until one day, she hears a cry for help coming from her laptop. Thus began her first encounter with the human entertainment known as \"MMOs\"--and her life would never be the same again...",
+                        "thumbnail": "gdos1e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e1mb",
+                                "good": "gdos1e1mg",
+                                "okay": "gdos1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e1hb",
+                                "good": "gdos1e1hg",
+                                "okay": "gdos1e1ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The Angel, the Demon, and the Class President",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e2",
+
+                        "description": "Vignette wants to invite Gabriel and Satania to try out the school cafeteria with her, but Satania sneaks out of the classroom with her lunch, and Vigne and Gab realize they don't know where she's been eating all this time. When the demon and angel tail her, what they see will shock them...",
+                        "thumbnail": "gdos1e2thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e2mb",
+                                "good": "gdos1e2mg",
+                                "okay": "gdos1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e2hb",
+                                "good": "gdos1e2hg",
+                                "okay": "gdos1e2ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Friends, Work, and the Summer of Bugs",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e3",
+
+                        "description": "Gabriel gets a job at the local coffee shop to pay for MMO microtransactions, but with zero job experience and even less motivation, things take a weird turn fast. Good thing the boss thinks she's a foreign student...",
+                        "thumbnail": "gdos1e3thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e3mb",
+                                "good": "gdos1e3mg",
+                                "okay": "gdos1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e3hb",
+                                "good": "gdos1e3hg",
+                                "okay": "gdos1e3ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Summer Vacation, Ho!",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e4",
+
+                        "description": "When Vigne proposes a trip to the beach over summer vacation to Gab and Raphi, Satania makes it known that she must be included. Needless to say, Gab and Raphi are all too happy to pass the message onto Satania... with their own twists on it. Will Satania get to join the other three on their beach trip? And if she does, will she end up regretting it?",
+                        "thumbnail": "gdos1e4thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e4mb",
+                                "good": "gdos1e4mg",
+                                "okay": "gdos1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e4hb",
+                                "good": "gdos1e4hg",
+                                "okay": "gdos1e4ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The Angel Whose Illusions Were Shattered Like Hell",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e5",
+
+                        "description": "One blisteringly hot day, a mysterious character dressed in full-body protective equipment descends upon the city of Maiten. It's none other than the angel Tapris, here in the human world to chase after Gabriel, her beloved role model. Her first day in the mortal world will be filled with shock and horror—especially when she unknowingly runs into Gabriel herself.",
+                        "thumbnail": "gdos1e5thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e5mb",
+                                "good": "gdos1e5mg",
+                                "okay": "gdos1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e5hb",
+                                "good": "gdos1e5hg",
+                                "okay": "gdos1e5ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Satania's Counterattack",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e6",
+
+                        "description": "Ever since meeting Gabriel in the human world, Satania just can't seem to catch a break. But today her luck might finally turn around, thanks to a certain TV shopping channel.",
+                        "thumbnail": "gdos1e6thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e6mb",
+                                "good": "gdos1e6mg",
+                                "okay": "gdos1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e6hb",
+                                "good": "gdos1e6hg",
+                                "okay": "gdos1e6ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Vigne's Demonic Life",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e7",
+
+                        "description": "Vignette: a demon who gets up the first time her alarm clock goes off, puts out her trash early in the morning, keeps her apartment squeaky clean, and goes to bed on time. Gabriel: an angel who won't wake up until past noon if she can help it, plays MMO holiday quests while dining on instant cup noodles, and games until she passes out at her laptop. These two friends seem to have little in common... until you take a peek inside their bankbooks.",
+                        "thumbnail": "gdos1e7thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e7mb",
+                                "good": "gdos1e7mg",
+                                "okay": "gdos1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e7hb",
+                                "good": "gdos1e7hg",
+                                "okay": "gdos1e7ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Fall School Life",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e8",
+
+                        "description": "Raphiel finds herself with a big problem one morning while getting ready for school: her new bra's already getting a little, uh, tight. Still, as long as she's careful, she should be able to get through the school day without the clasps breaking. Or at least that's what she tells herself until she finds out that it's physical fitness day...",
+                        "thumbnail": "gdos1e8thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e8mb",
+                                "good": "gdos1e8mg",
+                                "okay": "gdos1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e8hb",
+                                "good": "gdos1e8hg",
+                                "okay": "gdos1e8ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Christmas and New Year's Eve Surprise",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e9",
+
+                        "description": "Raphiel and Vigne get together to throw a human-style Christmas party. There's just one little problem: how can they keep Satania from ruining Christmas?",
+                        "thumbnail": "gdos1e9thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e9mb",
+                                "good": "gdos1e9mg",
+                                "okay": "gdos1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e9hb",
+                                "good": "gdos1e9hg",
+                                "okay": "gdos1e9ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The Angels and Demons Return Home",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e10",
+
+                        "description": "Gabriel's back home in Heaven for summer vacation, and stuck without her computer or video games. At least she can still laze around... if she can get away from her lovable little sister Haniel, anyways. What's a faillen angel to do?",
+                        "thumbnail": "gdos1e10thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e10mb",
+                                "good": "gdos1e10mg",
+                                "okay": "gdos1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e10hb",
+                                "good": "gdos1e10hg",
+                                "okay": "gdos1e10ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Fun Forever After...",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e11",
+
+                        "description": "Gabriel and the girls are back to business as usual in the human world. Satania realizes a certain dog is missing when it doesn't appear to steal her melon bread. Also, Tapris comes to visit Gabriel, and take notes on the human world while she's at it.",
+                        "thumbnail": "gdos1e11thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e11mb",
+                                "good": "gdos1e11mg",
+                                "okay": "gdos1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e11hb",
+                                "good": "gdos1e11hg",
+                                "okay": "gdos1e11ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Gabriel DropOut!",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e12",
+
+                        "description": "Gabriel hears that her older sister is heading to Earth and seems troubled. Which really comes as no surprise, as her older sister, Zelel, is known to be very efficient in Heaven. She’s a very powerful angel, who is known to be serious and strict, and is referred to as the Hand of God. Gabriel starts panicking, thinking that she might get such a harsh punishment if she finds out that she’s fallen that the world might be destroyed. Will Gabriel be able to get through in one piece?",
+                        "thumbnail": "gdos1e12thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e12mb",
+                                "good": "gdos1e12mg",
+                                "okay": "gdos1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e12hb",
+                                "good": "gdos1e12hg",
+                                "okay": "gdos1e12ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    }
+                ]
             }
         ]
     },
