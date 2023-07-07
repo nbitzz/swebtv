@@ -56,10 +56,6 @@
     transition-duration:150ms;
 }
 
-.sidebar:not(:hover) > .listItem {
-    height:50px;
-    transition-duration:150ms;
-}
 
 .sidebar::-webkit-scrollbar {
     width: 0px;
@@ -94,6 +90,12 @@
     position:relative;
     cursor:pointer;
     align-items:center;
+    transition-duration:150ms;
+    height:50px;
+}
+
+.sidebar:hover > .listItem {
+    height:auto;
     transition-duration:150ms;
 }
 
