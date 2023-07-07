@@ -92,11 +92,6 @@
     align-items:center;
 }
 
-.sidebar:hover > .listItem {
-    height:auto;
-    transition-duration:150ms;
-}
-
 .sidebar > .listItem > * {
     cursor: pointer;
 }
@@ -126,10 +121,12 @@
 }
 
 .sidebar.contract > .listItem > .content {
+    transition-duration:150ms;
     max-height:50px;
 }
 
 .sidebar.contract:hover > .listItem > .content {
+    transition-duration:150ms;
     max-height:100px;
 }
 
