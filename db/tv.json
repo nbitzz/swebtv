@@ -1672,7 +1672,7 @@
                         "parent": "mkdm.s1",
                         "id": "mkdm.s1.e14",
 
-                        "description": "This show doesn't have a description, but it seems to be a special as it was released over a year after the first season finished airing, so that's what I'm adding it as.",
+                        "description": "This show doesn't have a description, but it seems to be a special as it was released over a year after the first season finished airing, so that's what I'm adding it as. Strangely, this episode was the only one not to get its English dub, so it's not available.",
                         "thumbnail": "mkdms1e14thmb",
                         "length": 1420,
 
@@ -1686,11 +1686,6 @@
                                 "best": "mkdms1e14hb",
                                 "good": "mkdms1e14hg",
                                 "okay": "mkdms1e14ho"
-                            },
-                            "dub": {
-                                "best": "mkdms1e14db",
-                                "good": "mkdms1e14dg",
-                                "okay": "mkdms1e14do"
                             }
                         },
 
