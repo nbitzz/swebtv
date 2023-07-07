@@ -257,13 +257,13 @@
     transform:translate(-50%,-50%);
     color:var(--sf1);
     text-align:center;
+    width:calc(100% - 40px);
 }
 
 #screenHome > h1 > span, .nothingSelected > h1 > span {
     color:var(--sf1);
     font-size:16px;
     margin: 0 0 0 0;
-    width:90%;
 }
 
 /* Screen: Embeddables */
