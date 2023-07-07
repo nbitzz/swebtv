@@ -56,6 +56,11 @@
     transition-duration:150ms;
 }
 
+.sidebar:not(:hover) > .listItem {
+    height:50px;
+    transition-duration:150ms;
+}
+
 .sidebar::-webkit-scrollbar {
     width: 0px;
     transition-duration: 150ms;
@@ -89,6 +94,7 @@
     position:relative;
     cursor:pointer;
     align-items:center;
+    transition-duration:150ms;
 }
 
 .sidebar > .listItem > * {
@@ -927,7 +933,17 @@
     height:100%;
     text-align:right;
     font-size:14px;
+    cursor:pointer;
+    transition-duration:150ms;
 }
+
+
+.videoPlayer > .controls > .fqpicker > div > select:hover {
+    position:relative;
+    top:-5px;
+    transition-duration:150ms;
+}
+
 
 @keyframes spinner {
     0% {
