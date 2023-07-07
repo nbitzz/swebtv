@@ -1263,14 +1263,857 @@
                 "parent": "mkdm",
                 "id": "mkdm.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "The Strongest Maid in History, Tohru! (Well, She is a Dragon)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e1",
+
+                        "description": "One morning, as she left for work, she found a dragon before her. Stunned, the dragon transformed into a beautiful girl with horns, a tail, and a maid outfit right before Miss Koboyashi's eyes. Calling herself Tohru, this dragon-girl asked, \"Please let me serve as your maid from now on!\" Confused by her question, Miss Kobayashi remembered inviting the dragon into her home last night while drunk. She refuses, saying she can't afford to hire someone, but then she realizes she's almost late for work and--",
+                        "thumbnail": "mkdms1e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e1mb",
+                                "good": "mkdms1e1mg",
+                                "okay": "mkdms1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e1hb",
+                                "good": "mkdms1e1hg",
+                                "okay": "mkdms1e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e1db",
+                                "good": "mkdms1e1dg",
+                                "okay": "mkdms1e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Second Dragon, Kanna! (We're Totally Spoiling Here)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e2",
+
+                        "description": "Miss Kobayashi was growing accustomed to her new life with Tohru, and so they headed out to go shopping together. She's surprised by Tohru's social skills though, when she sees how friendly Tohru was with the people of the shopping district. However, Tohru herself makes the dark claim that she's only pretending to be friendly, and shows how she still doesn't understand human emotions. Then on one of her days off, someone calls at Miss Kobayashi's home. She opens the door to find a little girl with horns and a tail--?!",
+                        "thumbnail": "mkdms1e2thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e2mb",
+                                "good": "mkdms1e2mg",
+                                "okay": "mkdms1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e2hb",
+                                "good": "mkdms1e2hg",
+                                "okay": "mkdms1e2ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e2db",
+                                "good": "mkdms1e2dg",
+                                "okay": "mkdms1e2do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Start of a New Life! (That Doesn't Go Well, Of Course)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e3",
+
+                        "description": "Kanna starts living with Tohru and Miss Kobayashi. While the livelier residence is nice, sharing a tiny apartment with three people becomes cramped. So Miss Kobayashi decides to move. She winds up inviting Takiya to her new apartment for a party, but Tohru also invites her dragon friends, Fafnir, who lives in a cave, and Lucoa, who's lived in this world since ancient times, to visit their new home.",
+                        "thumbnail": "mkdms1e3thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e3mb",
+                                "good": "mkdms1e3mg",
+                                "okay": "mkdms1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e3hb",
+                                "good": "mkdms1e3hg",
+                                "okay": "mkdms1e3ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e3db",
+                                "good": "mkdms1e3dg",
+                                "okay": "mkdms1e3do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Kanna Goes to School! (Not that she needs to.)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e4",
+
+                        "description": "Kanna watched the elementary schoolers going to school with jealousy, so Miss Kobayashi decides to let Kanna attend elementary school. Miss Kobayashi, Tohru, and Kanna all set out to the shopping district in order to buy Kanna's school supplies, but Miss Kobayashi is overwhelmed by the modern stationery store recently built. On the other hand, both Tohru and Kanna are intrigued by their first sight of stationery stores. After they finally gather all the supplies she needs, it's time for Kanna to join the school!!",
+                        "thumbnail": "mkdms1e4thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e4mb",
+                                "good": "mkdms1e4mg",
+                                "okay": "mkdms1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e4hb",
+                                "good": "mkdms1e4hg",
+                                "okay": "mkdms1e4ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e4db",
+                                "good": "mkdms1e4dg",
+                                "okay": "mkdms1e4do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Tohru's Real World Lessons! (She thinks she understands it already.)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e5",
+
+                        "description": "Tohru's finally gotten the hang of her maid duties. Suddenly interested in what Miss Kobayashi does at work, she heads out to observe. There she watches how everyone relies on Miss Kobayashi and falls for her again. However, there's also a boss being mean to Miss Kobayashi, which makes Tohru very angry... Out on the town she runs into Fafnir from the other world. Since he says he'll be living in this world too, Tohru winds up helping him find a place to live?!",
+                        "thumbnail": "mkdms1e5thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e5mb",
+                                "good": "mkdms1e5mg",
+                                "okay": "mkdms1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e5hb",
+                                "good": "mkdms1e5hg",
+                                "okay": "mkdms1e5ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e5db",
+                                "good": "mkdms1e5dg",
+                                "okay": "mkdms1e5do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Home Visit! (And Homes Not Visited)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e6",
+
+                        "description": "Kanna is invited to Saikawa's home. Since Saikawa's family has a maid too, they invite Miss Kobayashi and Tohru to join her. When a genuine maid, Josie, greets them, Miss Kobayashi gets excited. The two hit it off, chatting about maids. To top things off, Lucoa announces she's planning to live in this world too. She claims she was summoned by Shouta, a member of a mage family. Lucoa gets very touchy to try and get along with Shouta, but she goes overboard...",
+                        "thumbnail": "mkdms1e6thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e6mb",
+                                "good": "mkdms1e6mg",
+                                "okay": "mkdms1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e6hb",
+                                "good": "mkdms1e6hg",
+                                "okay": "mkdms1e6ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e6db",
+                                "good": "mkdms1e6dg",
+                                "okay": "mkdms1e6do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Summer's Staples! (The Fanservice Episode, Frankly)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e7",
+
+                        "description": "Miss Kobayashi and the others go to the beach. But Lucoa's immediately dragged off by one of the lifeguards for her overly skimpy swimsuit. After regrouping, they put sunscreen on each other, split a watermelon, go swimming together, and enjoy summer to the fullest. After the beach, it's comiket! Tohru and Miss Kobayashi both head for the otaku's battlefield, and even Tohru gets shivers from the incredible aura surrounding those otaku. While helping Takiya with his circle, Tohru's horns and wings are mistaken as cosplay?!",
+                        "thumbnail": "mkdms1e7thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e7mb",
+                                "good": "mkdms1e7mg",
+                                "okay": "mkdms1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e7hb",
+                                "good": "mkdms1e7hg",
+                                "okay": "mkdms1e7ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e7db",
+                                "good": "mkdms1e7dg",
+                                "okay": "mkdms1e7do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "New Dragon, Elma! (She's Finally Appearing, Huh?)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e8",
+
+                        "description": "Kanna asks Miss Kobayashi to make her a lunch box for her field trip. After Tohru says to leave it to her, the two break out into a match to see who's better at it! Lucoa and Fafnir are added to the judge's panel, presiding over the cooking competition between Tohru and Miss Kobayashi! And finally, a brand new dragon girl appears! Arriving with the sudden destruction of Miss Kobayashi's home is Elma, who's on terrible terms with Tohru. Elma values and order and fears Tohru may disrupt relations with humans, so she challenges her to try and take her back by force!",
+                        "thumbnail": "mkdms1e8thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e8mb",
+                                "good": "mkdms1e8mg",
+                                "okay": "mkdms1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e8hb",
+                                "good": "mkdms1e8hg",
+                                "okay": "mkdms1e8ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e8db",
+                                "good": "mkdms1e8dg",
+                                "okay": "mkdms1e8do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Sports Festival! (There's No Twist Or Anything)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e9",
+
+                        "description": "It's Kanna's sports festival. However, when she learns Miss Kobayashi is too busy at work to come, she sulks. Miss Kobayashi wonders why she'd want her to come so badly when she isn't Kanna's parent, but Kanna already views her as one. Even Takiya tells her, \"You should decide based on if you want to go, not if you can go.\" Finally, the day of the sports festival arrives. As a dragon, Kanna should have overwhelming physical prowess, but...?!",
+                        "thumbnail": "mkdms1e9thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e9mb",
+                                "good": "mkdms1e9mg",
+                                "okay": "mkdms1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e9hb",
+                                "good": "mkdms1e9hg",
+                                "okay": "mkdms1e9ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e9db",
+                                "good": "mkdms1e9dg",
+                                "okay": "mkdms1e9do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Troupe Dragon, On Stage! (They Had A Troupe Name, Huh)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e10",
+
+                        "description": "It's winter and Christmas is coming soon when Tohru is asked to put on a performance for the old folk's home. Tohru and the others decide to put on a play so as to not bother Miss Kobayashi while she's busy, yet without her there to control things, the play the dragons devise takes an unexpected turn... Finally, the play is put on, and while Miss Kobayashi watches their performance with anxiety...",
+                        "thumbnail": "mkdms1e10thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e10mb",
+                                "good": "mkdms1e10mg",
+                                "okay": "mkdms1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e10hb",
+                                "good": "mkdms1e10hg",
+                                "okay": "mkdms1e10ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e10db",
+                                "good": "mkdms1e10dg",
+                                "okay": "mkdms1e10do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Year End, New Year! (No Comiket Bit This Time)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e11",
+
+                        "description": "The end of the year is drawing close as well. When Tohru plays the lottery at the shopping district, she wins a prize--a kotatsu, not the hot springs trip. Once they finally join Miss Kobayashi in the kotatsu, the dragons start lazing around... The kotatsu ruins not only humans, but dragons too. That relaxed, lazy mood is how Miss Kobayashi's family ends up spending their end of the year and the new year. Their peaceful days off pass by uneventfully. Meanwhile, Tohru and Kanna also change into kimono for their first shrine visit of the year--?!",
+                        "thumbnail": "mkdms1e11thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e11mb",
+                                "good": "mkdms1e11mg",
+                                "okay": "mkdms1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e11hb",
+                                "good": "mkdms1e11hg",
+                                "okay": "mkdms1e11ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e11db",
+                                "good": "mkdms1e11dg",
+                                "okay": "mkdms1e11do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Tohru and Kobayashi's Impactful Meeting! (We're Raising the Bar on Ourselves)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e12",
+
+                        "description": "Tohru's now capable of handling the housework perfectly, and at Miss Kobayashi's request, she decides to make the best omurice for dinner one night. However, gathering high quality ingredients would put her over budget. Wanting to see Miss Kobayashi smile more than anything, Tohru ends up playing her forbidden card... Meanwhile, as Miss Kobayashi rides the train home, worn out from work, she dreams of the night she first met Tohru.",
+                        "thumbnail": "mkdms1e12thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e12mb",
+                                "good": "mkdms1e12mg",
+                                "okay": "mkdms1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e12hb",
+                                "good": "mkdms1e12hg",
+                                "okay": "mkdms1e12ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e12db",
+                                "good": "mkdms1e12dg",
+                                "okay": "mkdms1e12do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Emperor of Demise Arrives! (It Was the Final Episode Before We Knew It)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e13",
+
+                        "description": "Their day off is peaceful, and Miss Kobayashi spends her time relaxing with the others as usual. However, while out shopping, Tohru suddenly stops to think on the street--Miss Kobayashi is human, and what will she do when her lifespan runs out and she dies...? They can't be together forever. They'll have to part someday. She knew that. She was prepared for that. Yet still, Tohru's mind is in turmoil, and the final blow is dealt when the Emperor of Demise--her father--appears before her.",
+                        "thumbnail": "mkdms1e13thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e13mb",
+                                "good": "mkdms1e13mg",
+                                "okay": "mkdms1e13mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e13hb",
+                                "good": "mkdms1e13hg",
+                                "okay": "mkdms1e13ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e13db",
+                                "good": "mkdms1e13dg",
+                                "okay": "mkdms1e13do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Valentines and Hot Springs! (Please Don't Get Your Hopes Up)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e14",
+
+                        "description": "This show doesn't have a description, but it seems to be a special as it was released over a year after the first season finished airing, so that's what I'm adding it as.",
+                        "thumbnail": "mkdms1e14thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e14mb",
+                                "good": "mkdms1e14mg",
+                                "okay": "mkdms1e14mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e14hb",
+                                "good": "mkdms1e14hg",
+                                "okay": "mkdms1e14ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e14db",
+                                "good": "mkdms1e14dg",
+                                "okay": "mkdms1e14do"
+                            }
+                        },
+
+                        "type": "special",
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    }
+                ]
             },
             {
                 "name": "Miss Kobayashi's Dragon Maid S",
                 "parent": "mkdm",
                 "id": "mkdm.s2",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "type": "special",
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0 ],
+                        "unfinished": true
+                    }
+                ]
             },
             {
                 "name": "Miss Kobayashi's Dragon Maid S Short Animation Series",
@@ -1694,21 +2537,95 @@
 
                 "episodes": [
                     {
-                        "name": "Placeholder",
-                        "parent": "csm.extras.",
-                        "id": "csm.extras.",
+                        "name": "KICK BACK - ANIME edit",
+                        "author": "Kenshi Yonezu",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.kb.tvsize",
 
-                        "description": "",
+                        "description": "The opening to Chainsaw Man, KICK BACK by Kenshi Yonezu. This is the TV size version found in the anime. CR rip.",
+                        "thumbnail": "csmdft",
+                        "length": 90,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.kb.tvsize.best",
+                                "good": "csm.extras.kb.tvsize.good",
+                                "okay": "csm.extras.kb.tvsize.okay"
+                            }
+                        },
+
+                        "type": "opening",
+
+                        "unfinished": true
+                    },
+                    {
+                        "name": "KICK BACK",
+                        "author": "Kenshi Yonezu",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.kb",
+
+                        "description": "The opening to Chainsaw Man, KICK BACK by Kenshi Yonezu. YouTube rip.",
                         "thumbnail": "csmdft",
                         "length": 1420,
 
                         "formats": {
                             "main": {
-                                "best": "csm.extras.best",
-                                "good": "csm.extras.good",
-                                "okay": "mcffs1e3mo"
+                                "best": "csm.extras.kb.best",
+                                "good": "csm.extras.kb.good",
+                                "okay": "csm.extras.kb.okay"
                             }
                         },
+
+                        "type": "music",
+
+                        "unfinished": true
+                    },
+                    {
+                        "name": "tablet [TVsize]",
+                        "author": "TOOBOE",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.tablet.tvsize",
+
+                        "description": "The 4th ending to Chainsaw Man, tablet by TOOBOE. This is the TV size version found in the anime. This is ripped from CR; you may also view it on YouTube here: https://www.youtube.com/watch?v=xIKW3NKYBWw",
+                        "thumbnail": "csmdft",
+                        "length": 90,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.tablet.tvsize.m.best",
+                                "good": "csm.extras.tablet.tvsize.m.good",
+                                "okay": "csm.extras.tablet.tvsize.m.okay"
+                            },
+                            "hardsub": {
+                                "best": "csm.extras.tablet.tvsize.s.best",
+                                "good": "csm.extras.tablet.tvsize.s.good",
+                                "okay": "csm.extras.tablet.tvsize.s.okay"
+                            }
+                        },
+
+                        "type": "ending",
+
+                        "unfinished": true
+                    },
+                    {
+                        "name": "tablet",
+                        "author": "TOOBOE",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.tablet",
+
+                        "description": "The 4th ending to Chainsaw Man, tablet by TOOBOE. YouTube rip.",
+                        "thumbnail": "csmdft",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.tablet.best",
+                                "good": "csm.extras.tablet.good",
+                                "okay": "csm.extras.tablet.okay"
+                            }
+                        },
+
+                        "type": "music",
 
                         "unfinished": true
                     }
