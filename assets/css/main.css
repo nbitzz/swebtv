@@ -90,19 +90,12 @@
     position:relative;
     cursor:pointer;
     align-items:center;
-
-    /*
-        transition-duration:150ms;
-        max-height:50px;
-    */
 }
 
-/*
 .sidebar:hover > .listItem {
-    max-height:100px;
+    height:auto;
     transition-duration:150ms;
 }
-*/
 
 .sidebar > .listItem > * {
     cursor: pointer;
@@ -113,21 +106,31 @@
     transition-duration:50ms;
 }
 
-.sidebar > .listItem[data-active=true]:not(:hover) > .icon {
+.sidebar:not(:hover) > .listItem[data-active=true] > .icon {
     left:-3px;
     transition-duration:50ms;
 }
 
-.sidebar > .listItem[data-active=true]:not(:hover) > .content {
+/*
+.sidebar:not(:hover) > .listItem[data-active=true] > .content {
     left: -3px;
     transition-duration:50ms;
 }
+*/
 
 .sidebar > .listItem > .icon, .sidebar > .listItem > .content {
     position:relative;
     min-height:50px;
     overflow:hidden;
     transition-duration:50ms;
+}
+
+.sidebar.contract > .listItem > .content {
+    max-height:50px;
+}
+
+.sidebar.contract:hover > .listItem > .content {
+    max-height:100px;
 }
 
 .sidebar > .listItem > .hitbox {
