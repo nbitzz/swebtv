@@ -90,12 +90,13 @@
     position:relative;
     cursor:pointer;
     align-items:center;
+    
     transition-duration:150ms;
-    height:50px;
+    max-height:50px;
 }
 
 .sidebar:hover > .listItem {
-    height:auto;
+    max-height:100%;
     transition-duration:150ms;
 }
 
