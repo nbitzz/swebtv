@@ -976,6 +976,7 @@ var settings;
         theatre: false,
         theatreFill: "80%",
         skipbutton: true,
+        sidebarResize: false,
         developerMode: false
     };
     settings.userSet = Object.assign({}, settings.defaults);
@@ -1040,6 +1041,11 @@ var settings;
                 {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
+                    input: "boolean"
+                },
+                {
+                    label: "Resize oversized sidebar items when the sidebar isn't expanded",
+                    targetSetting: "sidebarResize",
                     input: "boolean"
                 },
                 {
@@ -1508,7 +1514,7 @@ function create_fragment$a(ctx) {
 				each_blocks[i].c();
 			}
 
-			attr(div, "class", "sidebar");
+			attr(div, "class", "sidebar" + (settings.userSet.sidebarResize ? " contract" : ""));
 			attr(div, "id", "sidebar_main");
 			set_style(div, "--wdth", `${/*width*/ ctx[2]}px`);
 			set_style(div, "--level", `var(--sf${/*level*/ ctx[3]})`);
