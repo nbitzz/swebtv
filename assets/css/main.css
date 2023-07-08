@@ -944,14 +944,6 @@
     transition-duration:150ms;
 }
 
-
-.videoPlayer > .controls > .fqpicker > div > select:hover {
-    position:relative;
-    top:-5px;
-    transition-duration:150ms;
-}
-
-
 @keyframes spinner {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
