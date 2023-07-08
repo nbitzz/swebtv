@@ -1320,9 +1320,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 33.08, 123.08 ],
+                        "outro": [ 1314.8, 1404.8 ]
                     },
                     {
                         "name": "Start of a New Life! (That Doesn't Go Well, Of Course)",
@@ -1351,9 +1350,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 35, 125 ],
+                        "outro": [ 1314.8, 1404.8 ]
                     },
                     {
                         "name": "Kanna Goes to School! (Not that she needs to.)",
@@ -1382,9 +1380,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 67.9, 157.9 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "Tohru's Real World Lessons! (She thinks she understands it already.)",
@@ -1413,9 +1410,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 53, 143 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "Home Visit! (And Homes Not Visited)",
@@ -1445,7 +1441,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1476,7 +1472,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1507,7 +1503,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1538,7 +1534,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1569,7 +1565,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1600,7 +1596,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1631,7 +1627,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1662,7 +1658,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1690,7 +1686,7 @@
                         "type": "special",
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     }
                 ]
@@ -1729,7 +1725,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1760,7 +1756,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1791,7 +1787,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1822,7 +1818,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1853,7 +1849,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1884,7 +1880,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1915,7 +1911,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1946,7 +1942,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -1977,7 +1973,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2008,7 +2004,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2039,7 +2035,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2070,7 +2066,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2103,7 +2099,7 @@
                         "type": "special",
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     }
                 ]
@@ -2835,7 +2831,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2861,7 +2857,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2887,7 +2883,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2913,7 +2909,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2939,7 +2935,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     },
                     {
@@ -2965,7 +2961,7 @@
                         },
 
                         "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
                         "unfinished": true
                     }
                 ]
