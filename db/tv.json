@@ -1500,9 +1500,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 82, 172 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "Sports Festival! (There's No Twist Or Anything)",
@@ -1531,9 +1530,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 58, 148 ],
+                        "outro": [ 1315, 1400 ]
                     },
                     {
                         "name": "Troupe Dragon, On Stage! (They Had A Troupe Name, Huh)",
