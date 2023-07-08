@@ -1440,9 +1440,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 41, 131 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "Summer's Staples! (The Fanservice Episode, Frankly)",
@@ -1471,9 +1470,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 45, 135 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "New Dragon, Elma! (She's Finally Appearing, Huh?)",
