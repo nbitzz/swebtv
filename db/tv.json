@@ -2687,9 +2687,7 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "outro": [ 1330 ]
                     },
                     {
                         "name": "The Angel, the Demon, and the Class President",
@@ -2713,9 +2711,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 58, 148 ],
+                        "outro": [ 1330 ]
                     },
                     {
                         "name": "Friends, Work, and the Summer of Bugs",
@@ -2739,9 +2736,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 39, 129 ],
+                        "outro": [ 1330 ]
                     },
                     {
                         "name": "Summer Vacation, Ho!",
@@ -2765,9 +2761,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 71, 161 ],
+                        "outro": [ 901, 991 ]
                     },
                     {
                         "name": "The Angel Whose Illusions Were Shattered Like Hell",
@@ -2791,9 +2786,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 78, 168 ],
+                        "outro": [ 1330 ]
                     },
                     {
                         "name": "Satania's Counterattack",
@@ -2817,9 +2811,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0 ],
-                        "unfinished": true
+                        "intro": [ 86, 176 ],
+                        "outro": [ 1330 ]
                     },
                     {
                         "name": "Vigne's Demonic Life",
