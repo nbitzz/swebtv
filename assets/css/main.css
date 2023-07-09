@@ -837,8 +837,8 @@
 }
 
 .videoPlayer > .controls > .timeDenotation.movieMode {
-    flex-basis: 150px;
-    min-width:150px;
+    flex-basis: 130px;
+    min-width:130px;
 }
 
 .videoPlayer > .controls > .timeDenotation > p {
