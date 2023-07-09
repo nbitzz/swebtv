@@ -1620,9 +1620,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 68.8, 158.8 ],
+                        "outro": [ 1315, 1400 ]
                     },
                     {
                         "name": "Emperor of Demise Arrives! (It Was the Final Episode Before We Knew It)",
@@ -1651,9 +1650,7 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 69.8, 159.8 ]
                     },
                     {
                         "name": "Valentines and Hot Springs! (Please Don't Get Your Hopes Up)",
@@ -1679,9 +1676,8 @@
 
                         "type": "special",
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 51, 141 ],
+                        "outro": [ 1330 ]
                     }
                 ]
             },
