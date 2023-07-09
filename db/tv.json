@@ -2967,7 +2967,7 @@
         "id":"onk",
 
         "description": "Dr. Goro is reborn as the son of the young starlet Ai Hoshino after her delusional stalker murders him. Now, he wants to help his new mother rise to the top, but what can a child do about the dark underbelly of the entertainment industry?",
-        "notes": "Ripped from HIDIVE. As such, censorship and translation errors may be present.\n\nAlso, you may have a generally worse experience; HIDIVE's raws are concerningly 5x smaller than Crunchyroll, and webtv wasn't designed with vtt support in mind.. oh well!",
+        "notes": "Ripped from HIDIVE. As such, censorship and translation errors may be present.\n\nAlso, you may have a generally worse experience; HIDIVE's raws are concerningly 5x smaller than Crunchyroll, and there's a few other things... oh well!",
         "icon": "onkic",
         "poster": "onkposter",
 
@@ -2977,7 +2977,33 @@
                 "parent": "onk",
                 "id": "onk.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "MOTHER AND CHILDREN",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e1",
+
+                        "description": "Stories are lies meant to entertain, and idols lie to fans eager to believe. This is Ai’s story. It is a lie, but it is also true.",
+                        "thumbnail": "onks1e1thmb",
+                        "length": 4925,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e1mb",
+                                "good": "onks1e1mg",
+                                "okay": "onks1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e1hb",
+                                "good": "onks1e1hg",
+                                "okay": "onks1e1ho"
+                            }
+                        },
+
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    }
+                ]
             }
         ]
     },
