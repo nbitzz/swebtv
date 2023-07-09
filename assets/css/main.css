@@ -836,6 +836,11 @@
     height:100%;
 }
 
+.videoPlayer > .controls > .timeDenotation.movieMode {
+    flex-basis: 150px;
+    min-width:150px;
+}
+
 .videoPlayer > .controls > .timeDenotation > p {
     color: var(--txt);
     font-family: var(--monospace);
