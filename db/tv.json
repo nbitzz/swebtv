@@ -1560,9 +1560,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 57, 147 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "Year End, New Year! (No Comiket Bit This Time)",
@@ -1591,9 +1590,8 @@
                             }
                         },
 
-                        "intro": [ 0, 0 ],
-                        "outro": [ 0, 0.01 ],
-                        "unfinished": true
+                        "intro": [ 84, 174 ],
+                        "outro": [ 1315, 1405 ]
                     },
                     {
                         "name": "Tohru and Kobayashi's Impactful Meeting! (We're Raising the Bar on Ourselves)",
