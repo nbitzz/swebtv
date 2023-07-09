@@ -2950,6 +2950,7 @@ function create_if_block$5(ctx) {
 	let t5;
 	let t6_value = colonTime(/*duration*/ ctx[4] || /*playing*/ ctx[0].length) + "";
 	let t6;
+	let div2_class_value;
 	let t7;
 	let button1;
 	let img1;
@@ -3010,7 +3011,10 @@ function create_if_block$5(ctx) {
 			: /*progress*/ ctx[5] || 0) / /*duration*/ ctx[4] || -1) * 100}%`);
 
 			attr(div1, "class", "seekbar");
-			attr(div2, "class", "timeDenotation");
+
+			attr(div2, "class", div2_class_value = `timeDenotation ${(/*duration*/ ctx[4] || /*playing*/ ctx[0].length) > 60 * 60
+			? "movieMode"
+			: ""}`);
 
 			if (!src_url_equal(img1.src, img1_src_value = /*$playerVolume*/ ctx[18]
 			? "/assets/icons/player/volume.svg"
@@ -3090,6 +3094,12 @@ function create_if_block$5(ctx) {
 			: /*progress*/ ctx[5] || /*fqp*/ ctx[3].prg_hold || 0) + "")) set_data(t3, t3_value);
 
 			if ((!current || dirty[0] & /*duration, playing*/ 17) && t6_value !== (t6_value = colonTime(/*duration*/ ctx[4] || /*playing*/ ctx[0].length) + "")) set_data(t6, t6_value);
+
+			if (!current || dirty[0] & /*duration, playing*/ 17 && div2_class_value !== (div2_class_value = `timeDenotation ${(/*duration*/ ctx[4] || /*playing*/ ctx[0].length) > 60 * 60
+			? "movieMode"
+			: ""}`)) {
+				attr(div2, "class", div2_class_value);
+			}
 
 			if (!current || dirty[0] & /*$playerVolume*/ 262144 && !src_url_equal(img1.src, img1_src_value = /*$playerVolume*/ ctx[18]
 			? "/assets/icons/player/volume.svg"
