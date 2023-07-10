@@ -2997,6 +2997,56 @@
                         },
 
                         "outro": [ 4784, 4875.6 ]
+                    },
+                    {
+                        "name": "THIRD OPTION",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e2",
+
+                        "description": "Ruby wants to be an idol for herself and for the little girl who died from cancer. The real world, however, doesn’t care about big dreams: something Aqua knows all too well.",
+                        "thumbnail": "onks1e2thmb",
+                        "length": 1486,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e2mb",
+                                "good": "onks1e2mg",
+                                "okay": "onks1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e2hb",
+                                "good": "onks1e2hg",
+                                "okay": "onks1e2ho"
+                            }
+                        },
+
+                        "intro": [ 0, 95 ],
+                        "outro": [ 1396 ]
+                    },
+                    {
+                        "name": "MANGA-BASED TV DRAMA",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e3",
+
+                        "description": "Aqua agrees to Kana’s request, but not for the reason she wants. There’s a connection between Masaya Kaburagi and Ai, which leads Aqua to the set of a TV drama for answers.",
+                        "thumbnail": "onks1e3thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e3mb",
+                                "good": "onks1e3mg",
+                                "okay": "onks1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e3hb",
+                                "good": "onks1e3hg",
+                                "okay": "onks1e3ho"
+                            }
+                        },
+
+                        "intro": [ 0, 95 ],
+                        "outro": [ 1431 ]
                     }
                 ]
             }
