@@ -3047,6 +3047,214 @@
 
                         "intro": [ 0, 96 ],
                         "outro": [ 1431 ]
+                    },
+                    {
+                        "name": "ACTORS",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e4",
+
+                        "description": "Kana’s resolve remains strong despite her washed up reputation. Aqua sets the stage for her with a bold move that flips the script, which leads to opportunities for them both.",
+                        "thumbnail": "onks1e4thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e4mb",
+                                "good": "onks1e4mg",
+                                "okay": "onks1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e4hb",
+                                "good": "onks1e4hg",
+                                "okay": "onks1e4ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "REALITY DATING SHOW",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e5",
+
+                        "description": "Despite different motivations, Aqua, Ruby and Kana’s key to success in the entertainment industry is the same; to achieve their goals, they need to play the game.",
+                        "thumbnail": "onks1e5thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e5mb",
+                                "good": "onks1e5mg",
+                                "okay": "onks1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e5hb",
+                                "good": "onks1e5hg",
+                                "okay": "onks1e5ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "EGOSURFING",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e6",
+
+                        "description": "Remember what you said in righteous outrage online? There were consequences. You never saw them, but that didn’t make them any less real, nor hold you any less accountable.",
+                        "thumbnail": "onks1e6thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e6mb",
+                                "good": "onks1e6mg",
+                                "okay": "onks1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e6hb",
+                                "good": "onks1e6hg",
+                                "okay": "onks1e6ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "BUZZ",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e7",
+
+                        "description": "Left reeling in the immediate aftermath, Akane’s costars unite in friendship and purpose: they will clear their friend’s name. They owe her nothing less.",
+                        "thumbnail": "onks1e7thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e7mb",
+                                "good": "onks1e7mg",
+                                "okay": "onks1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e7hb",
+                                "good": "onks1e7hg",
+                                "okay": "onks1e7ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "FIRST TIME",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e8",
+
+                        "description": "Focused on revenge, Aqua underestimated Akane and gave the talented actress a way to win his heart. If love is a game, Akane is playing for keeps and Kana is falling behind.",
+                        "thumbnail": "onks1e8thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e8mb",
+                                "good": "onks1e8mg",
+                                "okay": "onks1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e8hb",
+                                "good": "onks1e8hg",
+                                "okay": "onks1e8ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "B KOMACHI",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e9",
+
+                        "description": "MEM-cho won’t let her second chance go to waste and uses her influence to help grow B Komachi’s brand. Meanwhile, Aqua’s investigation into Ai’s past bears fruit.",
+                        "thumbnail": "onks1e9thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e9mb",
+                                "good": "onks1e9mg",
+                                "okay": "onks1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e9hb",
+                                "good": "onks1e9hg",
+                                "okay": "onks1e9ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "PRESSURE",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e10",
+
+                        "description": "B Komachi’s first performance approaches, but the group still needs practice while Kana refuses to be the center. Perhaps a certain expert choreographer could help them shine?",
+                        "thumbnail": "onks1e10thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e10mb",
+                                "good": "onks1e10mg",
+                                "okay": "onks1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e10hb",
+                                "good": "onks1e10hg",
+                                "okay": "onks1e10ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "IDOL",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e11",
+
+                        "description": "MEM-cho has fans. Ruby has looks. But Kana has…? She’ll need to find the answer before she can be anyone’s star. Later, a fresh opportunity sets Aqua on a new path to revenge.",
+                        "thumbnail": "onks1e11thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e11mb",
+                                "good": "onks1e11mg",
+                                "okay": "onks1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e11hb",
+                                "good": "onks1e11hg",
+                                "okay": "onks1e11ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1431 ],
+                        "unfinished": true
                     }
                 ]
             }
