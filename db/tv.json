@@ -3020,7 +3020,7 @@
                             }
                         },
 
-                        "intro": [ 0, 96 ],
+                        "intro": [ 0, 96.1 ],
                         "outro": [ 1396 ]
                     },
                     {
@@ -3045,7 +3045,7 @@
                             }
                         },
 
-                        "intro": [ 0, 96 ],
+                        "intro": [ 0, 96.1 ],
                         "outro": [ 1431 ]
                     },
                     {
@@ -3055,7 +3055,7 @@
 
                         "description": "Kana’s resolve remains strong despite her washed up reputation. Aqua sets the stage for her with a bold move that flips the script, which leads to opportunities for them both.",
                         "thumbnail": "onks1e4thmb",
-                        "length": 1521,
+                        "length": 1426,
 
                         "formats": {
                             "main": {
@@ -3070,9 +3070,8 @@
                             }
                         },
 
-                        "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
-                        "unfinished": true
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1336 ]
                     },
                     {
                         "name": "REALITY DATING SHOW",
@@ -3081,7 +3080,7 @@
 
                         "description": "Despite different motivations, Aqua, Ruby and Kana’s key to success in the entertainment industry is the same; to achieve their goals, they need to play the game.",
                         "thumbnail": "onks1e5thmb",
-                        "length": 1521,
+                        "length": 1446,
 
                         "formats": {
                             "main": {
@@ -3097,8 +3096,7 @@
                         },
 
                         "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
-                        "unfinished": true
+                        "outro": [ 1356 ]
                     },
                     {
                         "name": "EGOSURFING",
@@ -3107,7 +3105,7 @@
 
                         "description": "Remember what you said in righteous outrage online? There were consequences. You never saw them, but that didn’t make them any less real, nor hold you any less accountable.",
                         "thumbnail": "onks1e6thmb",
-                        "length": 1521,
+                        "length": 1516,
 
                         "formats": {
                             "main": {
@@ -3123,8 +3121,7 @@
                         },
 
                         "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
-                        "unfinished": true
+                        "outro": [ 1426 ]
                     },
                     {
                         "name": "BUZZ",
@@ -3133,7 +3130,7 @@
 
                         "description": "Left reeling in the immediate aftermath, Akane’s costars unite in friendship and purpose: they will clear their friend’s name. They owe her nothing less.",
                         "thumbnail": "onks1e7thmb",
-                        "length": 1521,
+                        "length": 1486,
 
                         "formats": {
                             "main": {
@@ -3149,8 +3146,7 @@
                         },
 
                         "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
-                        "unfinished": true
+                        "outro": [ 1396 ]
                     },
                     {
                         "name": "FIRST TIME",
@@ -3159,7 +3155,7 @@
 
                         "description": "Focused on revenge, Aqua underestimated Akane and gave the talented actress a way to win his heart. If love is a game, Akane is playing for keeps and Kana is falling behind.",
                         "thumbnail": "onks1e8thmb",
-                        "length": 1521,
+                        "length": 1426,
 
                         "formats": {
                             "main": {
@@ -3175,8 +3171,7 @@
                         },
 
                         "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
-                        "unfinished": true
+                        "outro": [ 1336 ]
                     },
                     {
                         "name": "B KOMACHI",
@@ -3185,7 +3180,7 @@
 
                         "description": "MEM-cho won’t let her second chance go to waste and uses her influence to help grow B Komachi’s brand. Meanwhile, Aqua’s investigation into Ai’s past bears fruit.",
                         "thumbnail": "onks1e9thmb",
-                        "length": 1521,
+                        "length": 1516,
 
                         "formats": {
                             "main": {
@@ -3201,7 +3196,7 @@
                         },
 
                         "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
+                        "outro": [ 1426 ],
                         "unfinished": true
                     },
                     {
@@ -3211,7 +3206,7 @@
 
                         "description": "B Komachi’s first performance approaches, but the group still needs practice while Kana refuses to be the center. Perhaps a certain expert choreographer could help them shine?",
                         "thumbnail": "onks1e10thmb",
-                        "length": 1521,
+                        "length": 1461,
 
                         "formats": {
                             "main": {
@@ -3226,8 +3221,8 @@
                             }
                         },
 
-                        "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1371 ],
                         "unfinished": true
                     },
                     {
@@ -3237,7 +3232,7 @@
 
                         "description": "MEM-cho has fans. Ruby has looks. But Kana has…? She’ll need to find the answer before she can be anyone’s star. Later, a fresh opportunity sets Aqua on a new path to revenge.",
                         "thumbnail": "onks1e11thmb",
-                        "length": 1521,
+                        "length": 1396,
 
                         "formats": {
                             "main": {
@@ -3252,8 +3247,8 @@
                             }
                         },
 
-                        "intro": [ 0, 96 ],
-                        "outro": [ 1431 ],
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1306 ],
                         "unfinished": true
                     }
                 ]
