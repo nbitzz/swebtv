@@ -456,9 +456,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 167.05, 257.05 ],
+                        "outro": [ 1325.04, 1415.04 ]
                     },
                     {
                         "name": "Eight Views",
@@ -482,9 +481,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 303, 393 ],
+                        "outro": [ 1324.8, 1414.8 ]
                     },
                     {
                         "name": "To Your House",
