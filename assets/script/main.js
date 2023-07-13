@@ -3874,7 +3874,17 @@ function instance$5($$self, $$props, $$invalidate) {
 			// this is probably horrible for performance. Too bad!
 			// if anyone knows how to make this better pls lmk
 			if (isEpisode(playing) && (settings.userSet.autoskipintro || settings.userSet.autoskipoutro)) {
-				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) updateProgress(playing.intro[1]); else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) updateProgress(playing.outro[1] || duration); // doesn't work if i don't pause and unpause soo
+				if (playing.intro && progress > playing.intro[0] && progress < playing.intro[1] && settings.userSet.autoskipintro) setTimeout(
+					() => updateProgress(isEpisode(playing) && playing.intro
+					? playing.intro[1]
+					: 200),
+					1
+				); else if (playing.outro && progress > playing.outro[0] && progress < (playing.outro[1] || duration) && settings.userSet.autoskipoutro) setTimeout(
+					() => updateProgress(isEpisode(playing) && playing.outro
+					? playing.outro[1] || duration
+					: 200),
+					1
+				); // doesn't work if i don't pause and unpause soo
 			}
 		}
 
