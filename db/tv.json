@@ -506,9 +506,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 166, 256 ],
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Bocchi the Rock",
@@ -532,9 +531,7 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Enoshima Escar",
@@ -558,9 +555,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 173, 263 ],
+                        "outro": [ 1324.85, 1414.85 ]
                     },
                     {
                         "name": "After Dark",
@@ -584,9 +580,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 147.1, 237.1 ],
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Duodecimal Sunset",
@@ -610,9 +605,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 186, 276 ],
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Morning Light Falls on You",
@@ -636,9 +630,7 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "outro": [ 1251.8, 1401.8 ]
                     }
                 ]
             },
