@@ -375,6 +375,15 @@
     display:flex;
 }
 
+#screenShow > .content > .showAbout > .showFootnote {
+    margin: 10px 0 0 0;
+    color: var(--sf0);
+}
+
+#screenShow > .content > .showAbout > .showFootnote > a {
+    color: var(--sf1);
+}
+
 #screenShow > .content > .showAbout > .header > img, 
 #screenEmbeddables > .content > .embList > .header > img,
 .videoView > .container > .shortAbout > img {
