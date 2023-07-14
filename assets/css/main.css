@@ -377,11 +377,11 @@
 
 #screenShow > .content > .showAbout > .showFootnote {
     margin: 10px 0 0 0;
-    color: var(--sf0);
+    color: var(--st0);
 }
 
 #screenShow > .content > .showAbout > .showFootnote > a {
-    color: var(--sf1);
+    color: var(--st1);
 }
 
 #screenShow > .content > .showAbout > .header > img, 
