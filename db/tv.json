@@ -8,7 +8,7 @@
         "icon": "onimai.webp",
         "poster": "hdonimai",
 
-        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/ed996855-70de-449f-bba2-e8e24224c14d/onii-chan-is-done-for\">MangaDex</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/2e5ab24e-055c-464b-a6da-30400722ce19\">Chp. 40</a>.",
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/ed996855-70de-449f-bba2-e8e24224c14d/onii-chan-is-done-for\">MangaDex</a>, and alternatively in volumes from <a href=\"https://kodansha.us/series/onimai-im-now-your-sister\">Kodansha USA</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/2e5ab24e-055c-464b-a6da-30400722ce19\">Chp. 40</a>.",
 
         "seasons": [
             {
@@ -328,6 +328,8 @@
         "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
         "icon": "bocchi_ic.webp",
         "poster": "bcposter",
+
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/2e0fdb3b-632c-4f8f-a311-5b56952db647/bocchi-the-rock\">MangaDex</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/0bf89f74-2eb0-420d-b10a-a34c09d197f8\">Chp. 22</a>.",
 
         "seasons": [
             {
@@ -787,6 +789,8 @@
         "icon": "nagatoroic.png",
         "poster": "ngposter",
 
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/d86cf65b-5f6c-437d-a0af-19a31f94ec55/ijiranaide-nagatoro-san\">MangaDex</a>, and alternatively in volumes from <a href=\"https://kodansha.us/series/dont-toy-with-me-miss-nagatoro\">Kodansha USA</a>. If you're looking to pick up from the end of S1E12, the anime (apparently) ends before <a href=\"https://mangadex.org/chapter/bf2ea6a2-f4f7-4fb6-9ee2-03b113964423\">Chp. 92</a>.",
+
         "seasons": [
             {
                 "name": "DON'T TOY WITH ME, MISS NAGATORO",
@@ -813,6 +817,8 @@
         "icon": "luckystaric.png",
         "poster": "lsposter",
 
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/31fbb1af-3df1-496e-992f-b7f96a34d1ab/\">MangaDex</a>, and alternatively in volumes from <a href=\"https://www.viz.com/lucky-star\">VIZ Media</a>.",
+
         "seasons": [
             {
                 "name": "Lucky Star",
@@ -831,6 +837,8 @@
         "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
         "icon": "akane_ico",
         "poster": "mcff_poster.jpeg",
+
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/23f2ab6b-0832-456b-9d87-35868ce34fc8\">MangaDex</a>. The anime mixes up the chapters quite a bit, so I'm not sure where it leaves off, but it's probably somewhere around Chapter 80. It's also being sold by Penguin Random House, but PRH can go fuck themselves. Keep the IA going.",
 
         "seasons": [
             {
