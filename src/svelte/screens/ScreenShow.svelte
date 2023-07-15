@@ -3,6 +3,7 @@
     import { cfg, ready, tv, type Season, type Show, type Episode, settings, lists, getSeasonLabel, getEpisodeLabel } from "../../ts/webtv";
     import { selected, watchPage_episode, watchPage_season } from "../../ts/stores";
     import VideoView from "../elm/VideoView.svelte";
+    import DOMPurify from "dompurify";
 
     let pSS: string = "showAbout"
     //let selectedSeason: string = "showAbout";
@@ -116,6 +117,10 @@
                     </div>
                 </div>
 
+                {#if show?.footnote}
+                    <p class="showFootnote">{@html DOMPurify.sanitize(show.footnote)}</p>
+                {/if}
+
             </div>
 
         {:else}
@@ -149,7 +154,7 @@
                     <h1>
                         {selectedSeason_obj?.name || "[ ... ]"}
                         <span>
-                            <br>{@html settings.userSet.developerMode ? `sidebar: <span class="monospaceText">${$watchPage_season}</span>; obj: <span class="monospaceText">${selectedSeason_obj?.id}</span>` : "select an episode" }
+                            <br>{@html DOMPurify.sanitize(settings.userSet.developerMode ? `sidebar: <span class="monospaceText">${$watchPage_season}</span>; obj: <span class="monospaceText">${selectedSeason_obj?.id}</span>` : "select an episode") }
                         </span>
                     </h1>
                 </div>

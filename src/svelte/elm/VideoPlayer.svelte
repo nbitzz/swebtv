@@ -110,13 +110,13 @@
             && progress > playing.intro[0] 
             && progress < playing.intro[1]
             && settings.userSet.autoskipintro // doesn't work if i don't pause and unpause soo
-        ) updateProgress(playing.intro[1])
+        ) setTimeout(() => updateProgress(isEpisode(playing) && playing.intro ? playing.intro[1] : 200),1)
         else if (
             playing.outro 
             && progress > playing.outro[0] 
             && progress < (playing.outro[1]||duration)
             && settings.userSet.autoskipoutro
-        ) updateProgress(playing.outro[1]||duration)
+        ) setTimeout(() => updateProgress(isEpisode(playing) && playing.outro ? (playing.outro[1]||duration) : 200),1)
     }
 
     // this is nightmarish please help
@@ -258,7 +258,7 @@
                 <div class="progress" style:width={`${((draggingSeekBar ? time_tmp : (progress || 0))/duration || -1) * 100}%`} />
             </div>
 
-            <div class="timeDenotation">
+            <div class={`timeDenotation ${(duration||playing.length) > 60*60 ? "movieMode" : ""}`} >
                 <p>{colonTime(draggingSeekBar ? time_tmp : (progress || fqp.prg_hold || 0))} <span>/ {colonTime(duration || playing.length)}</span></p>
             </div>
 

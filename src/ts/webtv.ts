@@ -108,6 +108,8 @@ export interface Show extends Common {
     icon: string,
     poster?: string,
 
+    footnote?: string,
+
     seasons: Season[]
 
 }
@@ -150,6 +152,7 @@ export namespace settings {
         theatre: false,
         theatreFill: "80%",
         skipbutton: true,
+        sidebarResize: false,
         developerMode: false
         
     }
@@ -164,6 +167,7 @@ export namespace settings {
         autoskipoutro: boolean,
         keyboardSeek: "0.01" | "0.1" | "1" | "5" | "10", // lazy
 
+        sidebarResize: boolean,
         theatre: boolean,
         theatreFill: "80%" | "100%",
         developerMode: boolean,
@@ -247,6 +251,11 @@ export namespace settings {
                 {
                     label: "Show skip intro/outro buttons",
                     targetSetting: "skipbutton",
+                    input: "boolean"
+                },
+                {
+                    label: "Resize oversized sidebar items when the sidebar isn't expanded",
+                    targetSetting: "sidebarResize",
                     input: "boolean"
                 },
                 {

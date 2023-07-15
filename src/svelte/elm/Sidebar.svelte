@@ -28,7 +28,7 @@
 
 </script>
 
-<div class="sidebar" id="sidebar_main" style:--wdth={`${width}px`} style:--level={`var(--sf${level})`}>
+<div class={ "sidebar" + (settings.userSet.sidebarResize ? " contract" : "") } id="sidebar_main" style:--wdth={`${width}px`} style:--level={`var(--sf${level})`}>
 
     {#each items as item (item.id)}
 
@@ -45,6 +45,8 @@
                 {/if}
             </div>
             <div class="content">
+                <div style="height:2px;position:relative;" />
+
                 {#if item.title} 
                     <p class="note">{item.title}</p>
                 {/if}
@@ -55,6 +57,8 @@
                 {#if item.note||settings.userSet.developerMode} 
                     <p class="note">{item.note||""}{@html item.note && settings.userSet.developerMode ? "<br>" : ""}{settings.userSet.developerMode ? item.id : ""}</p>
                 {/if}
+
+                <div style="height:2px;position:relative;" />
             </div>
             <button class="hitbox" on:click={() => active = item.id}></button>
         </div>

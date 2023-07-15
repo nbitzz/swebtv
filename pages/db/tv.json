@@ -8,6 +8,8 @@
         "icon": "onimai.webp",
         "poster": "hdonimai",
 
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/ed996855-70de-449f-bba2-e8e24224c14d/onii-chan-is-done-for\">MangaDex</a>, and alternatively in volumes from <a href=\"https://kodansha.us/series/onimai-im-now-your-sister\">Kodansha USA</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/2e5ab24e-055c-464b-a6da-30400722ce19\">Chp. 39</a>.",
+
         "seasons": [
             {
                 "name": "ONIMAI: I'm Now Your Sister!",
@@ -327,6 +329,8 @@
         "icon": "bocchi_ic.webp",
         "poster": "bcposter",
 
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/2e0fdb3b-632c-4f8f-a311-5b56952db647/bocchi-the-rock\">MangaDex</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/0bf89f74-2eb0-420d-b10a-a34c09d197f8\">Chp. 22</a>.",
+
         "seasons": [
             {
                 "name": "BOCCHI THE ROCK!",
@@ -456,9 +460,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 167.05, 257.05 ],
+                        "outro": [ 1325.04, 1415.04 ]
                     },
                     {
                         "name": "Eight Views",
@@ -482,9 +485,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 303, 393 ],
+                        "outro": [ 1324.8, 1414.8 ]
                     },
                     {
                         "name": "To Your House",
@@ -508,9 +510,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 166, 256 ],
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Bocchi the Rock",
@@ -534,9 +535,7 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Enoshima Escar",
@@ -560,9 +559,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 173, 263 ],
+                        "outro": [ 1324.85, 1414.85 ]
                     },
                     {
                         "name": "After Dark",
@@ -586,9 +584,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 147.1, 237.1 ],
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Duodecimal Sunset",
@@ -612,9 +609,8 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "intro": [ 186, 276 ],
+                        "outro": [ 1325, 1415 ]
                     },
                     {
                         "name": "Morning Light Falls on You",
@@ -638,9 +634,7 @@
                             }
                         },
 
-                        "intro": [ 71.85, 161.85 ],
-                        "outro": [ 1278, 1368 ],
-                        "unfinished": true
+                        "outro": [ 1251.8, 1401.8 ]
                     }
                 ]
             },
@@ -795,6 +789,8 @@
         "icon": "nagatoroic.png",
         "poster": "ngposter",
 
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/d86cf65b-5f6c-437d-a0af-19a31f94ec55/ijiranaide-nagatoro-san\">MangaDex</a>, and alternatively in volumes from <a href=\"https://kodansha.us/series/dont-toy-with-me-miss-nagatoro\">Kodansha USA</a>. If you're looking to pick up from the end of S2E12, start at <a href=\"https://mangadex.org/chapter/bf2ea6a2-f4f7-4fb6-9ee2-03b113964423\">Chp. 92</a>.",
+
         "seasons": [
             {
                 "name": "DON'T TOY WITH ME, MISS NAGATORO",
@@ -804,7 +800,7 @@
                 "episodes": []
             },
             {
-                "name": "DON'T TOY WITH ME, MISS NAGATORO: 2nd Attack",
+                "name": "DON'T TOY WITH ME, MISS NAGATORO 2nd Attack",
                 "parent": "nagatoro",
                 "id": "nagatoro.s2",
 
@@ -820,6 +816,8 @@
         "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
         "icon": "luckystaric.png",
         "poster": "lsposter",
+
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/31fbb1af-3df1-496e-992f-b7f96a34d1ab/\">MangaDex</a>, and alternatively in volumes from <a href=\"https://www.viz.com/lucky-star\">VIZ Media</a>.",
 
         "seasons": [
             {
@@ -839,6 +837,8 @@
         "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
         "icon": "akane_ico",
         "poster": "mcff_poster.jpeg",
+
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/23f2ab6b-0832-456b-9d87-35868ce34fc8\">MangaDex</a>. The anime mixes up the chapters quite a bit, so I'm not sure where it leaves off, but it's probably somewhere around Chapter 80. It's also being sold by Penguin Random House&emdash;however, I'm leaving the link out, as the IA suit is still offputting to me.",
 
         "seasons": [
             {
@@ -1263,14 +1263,836 @@
                 "parent": "mkdm",
                 "id": "mkdm.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "The Strongest Maid in History, Tohru! (Well, She is a Dragon)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e1",
+
+                        "description": "One morning, as she left for work, she found a dragon before her. Stunned, the dragon transformed into a beautiful girl with horns, a tail, and a maid outfit right before Miss Koboyashi's eyes. Calling herself Tohru, this dragon-girl asked, \"Please let me serve as your maid from now on!\" Confused by her question, Miss Kobayashi remembered inviting the dragon into her home last night while drunk. She refuses, saying she can't afford to hire someone, but then she realizes she's almost late for work and--",
+                        "thumbnail": "mkdms1e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e1mb",
+                                "good": "mkdms1e1mg",
+                                "okay": "mkdms1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e1hb",
+                                "good": "mkdms1e1hg",
+                                "okay": "mkdms1e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e1db",
+                                "good": "mkdms1e1dg",
+                                "okay": "mkdms1e1do"
+                            }
+                        },
+
+                        "intro": [ 133, 223 ]
+                    },
+                    {
+                        "name": "Second Dragon, Kanna! (We're Totally Spoiling Here)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e2",
+
+                        "description": "Miss Kobayashi was growing accustomed to her new life with Tohru, and so they headed out to go shopping together. She's surprised by Tohru's social skills though, when she sees how friendly Tohru was with the people of the shopping district. However, Tohru herself makes the dark claim that she's only pretending to be friendly, and shows how she still doesn't understand human emotions. Then on one of her days off, someone calls at Miss Kobayashi's home. She opens the door to find a little girl with horns and a tail--?!",
+                        "thumbnail": "mkdms1e2thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e2mb",
+                                "good": "mkdms1e2mg",
+                                "okay": "mkdms1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e2hb",
+                                "good": "mkdms1e2hg",
+                                "okay": "mkdms1e2ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e2db",
+                                "good": "mkdms1e2dg",
+                                "okay": "mkdms1e2do"
+                            }
+                        },
+
+                        "intro": [ 33.08, 123.08 ],
+                        "outro": [ 1314.8, 1404.8 ]
+                    },
+                    {
+                        "name": "Start of a New Life! (That Doesn't Go Well, Of Course)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e3",
+
+                        "description": "Kanna starts living with Tohru and Miss Kobayashi. While the livelier residence is nice, sharing a tiny apartment with three people becomes cramped. So Miss Kobayashi decides to move. She winds up inviting Takiya to her new apartment for a party, but Tohru also invites her dragon friends, Fafnir, who lives in a cave, and Lucoa, who's lived in this world since ancient times, to visit their new home.",
+                        "thumbnail": "mkdms1e3thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e3mb",
+                                "good": "mkdms1e3mg",
+                                "okay": "mkdms1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e3hb",
+                                "good": "mkdms1e3hg",
+                                "okay": "mkdms1e3ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e3db",
+                                "good": "mkdms1e3dg",
+                                "okay": "mkdms1e3do"
+                            }
+                        },
+
+                        "intro": [ 35, 125 ],
+                        "outro": [ 1314.8, 1404.8 ]
+                    },
+                    {
+                        "name": "Kanna Goes to School! (Not that she needs to.)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e4",
+
+                        "description": "Kanna watched the elementary schoolers going to school with jealousy, so Miss Kobayashi decides to let Kanna attend elementary school. Miss Kobayashi, Tohru, and Kanna all set out to the shopping district in order to buy Kanna's school supplies, but Miss Kobayashi is overwhelmed by the modern stationery store recently built. On the other hand, both Tohru and Kanna are intrigued by their first sight of stationery stores. After they finally gather all the supplies she needs, it's time for Kanna to join the school!!",
+                        "thumbnail": "mkdms1e4thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e4mb",
+                                "good": "mkdms1e4mg",
+                                "okay": "mkdms1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e4hb",
+                                "good": "mkdms1e4hg",
+                                "okay": "mkdms1e4ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e4db",
+                                "good": "mkdms1e4dg",
+                                "okay": "mkdms1e4do"
+                            }
+                        },
+
+                        "intro": [ 67.9, 157.9 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "Tohru's Real World Lessons! (She thinks she understands it already.)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e5",
+
+                        "description": "Tohru's finally gotten the hang of her maid duties. Suddenly interested in what Miss Kobayashi does at work, she heads out to observe. There she watches how everyone relies on Miss Kobayashi and falls for her again. However, there's also a boss being mean to Miss Kobayashi, which makes Tohru very angry... Out on the town she runs into Fafnir from the other world. Since he says he'll be living in this world too, Tohru winds up helping him find a place to live?!",
+                        "thumbnail": "mkdms1e5thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e5mb",
+                                "good": "mkdms1e5mg",
+                                "okay": "mkdms1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e5hb",
+                                "good": "mkdms1e5hg",
+                                "okay": "mkdms1e5ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e5db",
+                                "good": "mkdms1e5dg",
+                                "okay": "mkdms1e5do"
+                            }
+                        },
+
+                        "intro": [ 53, 143 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "Home Visit! (And Homes Not Visited)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e6",
+
+                        "description": "Kanna is invited to Saikawa's home. Since Saikawa's family has a maid too, they invite Miss Kobayashi and Tohru to join her. When a genuine maid, Josie, greets them, Miss Kobayashi gets excited. The two hit it off, chatting about maids. To top things off, Lucoa announces she's planning to live in this world too. She claims she was summoned by Shouta, a member of a mage family. Lucoa gets very touchy to try and get along with Shouta, but she goes overboard...",
+                        "thumbnail": "mkdms1e6thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e6mb",
+                                "good": "mkdms1e6mg",
+                                "okay": "mkdms1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e6hb",
+                                "good": "mkdms1e6hg",
+                                "okay": "mkdms1e6ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e6db",
+                                "good": "mkdms1e6dg",
+                                "okay": "mkdms1e6do"
+                            }
+                        },
+
+                        "intro": [ 41, 131 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "Summer's Staples! (The Fanservice Episode, Frankly)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e7",
+
+                        "description": "Miss Kobayashi and the others go to the beach. But Lucoa's immediately dragged off by one of the lifeguards for her overly skimpy swimsuit. After regrouping, they put sunscreen on each other, split a watermelon, go swimming together, and enjoy summer to the fullest. After the beach, it's comiket! Tohru and Miss Kobayashi both head for the otaku's battlefield, and even Tohru gets shivers from the incredible aura surrounding those otaku. While helping Takiya with his circle, Tohru's horns and wings are mistaken as cosplay?!",
+                        "thumbnail": "mkdms1e7thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e7mb",
+                                "good": "mkdms1e7mg",
+                                "okay": "mkdms1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e7hb",
+                                "good": "mkdms1e7hg",
+                                "okay": "mkdms1e7ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e7db",
+                                "good": "mkdms1e7dg",
+                                "okay": "mkdms1e7do"
+                            }
+                        },
+
+                        "intro": [ 45, 135 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "New Dragon, Elma! (She's Finally Appearing, Huh?)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e8",
+
+                        "description": "Kanna asks Miss Kobayashi to make her a lunch box for her field trip. After Tohru says to leave it to her, the two break out into a match to see who's better at it! Lucoa and Fafnir are added to the judge's panel, presiding over the cooking competition between Tohru and Miss Kobayashi! And finally, a brand new dragon girl appears! Arriving with the sudden destruction of Miss Kobayashi's home is Elma, who's on terrible terms with Tohru. Elma values and order and fears Tohru may disrupt relations with humans, so she challenges her to try and take her back by force!",
+                        "thumbnail": "mkdms1e8thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e8mb",
+                                "good": "mkdms1e8mg",
+                                "okay": "mkdms1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e8hb",
+                                "good": "mkdms1e8hg",
+                                "okay": "mkdms1e8ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e8db",
+                                "good": "mkdms1e8dg",
+                                "okay": "mkdms1e8do"
+                            }
+                        },
+
+                        "intro": [ 82, 172 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "Sports Festival! (There's No Twist Or Anything)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e9",
+
+                        "description": "It's Kanna's sports festival. However, when she learns Miss Kobayashi is too busy at work to come, she sulks. Miss Kobayashi wonders why she'd want her to come so badly when she isn't Kanna's parent, but Kanna already views her as one. Even Takiya tells her, \"You should decide based on if you want to go, not if you can go.\" Finally, the day of the sports festival arrives. As a dragon, Kanna should have overwhelming physical prowess, but...?!",
+                        "thumbnail": "mkdms1e9thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e9mb",
+                                "good": "mkdms1e9mg",
+                                "okay": "mkdms1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e9hb",
+                                "good": "mkdms1e9hg",
+                                "okay": "mkdms1e9ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e9db",
+                                "good": "mkdms1e9dg",
+                                "okay": "mkdms1e9do"
+                            }
+                        },
+
+                        "intro": [ 58, 148 ],
+                        "outro": [ 1315, 1400 ]
+                    },
+                    {
+                        "name": "Troupe Dragon, On Stage! (They Had A Troupe Name, Huh)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e10",
+
+                        "description": "It's winter and Christmas is coming soon when Tohru is asked to put on a performance for the old folk's home. Tohru and the others decide to put on a play so as to not bother Miss Kobayashi while she's busy, yet without her there to control things, the play the dragons devise takes an unexpected turn... Finally, the play is put on, and while Miss Kobayashi watches their performance with anxiety...",
+                        "thumbnail": "mkdms1e10thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e10mb",
+                                "good": "mkdms1e10mg",
+                                "okay": "mkdms1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e10hb",
+                                "good": "mkdms1e10hg",
+                                "okay": "mkdms1e10ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e10db",
+                                "good": "mkdms1e10dg",
+                                "okay": "mkdms1e10do"
+                            }
+                        },
+
+                        "intro": [ 57, 147 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "Year End, New Year! (No Comiket Bit This Time)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e11",
+
+                        "description": "The end of the year is drawing close as well. When Tohru plays the lottery at the shopping district, she wins a prize--a kotatsu, not the hot springs trip. Once they finally join Miss Kobayashi in the kotatsu, the dragons start lazing around... The kotatsu ruins not only humans, but dragons too. That relaxed, lazy mood is how Miss Kobayashi's family ends up spending their end of the year and the new year. Their peaceful days off pass by uneventfully. Meanwhile, Tohru and Kanna also change into kimono for their first shrine visit of the year--?!",
+                        "thumbnail": "mkdms1e11thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e11mb",
+                                "good": "mkdms1e11mg",
+                                "okay": "mkdms1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e11hb",
+                                "good": "mkdms1e11hg",
+                                "okay": "mkdms1e11ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e11db",
+                                "good": "mkdms1e11dg",
+                                "okay": "mkdms1e11do"
+                            }
+                        },
+
+                        "intro": [ 84, 174 ],
+                        "outro": [ 1315, 1405 ]
+                    },
+                    {
+                        "name": "Tohru and Kobayashi's Impactful Meeting! (We're Raising the Bar on Ourselves)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e12",
+
+                        "description": "Tohru's now capable of handling the housework perfectly, and at Miss Kobayashi's request, she decides to make the best omurice for dinner one night. However, gathering high quality ingredients would put her over budget. Wanting to see Miss Kobayashi smile more than anything, Tohru ends up playing her forbidden card... Meanwhile, as Miss Kobayashi rides the train home, worn out from work, she dreams of the night she first met Tohru.",
+                        "thumbnail": "mkdms1e12thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e12mb",
+                                "good": "mkdms1e12mg",
+                                "okay": "mkdms1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e12hb",
+                                "good": "mkdms1e12hg",
+                                "okay": "mkdms1e12ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e12db",
+                                "good": "mkdms1e12dg",
+                                "okay": "mkdms1e12do"
+                            }
+                        },
+
+                        "intro": [ 68.8, 158.8 ],
+                        "outro": [ 1315, 1400 ]
+                    },
+                    {
+                        "name": "Emperor of Demise Arrives! (It Was the Final Episode Before We Knew It)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e13",
+
+                        "description": "Their day off is peaceful, and Miss Kobayashi spends her time relaxing with the others as usual. However, while out shopping, Tohru suddenly stops to think on the street--Miss Kobayashi is human, and what will she do when her lifespan runs out and she dies...? They can't be together forever. They'll have to part someday. She knew that. She was prepared for that. Yet still, Tohru's mind is in turmoil, and the final blow is dealt when the Emperor of Demise--her father--appears before her.",
+                        "thumbnail": "mkdms1e13thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e13mb",
+                                "good": "mkdms1e13mg",
+                                "okay": "mkdms1e13mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e13hb",
+                                "good": "mkdms1e13hg",
+                                "okay": "mkdms1e13ho"
+                            },
+                            "dub": {
+                                "best": "mkdms1e13db",
+                                "good": "mkdms1e13dg",
+                                "okay": "mkdms1e13do"
+                            }
+                        },
+
+                        "intro": [ 69.8, 159.8 ]
+                    },
+                    {
+                        "name": "Valentines and Hot Springs! (Please Don't Get Your Hopes Up)",
+                        "parent": "mkdm.s1",
+                        "id": "mkdm.s1.e14",
+
+                        "description": "This show doesn't have a description, but it seems to be a special as it was released over a year after the first season finished airing, so that's what I'm adding it as. Strangely, this episode was the only one not to get its English dub, so it's not available.",
+                        "thumbnail": "mkdms1e14thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms1e14mb",
+                                "good": "mkdms1e14mg",
+                                "okay": "mkdms1e14mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms1e14hb",
+                                "good": "mkdms1e14hg",
+                                "okay": "mkdms1e14ho"
+                            }
+                        },
+
+                        "type": "special",
+
+                        "intro": [ 51, 141 ],
+                        "outro": [ 1330 ]
+                    }
+                ]
             },
             {
                 "name": "Miss Kobayashi's Dragon Maid S",
                 "parent": "mkdm",
                 "id": "mkdm.s2",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "New Dragon, Ilulu! (Please Be Nice to Her Again)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e1",
+
+                        "description": "The self-proclaimed ultimate maid Tohru storms into a new maid cafe opening up soon with a sense of rivalry. However, when she returns she says, \"Somehow I've ended up working there!\" As they live out such typical days in their lives, she and Miss Kobayashi learn from the news that someone has destroyed the mountain where they met.",
+                        "thumbnail": "mkdms2e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e1mb",
+                                "good": "mkdms2e1mg",
+                                "okay": "mkdms2e1mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e1hb",
+                                "good": "mkdms2e1hg",
+                                "okay": "mkdms2e1ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e1db",
+                                "good": "mkdms2e1dg",
+                                "okay": "mkdms2e1do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Hot Guy Kobayashi! (In Many Ways)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e2",
+
+                        "description": "Miss Kobayashi managed to drive Ilulu away, but in return she got a you-know-what attached to her groin with magic. Because of that you-know-what, she starts perceiving behaviors that she would usually think nothing of in a different light and starts getting more and more turned on by Tohru.",
+                        "thumbnail": "mkdms2e2thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e2mb",
+                                "good": "mkdms2e2mg",
+                                "okay": "mkdms2e2mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e2hb",
+                                "good": "mkdms2e2hg",
+                                "okay": "mkdms2e2ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e2db",
+                                "good": "mkdms2e2dg",
+                                "okay": "mkdms2e2do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Extracurricular Activities (Of Course They're Not Normal)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e3",
+                        
+                        "description": "Saikawa visits Miss Kobayashi's home to play. However, there's a girl that's unfamiliar to her (Ilulu)... Even after inviting her to join their games, Ilulu coldly refuses. Then Lucoa happens to stop by and she notices Ilulu's feelings as she tries to avoid them, so she makes an effort to help the dragon out.",
+                        "thumbnail": "mkdms2e3thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e3mb",
+                                "good": "mkdms2e3mg",
+                                "okay": "mkdms2e3mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e3hb",
+                                "good": "mkdms2e3hg",
+                                "okay": "mkdms2e3ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e3db",
+                                "good": "mkdms2e3dg",
+                                "okay": "mkdms2e3do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "When in Rome, Do as the Romans Do (It's Hard to Match Others)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e4",
+
+                        "description": "Takiya and Miss Kobayashi are impressed by a beautiful array of code. Surprisingly, the one who wrote it was Elma. Miss Kobayashi is overjoyed that finally have more fully capable manpower. Then Elma hears that Miss Kobayashi is considered a \"pillar\" of the company who handles much more work than her, which causes her to suddenly get mad.",
+                        "thumbnail": "mkdms2e4thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e4mb",
+                                "good": "mkdms2e4mg",
+                                "okay": "mkdms2e4mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e4hb",
+                                "good": "mkdms2e4hg",
+                                "okay": "mkdms2e4ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e4db",
+                                "good": "mkdms2e4dg",
+                                "okay": "mkdms2e4do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Together With You (Well, If We Get Along)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e5",
+
+                        "description": "Elma and Tohru snarl at each other every time they meet in the shopping district. Miss Kobayashi is exasperated at that typical scene, but they mention it wasn't like that when they first met. Even though they get along like oil and water now, their first encounter took place long, long ago. It happened way back when Tohru was traveling by herself through the other world...",
+                        "thumbnail": "mkdms2e5thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e5mb",
+                                "good": "mkdms2e5mg",
+                                "okay": "mkdms2e5mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e5hb",
+                                "good": "mkdms2e5hg",
+                                "okay": "mkdms2e5ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e5db",
+                                "good": "mkdms2e5dg",
+                                "okay": "mkdms2e5do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Uncanny Relationships (One Side Is a Dragon)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e6",
+
+                        "description": "Shouta is troubled over how to approach Lucoa about her daily, uninhibited contact. He should be the master in their relationship, though... He resolves to take back control as the full-fledged mage he's aiming to become. So he begins trying to uncover Lucoa's weaknesses.",
+                        "thumbnail": "mkdms2e6thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e6mb",
+                                "good": "mkdms2e6mg",
+                                "okay": "mkdms2e6mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e6hb",
+                                "good": "mkdms2e6hg",
+                                "okay": "mkdms2e6ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e6db",
+                                "good": "mkdms2e6dg",
+                                "okay": "mkdms2e6do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Common Sense (It's Different For Everyone)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e7",
+
+                        "description": "Two suspicious figures appear in a dark alley under the cover of night. An unsettling air hangs over their secret exchange. \"What do you need, asking me to come here?\" asks the perverted woman with two horns. \"Lend me your power,\" answers the melancholic man in a butler uniform. And so the most sinister and awful tag team begins to take action.",
+                        "thumbnail": "mkdms2e7thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e7mb",
+                                "good": "mkdms2e7mg",
+                                "okay": "mkdms2e7mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e7hb",
+                                "good": "mkdms2e7hg",
+                                "okay": "mkdms2e7ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e7db",
+                                "good": "mkdms2e7dg",
+                                "okay": "mkdms2e7do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The World's Only (Insert Phrase You Like Here)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e8",
+
+                        "description": "Shouta suddenly begins shutting himself up in his room. He's pouring over a complicated grimoire in order to create a magic item as a gift for Father's Day. Lucoa offers to help him since the task is so difficult, but he refuses and declares he must accomplish it by himself. However, he continues to fail to produce it...",
+                        "thumbnail": "mkdms2e8thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e8mb",
+                                "good": "mkdms2e8mg",
+                                "okay": "mkdms2e8mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e8hb",
+                                "good": "mkdms2e8hg",
+                                "okay": "mkdms2e8ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e8db",
+                                "good": "mkdms2e8dg",
+                                "okay": "mkdms2e8do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "There Are Various Reasons Behind It (It's Full of Elma)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e9",
+
+                        "description": "It all started with a single statement from Elma--\"I demand improved worker conditions!\" The company Miss Kobayashi and the others work at is very close to being exploitative, and Elma finally realizes their situation is wrong and rises up against it. Miss Kobayashi assumes it's impossible to improve their working conditions, but the dragon's energy and spirit were far greater than she imagined...",
+                        "thumbnail": "mkdms2e9thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e9mb",
+                                "good": "mkdms2e9mg",
+                                "okay": "mkdms2e9mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e9hb",
+                                "good": "mkdms2e9hg",
+                                "okay": "mkdms2e9ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e9db",
+                                "good": "mkdms2e9dg",
+                                "okay": "mkdms2e9do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Kanna's Summer Break (Broadcast In Two Languages!?)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e10",
+
+                        "description": "After having a fight with Miss Kobayashi, Kanna runs away from home. Since she doesn't want to go home she flies across the ocean to somewhere brighter where the sun's still out. Kanna lands on the continent she happens to find during her flight, putting her in New York, the city that never sleeps.",
+                        "thumbnail": "mkdms2e10thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e10mb",
+                                "good": "mkdms2e10mg",
+                                "okay": "mkdms2e10mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e10hb",
+                                "good": "mkdms2e10hg",
+                                "okay": "mkdms2e10ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e10db",
+                                "good": "mkdms2e10dg",
+                                "okay": "mkdms2e10do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Premium Seat (No Extra Charge)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e11",
+
+                        "description": "Miss Kobayashi's hips have seriously started hurting. She buys up a bunch of health products to try and improve it, but she hardly uses any of them... Even Tohru loses her patience and tries to get her to eat tail meat, but she sadly refuses. Tohru then begins her search for what Miss Kobayashi considers a \"typical remedy.\"",
+                        "thumbnail": "mkdms2e11thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e11mb",
+                                "good": "mkdms2e11mg",
+                                "okay": "mkdms2e11mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e11hb",
+                                "good": "mkdms2e11hg",
+                                "okay": "mkdms2e11ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e11db",
+                                "good": "mkdms2e11dg",
+                                "okay": "mkdms2e11do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Life is Constant Change (But It's Okay To Stop And Appreciate It)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e12",
+
+                        "description": "A typical morning with typical dragon girls. A priceless slice of daily life without any complaints. However, ever since Miss Kobayashi heard the tale from the Emperor of Demise, something has been slightly weighing on her. Yet it's not clear to her what exactly that is. As that uncertainty builds, the summer festival they've all been waiting for is drawing closer.",
+                        "thumbnail": "mkdms2e12thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e12mb",
+                                "good": "mkdms2e12mg",
+                                "okay": "mkdms2e12mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e12hb",
+                                "good": "mkdms2e12hg",
+                                "okay": "mkdms2e12ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e12db",
+                                "good": "mkdms2e12dg",
+                                "okay": "mkdms2e12do"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Japanese Hospitality (The Attendant Is a Dragon)",
+                        "parent": "mkdm.s2",
+                        "id": "mkdm.s2.e13",
+
+                        "description": "No description was added to the original video. This was an unaired special which was released on Blu-ray.",
+                        "thumbnail": "mkdms2e13thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mkdms2e13mb",
+                                "good": "mkdms2e13mg",
+                                "okay": "mkdms2e13mo"
+                            },
+                            "hardsub": {
+                                "best": "mkdms2e13hb",
+                                "good": "mkdms2e13hg",
+                                "okay": "mkdms2e13ho"
+                            },
+                            "dub": {
+                                "best": "mkdms2e13db",
+                                "good": "mkdms2e13dg",
+                                "okay": "mkdms2e13do"
+                            }
+                        },
+
+                        "type": "special",
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    }
+                ]
             },
             {
                 "name": "Miss Kobayashi's Dragon Maid S Short Animation Series",
@@ -1694,21 +2516,95 @@
 
                 "episodes": [
                     {
-                        "name": "Placeholder",
-                        "parent": "csm.extras.",
-                        "id": "csm.extras.",
+                        "name": "KICK BACK - ANIME edit",
+                        "author": "Kenshi Yonezu",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.kb.tvsize",
 
-                        "description": "",
+                        "description": "The opening to Chainsaw Man, KICK BACK by Kenshi Yonezu. This is the TV size version found in the anime. CR rip.",
+                        "thumbnail": "csmdft",
+                        "length": 90,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.kb.tvsize.best",
+                                "good": "csm.extras.kb.tvsize.good",
+                                "okay": "csm.extras.kb.tvsize.okay"
+                            }
+                        },
+
+                        "type": "opening",
+
+                        "unfinished": true
+                    },
+                    {
+                        "name": "KICK BACK",
+                        "author": "Kenshi Yonezu",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.kb",
+
+                        "description": "The opening to Chainsaw Man, KICK BACK by Kenshi Yonezu. YouTube rip.",
                         "thumbnail": "csmdft",
                         "length": 1420,
 
                         "formats": {
                             "main": {
-                                "best": "csm.extras.best",
-                                "good": "csm.extras.good",
-                                "okay": "mcffs1e3mo"
+                                "best": "csm.extras.kb.best",
+                                "good": "csm.extras.kb.good",
+                                "okay": "csm.extras.kb.okay"
                             }
                         },
+
+                        "type": "music",
+
+                        "unfinished": true
+                    },
+                    {
+                        "name": "tablet [TVsize]",
+                        "author": "TOOBOE",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.tablet.tvsize",
+
+                        "description": "The 4th ending to Chainsaw Man, tablet by TOOBOE. This is the TV size version found in the anime. This is ripped from CR; you may also view it on YouTube here: https://www.youtube.com/watch?v=xIKW3NKYBWw",
+                        "thumbnail": "csmdft",
+                        "length": 90,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.tablet.tvsize.m.best",
+                                "good": "csm.extras.tablet.tvsize.m.good",
+                                "okay": "csm.extras.tablet.tvsize.m.okay"
+                            },
+                            "hardsub": {
+                                "best": "csm.extras.tablet.tvsize.s.best",
+                                "good": "csm.extras.tablet.tvsize.s.good",
+                                "okay": "csm.extras.tablet.tvsize.s.okay"
+                            }
+                        },
+
+                        "type": "ending",
+
+                        "unfinished": true
+                    },
+                    {
+                        "name": "tablet",
+                        "author": "TOOBOE",
+                        "parent": "csm.extras",
+                        "id": "csm.extras.tablet",
+
+                        "description": "The 4th ending to Chainsaw Man, tablet by TOOBOE. YouTube rip.",
+                        "thumbnail": "csmdft",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "csm.extras.tablet.best",
+                                "good": "csm.extras.tablet.good",
+                                "okay": "csm.extras.tablet.okay"
+                            }
+                        },
+
+                        "type": "music",
 
                         "unfinished": true
                     }
@@ -1752,7 +2648,313 @@
                 "parent": "gdo",
                 "id": "gdo.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "The Day I Knew I Could Never Go Back",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e1",
+
+                        "description": "Gabriel is a model angel at the top of her class in angel school. After her graduation, she descends to the human world in order to learn about humans firsthand and become a full-fledged angel. Each day, she cleans the park of litter and weeds, plays with children, and does good deeds, all while attending a human high school... until one day, she hears a cry for help coming from her laptop. Thus began her first encounter with the human entertainment known as \"MMOs\"--and her life would never be the same again...",
+                        "thumbnail": "gdos1e1thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e1mb",
+                                "good": "gdos1e1mg",
+                                "okay": "gdos1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e1hb",
+                                "good": "gdos1e1hg",
+                                "okay": "gdos1e1ho"
+                            }
+                        },
+
+                        "outro": [ 1330 ]
+                    },
+                    {
+                        "name": "The Angel, the Demon, and the Class President",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e2",
+
+                        "description": "Vignette wants to invite Gabriel and Satania to try out the school cafeteria with her, but Satania sneaks out of the classroom with her lunch, and Vigne and Gab realize they don't know where she's been eating all this time. When the demon and angel tail her, what they see will shock them...",
+                        "thumbnail": "gdos1e2thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e2mb",
+                                "good": "gdos1e2mg",
+                                "okay": "gdos1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e2hb",
+                                "good": "gdos1e2hg",
+                                "okay": "gdos1e2ho"
+                            }
+                        },
+
+                        "intro": [ 58, 148 ],
+                        "outro": [ 1330 ]
+                    },
+                    {
+                        "name": "Friends, Work, and the Summer of Bugs",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e3",
+
+                        "description": "Gabriel gets a job at the local coffee shop to pay for MMO microtransactions, but with zero job experience and even less motivation, things take a weird turn fast. Good thing the boss thinks she's a foreign student...",
+                        "thumbnail": "gdos1e3thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e3mb",
+                                "good": "gdos1e3mg",
+                                "okay": "gdos1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e3hb",
+                                "good": "gdos1e3hg",
+                                "okay": "gdos1e3ho"
+                            }
+                        },
+
+                        "intro": [ 39, 129 ],
+                        "outro": [ 1330 ]
+                    },
+                    {
+                        "name": "Summer Vacation, Ho!",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e4",
+
+                        "description": "When Vigne proposes a trip to the beach over summer vacation to Gab and Raphi, Satania makes it known that she must be included. Needless to say, Gab and Raphi are all too happy to pass the message onto Satania... with their own twists on it. Will Satania get to join the other three on their beach trip? And if she does, will she end up regretting it?",
+                        "thumbnail": "gdos1e4thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e4mb",
+                                "good": "gdos1e4mg",
+                                "okay": "gdos1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e4hb",
+                                "good": "gdos1e4hg",
+                                "okay": "gdos1e4ho"
+                            }
+                        },
+
+                        "intro": [ 71, 161 ],
+                        "outro": [ 901, 991 ]
+                    },
+                    {
+                        "name": "The Angel Whose Illusions Were Shattered Like Hell",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e5",
+
+                        "description": "One blisteringly hot day, a mysterious character dressed in full-body protective equipment descends upon the city of Maiten. It's none other than the angel Tapris, here in the human world to chase after Gabriel, her beloved role model. Her first day in the mortal world will be filled with shock and horror—especially when she unknowingly runs into Gabriel herself.",
+                        "thumbnail": "gdos1e5thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e5mb",
+                                "good": "gdos1e5mg",
+                                "okay": "gdos1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e5hb",
+                                "good": "gdos1e5hg",
+                                "okay": "gdos1e5ho"
+                            }
+                        },
+
+                        "intro": [ 78, 168 ],
+                        "outro": [ 1330 ]
+                    },
+                    {
+                        "name": "Satania's Counterattack",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e6",
+
+                        "description": "Ever since meeting Gabriel in the human world, Satania just can't seem to catch a break. But today her luck might finally turn around, thanks to a certain TV shopping channel.",
+                        "thumbnail": "gdos1e6thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e6mb",
+                                "good": "gdos1e6mg",
+                                "okay": "gdos1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e6hb",
+                                "good": "gdos1e6hg",
+                                "okay": "gdos1e6ho"
+                            }
+                        },
+
+                        "intro": [ 86, 176 ],
+                        "outro": [ 1330 ]
+                    },
+                    {
+                        "name": "Vigne's Demonic Life",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e7",
+
+                        "description": "Vignette: a demon who gets up the first time her alarm clock goes off, puts out her trash early in the morning, keeps her apartment squeaky clean, and goes to bed on time. Gabriel: an angel who won't wake up until past noon if she can help it, plays MMO holiday quests while dining on instant cup noodles, and games until she passes out at her laptop. These two friends seem to have little in common... until you take a peek inside their bankbooks.",
+                        "thumbnail": "gdos1e7thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e7mb",
+                                "good": "gdos1e7mg",
+                                "okay": "gdos1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e7hb",
+                                "good": "gdos1e7hg",
+                                "okay": "gdos1e7ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Fall School Life",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e8",
+
+                        "description": "Raphiel finds herself with a big problem one morning while getting ready for school: her new bra's already getting a little, uh, tight. Still, as long as she's careful, she should be able to get through the school day without the clasps breaking. Or at least that's what she tells herself until she finds out that it's physical fitness day...",
+                        "thumbnail": "gdos1e8thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e8mb",
+                                "good": "gdos1e8mg",
+                                "okay": "gdos1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e8hb",
+                                "good": "gdos1e8hg",
+                                "okay": "gdos1e8ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Christmas and New Year's Eve Surprise",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e9",
+
+                        "description": "Raphiel and Vigne get together to throw a human-style Christmas party. There's just one little problem: how can they keep Satania from ruining Christmas?",
+                        "thumbnail": "gdos1e9thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e9mb",
+                                "good": "gdos1e9mg",
+                                "okay": "gdos1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e9hb",
+                                "good": "gdos1e9hg",
+                                "okay": "gdos1e9ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "The Angels and Demons Return Home",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e10",
+
+                        "description": "Gabriel's back home in Heaven for summer vacation, and stuck without her computer or video games. At least she can still laze around... if she can get away from her lovable little sister Haniel, anyways. What's a faillen angel to do?",
+                        "thumbnail": "gdos1e10thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e10mb",
+                                "good": "gdos1e10mg",
+                                "okay": "gdos1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e10hb",
+                                "good": "gdos1e10hg",
+                                "okay": "gdos1e10ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Fun Forever After...",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e11",
+
+                        "description": "Gabriel and the girls are back to business as usual in the human world. Satania realizes a certain dog is missing when it doesn't appear to steal her melon bread. Also, Tapris comes to visit Gabriel, and take notes on the human world while she's at it.",
+                        "thumbnail": "gdos1e11thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e11mb",
+                                "good": "gdos1e11mg",
+                                "okay": "gdos1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e11hb",
+                                "good": "gdos1e11hg",
+                                "okay": "gdos1e11ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    },
+                    {
+                        "name": "Gabriel DropOut!",
+                        "parent": "gdo.s1",
+                        "id": "gdo.s1.e12",
+
+                        "description": "Gabriel hears that her older sister is heading to Earth and seems troubled. Which really comes as no surprise, as her older sister, Zelel, is known to be very efficient in Heaven. She’s a very powerful angel, who is known to be serious and strict, and is referred to as the Hand of God. Gabriel starts panicking, thinking that she might get such a harsh punishment if she finds out that she’s fallen that the world might be destroyed. Will Gabriel be able to get through in one piece?",
+                        "thumbnail": "gdos1e12thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "gdos1e12mb",
+                                "good": "gdos1e12mg",
+                                "okay": "gdos1e12mo"
+                            },
+                            "hardsub": {
+                                "best": "gdos1e12hb",
+                                "good": "gdos1e12hg",
+                                "okay": "gdos1e12ho"
+                            }
+                        },
+
+                        "intro": [ 0, 0 ],
+                        "outro": [ 0, 0.01 ],
+                        "unfinished": true
+                    }
+                ]
             }
         ]
     },
@@ -1761,9 +2963,11 @@
         "id":"onk",
 
         "description": "Dr. Goro is reborn as the son of the young starlet Ai Hoshino after her delusional stalker murders him. Now, he wants to help his new mother rise to the top, but what can a child do about the dark underbelly of the entertainment industry?",
-        "notes": "Ripped from HIDIVE. As such, censorship and translation errors may be present.\n\nAlso, you may have a generally worse experience; HIDIVE's raws are concerningly 5x smaller than Crunchyroll, and webtv wasn't designed with vtt support in mind.. oh well!",
+        "notes": "Ripped from HIDIVE. As such, censorship and translation errors may be present.\n\nAlso, you may have a generally worse experience; HIDIVE's raws are concerningly 5x smaller than Crunchyroll, and there's a few other things... oh well!",
         "icon": "onkic",
         "poster": "onkposter",
+
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/296cbc31-af1a-4b5b-a34b-fee2b4cad542/-oshi-no-ko\">MangaDex</a> and on the horrible abomination that is <a href=\"https://mangaplus.shueisha.co.jp/titles/100191\">MangaPlus</a>, and alternatively in volumes from <a href=\"https://yenpress.com/series/oshi-no-ko\">Yen Press</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/7b69cb90-ada5-4f39-9779-9caece8955c1\">Chp. 41</a>.",
 
         "seasons": [
             {
@@ -1771,7 +2975,282 @@
                 "parent": "onk",
                 "id": "onk.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "MOTHER AND CHILDREN",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e1",
+
+                        "description": "Stories are lies meant to entertain, and idols lie to fans eager to believe. This is Ai’s story. It is a lie, but it is also true.",
+                        "thumbnail": "onks1e1thmb",
+                        "length": 4925,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e1mb",
+                                "good": "onks1e1mg",
+                                "okay": "onks1e1mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e1hb",
+                                "good": "onks1e1hg",
+                                "okay": "onks1e1ho"
+                            }
+                        },
+
+                        "outro": [ 4784, 4875.6 ]
+                    },
+                    {
+                        "name": "THIRD OPTION",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e2",
+
+                        "description": "Ruby wants to be an idol for herself and for the little girl who died from cancer. The real world, however, doesn’t care about big dreams: something Aqua knows all too well.",
+                        "thumbnail": "onks1e2thmb",
+                        "length": 1486,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e2mb",
+                                "good": "onks1e2mg",
+                                "okay": "onks1e2mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e2hb",
+                                "good": "onks1e2hg",
+                                "okay": "onks1e2ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1396 ]
+                    },
+                    {
+                        "name": "MANGA-BASED TV DRAMA",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e3",
+
+                        "description": "Aqua agrees to Kana’s request, but not for the reason she wants. There’s a connection between Masaya Kaburagi and Ai, which leads Aqua to the set of a TV drama for answers.",
+                        "thumbnail": "onks1e3thmb",
+                        "length": 1521,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e3mb",
+                                "good": "onks1e3mg",
+                                "okay": "onks1e3mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e3hb",
+                                "good": "onks1e3hg",
+                                "okay": "onks1e3ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1431 ]
+                    },
+                    {
+                        "name": "ACTORS",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e4",
+
+                        "description": "Kana’s resolve remains strong despite her washed up reputation. Aqua sets the stage for her with a bold move that flips the script, which leads to opportunities for them both.",
+                        "thumbnail": "onks1e4thmb",
+                        "length": 1426,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e4mb",
+                                "good": "onks1e4mg",
+                                "okay": "onks1e4mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e4hb",
+                                "good": "onks1e4hg",
+                                "okay": "onks1e4ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1336 ]
+                    },
+                    {
+                        "name": "REALITY DATING SHOW",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e5",
+
+                        "description": "Despite different motivations, Aqua, Ruby and Kana’s key to success in the entertainment industry is the same; to achieve their goals, they need to play the game.",
+                        "thumbnail": "onks1e5thmb",
+                        "length": 1446,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e5mb",
+                                "good": "onks1e5mg",
+                                "okay": "onks1e5mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e5hb",
+                                "good": "onks1e5hg",
+                                "okay": "onks1e5ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1356 ]
+                    },
+                    {
+                        "name": "EGOSURFING",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e6",
+
+                        "description": "Remember what you said in righteous outrage online? There were consequences. You never saw them, but that didn’t make them any less real, nor hold you any less accountable.",
+                        "thumbnail": "onks1e6thmb",
+                        "length": 1516,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e6mb",
+                                "good": "onks1e6mg",
+                                "okay": "onks1e6mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e6hb",
+                                "good": "onks1e6hg",
+                                "okay": "onks1e6ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1416, 1506 ]
+                    },
+                    {
+                        "name": "BUZZ",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e7",
+
+                        "description": "Left reeling in the immediate aftermath, Akane’s costars unite in friendship and purpose: they will clear their friend’s name. They owe her nothing less.",
+                        "thumbnail": "onks1e7thmb",
+                        "length": 1486,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e7mb",
+                                "good": "onks1e7mg",
+                                "okay": "onks1e7mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e7hb",
+                                "good": "onks1e7hg",
+                                "okay": "onks1e7ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1396 ]
+                    },
+                    {
+                        "name": "FIRST TIME",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e8",
+
+                        "description": "Focused on revenge, Aqua underestimated Akane and gave the talented actress a way to win his heart. If love is a game, Akane is playing for keeps and Kana is falling behind.",
+                        "thumbnail": "onks1e8thmb",
+                        "length": 1426,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e8mb",
+                                "good": "onks1e8mg",
+                                "okay": "onks1e8mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e8hb",
+                                "good": "onks1e8hg",
+                                "okay": "onks1e8ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1336 ]
+                    },
+                    {
+                        "name": "B KOMACHI",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e9",
+
+                        "description": "MEM-cho won’t let her second chance go to waste and uses her influence to help grow B Komachi’s brand. Meanwhile, Aqua’s investigation into Ai’s past bears fruit.",
+                        "thumbnail": "onks1e9thmb",
+                        "length": 1516,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e9mb",
+                                "good": "onks1e9mg",
+                                "okay": "onks1e9mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e9hb",
+                                "good": "onks1e9hg",
+                                "okay": "onks1e9ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96 ],
+                        "outro": [ 1426 ]
+                    },
+                    {
+                        "name": "PRESSURE",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e10",
+
+                        "description": "B Komachi’s first performance approaches, but the group still needs practice while Kana refuses to be the center. Perhaps a certain expert choreographer could help them shine?",
+                        "thumbnail": "onks1e10thmb",
+                        "length": 1461,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e10mb",
+                                "good": "onks1e10mg",
+                                "okay": "onks1e10mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e10hb",
+                                "good": "onks1e10hg",
+                                "okay": "onks1e10ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1371 ]
+                    },
+                    {
+                        "name": "IDOL",
+                        "parent": "onk.s1",
+                        "id": "onk.s1.e11",
+
+                        "description": "MEM-cho has fans. Ruby has looks. But Kana has…? She’ll need to find the answer before she can be anyone’s star. Later, a fresh opportunity sets Aqua on a new path to revenge.",
+                        "thumbnail": "onks1e11thmb",
+                        "length": 1396,
+
+                        "formats": {
+                            "main": {
+                                "best": "onks1e11mb",
+                                "good": "onks1e11mg",
+                                "okay": "onks1e11mo"
+                            },
+                            "hardsub": {
+                                "best": "onks1e11hb",
+                                "good": "onks1e11hg",
+                                "okay": "onks1e11ho"
+                            }
+                        },
+
+                        "intro": [ 0, 96.1 ],
+                        "outro": [ 1306 ]
+                    }
+                ]
             }
         ]
     },
