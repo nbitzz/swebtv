@@ -789,7 +789,7 @@
         "icon": "nagatoroic.png",
         "poster": "ngposter",
 
-        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/d86cf65b-5f6c-437d-a0af-19a31f94ec55/ijiranaide-nagatoro-san\">MangaDex</a>, and alternatively in volumes from <a href=\"https://kodansha.us/series/dont-toy-with-me-miss-nagatoro\">Kodansha USA</a>. If you're looking to pick up from the end of S2E12, the anime (apparently) ends before <a href=\"https://mangadex.org/chapter/bf2ea6a2-f4f7-4fb6-9ee2-03b113964423\">Chp. 92</a>.",
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/d86cf65b-5f6c-437d-a0af-19a31f94ec55/ijiranaide-nagatoro-san\">MangaDex</a>, and alternatively in volumes from <a href=\"https://kodansha.us/series/dont-toy-with-me-miss-nagatoro\">Kodansha USA</a>. If you're looking to pick up from the end of S2E12, start at <a href=\"https://mangadex.org/chapter/bf2ea6a2-f4f7-4fb6-9ee2-03b113964423\">Chp. 92</a>.",
 
         "seasons": [
             {
@@ -800,7 +800,7 @@
                 "episodes": []
             },
             {
-                "name": "DON'T TOY WITH ME, MISS NAGATORO: 2nd Attack",
+                "name": "DON'T TOY WITH ME, MISS NAGATORO 2nd Attack",
                 "parent": "nagatoro",
                 "id": "nagatoro.s2",
 
@@ -838,7 +838,7 @@
         "icon": "akane_ico",
         "poster": "mcff_poster.jpeg",
 
-        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/23f2ab6b-0832-456b-9d87-35868ce34fc8\">MangaDex</a>. The anime mixes up the chapters quite a bit, so I'm not sure where it leaves off, but it's probably somewhere around Chapter 80. It's also being sold by Penguin Random House, but PRH can go fuck themselves. Keep the IA going.",
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/23f2ab6b-0832-456b-9d87-35868ce34fc8\">MangaDex</a>. The anime mixes up the chapters quite a bit, so I'm not sure where it leaves off, but it's probably somewhere around Chapter 80. It's also being sold by Penguin Random House&emdash;however, I'm leaving the link out, as the IA suit is still offputting to me.",
 
         "seasons": [
             {
@@ -2966,6 +2966,8 @@
         "notes": "Ripped from HIDIVE. As such, censorship and translation errors may be present.\n\nAlso, you may have a generally worse experience; HIDIVE's raws are concerningly 5x smaller than Crunchyroll, and there's a few other things... oh well!",
         "icon": "onkic",
         "poster": "onkposter",
+
+        "footnote": "This show's manga is available on <a href=\"https://mangadex.org/title/296cbc31-af1a-4b5b-a34b-fee2b4cad542/-oshi-no-ko\">MangaDex</a> and on the horrible abomination that is <a href=\"https://mangaplus.shueisha.co.jp/titles/100191\">MangaPlus</a>, and alternatively in volumes from <a href=\"https://yenpress.com/series/oshi-no-ko\">Yen Press</a>. If you're looking to pick up from the end of S1E12, start at <a href=\"https://mangadex.org/chapter/7b69cb90-ada5-4f39-9779-9caece8955c1\">Chp. 41</a>.",
 
         "seasons": [
             {
