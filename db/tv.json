@@ -3255,6 +3255,45 @@
         ]
     },
     {
+        "name": "Breaking Bad",
+        "id":"bb",
+
+        "description": "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
+        "notes": "Torrent sourced from 1337x, ripped by AV1D. I'll encode episodes later.",
+        "icon": "breakingbad_ic",
+        "poster": "bbposter",
+
+        "seasons": [
+            {
+                "name": "Breaking Bad Season 1",
+                "parent": "bb",
+                "id": "bb.s1",
+
+                "episodes": [
+                    {
+                        "name": "Pilot",
+                        "parent": "bb.s1",
+                        "id": "bb.s1.e1",
+
+                        "description": "Diagnosed with terminal lung cancer, chemistry teacher Walter White teams up with former student Jesse Pinkman to cook and sell crystal meth.",
+                        "thumbnail": "bbs1e1thmb",
+                        "length": 4925,
+
+                        "formats": {
+                            "main": {
+                                "best": "bbs1e1mb",
+                                "good": "bbs1e1mg",
+                                "okay": "bbs1e1mo"
+                            }
+                        },
+
+                        "unfinished": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "webtv testbench",
         "id":"wtvtb",
 
