@@ -2987,6 +2987,95 @@
                         "unfinished": true
                     }
                 ]
+            },
+            {
+                "parent": "gdo",
+                "id": "gdo.extra",
+
+                "episodes": [
+                    {
+                        "name": "\"Gabriel Dropkick\" [TV size]",
+                        "parent": "gdo.extra",
+                        "id": "gdo.extra.openingtv",
+
+                        "description": "The opening for \"Gabriel DropOut!\", Gabriel Dropkick. CR rip.",
+                        "thumbnail": "__ktathmb",
+                        "length": 90,
+
+                        "formats": {
+                            "main": {
+                                "best": "__ktabest",
+                                "good": "__ktagood",
+                                "okay": "__ktaokay"
+                            }
+                        },
+
+                        "type": "opening",
+                        "author": "VAs of Gabriel, Raphiel, Satania, and Vignette"
+                    },
+                    {
+                        "name": "\"Gabriel Dropkick\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.opening",
+
+                        "description": "The opening for \"Gabriel DropOut!\", Gabriel Dropkick. YouTube rip.",
+                        "thumbnail": "__luthmb",
+                        "length": 202,
+
+                        "formats": {
+                            "main": {
+                                "best": "__lubest",
+                                "good": "__lugood",
+                                "okay": "__luokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "?"
+                    },
+                    {
+                        "name": "\"Hallelujah☆Essaim\" [TV size]",
+                        "parent": "gdo.extra",
+                        "id": "gdo.extra.endingtv",
+
+                        "description": "The opening for \"Gabriel DropOut!\", Hallelujah☆Essaim. CR rip.",
+                        "thumbnail": "__ktathmb",
+                        "length": 90,
+
+                        "formats": {
+                            "main": {
+                                "best": "__ktabest",
+                                "good": "__ktagood",
+                                "okay": "__ktaokay"
+                            }
+                        },
+
+                        "type": "ending",
+                        "author": "VAs of Gabriel, Raphiel, Satania, and Vignette"
+                    },
+                    {
+                        "name": "\"Hallelujah☆Essaim\"",
+                        "parent": "wtvtb.extra",
+                        "id": "wtvtb.extra.ending",
+
+                        "description": "The ending for \"Gabriel DropOut!\", Hallelujah☆Essaim. YouTube rip.",
+                        "thumbnail": "__luthmb",
+                        "length": 202,
+
+                        "formats": {
+                            "main": {
+                                "best": "__lubest",
+                                "good": "__lugood",
+                                "okay": "__luokay"
+                            }
+                        },
+
+                        "type": "music",
+                        "author": "VAs of Gabriel, Raphiel, Satania, and Vignette"
+                    }
+                ],
+                
+                "type": "extras"
             }
         ]
     },
@@ -3322,6 +3411,25 @@
                         "unfinished": true
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Toradora!",
+        "id": "toradora",
+
+        "description": "TODO",
+        "notes": "Ripped from Crunchyroll. As such, censorship and translation errors may be present.",
+        "icon": "tdic.png",
+        "poster": "tdposter",
+
+        "seasons": [
+            {
+                "name": "Toradora!",
+                "parent": "toradora",
+                "id": "toradora.s1",
+
+                "episodes": []
             }
         ]
     },
