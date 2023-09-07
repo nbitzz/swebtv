@@ -825,7 +825,39 @@
                 "parent": "luckystar",
                 "id": "luckystar.s1",
 
-                "episodes": []
+                "episodes": [
+                    {
+                        "name": "",
+                        "parent": "ls.s1",
+                        "id": "ls.s1.e1",
+
+                        "description": "",
+                        "thumbnail": "mcff_ep13_thmb",
+                        "length": 1420,
+
+                        "formats": {
+                            "main": {
+                                "best": "mcffs1e13mb",
+                                "good": "mcffs1e13mg",
+                                "okay": "mcffs1e13mo"
+                            },
+                            "hardsub": {
+                                "best": "mcffs1e13hb",
+                                "good": "mcffs1e13hg",
+                                "okay": "mcffs1e13ho"
+                            },
+                            "dub": {
+                                "best": "mcffs1e13db",
+                                "good": "mcffs1e13dg",
+                                "okay": "mcffs1e13do"
+                            }
+                        },
+
+                        "intro": [ 71.85, 161.85 ],
+                        "outro": [ 1278, 1368 ],
+                        "unfinished": true
+                    }
+                ]
             }
         ]
     },
@@ -3260,7 +3292,7 @@
 
         "description": "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
         "notes": "Torrent sourced from 1337x, ripped by AV1D. I'll encode episodes later.",
-        "icon": "breakingbad_ic",
+        "icon": "breakingbad_ic.png",
         "poster": "bbposter",
 
         "seasons": [
