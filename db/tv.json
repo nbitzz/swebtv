@@ -828,8 +828,8 @@
                 "episodes": [
                     {
                         "name": "",
-                        "parent": "ls.s1",
-                        "id": "ls.s1.e1",
+                        "parent": "luckystar.s1",
+                        "id": "luckystar.s1.e1",
 
                         "description": "",
                         "thumbnail": "mcff_ep13_thmb",
@@ -837,19 +837,19 @@
 
                         "formats": {
                             "main": {
-                                "best": "mcffs1e13mb",
-                                "good": "mcffs1e13mg",
-                                "okay": "mcffs1e13mo"
+                                "best": "lss1e1mb",
+                                "good": "lss1e1mg",
+                                "okay": "lss1e1mo"
                             },
                             "hardsub": {
-                                "best": "mcffs1e13hb",
-                                "good": "mcffs1e13hg",
-                                "okay": "mcffs1e13ho"
+                                "best": "lss1e1hb",
+                                "good": "lss1e1hg",
+                                "okay": "lss1e1ho"
                             },
                             "dub": {
-                                "best": "mcffs1e13db",
-                                "good": "mcffs1e13dg",
-                                "okay": "mcffs1e13do"
+                                "best": "lss1e1db",
+                                "good": "lss1e1dg",
+                                "okay": "lss1e1do"
                             }
                         },
 
