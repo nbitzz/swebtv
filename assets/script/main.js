@@ -2540,7 +2540,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (155:4) {#key $cfg.host + playing.formats[format][quality]}
+// (158:4) {#key $cfg.host + playing.formats[format][quality]}
 function create_key_block$3(ctx) {
 	let video;
 	let video_poster_value;
@@ -2637,7 +2637,7 @@ function create_key_block$3(ctx) {
 	};
 }
 
-// (171:4) {#if videoReadyState < 2}
+// (174:4) {#if videoReadyState < 2}
 function create_if_block_7(ctx) {
 	let div1;
 	let t;
@@ -2703,7 +2703,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (175:12) {#if settings.userSet.developerMode}
+// (178:12) {#if settings.userSet.developerMode}
 function create_if_block_8(ctx) {
 	let p;
 	let t0;
@@ -2750,7 +2750,7 @@ function create_if_block_8(ctx) {
 	};
 }
 
-// (183:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
+// (186:4) {#if isEpisode(playing) && settings.userSet.skipbutton}
 function create_if_block_4$2(ctx) {
 	let t;
 	let if_block1_anchor;
@@ -2826,7 +2826,7 @@ function create_if_block_4$2(ctx) {
 	};
 }
 
-// (184:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
+// (187:8) {#if playing.intro && progress >= playing.intro[0] && progress < playing.intro[1]}
 function create_if_block_6$1(ctx) {
 	let button;
 	let button_transition;
@@ -2880,7 +2880,7 @@ function create_if_block_6$1(ctx) {
 	};
 }
 
-// (195:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
+// (198:8) {#if playing.outro && progress >= playing.outro[0] && progress < (playing.outro[1]||duration)}
 function create_if_block_5$1(ctx) {
 	let button;
 	let button_transition;
@@ -2934,7 +2934,7 @@ function create_if_block_5$1(ctx) {
 	};
 }
 
-// (206:4) {#if showControls}
+// (209:4) {#if showControls}
 function create_if_block$5(ctx) {
 	let t0;
 	let div3;
@@ -3181,7 +3181,7 @@ function create_if_block$5(ctx) {
 	};
 }
 
-// (207:8) {#if settings.userSet.developerMode}
+// (210:8) {#if settings.userSet.developerMode}
 function create_if_block_3$2(ctx) {
 	let p;
 	let t;
@@ -3212,7 +3212,7 @@ function create_if_block_3$2(ctx) {
 	};
 }
 
-// (257:12) {#if showFQPicker}
+// (260:12) {#if showFQPicker}
 function create_if_block_1$3(ctx) {
 	let div2;
 	let div0;
@@ -3405,7 +3405,7 @@ function create_if_block_1$3(ctx) {
 	};
 }
 
-// (262:28) {#each Object.keys(playing.formats) as fmt}
+// (265:28) {#each Object.keys(playing.formats) as fmt}
 function create_each_block_1$1(ctx) {
 	let option;
 	let t_value = /*fmt*/ ctx[55] + "";
@@ -3437,7 +3437,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (270:28) {#each Object.keys(playing.formats[format]) as qual}
+// (273:28) {#each Object.keys(playing.formats[format]) as qual}
 function create_each_block$1(ctx) {
 	let option;
 	let t_value = /*qual*/ ctx[52] + "";
@@ -3469,7 +3469,7 @@ function create_each_block$1(ctx) {
 	};
 }
 
-// (275:20) {#if settings.userSet.developerMode}
+// (278:20) {#if settings.userSet.developerMode}
 function create_if_block_2$3(ctx) {
 	let div;
 	let p;
@@ -3756,6 +3756,9 @@ function instance$5($$self, $$props, $$invalidate) {
 				break;
 			case "KeyF":
 				if (document.fullscreenElement != vplayer) vplayer.requestFullscreen(); else document.exitFullscreen();
+				break;
+			case "KeyT":
+				settings.set("theatre", !settings.userSet.theatre);
 				break;
 		}
 	}
